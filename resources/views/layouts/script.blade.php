@@ -11,7 +11,7 @@
         "debug": false,
         "newestOnTop": true,
         "progressBar": true,
-        "positionClass": "toastr-bottom-right",
+        "positionClass": "toastr-top-right",
         "preventDuplicates": true,
         "onclick": null,
         "showDuration": "300",

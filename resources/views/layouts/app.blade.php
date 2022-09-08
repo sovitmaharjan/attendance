@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Test</title>
+		<title>Demo</title>
 		@include('layouts.meta')
 		@include('layouts.style')
 	</head>

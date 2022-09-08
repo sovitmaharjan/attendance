@@ -3269,7 +3269,10 @@
                             <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
                         </div>
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="menu-link px-5">Sign Out</a>
+                            <form id="logout" method="post" action="{{ route('logout') }}">
+                                @csrf
+                            </form>
+                            <a class="menu-link px-5" onclick="document.getElementById('logout').submit();">Sign Out</a>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
