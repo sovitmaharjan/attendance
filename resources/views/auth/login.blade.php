@@ -5,8 +5,6 @@
         @csrf
         <div class="text-center mb-10">
             <h1 class="text-dark mb-3">Sign In to Metronic</h1>
-            <div class="text-gray-400 fw-bold fs-4">New Here?
-            <a href="../../demo1/dist/authentication/layouts/basic/sign-up.html" class="link-primary fw-bolder">Create an Account</a></div>
         </div>
         <div class="fv-row mb-10">
             <label class="form-label fs-6 fw-bolder text-dark">User Id</label>
@@ -20,7 +18,7 @@
         <div class="fv-row mb-10">
             <div class="d-flex flex-stack mb-2">
                 <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                <a href="../../demo1/dist/authentication/layouts/basic/password-reset.html" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+                <a href="{{ route('forgot-password') }}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
             </div>
             <input class="form-control form-control-lg form-control-solid" type="password" name="password" id="password" autocomplete="off" value="{{ old('password') }}" />
             @error('password')
@@ -42,4 +40,18 @@
             <img alt="Logo" src="assets/media/svg/brand-logos/facebook-4.svg" class="h-20px me-3" />Continue with Facebook</a> --}}
         </div>
     </form>
+@endsection
+
+@section('script')
+	<script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
+    @error('id')
+    <script>
+        toastr.error('{{ $message }}');
+    </script>
+    @enderror
+    @error('password')
+    <script>
+        toastr.error('{{ $message }}');
+    </script>
+    @enderror
 @endsection
