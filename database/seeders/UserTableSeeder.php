@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
             'company_id' => 1,
             'branch_id' => null,
             'department_id' => null,
-            'login_id' => Company::find(1)->code . '-' . $next_id,
+            'login_id' => strtolower(Company::find(1)->code) . '-' . $next_id,
             'supervisor_id' => null,
             'password' => bcrypt('123'),
             'login_count' => null,

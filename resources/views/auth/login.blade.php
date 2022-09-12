@@ -8,8 +8,8 @@
         </div>
         <div class="fv-row mb-10">
             <label class="form-label fs-6 fw-bolder text-dark">User Id</label>
-            <input class="form-control form-control-lg form-control-solid" type="text" name="id" autocomplete="off" value="{{ old('id') }}" />
-            @error('id')
+            <input class="form-control form-control-lg form-control-solid" type="text" name="login_id" autocomplete="off" value="{{ old('login_id') }}" />
+            @error('login_id')
                 <div class="fv-plugins-message-container invalid-feedback">
                     <div data-field="id" data-validator="notEmpty">{{ $message }}</div>
                 </div>
@@ -44,7 +44,7 @@
 
 @section('script')
 	<script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
-    @error('id')
+    @error('login_id')
     <script>
         toastr.error('{{ $message }}');
     </script>
