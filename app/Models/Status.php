@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PermissionGroup extends Model
+class Status extends Model
 {
     use HasFactory;
 
-    protected $fillables = [
-        'name'
-    ];
+    const DEFAULT = 1;
+    
+    protected $table = 'status';
+    
+    protected $fillable = ['title'];
 }

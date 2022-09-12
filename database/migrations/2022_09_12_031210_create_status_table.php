@@ -8,16 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('status', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->foreignId('permission_group_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->json('extra')->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('status');
     }
 };
