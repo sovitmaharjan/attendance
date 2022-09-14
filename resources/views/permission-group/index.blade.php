@@ -6,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Permission</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Permission Group</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -15,7 +15,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Permission</li>
+                        <li class="breadcrumb-item text-muted">Permission Group</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("permission.index") }}"
+                        <a href="{{ route("permission-group.index") }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -39,7 +39,7 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("permission.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("permission-group.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
@@ -48,12 +48,12 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Permission List</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">Permission Group List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you permission group </span> --}}
                         </h3>
                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                             title="">
-                            <a href="{{ route("permission.create") }}" class="btn btn-primary">
+                            <a href="{{ route("permission-group.create") }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
@@ -73,23 +73,19 @@
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Group</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($permission as $key => $value)
+                                        @foreach ($permission_group as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
                                                     {{ $value->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $value->group->name }}
-                                                </td>
-                                                <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        <a href="{{ route("permission.edit", $value->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                        <a href="{{ route("permission-group.edit", $value->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                                     <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor"></path>
@@ -98,7 +94,7 @@
                                                             </span>
                                                         </a>
                                                         <form id="form{{ $value->id }}"
-                                                            action="{{ route("permission.destroy", $value->id) }}"
+                                                            action="{{ route("permission-group.destroy", $value->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method("delete")

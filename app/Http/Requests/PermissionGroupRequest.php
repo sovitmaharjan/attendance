@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PermissionRequest extends FormRequest
+class PermissionGroupRequest extends FormRequest
 {
     public function authorize()
     {
@@ -16,8 +16,7 @@ class PermissionRequest extends FormRequest
         return [
             'name' => (strtolower(request()->method()) == 'put' || strtolower(request()->method()) == 'patch')
                 ? 'required|unique:permission_groups,name,' . $this->route('permission_group')->id
-                : 'required|unique:permission_groups',
-            'permission_group' => 'required'
+                : 'required|unique:permission_groups'
         ];
     }
 }
