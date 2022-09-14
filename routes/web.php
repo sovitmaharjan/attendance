@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PermissionGroupController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -24,6 +26,12 @@ Route::group([
         'auth'
     ]
 ], function () {
+    // permission-group
+    Route::resource('/permission-group', PermissionGroupController::class);
+
+    // permission
+    Route::resource('/permission', PermissionController::class);
+    
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Employee

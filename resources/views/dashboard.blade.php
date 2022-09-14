@@ -109,36 +109,18 @@
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
                         <thead>
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="w-10px pe-2">
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                        <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_category_table .form-check-input" value="1" />
-                                    </div>
-                                </th>
+                                <th class="min-w-50px">S.N.</th>
                                 <th class="min-w-250px">Category</th>
-                                <th class="min-w-150px">Category Type</th>
                                 <th class="text-end min-w-70px">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="fw-bold text-gray-600">
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    1
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/68.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Computers</a>
-                                            <div class="text-muted fs-7 fw-bolder">Our computers and tablets include all the big brands.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -160,23 +142,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    2
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/71.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Watches</a>
-                                            <div class="text-muted fs-7 fw-bolder">Our range of watches are perfect whether you’re looking to upgrade</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -198,23 +167,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    3
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/58.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Headphones</a>
-                                            <div class="text-muted fs-7 fw-bolder">Our big range of headphones makes it easy to upgrade your device at a great price.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-primary">Manual</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -236,23 +192,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    4
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/52.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Footwear</a>
-                                            <div class="text-muted fs-7 fw-bolder">Whatever your activity needs are, we’ve got you covered.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -274,23 +217,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    5
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/76.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Cameras</a>
-                                            <div class="text-muted fs-7 fw-bolder">You’ll find exactly what you’re looking for with our huge range of cameras.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-primary">Manual</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -312,23 +242,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    6
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/207.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Shirts</a>
-                                            <div class="text-muted fs-7 fw-bolder">Any occasion, any time, we have everything you'll ever need.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -350,23 +267,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    7
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/50.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Household</a>
-                                            <div class="text-muted fs-7 fw-bolder">Spice up your home decor with our wide selection.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-primary">Manual</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -388,23 +292,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    8
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/193.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Toys</a>
-                                            <div class="text-muted fs-7 fw-bolder">Get the perfect gift for the little ones.</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -426,23 +317,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    9
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/169.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Handbags</a>
-                                            <div class="text-muted fs-7 fw-bolder">Great fashion, great selections, great prices</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-primary">Manual</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -464,23 +342,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    10
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/177.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Wines</a>
-                                            <div class="text-muted fs-7 fw-bolder">Great taste, great selections, great prices</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -502,23 +367,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" />
-                                    </div>
+                                    11
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/151.gif);"></span>
-                                        </a>
-                                        <div class="ms-5">
-                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-category.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder mb-1" data-kt-ecommerce-category-filter="category_name">Sandals</a>
-                                            <div class="text-muted fs-7 fw-bolder">In season summer footwear with a huge range of options</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="badge badge-light-success">Automated</div>
+                                    name
                                 </td>
                                 <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

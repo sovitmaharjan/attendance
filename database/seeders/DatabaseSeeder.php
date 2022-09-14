@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BranchTableSeeder::class);
         $this->call(DepartmentTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(PermissionGroupTableSeeder::class);
     }
 }

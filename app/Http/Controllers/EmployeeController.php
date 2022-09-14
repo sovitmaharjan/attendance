@@ -48,7 +48,7 @@ class EmployeeController extends Controller
         $branch = Branch::all();
         $department = Department::all();
         $supervisor = User::where('department_id', null)->get();
-        return view('employee.create', compact('company', 'branch', 'department', 'supervisor', 'employee'));
+        return view('employee.edit', compact('company', 'branch', 'department', 'supervisor', 'employee'));
     }
 
     public function update(EmployeeRequest $request, User $employee)
@@ -59,10 +59,20 @@ class EmployeeController extends Controller
             $data = $request->validated();
             $data['login_id'] = $login_id;
             $data['password'] = Str::random(7);
-            User::create($data);
-            return back()->with('success', 'Employee has been created');
+            $employee->update($data);
+            return redirect()->route('employee.index')->with('success', 'Employee has been created');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function destroy(User $employee)
+    {
+        try {
+            $employee->delete();
+            return redirect()->route("employee.index")->with("success", "Employee has been deleted");
+        } catch (Exception $e) {
+            return redirect()->route("employee.index")->with("error", $e->getMessage());
         }
     }
 }
