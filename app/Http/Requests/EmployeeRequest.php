@@ -14,7 +14,21 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'prefix' => 'required',
+            'firstname' => 'required',
+            'middlename' => 'nullable',
+            'lastname' => 'required',
+            'gender' => 'required',
+            'relationship' => 'required',
+            'dob' => 'required',
+            'email' => 'required',
+            'company_id' => 'required',
+            'branch_id' => 'nullable',
+            'department_id' => 'nullable',
+            'login_id' => 'required',
+            'supervisor' => 'nullable',
+            'status' => 'required',
+            'type' => 'required'
         ];
     }
 }

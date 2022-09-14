@@ -25,7 +25,7 @@ class User extends Authenticatable
         'branch_id',
         'department_id',
         'login_id',
-        'supervisor_id',
+        'supervisor',
         'password',
         'login_count',
         'status',

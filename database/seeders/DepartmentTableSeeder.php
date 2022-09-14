@@ -12,7 +12,7 @@ class DepartmentTableSeeder extends Seeder
     {
         $department = Department::create([
             'name' => 'Test Department',
-            'code' => 'TBRA',
+            'code' => 'TDEP',
             'address' => 'test department address',
             'email' => 'testdepartment@email.com',
             'phone' => '+977-051234554',

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId('branch_id')->nullable()->constrained();
             $table->foreignId('department_id')->nullable()->constrained();
             $table->string('login_id')->unique();
-            $table->foreignId('supervisor_id')->nullable()->constrained('users');
+            $table->foreignId('supervisor')->nullable()->constrained('users');
             $table->string('password');
             $table->string('login_count')->nullable();
             $table->string('status'); // enum
