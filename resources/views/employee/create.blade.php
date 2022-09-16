@@ -105,7 +105,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("employee.index") }}"
+                        <a href="{{ route('employee.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -135,14 +135,14 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("employee.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="brand_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('brand.store') }}" enctype="multipart/form-data">
+                <form class="form d-flex flex-column flex-lg-row" method="POST" action="{{ route('employee.store') }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                         <div class="card card-flush py-4">
@@ -154,12 +154,13 @@
                             <div class="card-body text-center pt-0">
                                 <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true"
                                     style="background-image: url({{ asset('assets/admin/media/svg/files/blank-image.svg') }})">
-                                    <div class="image-input-wrapper w-200px h-200px bgi-position-center" style="background-size: 95%;"></div>
+                                    <div class="image-input-wrapper w-200px h-200px bgi-position-center"
+                                        style="background-size: 95%;"></div>
                                     <label
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required/>
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required />
                                     </label>
                                     <span
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -172,7 +173,8 @@
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
                                 </div>
-                                <div class="text-muted fs-7">Set the brand image. Only *.png, *.jpg and *.jpeg image files
+                                <div class="text-muted fs-7">Set the employee image. Only *.png, *.jpg and *.jpeg image
+                                    files
                                     are accepted</div>
                                 @error('image')
                                     <div class="fv-plugins-message-container invalid-feedback">
@@ -180,29 +182,15 @@
                                     </div>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="card card-flush py-4">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2 class="required">Status</h2>
-                                </div>
-                                <div class="card-toolbar">
-                                    <div class="rounded-circle bg-success w-15px h-15px"
-                                        id="kt_ecommerce_add_brand_status"></div>
-                                </div>
-                            </div>
                             <div class="card-body pt-0">
-                                <select class="form-select mb-2" data-control="select2" name="status"
-                                    data-hide-search="true" data-placeholder="Select an option"
-                                    id="kt_ecommerce_add_brand_status_select" required>
-                                    <option></option>
-                                    <option value="1" selected="selected">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                                <div class="text-muted fs-7">Set the brand status.</div>
-                                @error('status')
+                                <label class="form-label">Login Id</label>
+                                <input type="text" name="title" class="form-control mb-2" value="{{ old('title') }}"
+                                    required />
+                                <div class="text-muted fs-7 mb-7">Select atleast company to generate login id.
+                                </div>
+                                @error('title')
                                     <div class="fv-plugins-message-container invalid-feedback">
-                                        <div data-field="status" data-validator="notEmpty">{{ $message }}</div>
+                                        <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
                                     </div>
                                 @enderror
                             </div>
@@ -212,34 +200,219 @@
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>General</h2>
+                                    <h2>Personal Information</h2>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Brand Name</label>
-                                    <input type="text" name="title" class="form-control mb-2" placeholder="Brand name"
-                                        value="{{ old('title') }}" required/>
-                                    <div class="text-muted fs-7">A brand name is required and recommended to be unique.
-                                    </div>
-                                    @error('title')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Name</label>
+                                            <div class="d-flex gap-5">
+                                                <select class="form-select mb-2" name="prefix" data-control="select2"
+                                                    data-hide-search="true" data-placeholder="Select an option" required>
+                                                    <option></option>
+                                                    <option value="Mr." {{ old('prefix') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                                    <option value="Mrs." {{ old('prefix') == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
+                                                    <option value="Miss." {{ old('prefix') == 'Miss' ? 'selected' : '' }}>Miss</option>
+                                                    <option value="Mx." {{ old('prefix') == 'Mx.' ? 'selected' : '' }}>Mx.</option>
+                                                    <option value="Ms." {{ old('prefix') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
+                                                    <option value="Dr." {{ old('prefix') == 'Dr.' ? 'selected' : '' }}>Dr.</option>
+                                                    <option value="Er." {{ old('prefix') == 'Er.' ? 'selected' : '' }}>Er.</option>
+                                                </select>
+                                                <input type="text" class="form-control mb-2" name="firstname"
+                                                    value="{{ old('firstname') }}" placeholder="Firstname" required />
+                                                <input type="text" class="form-control mb-2" name="middlename"
+                                                    value="{{ old('middlename') }}" placeholder="Middlename" />
+                                                <input type="text" class="form-control mb-2" name="lastname"
+                                                    value="{{ old('lastname') }}" placeholder="Lastname" required />
+                                            </div>
                                         </div>
-                                    @enderror
+                                    </div>
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <label class="form-label">Description</label>
-                                    <textarea name="description" class="form-control mb-2" id="description"
-                                        rows="5">{{ old('description') }}</textarea>
-                                    <div class="text-muted fs-7">Set a description to the brand.</div>
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Gender</label>
+                                            <div class="form-check form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                    value="Male" id="male" {{ old('gender') == 'Male' ? 'selected' : '' }} required />
+                                                <label class="form-check-label mx-3" for="male">Male </label>
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                    value="Female" id="female" {{ old('gender') == 'Female' ? 'selected' : '' }} />
+                                                <label class="form-check-label mx-3" for="female">Female </label>
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                    value="Other" id="other" {{ old('gender') == 'Other' ? 'selected' : '' }} />
+                                                <label class="form-check-label mx-3" for="other">Other </label>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Relation</label>
+                                            <div class="form-check form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="radio" name="relation"
+                                                    value="Single" id="single" {{ old('relation') == 'Single' ? 'selected' : '' }} required />
+                                                <label class="form-check-label mx-3" for="single">Single </label>
+                                                <input class="form-check-input" type="radio" name="relation"
+                                                    value="Married" id="married" {{ old('relation') == 'Married' ? 'selected' : '' }} />
+                                                <label class="form-check-label mx-3" for="married">Married </label>
+                                                <input class="form-check-input" type="radio" name="relation"
+                                                    value="Separated" id="separated" {{ old('relation') == 'Separated' ? 'selected' : '' }} />
+                                                <label class="form-check-label mx-3" for="separated">Separated </label>
+                                                <input class="form-check-input" type="radio" name="relation"
+                                                    value="Divorced" id="divorced" {{ old('relation') == 'Divorced' ? 'selected' : '' }} />
+                                                <label class="form-check-label mx-3" for="divorced">Divorced </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">DOB</label>
+                                            <div class="d-flex gap-5">
+                                                <input type="text" class="form-control mb-2" name="dob"
+                                                    value="{{ old('dob') }}" placeholder="yyyy-dd-mm" required />
+                                                <input type="text" class="form-control mb-2" name="nepali_dob"
+                                                    value="{{ old('nepali_dob') }}" placeholder="yyyy-dd-mm" />
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Join Date</label>
+                                            <div class="d-flex gap-5">
+                                                <input type="text" class="form-control mb-2" name="join_date"
+                                                    value="{{ old('join_date') }}" placeholder="yyyy-dd-mm" required />
+                                                <input type="text" class="form-control mb-2" name="nepali_join_date"
+                                                    value="{{ old('nepali_join_date') }}" placeholder="yyyy-dd-mm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Email</label>
+                                            <input type="text" class="form-control mb-2" name="email"
+                                                value="{{ old('email') }}" placeholder="example@mail.com" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Official Information</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Branch</label>
+                                            <select class="form-select mb-2" name="branch" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option" required>
+                                                <option></option>
+                                                @foreach ($branch as $item)
+                                                    <option value="{{ $item->id }}" {{ old('branch') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department</label>
+                                            <select class="form-select mb-2" name="tax" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option" required>
+                                                <option></option>
+                                                @foreach ($department as $item)
+                                                    <option value="{{ $item->id }}" {{ old('department') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            {{-- to be continue --}}
+                                            <label class="required form-label">Role</label>
+                                            <select class="form-select mb-2" name="tax" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option" required>
+                                                <option></option>
+                                                <option value="Mr." {{ old('user_type') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
+                                            </select>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            {{-- to be continue --}}
+                                            <label class="required form-label">Supervisor</label>
+                                            <select class="form-select mb-2" name="tax" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option">
+                                                <option></option>
+                                                <option value="Mr.">Mr.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            {{-- to be continue --}}
+                                            <label class="required form-label">Designation</label>
+                                            <select class="form-select mb-2" name="tax" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option">
+                                                <option></option>
+                                                <option value="Mr.">Mr.</option>
+                                            </select>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Login Id</label>
+                                            <input type="text" class="form-control mb-2" name="login_id"
+                                                value="{{ old('login_id') }}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Status</label>
+                                            <select class="form-select mb-2" name="status" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option" required>
+                                                <option></option>
+                                                <option value="Working" {{ old('status') == 'Working' ? 'selected' : '' }}>Working</option>
+                                                <option value="Suspended" {{ old('status') == 'Suspended' ? 'selected' : '' }}>Suspended</option>
+                                                <option value="Discharged" {{ old('status') == 'Discharged' ? 'selected' : '' }}>Discharged</option>
+                                                <option value="Dismissed" {{ old('status') == 'Dismissed' ? 'selected' : '' }}>Dismissed</option>
+                                                <option value="Resigned" {{ old('status') == 'Resigned' ? 'selected' : '' }}>Resigned</option>
+                                                <option value="Inactive" {{ old('status') == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                            </select>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Type</label>
+                                            <select class="form-select mb-2" name="type" data-control="select2"
+                                                data-hide-search="true" data-placeholder="Select an option" required>
+                                                <option></option>
+                                                <option value="Temporary" {{ old('status') == 'Temporary' ? 'selected' : '' }}>Temporary</option>
+                                                <option value="Permanent" {{ old('status') == 'Permanent' ? 'selected' : '' }}>Permanent</option>
+                                                <option value="Contract" {{ old('status') == 'Contract' ? 'selected' : '' }}>Contract</option>
+                                                <option value="Casual" {{ old('status') == 'Casual' ? 'selected' : '' }}>Casual</option>
+                                                <option value="Trainee" {{ old('status') == 'Trainee' ? 'selected' : '' }}>Trainee</option>
+                                                <option value="Probation" {{ old('status') == 'Probation' ? 'selected' : '' }}>Probation</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">Official Email</label>
+                                            <input type="text" class="form-control mb-2" name="official_email"
+                                                value="{{ old('official_email') }}" placeholder="example@mail.com" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('brand.index') }}" id="kt_ecommerce_add_product_cancel"
-                                class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_brand_submit" class="btn btn-primary">
+                            <a href="{{ route('employee.index') }}" class="btn btn-light me-5">Cancel</a>
+                            <button type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -250,7 +423,4 @@
             </div>
         </div>
     </div>
-@endSection
-@section('script')
-    <script src="{{ asset('assets/admin/js/custom/apps/ecommerce/catalog/save-brand.js') }}"></script>
 @endSection

@@ -11,8 +11,8 @@
     <label>prefix</label>
     <select name="prefix" required>
         <option value="Mr." {{ $employee->prefix == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-        <option value="Ms." {{ $employee->prefix == 'Ms.' ? 'selected' : '' }}>Ms.</option>
         <option value="Mrs." {{ $employee->prefix == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
+        <option value="Ms." {{ $employee->prefix == 'Ms.' ? 'selected' : '' }}>Ms.</option>
     </select>
     <br />
     <label>firstname</label>
