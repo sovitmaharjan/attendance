@@ -10,7 +10,6 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetPasswordMail'])->name('reset-password-mail');
@@ -32,7 +31,7 @@ Route::group([
     // permission
     Route::resource('/permission', PermissionController::class);
     
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Employee
     Route::resource('/employee', EmployeeController::class);

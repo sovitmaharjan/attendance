@@ -14,26 +14,26 @@ class ForgotPasswordController extends Controller
 {
     public function index()
     {
-        return view("auth.forgot-password");
+        return view('auth.forgot-password');
     }
 
     public function sendResetPasswordMail(ResetPasswordMailRequest $request)
     {
         DB::beginTransaction();
         try {
-            DB::table("password_resets")->where(["email" => $request->email])->delete();
+            DB::table('password_resets')->where(['email' => $request->email])->delete();
             $token = Str::random(64);
-            DB::table("password_resets")->insert([
-                "email" => $request->email,
-                "token" => $token,
-                "created_at" => now()
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => now()
             ]);
             Mail::to($request->email)->send(new ResetPasswordMail($request->email, $token));
             DB::commit();
-            return redirect("login")->with("success", "Reset password mail has been sent. Check your mail.");
+            return redirect('login')->with('success', 'Reset password mail has been sent. Check your mail.');
         } catch (Exception $e) {
             DB::rollBack();
-            return back()->with("error", $e->getMessage());
+            return back()->with('error', $e->getMessage());
         }
     }
 }
