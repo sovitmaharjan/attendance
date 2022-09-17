@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Designation;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,13 +18,17 @@ class UserTableSeeder extends Seeder
             'firstname' => 'Tom',
             'middlename' => 'n',
             'lastname' => 'jerry',
-            'gender' => 'male',
-            'relationship' => 'single',
-            'dob' => '1940-02-10',
             'email' => 'tomnjerry8963@gmail.com',
-            'company_id' => 1,
+            'phone' => '+977-986543221',
+            'address' => 'address',
+            'gender' => 'male',
+            'marital_status' => 'Married',
+            'dob' => '1940-02-10',
+            'join_date' => '2022-01-01',
+            'company_id' => Company::find(1)->id,
             'branch_id' => null,
             'department_id' => null,
+            'designation_id' => Designation::find(1)->id,
             'login_id' => Company::find(1)->code . '-' . $next_id,
             'supervisor' => null,
             'password' => bcrypt('123'),

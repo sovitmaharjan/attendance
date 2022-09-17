@@ -10,8 +10,8 @@ class PermissionGroupController extends Controller
 {
     public function index()
     {
-        $permission_group = PermissionGroup::all();
-        return view('permission-group.index', compact('permission_group'));
+        $data['permission_group'] = PermissionGroup::all();
+        return view('permission-group.index', $data);
     }
 
     public function create()
@@ -31,7 +31,7 @@ class PermissionGroupController extends Controller
 
     public function edit(PermissionGroup $permission_group)
     {
-        return view('permission-group.edit', compact('permission_group'));
+        return view('permission-group.edit');
     }
 
     public function update(PermissionGroupRequest $request, PermissionGroup $permission_group)

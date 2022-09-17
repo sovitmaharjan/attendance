@@ -4,20 +4,19 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PermissionRequest extends FormRequest
+class RoleRequest extends FormRequest
 {
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     public function rules()
     {
         return [
             'name' => (strtolower(request()->method()) == 'put' || strtolower(request()->method()) == 'patch')
-                ? 'required|unique:permissions,name,' . $this->route('permission')->id
-                : 'required|unique:permissions',
-            'permission_group' => 'required'
+                ? 'required|unique:roles,name,' . $this->route('role')->id
+                : 'required|unique:roles',
         ];
     }
 }

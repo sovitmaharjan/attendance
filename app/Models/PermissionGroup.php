@@ -11,7 +11,7 @@ class PermissionGroup extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name'];
 
     public function getSlugOptions(): SlugOptions
     {

@@ -6,6 +6,8 @@ use App\Http\Requests\EmployeeRequest;
 use App\Models\Branch;
 use App\Models\Company;
 use App\Models\Department;
+use App\Models\Designation;
+use App\Models\Role;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Str;
@@ -14,17 +16,19 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $employee = User::all();
-        return view('employee.index', compact('employee'));
+        $data['employee'] = User::all();
+        return view('employee.index', $data);
     }
 
     public function create()
     {
-        $company = Company::all();
-        $branch = Branch::all();
-        $department = Department::all();
-        $supervisor = User::where('department_id', null)->get();
-        return view('employee.create', compact('company', 'branch', 'department', 'supervisor'));
+        $data['company'] = Company::all();
+        $data['branch'] = Branch::all();
+        $data['department'] = Department::all();
+        $data['supervisor'] = User::all();
+        $data['designation'] = Designation::all();
+        $data['role'] = Role::all();
+        return view('employee.create', $data);
     }
 
     public function store(EmployeeRequest $request)
@@ -44,11 +48,13 @@ class EmployeeController extends Controller
 
     public function edit(User $employee)
     {
-        $company = Company::all();
-        $branch = Branch::all();
-        $department = Department::all();
-        $supervisor = User::where('department_id', null)->get();
-        return view('employee.edit', compact('company', 'branch', 'department', 'supervisor', 'employee'));
+        $data['company'] = Company::all();
+        $data['branch'] = Branch::all();
+        $data['department'] = Department::all();
+        $data['supervisor'] = User::all();
+        $data['designation'] = Designation::all();
+        $data['role'] = Role::all();
+        return view('employee.edit', $data);
     }
 
     public function update(EmployeeRequest $request, User $employee)

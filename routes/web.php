@@ -25,14 +25,12 @@ Route::group([
         'auth'
     ]
 ], function () {
-    // permission-group
-    Route::resource('/permission-group', PermissionGroupController::class);
-
-    // permission
-    Route::resource('/permission', PermissionController::class);
-    
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-    // Employee
+    Route::resource('/permission-group', PermissionGroupController::class);
+    Route::resource('/permission', PermissionController::class);
+    Route::resource('/role', PermissionController::class);
+    Route::resource('/company', PermissionController::class);
+    Route::resource('/branch', PermissionController::class);
+    Route::resource('/department', PermissionController::class);
     Route::resource('/employee', EmployeeController::class);
 });

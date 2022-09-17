@@ -14,16 +14,18 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->enum('gender', ['Male', 'Female', 'Other']);
-            $table->enum('relationship', ['Single', 'Married', 'Separated', 'Divorced']);
-            $table->dateTime('dob');
-            $table->dateTime('nepali_dob')->nullable();
-            $table->dateTime('join_date')->default(now());
-            $table->dateTime('nepali_join_date')->nullable();
             $table->string('email')->unique();
+            $table->string('phone');
+            $table->text('address');
+            $table->enum('gender', ['Male', 'Female', 'Other']);
+            $table->enum('marital_status', ['Married', 'Unmarried', 'Divorced', 'Separated']);
+            $table->dateTime('dob');
+            $table->dateTime('join_date')->default(now());
+
             $table->foreignId('company_id')->constrained();
             $table->foreignId('branch_id')->nullable()->constrained();
             $table->foreignId('department_id')->nullable()->constrained();
+            $table->foreignId('designation_id')->constrained();
             $table->string('login_id')->unique();
             $table->foreignId('supervisor')->nullable()->constrained('users');
             $table->string('password');
