@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('website')->nullable();
             $table->json('extra')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
