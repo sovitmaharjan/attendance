@@ -33,6 +33,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
+        $data['permission'] = $permission;
         $data['permission_group'] = PermissionGroup::all();
         return view('permission.edit', $data);
     }

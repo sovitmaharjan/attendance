@@ -85,7 +85,7 @@
                                                     {{ $value->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $value->group->name }}
+                                                    {{ $value->permissionGroup->name }}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">

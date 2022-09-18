@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->foreignId('permission_group_id')->nullable()->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
