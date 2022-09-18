@@ -33,7 +33,7 @@
                         <div class="separator mx-1 my-2"></div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion mb-1">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1 {{ request()->route()->uri == 'permission-group' || request()->route()->uri == 'permission' || request()->route()->uri == 'role' ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -48,7 +48,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link {{ request()->route()->uri == 'permission-group' ? 'active' : '' }}" href="{{ route('permission-group.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -56,7 +56,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link active" href="{{ route('dashboard') }}">
+                            <a class="menu-link {{ request()->route()->uri == 'permission' ? 'active' : '' }}" href="{{ route('dashboard') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link {{ request()->route()->uri == 'role' ? 'active' : '' }}" href="{{ route('dashboard') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
