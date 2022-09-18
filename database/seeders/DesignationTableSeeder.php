@@ -11,6 +11,9 @@ class DesignationTableSeeder extends Seeder
     public function run()
     {
         Designation::create([
+            'title' => 'Super Admin'
+        ]);
+        Designation::create([
             'title' => 'Admin'
         ]);
     }

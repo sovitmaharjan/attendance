@@ -22,7 +22,7 @@ return new class extends Migration
             $table->dateTime('dob');
             $table->dateTime('join_date')->default(now());
 
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_id')->nullable()->constrained();
             $table->foreignId('branch_id')->nullable()->constrained();
             $table->foreignId('department_id')->nullable()->constrained();
             $table->foreignId('designation_id')->constrained();
