@@ -56,7 +56,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link {{ request()->route()->uri == 'permission' ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                            <a class="menu-link {{ request()->route()->uri == 'permission' ? 'active' : '' }}" href="{{ route('permission.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link {{ request()->route()->uri == 'role' ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                            <a class="menu-link {{ request()->route()->uri == 'role' ? 'active' : '' }}" href="{{ route('role.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

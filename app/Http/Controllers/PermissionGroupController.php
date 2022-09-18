@@ -31,7 +31,7 @@ class PermissionGroupController extends Controller
 
     public function edit(PermissionGroup $permission_group)
     {
-        return view('permission-group.edit');
+        return view('permission-group.edit', compact('permission_group'));
     }
 
     public function update(PermissionGroupRequest $request, PermissionGroup $permission_group)
