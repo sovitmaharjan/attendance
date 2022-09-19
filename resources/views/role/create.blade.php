@@ -71,18 +71,26 @@
                                     </div>
                                     @enderror
                                 </div>
-                                @foreach($permission_groups as $permission_group)
-                                    <input type="checkbox" class="me-2">
-                                    <label class="form-label">{{$permission_group->name}}</label>
-                                    <div class="mb-10 row">
-                                        @foreach($permission_group->permissions as $permission)
-                                            <div class="col-2">
-                                                <input type="checkbox" value="{{$permission->id}}" name="permissions[]" class="me-2">
-                                                <label for="checkbox">{{$permission->name}}</label>
+                                <div>
+                                    <label for="permissions" class="form-label required">Permissions</label>
+                                    @foreach($permission_groups as $permission_group)
+                                        <div>
+                                            <div class="d-inline-flex">
+                                                <input type="checkbox" class="me-2 w-20px h-20px">
+                                                <label class="form-label my-auto">{{$permission_group->name}}</label>
                                             </div>
-                                        @endforeach
-                                    </div>
-                                @endforeach
+                                            <div class="mb-10 row ms-4 mt-3">
+                                                @foreach($permission_group->permissions as $permission)
+                                                    <div class="col-2">
+                                                        <input type="checkbox" value="{{$permission->id}}"
+                                                               name="permissions[]" class="me-2">
+                                                        <label for="checkbox">{{$permission->name}}</label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">

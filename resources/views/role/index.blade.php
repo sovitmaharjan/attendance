@@ -109,7 +109,7 @@
                                                             </span>
                                                     </a>
                                                     <form id="form{{ $role->id }}"
-                                                          action="{{ route("$role.destroy", $role->id) }}"
+                                                          action="{{ route("role.destroy", $role->id) }}"
                                                           method="POST">
                                                         @csrf
                                                         @method("delete")

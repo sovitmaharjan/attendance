@@ -40,15 +40,20 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('role.edit');
+        $permission_groups = PermissionGroup::with('permissions')->get();
+        return view('role.edit', compact('role', 'permission_groups'));
     }
 
     public function update(RoleRequest $request, Role $role)
     {
         try {
+            DB::beginTransaction();
             $role->update($request->validated());
+            $role->permissions()->sync($request->permissions);
+            DB::commit();
             return redirect()->route('role.index')->with('success', 'Role has been updated');
         } catch (Exception $e) {
+            DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
     }
