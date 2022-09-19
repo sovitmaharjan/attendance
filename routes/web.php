@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -20,15 +21,11 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group([
-    'middleware' => [
-        'auth'
-    ]
-], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/permission-group', PermissionGroupController::class);
     Route::resource('/permission', PermissionController::class);
-    Route::resource('/role', PermissionController::class);
+    Route::resource('/role', RoleController::class);
     Route::resource('/company', PermissionController::class);
     Route::resource('/branch', PermissionController::class);
     Route::resource('/department', PermissionController::class);
