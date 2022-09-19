@@ -103,6 +103,11 @@
                     </div>
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
+                            <div class="card-header card-header-info">
+                                <div class="card-title">
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
+                                </div>
+                            </div>
                             <div class="card-header">
                                 <div class="card-title">
                                     <h2>Personal Information</h2>

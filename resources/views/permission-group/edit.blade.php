@@ -55,7 +55,7 @@
                             <div class="card-header">
                                 <div class="card-title">
                                     {{-- <h2>Create Permission Group</h2> --}}
-                                    <span class="mt-1 fs-7">Fields with asterisk<span class="required"></span> are required </span>
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
 
                                 </div>
                             </div>

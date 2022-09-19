@@ -34,6 +34,7 @@ Route::group([
     Route::resource('/company', PermissionController::class);
     Route::resource('/branch', PermissionController::class);
     Route::resource('/department', PermissionController::class);
+    Route::resource('/designation', PermissionController::class);
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);

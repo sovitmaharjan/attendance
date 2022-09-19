@@ -11,8 +11,7 @@ return new class extends Migration
         Schema::create('holidays', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('date');
             $table->foreignId('holiday_type_id')->constrained();
             $table->integer('quantity');
             $table->timestamps();

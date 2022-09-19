@@ -11,9 +11,17 @@ class Holiday extends Model
 
     protected $fillable = [
         'name',
-        'start_date',
-        'end_date',
+        'date',
         'holiday_type_id',
         'quantity'
     ];
+
+    public $casts = [
+        'date' => 'datetime'
+    ];
+
+    public function holidayType()
+    {
+        return $this->belongsTo(HolidayType::class);
+    }
 }

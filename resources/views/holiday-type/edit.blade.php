@@ -54,8 +54,8 @@
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    {{-- <h2>Create Holiday Type</h2> --}}
-                                    <span class="mt-1 fs-7">Fields with asterisk<span class="required"></span> are required </span>
+                                    {{-- <h2>Create Holiday Type</h2> --}}x
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
 
                                 </div>
                             </div>

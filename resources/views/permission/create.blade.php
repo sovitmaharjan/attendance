@@ -53,7 +53,7 @@
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <span class="mt-1 fs-7">Fields with asterisk<span class="required"></span> are required </span>
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
@@ -78,7 +78,6 @@
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="text-muted fs-7">Select a group for current permission.</div>
                                     @error('permission_group_id')
                                         <div class="fv-plugins-message-container invalid-feedback">
                                             <div data-field="permission_group_id" data-validator="notEmpty">{{ $message }}</div>
