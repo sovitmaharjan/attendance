@@ -28,8 +28,14 @@ class RoleController extends Controller
     {
         try {
             DB::beginTransaction();
-            $role = Role::create($request->validated());
-            $role->permissions()->sync($request->permissions);
+            $r = Role::where('name', $request->name)->withTrashed()->first();
+            if ($r) {
+                $role = $r->restore();
+                $r->permissions()->sync($request->permissions);
+            } else {
+                $role = Role::create($request->validated());
+                $role->permissions()->sync($request->permissions);
+            }
             DB::commit();
             return back()->with('success', 'Role has been created');
         } catch (Exception $e) {
@@ -61,6 +67,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         try {
+            $role->permissions()->detach();
             $role->delete();
             return redirect()->route('role.index')->with('success', 'Role has been deleted');
         } catch (Exception $e) {
