@@ -76,7 +76,7 @@
                                     <label for="permissions" class="required form-label">Permissions</label>
                                     @foreach($permission_groups as $index => $permission_group)
                                         <div>
-                                            <input type="checkbox" class="me-2" id="group_{{$index}}" onclick="checkAllPermissions({{$index}})">
+                                            <input type="checkbox" class="me-2" id="group_{{$index}}" onchange="checkAllPermissions(this, {{$index}})">
                                             <label class="form-label">{{$permission_group->name}}</label>
                                             <div class="mb-10 ms-4 mt-2 row">
                                                 @foreach($permission_group->permissions as $permission)
@@ -112,8 +112,13 @@
 
 @section('script')
     <script>
-        function checkAllPermissions(index) {
-            $(".permission_" + index).prop('checked', 'true');
+        function checkAllPermissions(group, index) {
+            var groupCheckedState = $("#group_"+index).prop('checked', $(group).prop('checked'));
+            if($(groupCheckedState).is(":checked")){
+                $(".permission_" + index).prop('checked', true);
+            } else {
+                $(".permission_" + index).prop('checked', false);
+            }
         }
 
         function checkUncheckGroup(index) {

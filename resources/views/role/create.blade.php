@@ -77,7 +77,7 @@
                                         <div>
                                             <div class="d-inline-flex">
                                                 <input type="checkbox" class="me-2 w-20px h-20px" id="group_{{$index}}"
-                                                       onclick="checkAllPermissions({{$index}})">
+                                                       onchange="checkAllPermissions(this, {{$index}})">
                                                 <label class="form-label my-auto">{{$permission_group->name}}</label>
                                             </div>
                                             <div class="mb-10 row ms-4 mt-3">
@@ -113,8 +113,13 @@
 
 @section('script')
     <script>
-        function checkAllPermissions(index) {
-            $(".permission_" + index).prop('checked', 'true');
+        function checkAllPermissions(group, index) {
+            var groupCheckedState = $("#group_"+index).prop('checked', $(group).prop('checked'));
+            if($(groupCheckedState).is(":checked")){
+                $(".permission_" + index).prop('checked', true);
+            } else {
+                $(".permission_" + index).prop('checked', false);
+            }
         }
 
         function checkUncheckGroup(index) {
