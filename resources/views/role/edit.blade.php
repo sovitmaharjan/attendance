@@ -74,16 +74,17 @@
                                 </div>
                                 <div>
                                     <label for="permissions" class="required form-label">Permissions</label>
-                                    @foreach($permission_groups as $permission_group)
+                                    @foreach($permission_groups as $index => $permission_group)
                                         <div>
-                                            <input type="checkbox" class="me-2">
+                                            <input type="checkbox" class="me-2" id="group_{{$index}}" onclick="checkAllPermissions({{$index}})">
                                             <label class="form-label">{{$permission_group->name}}</label>
                                             <div class="mb-10 ms-4 mt-2 row">
                                                 @foreach($permission_group->permissions as $permission)
                                                     <div class="col-2">
                                                         <input type="checkbox" value="{{$permission->id}}"
+                                                               onclick="checkUncheckGroup({{$index}})"
                                                                name="permissions[]"
-                                                               class="me-2" @checked(in_array($permission->id, $role->permissions->pluck('id')->toArray()))>
+                                                               class="me-2 permission_{{$index}}" @checked(in_array($permission->id, $role->permissions->pluck('id')->toArray()))>
                                                         <label for="checkbox">{{$permission->name}}</label>
                                                     </div>
                                                 @endforeach
@@ -108,3 +109,22 @@
         </div>
     </div>
 @endSection
+
+@section('script')
+    <script>
+        function checkAllPermissions(index) {
+            $(".permission_" + index).prop('checked', 'true');
+        }
+
+        function checkUncheckGroup(index) {
+            $("input:checkbox").each(function () {
+                var inputLength = $(".permission_" + index).length;
+                if ((parseInt(inputLength) - parseInt($(".permission_" + index + ":checked").length)) > 0 ) {
+                    $("#group_"+index).prop('checked', false);
+                } else {
+                    $("#group_"+index).prop('checked', true);
+                }
+            });
+        }
+    </script>
+@endsection
