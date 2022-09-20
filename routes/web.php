@@ -11,6 +11,7 @@ use App\Http\Controllers\HolidayTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\DynamicValuesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -35,4 +36,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
+
+    Route::group(['prefix' => 'dynamic-values/', 'as' => "dynamic_values."], function(){
+       Route::get('prefix', [DynamicValuesController::class, 'getPrefix'])->name('prefix');
+    });
 });
+
