@@ -6,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Permission</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Holiday</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -15,7 +15,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Permission</li>
+                        <li class="breadcrumb-item text-muted">Holiday</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("permission.index") }}"
+                        <a href="{{ route("holiday.index") }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -40,14 +40,14 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("permission.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("holiday.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route("permission.store") }}" enctype="multipart/form-data">
+                <form id="holiday_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route("holiday.store") }}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
@@ -58,10 +58,10 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Permission Name</label>
-                                    <input type="text" name="name" class="form-control mb-2" placeholder="Permission name"
+                                    <label class="required form-label">Name</label>
+                                    <input type="text" name="name" class="form-control mb-2" placeholder="Holiday name"
                                         value="{{ old("name") }}" required/>
-                                    <div class="text-muted fs-7">A permission name is required and recommended to be unique.
+                                    <div class="text-muted fs-7">A holiday name is required and recommended to be unique.
                                     </div>
                                     @error("name")
                                         <div class="fv-plugins-message-container invalid-feedback">
@@ -70,26 +70,55 @@
                                     @enderror
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Permission Group</label>
-                                    <select class="form-select mb-2" data-control="select2" name="permission_group_id"
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Date</label>
+                                            <div class="d-flex gap-5">
+                                                <input type="text" class="form-control mb-2" name="date"
+                                                    value="{{ old('date') }}" placeholder="yyyy-dd-mm" required />
+                                                <input type="text" class="form-control mb-2" name="nepali_date"
+                                                    value="{{ old('nepali_date') }}" placeholder="yyyy-dd-mm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @error("date")
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="date" data-validator="notEmpty">{{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <label class="required form-label">Type</label>
+                                    <select class="form-select mb-2" data-control="select2" name="holiday_type_id"
                                         data-hide-search="true" data-placeholder="Select an option" required>
                                         <option></option>
-                                        @foreach ($permission_group as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @foreach ($holiday_type as $item)
+                                            <option value="{{ $item->id }}">{{ $item->title }}</option>
                                         @endforeach
                                     </select>
-                                    @error('permission_group_id')
+                                    @error('holiday_type_id')
                                         <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="permission_group_id" data-validator="notEmpty">{{ $message }}</div>
+                                            <div data-field="holiday_type_id" data-validator="notEmpty">{{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <label class="required form-label">Quantity</label>
+                                    <input type="text" name="quantity" class="form-control mb-2" placeholder="Holiday quantity"
+                                        value="{{ old("quantity") }}" required/>
+                                    <div class="text-muted fs-7">Assign number of day for the holiday.</div>
+                                    @error("quantity")
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="quantity" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("permission.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route("holiday.index") }}" id="kt_ecommerce_add_product_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
+                            <button type="submit" id="kt_ecommerce_add_holiday_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

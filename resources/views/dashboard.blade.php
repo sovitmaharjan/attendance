@@ -2140,110 +2140,98 @@
                                         <thead>
                                             <tr class="fs-7 fw-bolder border-0 text-gray-400">
                                                 <th class="min-w-150px" colspan="2">EVENT</th>
-                                                <th class="min-w-150px text-end pe-0" colspan="2">SESSIONS</th>
+                                                <th class="min-w-150px text-end pe-0" colspan="2">DAY</th>
                                                 <th class="text-end min-w-150px" colspan="2">DATE</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Google</a>
+                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Someone Birthday</a>
                                                 </td>
                                                 <td class="pe-0" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">1,256</span>
-                                                        <span class="text-danger min-w-50px d-block text-end fw-bolder fs-6">-935</span>
+                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Sunday</span>
                                                     </div>
                                                 </td>
                                                 <td class="" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">23.63%</span>
-                                                        <span class="text-danger min-w-60px d-block text-end fw-bolder fs-6">-9.35%</span>
+                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Facebook</a>
+                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 1</a>
                                                 </td>
                                                 <td class="pe-0" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">446</span>
-                                                        <span class="text-danger min-w-50px d-block text-end fw-bolder fs-6">-576</span>
+                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Monday</span>
                                                     </div>
                                                 </td>
                                                 <td class="" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">12.45%</span>
-                                                        <span class="text-danger min-w-60px d-block text-end fw-bolder fs-6">-57.02%</span>
+                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Bol.com</a>
+                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Dashain</a>
                                                 </td>
                                                 <td class="pe-0" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">67</span>
-                                                        <span class="text-success min-w-50px d-block text-end fw-bolder fs-6">+24</span>
+                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Tuesday</span>
                                                     </div>
                                                 </td>
                                                 <td class="" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">73.63%</span>
-                                                        <span class="text-success min-w-60px d-block text-end fw-bolder fs-6">+28.73%</span>
+                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Dutchnews.nl</a>
+                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 2</a>
                                                 </td>
                                                 <td class="pe-0" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">2,136</span>
-                                                        <span class="text-danger min-w-50px d-block text-end fw-bolder fs-6">-1,229</span>
+                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Wednesday</span>
                                                     </div>
                                                 </td>
                                                 <td class="" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">3.67%</span>
-                                                        <span class="text-danger min-w-60px d-block text-end fw-bolder fs-6">-12.29%</span>
+                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Stackoverflow</a>
+                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 3</a>
                                                 </td>
                                                 <td class="pe-0" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">945</span>
-                                                        <span class="text-danger min-w-50px d-block text-end fw-bolder fs-6">-634</span>
+                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Thursday</span>
                                                     </div>
                                                 </td>
                                                 <td class="" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">25.03%</span>
-                                                        <span class="text-danger min-w-60px d-block text-end fw-bolder fs-6">-9.35%</span>
+                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Themeforest</a>
+                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 4</a>
                                                 </td>
                                                 <td class="pe-0" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">237</span>
-                                                        <span class="text-success min-w-50px d-block text-end fw-bolder fs-6">106</span>
+                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Friday</span>
                                                     </div>
                                                 </td>
                                                 <td class="" colspan="2">
                                                     <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">36.52%</span>
-                                                        <span class="text-success min-w-60px d-block text-end fw-bolder fs-6">+3.06%</span>
+                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
                                                     </div>
                                                 </td>
                                             </tr>

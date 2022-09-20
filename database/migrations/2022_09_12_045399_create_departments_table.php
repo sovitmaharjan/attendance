@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone');
             $table->string('mobile')->nullable();
+            $table->foreignId('company_id')->constrained();
+            $table->foreignId('branch_id')->constrained();
             $table->json('extra')->nullable();
             $table->softDeletes();
             $table->timestamps();

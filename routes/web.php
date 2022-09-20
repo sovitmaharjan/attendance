@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\HolidayTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\RoleController;
@@ -29,5 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/company', PermissionController::class);
     Route::resource('/branch', PermissionController::class);
     Route::resource('/department', PermissionController::class);
+    Route::resource('/designation', PermissionController::class);
     Route::resource('/employee', EmployeeController::class);
+    Route::resource('/holiday-type', HolidayTypeController::class);
+    Route::resource('/holiday', HolidayController::class);
 });
