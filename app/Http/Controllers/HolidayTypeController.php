@@ -22,6 +22,11 @@ class HolidayTypeController extends Controller
     public function store(HolidayTypeRequest $request)
     {
         try {
+            $holiday_type = HolidayType::where('title', $request->title)->withTrashed()->first();
+            if ($holiday_type) {
+                $holiday_type->restore();
+                return back()->with('success', 'Holiday type has been created');
+            }
             HolidayType::create($request->validated());
             return back()->with('success', 'Holiday type has been created');
         } catch (Exception $e) {

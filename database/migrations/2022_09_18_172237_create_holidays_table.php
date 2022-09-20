@@ -14,6 +14,7 @@ return new class extends Migration
             $table->dateTime('date');
             $table->foreignId('holiday_type_id')->constrained();
             $table->integer('quantity');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\HolidayType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class HolidayTypeRequest extends FormRequest
@@ -16,7 +17,7 @@ class HolidayTypeRequest extends FormRequest
         return [
             'title' => (strtolower(request()->method()) == 'put' || strtolower(request()->method()) == 'patch')
                 ? 'required|unique:holiday_types,title,' . $this->route('holiday_type')->id
-                : 'required|unique:holiday_types'
+                : 'required|unique:holiday_types,title,' . HolidayType::where('title', $this->title)->withTrashed()->value('id') ?? null
         ];
     }
 }
