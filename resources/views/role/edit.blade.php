@@ -75,8 +75,13 @@
                                 <div>
                                     <label for="permissions" class="required form-label">Permissions</label>
                                     @foreach($permission_groups as $index => $permission_group)
+                                        @php
+                                            $totalPermissions = count($permission_group->permissions);
+                                            $rolePermissions = count($role->permissions);
+                                        @endphp
                                         <div>
-                                            <input type="checkbox" class="me-2" id="group_{{$index}}" onchange="checkAllPermissions(this, {{$index}})">
+                                            <input type="checkbox" class="me-2" id="group_{{$index}}"
+                                                   onchange="checkAllPermissions(this, {{$index}})" {{($totalPermissions - $rolePermissions) > 0 ? '' : 'checked'}}>
                                             <label class="form-label">{{$permission_group->name}}</label>
                                             <div class="mb-10 ms-4 mt-2 row">
                                                 @foreach($permission_group->permissions as $permission)
@@ -112,9 +117,13 @@
 
 @section('script')
     <script>
+        $(document).ready(function () {
+
+        });
+
         function checkAllPermissions(group, index) {
-            var groupCheckedState = $("#group_"+index).prop('checked', $(group).prop('checked'));
-            if($(groupCheckedState).is(":checked")){
+            var groupCheckedState = $("#group_" + index).prop('checked', $(group).prop('checked'));
+            if ($(groupCheckedState).is(":checked")) {
                 $(".permission_" + index).prop('checked', true);
             } else {
                 $(".permission_" + index).prop('checked', false);
@@ -124,10 +133,10 @@
         function checkUncheckGroup(index) {
             $("input:checkbox").each(function () {
                 var inputLength = $(".permission_" + index).length;
-                if ((parseInt(inputLength) - parseInt($(".permission_" + index + ":checked").length)) > 0 ) {
-                    $("#group_"+index).prop('checked', false);
+                if ((parseInt(inputLength) - parseInt($(".permission_" + index + ":checked").length)) > 0) {
+                    $("#group_" + index).prop('checked', false);
                 } else {
-                    $("#group_"+index).prop('checked', true);
+                    $("#group_" + index).prop('checked', true);
                 }
             });
         }
