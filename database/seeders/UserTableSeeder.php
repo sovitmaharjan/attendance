@@ -25,16 +25,17 @@ class UserTableSeeder extends Seeder
             'marital_status' => 'Unmarried',
             'dob' => '1940-02-10',
             'join_date' => '2022-01-01',
-            'company_id' => null,
-            'branch_id' => null,
-            'department_id' => null,
+            'company_id' => 1,
+            'branch_id' => 1,
+            'department_id' => 1,
             'designation_id' => Designation::find(1)->id,
             'login_id' => 'superadmin',
-            'supervisor' => null,
+            'supervisor_id' => null,
             'password' => bcrypt('123'),
-            'login_count' => null,
+            'login_count' => 0,
             'status' => 'Working',
-            'type' => 'Permanent'
+            'type' => 'Permanent',
+            'role_id' => 1,
         ]);
     }
 }

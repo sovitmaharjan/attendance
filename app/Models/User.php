@@ -33,7 +33,8 @@ class User extends Authenticatable
         'password',
         'login_count',
         'status',
-        'type'
+        'type',
+        'role_id'
     ];
 
     protected $hidden = [
