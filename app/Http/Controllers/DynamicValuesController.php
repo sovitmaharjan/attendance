@@ -16,7 +16,7 @@ class DynamicValuesController extends Controller
 
     public function getValues(Request $request)
     {
-        $dynamic_values = DynamicValue::where('key', $request)->get();
+        $dynamic_values = DynamicValue::where('key', $request->setup)->get();
         return $this->view($this->page . "index", [
             'dynamic_values' => $dynamic_values
         ]);

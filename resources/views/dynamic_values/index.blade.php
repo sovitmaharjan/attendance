@@ -58,18 +58,21 @@
                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th>Values</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @if(count($dynamic_values) > 0)
-                                        <tr>
-                                            <td></td>
-                                            <td>
-                                                <div class="d-flex flex-shrink-0">
-                                                    <a href="#"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                        @foreach($dynamic_values as $key => $dynamic_value)
+                                            <tr>
+                                                <td>{{$dynamic_value->name}}</td>
+                                                <td>{{$dynamic_value->status ? 'Active' : 'Inactive'}}</td>
+                                                <td>
+                                                    <div class="d-flex flex-shrink-0">
+                                                        <a href="#"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -81,10 +84,11 @@
                                                                         fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @else
                                         <tr>
                                             <td>No Data Found</td>
