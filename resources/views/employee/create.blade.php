@@ -122,13 +122,9 @@
                                                 <select class="form-select mb-2" name="prefix" data-control="select2"
                                                     data-hide-search="false" data-placeholder="Select an option" required>
                                                     <option></option>
-                                                    <option value="Mr." {{ old('prefix') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                                                    <option value="Mrs." {{ old('prefix') == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
-                                                    <option value="Miss." {{ old('prefix') == 'Miss' ? 'selected' : '' }}>Miss</option>
-                                                    <option value="Mx." {{ old('prefix') == 'Mx.' ? 'selected' : '' }}>Mx.</option>
-                                                    <option value="Ms." {{ old('prefix') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
-                                                    <option value="Dr." {{ old('prefix') == 'Dr.' ? 'selected' : '' }}>Dr.</option>
-                                                    <option value="Er." {{ old('prefix') == 'Er.' ? 'selected' : '' }}>Er.</option>
+                                                    @foreach(getDynamicValues('prefix') as $prefix)
+                                                        <option value="{{$prefix->name}}" @selected(old('prefix') == $prefix->name)>{{$prefix->name}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <input type="text" class="form-control mb-2" name="firstname"
                                                     value="{{ old('firstname') }}" placeholder="Firstname" required />
