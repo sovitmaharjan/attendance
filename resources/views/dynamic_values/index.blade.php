@@ -31,12 +31,11 @@
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label fw-bolder fs-3 mb-1">Dynamic Values Prefix</span>
                         </h3>
-                        @if(count($dynamic_values) <= 0)
-                            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                                 data-bs-trigger="hover"
-                                 title="">
-                                <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal"
-                                   data-bs-target="#kt_modal_new_target">
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
+                             data-bs-trigger="hover"
+                             title="">
+                            <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal"
+                               data-bs-target="#kt_modal_new_target">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -46,10 +45,8 @@
                                               fill="currentColor"></rect>
                                     </svg>
                                 </span>
-                                    {{--                                    Add {{ucwords(str_replace('_', '', request()->setup))}}--}}
-                                </a>
-                            </div>
-                        @endif
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -71,7 +68,9 @@
                                                 <td>{{$dynamic_value->status ? 'Active' : 'Inactive'}}</td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        <a href="#"
+                                                        <a href="javascript:void(0)"
+                                                           data-target-id="{{$dynamic_value->id}}"
+                                                           data-bs-toggle="modal" data-bs-target="#kt_modal_new_target"
                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -148,9 +147,10 @@
                                    title="Specify a target priorty"></i>
                             </label>
                             <!--end::Label-->
-                            <input class="form-control form-control-solid" value="" name="name" type="text"/>
+                            <input type="hidden" id="Id" name="id">
+                            <input class="form-control form-control-solid" value="" name="name" type="text" id="Name"/>
                             <input class="form-control form-control-solid" value="{{request()->setup}}" name="key"
-                                   type="hidden"/>
+                                   type="hidden" id="dataKey"/>
                             <span class="text-danger require name"></span>
                         </div>
                         <!--end::Input group-->
@@ -184,6 +184,24 @@
     <script src="{{asset('assets/js/custom/utilities/modals/users-search.js')}}"></script>
 
     <script>
+        $(document).ready(function () {
+            $("#kt_datatable_example_5").DataTable({
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom": "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+            });
+        });
         $("#kt_modal_new_target_submit").on('click', function (e) {
             $('.require').css('display', 'none');
             e.preventDefault();
@@ -197,17 +215,40 @@
                 success: function (data) {
                     if (data.db_error) {
                         toastr.warning(data.db_error);
-                    } else if (!data.db_error) {
-                        $("#kt_modal_new_target").modal('hide');
+                    } else if (!data.db_error && !data.errors) {
                         toastr.success(data.message);
+                        $("#kt_modal_new_target").modal('hide');
+                        location.reload();
                     }
                     if (data.errors) {
+                        e.stopPropagation();
                         $.each(data.errors, function (key, value) {
                             $('.' + key).css('display', 'block').html(value);
                         })
                     } else {
                         $("#kt_modal_new_target").modal('hide');
                     }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#kt_modal_new_target").on("hidden.bs.modal", function () {
+                $(".require").css("display", "none");
+                $(this).find('form')[0].reset();
+            });
+
+            $("#kt_modal_new_target").on('show.bs.modal', function (e) {
+                var id = $(e.relatedTarget).data('target-id');
+                if (id != "undefined" && id != undefined && id != 'null' && id != null) {
+                    var url = "{{route('dynamic_values.edit', ':id')}}",
+                        url = url.replace(":id", id);
+                    $.get(url, function (res) {
+                        let dynamic_value = res.dynamic_value;
+                        $("#Id").val(dynamic_value.id);
+                        $("#Name").val(dynamic_value.name);
+                        $("#dataKey").val(dynamic_value.key);
+                    });
                 }
             });
         });

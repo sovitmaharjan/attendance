@@ -16,7 +16,7 @@ class DynamicValuesController extends Controller
 
     public function getValues(Request $request)
     {
-        $dynamic_values = DynamicValue::where('key', $request->setup)->get();
+        $dynamic_values = DynamicValue::where('key', $request->setup)->paginate(10);
         return $this->view($this->page . "index", [
             'dynamic_values' => $dynamic_values
         ]);
@@ -51,5 +51,11 @@ class DynamicValuesController extends Controller
             DB::rollBack();
             return $this->sendDbError($e->getMessage());
         }
+    }
+
+    public function edit($id)
+    {
+        $dynamic_value = DynamicValue::find($id);
+        return response()->json(['dynamic_value' => $dynamic_value]);
     }
 }
