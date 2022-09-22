@@ -296,6 +296,30 @@ $route = request()->route()->uri;
                                 <span class="menu-title">Prefix</span>
                             </a>
                         </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('dynamic_values.index', ['setup' => 'marital_status']) }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Marital Status</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('dynamic_values.index', ['setup' => 'employee_status']) }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Employee Status</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('dynamic_values.index', ['setup' => 'employee_type']) }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Employee Type</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="menu-item">

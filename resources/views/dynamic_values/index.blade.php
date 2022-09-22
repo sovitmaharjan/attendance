@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Dynamic Values Prefix</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">Dynamic Values {{ucwords(str_replace("_", " ", request('setup')))}}</span>
                         </h3>
                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
                              data-bs-trigger="hover"
@@ -135,14 +135,14 @@
                     <form id="kt_modal_new_target_form" class="form" action="{{route('dynamic_values.save')}}">
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
-                            <h1 class="mb-3">Add {{ucwords(str_replace('_', '', request()->setup))}}</h1>
+                            <h1 class="mb-3">Add {{ucwords(str_replace('_', ' ', request()->setup))}}</h1>
                             <!--end::Title-->
                         </div>
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">{{ucwords(str_replace('_', '', request()->setup))}}</span>
+                                <span class="required">{{ucwords(str_replace('_', ' ', request()->setup))}}</span>
                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                    title="Specify a target priorty"></i>
                             </label>
