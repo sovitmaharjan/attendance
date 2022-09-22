@@ -289,7 +289,7 @@ $route = request()->route()->uri;
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dynamic_values.prefix') }}">
+                            <a class="menu-link" href="{{ route('dynamic_values.index', ['setup' => 'prefix']) }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

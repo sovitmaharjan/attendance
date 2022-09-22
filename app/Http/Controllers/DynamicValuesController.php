@@ -12,11 +12,16 @@ class DynamicValuesController extends Controller
 
     private $page = 'dynamic_values.';
 
-    public function getPrefix(Request $request)
+    public function getValues(Request $request)
     {
-        $prefix = DynamicValue::where('key', 'prefix')->first();
-        return $this->view($this->page ."prefix", [
-            'prefix' => $prefix
+        $dynamic_values = DynamicValue::where('key', $request)->get();
+        return $this->view($this->page ."index", [
+            'dynamic_values' => $dynamic_values
         ]);
+    }
+
+    public function save(Request $request)
+    {
+
     }
 }

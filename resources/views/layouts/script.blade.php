@@ -6,6 +6,7 @@
 <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
 
 <script>
+    var log = {myLog: console}
     toastr.options = {
         "closeButton": true,
         "debug": false,

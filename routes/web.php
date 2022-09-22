@@ -37,8 +37,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
 
-    Route::group(['prefix' => 'dynamic-values/', 'as' => "dynamic_values."], function(){
-       Route::get('prefix', [DynamicValuesController::class, 'getPrefix'])->name('prefix');
+    Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
+       Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
+       Route::get('/save', [DynamicValuesController::class, 'save'])->name('save');
     });
 });
 
