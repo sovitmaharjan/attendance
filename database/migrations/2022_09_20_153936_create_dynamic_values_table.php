@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('key');
             $table->json('value');
+            $table->string('name');
             $table->tinyInteger('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
