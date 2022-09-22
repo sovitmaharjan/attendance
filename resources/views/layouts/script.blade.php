@@ -6,7 +6,12 @@
 <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
 
 <script>
-    var log = {myLog: console}
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    const {log: myLog} =  console;
     toastr.options = {
         "closeButton": true,
         "debug": false,

@@ -10,7 +10,7 @@ class DynamicValue extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['key', 'value', 'status'];
+    protected $fillable = ['key', 'value', 'status', 'name'];
 
     protected $casts = [
       'value' => 'array',

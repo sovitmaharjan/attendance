@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
-       Route::get('/save', [DynamicValuesController::class, 'save'])->name('save');
+       Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
     });
 });
 

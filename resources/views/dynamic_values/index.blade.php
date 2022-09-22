@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-{{--                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>--}}
+                            {{--                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>--}}
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -46,7 +46,7 @@
                                               fill="currentColor"></rect>
                                     </svg>
                                 </span>
-{{--                                    Add {{ucwords(str_replace('_', '', request()->setup))}}--}}
+                                    {{--                                    Add {{ucwords(str_replace('_', '', request()->setup))}}--}}
                                 </a>
                             </div>
                         @endif
@@ -144,12 +144,16 @@
                                    title="Specify a target priorty"></i>
                             </label>
                             <!--end::Label-->
-                            <input class="form-control form-control-solid" value="" name="name"/>
+                            <input class="form-control form-control-solid" value="" name="name" type="text"/>
+                            <input class="form-control form-control-solid" value="{{request()->setup}}" name="key"
+                                   type="hidden"/>
+                            <span class="text-danger require name"></span>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-center">
-                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel
+                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3"
+                                    data-bs-dismiss="modal">Cancel
                             </button>
                             <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary">
                                 <span class="indicator-label">Submit</span>
@@ -172,12 +176,36 @@
 @section("script")
     <script src="{{asset('assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
     <script src="{{asset('assets/js/custom/utilities/modals/create-app.js')}}"></script>
-{{--    <script src="{{asset('assets/js/custom/utilities/modals/new-target.js')}}"></script>--}}
+    {{--    <script src="{{asset('assets/js/custom/utilities/modals/new-target.js')}}"></script>--}}
     <script src="{{asset('assets/js/custom/utilities/modals/users-search.js')}}"></script>
 
     <script>
-        $("#kt_modal_new_target_submit").on('click', function (){
-           myLog('hi')
+        $("#kt_modal_new_target_submit").on('click', function (e) {
+            $('.require').css('display', 'none');
+            e.preventDefault();
+            var formData = ($("#kt_modal_new_target_form").serialize());
+            var action = $("#kt_modal_new_target_form").attr('action');
+            $.ajax({
+                url: action,
+                type: 'post',
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.db_error) {
+                        toastr.warning(data.db_error);
+                    } else if (!data.db_error) {
+                        $("#kt_modal_new_target").modal('hide');
+                        toastr.success(data.message);
+                    }
+                    if (data.errors) {
+                        $.each(data.errors, function (key, value) {
+                            $('.' + key).css('display', 'block').html(value);
+                        })
+                    } else {
+                        $("#kt_modal_new_target").modal('hide');
+                    }
+                }
+            });
         });
     </script>
 @endSection
