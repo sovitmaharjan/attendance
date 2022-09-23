@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Branch;
+use App\Models\Company;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,7 @@ class BranchTableSeeder extends Seeder
             'email' => 'testbranch@email.com',
             'phone' => '+977-051223454',
             'mobile' => '+977-9876523450',
+            'company_id' => Company::find(1)->id
         ]);
         $branch->status()->updateOrCreate([
             'model_id' => $branch->id,

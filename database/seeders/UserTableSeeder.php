@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Company;
 use App\Models\Designation;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,16 +26,17 @@ class UserTableSeeder extends Seeder
             'marital_status' => 'Unmarried',
             'dob' => '1940-02-10',
             'join_date' => '2022-01-01',
-            'company_id' => null,
+            'company_id' => Company::find(1)->id,
             'branch_id' => null,
             'department_id' => null,
             'designation_id' => Designation::find(1)->id,
             'login_id' => 'superadmin',
-            'supervisor' => null,
+            'supervisor_id' => null,
             'password' => bcrypt('123'),
-            'login_count' => null,
+            'login_count' => 0,
             'status' => 'Working',
-            'type' => 'Permanent'
+            'type' => 'Permanent',
+            'role_id' => Role::find(1)->id
         ]);
     }
 }

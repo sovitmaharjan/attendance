@@ -29,11 +29,12 @@ class User extends Authenticatable
         'branch_id',
         'department_id',
         'login_id',
-        'supervisor',
+        'supervisor_id',
         'password',
         'login_count',
         'status',
-        'type'
+        'type',
+        'role_id'
     ];
 
     protected $hidden = [

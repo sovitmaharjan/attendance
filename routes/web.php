@@ -10,6 +10,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\HolidayTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
+use App\Http\Controllers\ShiftController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -38,4 +39,5 @@ Route::group([
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
+    Route::resource('/shift', ShiftController::class);
 });

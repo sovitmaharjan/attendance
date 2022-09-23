@@ -39,7 +39,7 @@ $route = request()->route()->uri;
                         <div class="separator mx-1 my-4"></div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'permission-group' || request()->route()->uri == 'permission' || request()->route()->uri == 'role' ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -54,7 +54,7 @@ $route = request()->route()->uri;
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'permission-group' || request()->route()->uri == 'permission' ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -64,7 +64,7 @@ $route = request()->route()->uri;
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link active" href="{{ route('permission-group.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'permission-group' ? 'active' : '' }}" href="{{ route('permission-group.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -72,7 +72,7 @@ $route = request()->route()->uri;
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('permission.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'permission' ? 'active' : '' }}" href="{{ route('permission.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -82,7 +82,7 @@ $route = request()->route()->uri;
                             </div>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('role.index') }}">
+                            <a class="menu-link {{ request()->route()->uri == 'role' ? 'active' : '' }}" href="{{ route('role.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -91,7 +91,7 @@ $route = request()->route()->uri;
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'comapany' || request()->route()->uri == 'branch' || request()->route()->uri == 'department' || request()->route()->uri == 'designation' || request()->route()->uri == 'employee' || request()->route()->uri == 'shift' || request()->route()->uri == 'roster-assignment' || request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -145,7 +145,7 @@ $route = request()->route()->uri;
                                 <span class="menu-title">Employee</span>
                             </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'shift' ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -155,24 +155,24 @@ $route = request()->route()->uri;
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday-type.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'shift' ? 'active' : '' }}" href="{{ route('shift.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Work shift</span>
+                                        <span class="menu-title">Work Shift</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'roster-assignment' ? 'active' : '' }}" href="{{ route('holiday.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Roster Assign</span>
+                                        <span class="menu-title">Roster Assignment</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -182,7 +182,7 @@ $route = request()->route()->uri;
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday-type.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'holiday-type' ? 'active' : '' }}" href="{{ route('holiday-type.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -190,7 +190,7 @@ $route = request()->route()->uri;
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'holiday' ? 'active' : '' }}" href="{{ route('holiday.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>

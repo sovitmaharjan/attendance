@@ -12,16 +12,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->dateTime('in_time');
-            $table->dateTime('in_last');
+            $table->dateTime('in_time_last')->nullable();
             $table->dateTime('out_time');
-            $table->dateTime('out_last');
+            $table->dateTime('out_time_last')->nullable();
             $table->integer('break_time');
-            $table->string('type');
             $table->json('extra')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
-
     public function down()
     {
         Schema::dropIfExists('shifts');
