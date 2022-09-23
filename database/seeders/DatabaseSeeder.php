@@ -7,11 +7,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         // \App\Models\User::factory(10)->create();
@@ -20,5 +15,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(StatusTableSeeder::class);
+        $this->call(CompanyTableSeeder::class);
+        $this->call(BranchTableSeeder::class);
+        $this->call(DepartmentTableSeeder::class);
+        $this->call(DesignationTableSeeder::class);
+        $this->call(PermissionGroupTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+        $this->call(HolidayTypeTableSeeder::class);
+        $this->call(HolidayTableSeeder::class);
     }
 }
