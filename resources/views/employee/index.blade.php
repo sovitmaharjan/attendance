@@ -81,7 +81,7 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    {{ $value->firstname . ' ' . ($value->middlename ? $value->middlename . ' ' : '') . $value->lastname }}
+                                                    {{ $value->full_name }}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">

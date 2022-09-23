@@ -10,15 +10,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->enum('prefix', ['Mr.', 'Mrs.', 'Miss', 'Mx.', 'Ms.', 'Dr.', 'Er.']);
+            $table->string('prefix');
+//            $table->enum('prefix', ['Mr.', 'Mrs.', 'Miss', 'Mx.', 'Ms.', 'Dr.', 'Er.']);
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('phone')->nullable();
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Other']);
-            $table->enum('marital_status', ['Married', 'Unmarried', 'Divorced', 'Separated']);
+            $table->string('marital_status');
+//            $table->enum('marital_status', ['Married', 'Unmarried', 'Divorced', 'Separated']);
             $table->dateTime('dob')->nullable();
             $table->dateTime('join_date')->default(now());
 
@@ -30,8 +32,10 @@ return new class extends Migration
             $table->foreignId('supervisor_id')->nullable()->constrained('users');
             $table->string('password');
             $table->integer('login_count')->default(0);
-            $table->enum('status', ['Working', 'Suspended', 'Discharged', 'Dismissed', 'Resigned', 'Inactive']);
-            $table->enum('type', ['Temporary', 'Permanent', 'Contract', 'Casual', 'Trainee', 'Probation']);
+            $table->string('status')->nullable();
+//            $table->enum('status', ['Working', 'Suspended', 'Discharged', 'Dismissed', 'Resigned', 'Inactive']);
+            $table->string('type')->nullable();
+//            $table->enum('type', ['Temporary', 'Permanent', 'Contract', 'Casual', 'Trainee', 'Probation']);
             $table->string('official_email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->foreignId('role_id')->constrained();

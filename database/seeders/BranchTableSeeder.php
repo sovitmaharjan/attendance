@@ -18,7 +18,7 @@ class BranchTableSeeder extends Seeder
             'email' => 'testbranch@email.com',
             'phone' => '+977-051223454',
             'mobile' => '+977-9876523450',
-            'company_id' => Company::find(1)->id
+            'company_id' => 1,
         ]);
         $branch->status()->updateOrCreate([
             'model_id' => $branch->id,

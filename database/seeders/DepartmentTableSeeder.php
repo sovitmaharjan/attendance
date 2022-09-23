@@ -19,8 +19,8 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepartment@email.com',
             'phone' => '+977-051234554',
             'mobile' => '+977-982345350',
-            'company_id' => Company::find(1)->id,
-            'branch_id' => Branch::find(1)->id
+            'company_id' => 1,
+            'branch_id' => 1,
         ]);
         $department->status()->updateOrCreate([
             'model_id' => $department->id,

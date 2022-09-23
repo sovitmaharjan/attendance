@@ -16,7 +16,7 @@ class PermissionRequest extends FormRequest
         return [
             'name' => (strtolower(request()->method()) == 'put' || strtolower(request()->method()) == 'patch')
                 ? 'required|unique:permissions,name,' . $this->route('permission')->id
-                : 'required|unique:permissions',
+                : 'required|unique:permissions,name',
             'permission_group_id' => 'required'
         ];
     }
