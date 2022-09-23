@@ -26,15 +26,9 @@ class UserTableSeeder extends Seeder
             'marital_status' => 'Unmarried',
             'dob' => '1940-02-10',
             'join_date' => '2022-01-01',
-<<<<<<< HEAD
-            'company_id' => Company::find(1)->id,
-            'branch_id' => null,
-            'department_id' => null,
-=======
             'company_id' => 1,
             'branch_id' => 1,
             'department_id' => 1,
->>>>>>> ee08c532c422d453dd85d89168c1d4b3d22bcb5e
             'designation_id' => Designation::find(1)->id,
             'login_id' => 'superadmin',
             'supervisor_id' => null,
@@ -42,11 +36,7 @@ class UserTableSeeder extends Seeder
             'login_count' => 0,
             'status' => 'Working',
             'type' => 'Permanent',
-<<<<<<< HEAD
-            'role_id' => Role::find(1)->id
-=======
             'role_id' => 1,
->>>>>>> ee08c532c422d453dd85d89168c1d4b3d22bcb5e
         ]);
     }
 }
