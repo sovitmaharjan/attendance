@@ -49,6 +49,7 @@
                 <form class="form d-flex flex-column flex-lg-row" method="POST" action="{{ route('employee.store') }}"
                       enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="company_id" value="{{auth()->user()->company_id}}">
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
@@ -95,8 +96,8 @@
                             <div class="card-body pt-0">
                                 <label class="form-label required">Login Id</label>
                                 <input type="text" name="login_id" class="form-control mb-2"
-                                       value="{{ old('login_id') }}"
-                                       required/>
+                                       value="{{ old('login_id', generateLoginId(auth()->id())) }}"
+                                       required readonly/>
                                 <div class="text-muted fs-7 mb-7">Select atleast company to generate login id.
                                 </div>
                                 @error('title')
@@ -154,7 +155,7 @@
                                                     <input class="form-check-input" type="radio" name="gender"
                                                            value="{{$gender->value}}"
                                                            id="{{strtolower($gender->value)}}"
-                                                           @selected(old('gender') == $gender->value) required/>
+                                                           @checked(old('gender') == $gender->value) required/>
                                                     <label class="form-check-label mx-3"
                                                            for="male">{{$gender->name}} </label>
                                                 @endforeach
@@ -167,7 +168,7 @@
                                                     <input class="form-check-input" type="radio" name="marital_status"
                                                            value="{{$marital_status->name}}"
                                                            id="{{strtolower(str_replace('_', '', $marital_status->name))}}"
-                                                           @selected(old('marital_status') == $marital_status->name) required/>
+                                                           @checked(old('marital_status') == $marital_status->name) required/>
                                                     <label class="form-check-label mx-3"
                                                            for="single">{{$marital_status->name}} </label>
                                                 @endforeach
@@ -292,7 +293,7 @@
                                                     data-hide-search="false" data-placeholder="Select Role">
                                                 <option></option>
                                                 @foreach($GLOBALS['roles'] as $role)
-                                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                                    <option value="{{$role->id}}" @selected(old('role_id') == $role->id)>{{$role->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -306,9 +307,12 @@
                                                     data-hide-search="false" data-placeholder="Select Supervisor"
                                                     required>
                                                 <option></option>
-                                                <option value="Mr." {{ old('user_type') == 'Mr.' ? 'selected' : '' }}>
-                                                    Mr.
-                                                </option>
+                                                @foreach($supervisors as $supervisor)
+                                                    <option
+                                                        value="{{$supervisor->id}}" @selected(old('supervisor_id') == $supervisor->id)>
+                                                        {{$supervisor->full_name}}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

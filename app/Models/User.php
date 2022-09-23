@@ -38,6 +38,7 @@ class User extends Authenticatable
         'type',
         'role_id',
         'official_email',
+        'extra',
     ];
 
     protected $hidden = [
@@ -50,7 +51,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'dob' => 'datetime',
-        'join_date' => 'datetime'
+        'join_date' => 'datetime',
+        'extra' => 'array',
     ];
 
     public function fullName() : Attribute
@@ -58,5 +60,30 @@ class User extends Authenticatable
         return Attribute::make(
           get: fn() => $this->firstname . ' ' . ($this->middlename ? $this->middlename . ' ' : '') . $this->lastname
         );
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id', 'id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class, 'designation_id', 'id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 }
