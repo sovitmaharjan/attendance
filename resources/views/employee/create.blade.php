@@ -155,7 +155,7 @@
                                                     <input class="form-check-input" type="radio" name="gender"
                                                            value="{{$gender->value}}"
                                                            id="{{strtolower($gender->value)}}"
-                                                           @selected(old('gender') == $gender->value) required/>
+                                                           @checked(old('gender') == $gender->value) required/>
                                                     <label class="form-check-label mx-3"
                                                            for="male">{{$gender->name}} </label>
                                                 @endforeach
@@ -168,7 +168,7 @@
                                                     <input class="form-check-input" type="radio" name="marital_status"
                                                            value="{{$marital_status->name}}"
                                                            id="{{strtolower(str_replace('_', '', $marital_status->name))}}"
-                                                           @selected(old('marital_status') == $marital_status->name) required/>
+                                                           @checked(old('marital_status') == $marital_status->name) required/>
                                                     <label class="form-check-label mx-3"
                                                            for="single">{{$marital_status->name}} </label>
                                                 @endforeach
@@ -293,7 +293,7 @@
                                                     data-hide-search="false" data-placeholder="Select Role">
                                                 <option></option>
                                                 @foreach($GLOBALS['roles'] as $role)
-                                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                                    <option value="{{$role->id}}" @selected(old('role_id') == $role->id)>{{$role->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

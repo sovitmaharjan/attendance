@@ -40,3 +40,9 @@ if (!function_exists('generateLoginId')) {
         return $login_id;
     }
 }
+
+if (!function_exists('getFormattedDate')){
+    function getFormattedDate($date){
+        return date('Y-m-d', strtotime($date));
+    }
+}
