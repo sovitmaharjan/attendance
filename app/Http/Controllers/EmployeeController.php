@@ -34,8 +34,8 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         try {
-            $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-            $login_id = Company::find($request->company_id)->code . '-' . $next_id;
+//            $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
+//            $login_id = Company::find($request->company_id)->code . '-' . $next_id;
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
                 'nepali_join_date' => $request->nepali_join_date,
@@ -43,7 +43,7 @@ class EmployeeController extends Controller
             $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
-                'login_id' => $login_id,
+//                'login_id' => $login_id,
                 'password' => Str::random(7)
             ]);
             User::create($request->all());
