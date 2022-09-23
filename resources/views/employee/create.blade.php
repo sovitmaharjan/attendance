@@ -67,7 +67,7 @@
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip"
                                         title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required/>
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg"/>
                                     </label>
                                     <span
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -93,8 +93,9 @@
                                 @enderror
                             </div>
                             <div class="card-body pt-0">
-                                <label class="form-label">Login Id</label>
-                                <input type="text" name="title" class="form-control mb-2" value="{{ old('title') }}"
+                                <label class="form-label required">Login Id</label>
+                                <input type="text" name="login_id" class="form-control mb-2"
+                                       value="{{ old('login_id') }}"
                                        required/>
                                 <div class="text-muted fs-7 mb-7">Select atleast company to generate login id.
                                 </div>
@@ -126,7 +127,7 @@
                                             <label class="required form-label">Name</label>
                                             <div class="d-flex gap-5">
                                                 <select class="form-select mb-2" name="prefix" data-control="select2"
-                                                        data-hide-search="false" data-placeholder="Select an option"
+                                                        data-hide-search="false" data-placeholder="Select Prefix"
                                                         required>
                                                     <option></option>
                                                     @foreach(getDynamicValues('prefix') as $prefix)
@@ -209,6 +210,25 @@
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Phone</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="phone"
+                                                       value="{{ old('phone') }}" placeholder="9800000000"/>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Address</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="address"
+                                                       value="{{ old('address') }}"
+                                                       placeholder="Putalisadak, Kathmandu"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Email</label>
                                             <input type="text" class="form-control mb-2" name="email"
                                                    value="{{ old('email') }}" placeholder="example@mail.com" required/>
@@ -228,8 +248,8 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch</label>
-                                            <select class="form-select mb-2" name="branch" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option"
+                                            <select class="form-select mb-2" name="branch_id" data-control="select2"
+                                                    data-hide-search="false" data-placeholder="Select Branch"
                                                     required>
                                                 <option></option>
                                                 @foreach ($branch as $item)
@@ -240,8 +260,8 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Department</label>
-                                            <select class="form-select mb-2" name="tax" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option"
+                                            <select class="form-select mb-2" name="department_id" data-control="select2"
+                                                    data-hide-search="false" data-placeholder="Select Department"
                                                     required>
                                                 <option></option>
                                                 @foreach ($department as $item)
@@ -258,21 +278,22 @@
                                             <label class="required form-label">Designation</label>
                                             <select class="form-select mb-2" name="designation_id"
                                                     data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option">
+                                                    data-hide-search="false" data-placeholder="Select Designation">
                                                 <option></option>
                                                 @foreach ($designation as $item)
                                                     <option
-                                                        value="{{ $item->id }}" {{ old('designation_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                        value="{{ $item->id }}" {{ old('designation_id') == $item->id ? 'selected' : '' }}>{{ $item->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
-                                            {{-- to be continue --}}
                                             <label class="required form-label">Role</label>
-                                            <select class="form-select mb-2" name="tax" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option">
+                                            <select class="form-select mb-2" name="role_id" data-control="select2"
+                                                    data-hide-search="false" data-placeholder="Select Role">
                                                 <option></option>
-                                                <option value="Mr.">Mr.</option>
+                                                @foreach($GLOBALS['roles'] as $role)
+                                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -280,21 +301,15 @@
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
-                                            {{-- to be continue --}}
                                             <label class="required form-label">Supervisor</label>
-                                            <select class="form-select mb-2" name="tax" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option"
+                                            <select class="form-select mb-2" name="supervisor_id" data-control="select2"
+                                                    data-hide-search="false" data-placeholder="Select Supervisor"
                                                     required>
                                                 <option></option>
                                                 <option value="Mr." {{ old('user_type') == 'Mr.' ? 'selected' : '' }}>
                                                     Mr.
                                                 </option>
                                             </select>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Login Id</label>
-                                            <input type="text" class="form-control mb-2" name="login_id"
-                                                   value="{{ old('login_id') }}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -303,65 +318,29 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Status</label>
                                             <select class="form-select mb-2" name="status" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option"
+                                                    data-hide-search="false" data-placeholder="Select Employee Status"
                                                     required>
                                                 <option></option>
-                                                <option
-                                                    value="Working" {{ old('status') == 'Working' ? 'selected' : '' }}>
-                                                    Working
-                                                </option>
-                                                <option
-                                                    value="Suspended" {{ old('status') == 'Suspended' ? 'selected' : '' }}>
-                                                    Suspended
-                                                </option>
-                                                <option
-                                                    value="Discharged" {{ old('status') == 'Discharged' ? 'selected' : '' }}>
-                                                    Discharged
-                                                </option>
-                                                <option
-                                                    value="Dismissed" {{ old('status') == 'Dismissed' ? 'selected' : '' }}>
-                                                    Dismissed
-                                                </option>
-                                                <option
-                                                    value="Resigned" {{ old('status') == 'Resigned' ? 'selected' : '' }}>
-                                                    Resigned
-                                                </option>
-                                                <option
-                                                    value="Inactive" {{ old('status') == 'Inactive' ? 'selected' : '' }}>
-                                                    Inactive
-                                                </option>
+                                                @foreach(getDynamicValues('employee_status') as $k => $employee_status)
+                                                    <option
+                                                        value="{{$employee_status->name}}" @selected(old('status') == $employee_status->name)>
+                                                        {{$employee_status->name}}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Type</label>
                                             <select class="form-select mb-2" name="type" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option"
+                                                    data-hide-search="false" data-placeholder="Select Employee Type"
                                                     required>
                                                 <option></option>
-                                                <option
-                                                    value="Temporary" {{ old('status') == 'Temporary' ? 'selected' : '' }}>
-                                                    Temporary
-                                                </option>
-                                                <option
-                                                    value="Permanent" {{ old('status') == 'Permanent' ? 'selected' : '' }}>
-                                                    Permanent
-                                                </option>
-                                                <option
-                                                    value="Contract" {{ old('status') == 'Contract' ? 'selected' : '' }}>
-                                                    Contract
-                                                </option>
-                                                <option
-                                                    value="Casual" {{ old('status') == 'Casual' ? 'selected' : '' }}>
-                                                    Casual
-                                                </option>
-                                                <option
-                                                    value="Trainee" {{ old('status') == 'Trainee' ? 'selected' : '' }}>
-                                                    Trainee
-                                                </option>
-                                                <option
-                                                    value="Probation" {{ old('status') == 'Probation' ? 'selected' : '' }}>
-                                                    Probation
-                                                </option>
+                                                @foreach(getDynamicValues('employee_type') as $k => $employee_type)
+                                                    <option
+                                                        value="{{$employee_type->name}}" @selected(old('type') == $employee_type->name)>
+                                                        {{$employee_type->name}}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

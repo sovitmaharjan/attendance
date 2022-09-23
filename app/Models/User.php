@@ -29,13 +29,15 @@ class User extends Authenticatable
         'company_id',
         'branch_id',
         'department_id',
+        'designation_id',
         'login_id',
-        'supervisor',
+        'supervisor_id',
         'password',
         'login_count',
         'status',
         'type',
-        'role_id'
+        'role_id',
+        'official_email',
     ];
 
     protected $hidden = [
