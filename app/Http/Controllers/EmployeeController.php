@@ -25,7 +25,7 @@ class EmployeeController extends Controller
         $data['company'] = Company::all();
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
-        $data['supervisor'] = User::all();
+        $data['supervisors'] = User::all();
         $data['designation'] = Designation::all();
         $data['role'] = Role::all();
         return view('employee.create', $data);
@@ -36,10 +36,17 @@ class EmployeeController extends Controller
         try {
             $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
             $login_id = Company::find($request->company_id)->code . '-' . $next_id;
-            $data = $request->validated();
-            $data['login_id'] = $login_id;
-            $data['password'] = Str::random(7);
-            User::create($data);
+            $extra = [
+                'nepali_dob' => $request->nepali_dob,
+                'nepali_join_date' => $request->nepali_join_date,
+            ];
+            $request->only((new User())->getFillable());
+            $request->request->add([
+                'extra' => $extra,
+                'login_id' => $login_id,
+                'password' => Str::random(7)
+            ]);
+            User::create($request->all());
             return back()->with('success', 'Employee has been created');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());

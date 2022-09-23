@@ -38,6 +38,7 @@ class User extends Authenticatable
         'type',
         'role_id',
         'official_email',
+        'extra',
     ];
 
     protected $hidden = [
@@ -50,7 +51,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'dob' => 'datetime',
-        'join_date' => 'datetime'
+        'join_date' => 'datetime',
+        'extra' => 'array',
     ];
 
     public function fullName() : Attribute
