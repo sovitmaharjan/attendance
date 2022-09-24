@@ -2,17 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\PermissionGroupController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
 
-Route::controller(CompanyController::class)->middleware('auth')->group(function(){
 
-    
+Route::group(['middleware'=>'auth'], function(){
 
-    Route::resource('/company', CompanyController::class);
-    // Route::resource('/branch', CompanyController::class);
-    // Route::resource('/department', CompanyController::class);
-    // Route::resource('/designation', CompanyController::class);
-    
+    Route::resource('company', CompanyController::class);
+    Route::resource('branch', BranchController::class);
+    Route::resource('department', DepartmentController::class);
+    Route::resource('designation', DesignationController::class);
+
 });
+
 

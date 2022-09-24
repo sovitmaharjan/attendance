@@ -36,7 +36,7 @@ class CompanyController extends Controller
       $data->save();
       return back()->with('success', 'New company has been added');
    }catch(\Exception$e){
-      return $this->sendDbError($e->getMessage());
+      return $this->$e->getMessage();
    }
  }
 
