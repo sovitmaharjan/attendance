@@ -4,11 +4,14 @@
 <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
 <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-<script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
-<script src="{{asset('assets/js/nepali-datepicker.min.js')}}"></script>
+<script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('assets/js/nepali-datepicker.min.js') }}"></script>
 
 
 <script>
+    const {
+        log: myLog
+    } = console;
     // $(function () {
     //     var mainInput = document.getElementsByClassName("nepaliDatePicker");
     //     mainInput.nepaliDatePicker({
@@ -29,6 +32,26 @@
     //     });
     // });
 
+    // dark and light mode
+    var defaultThemeMode = "light";
+    var themeMode;
+    if (document.documentElement) {
+        myLog(document.documentElement.getAttribute('data-theme-mode'))
+        if (document.documentElement.hasAttribute("data-theme-mode")) {
+            themeMode = document.documentElement.getAttribute("data-theme-mode");
+        } else {
+            if (localStorage.getItem("data-theme") !== null) {
+                themeMode = localStorage.getItem("data-theme");
+            } else {
+                themeMode = defaultThemeMode;
+            }
+        }
+        if (themeMode === "system") {
+            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", themeMode);
+    }
+
 
     function nepaliPicker(nep_class) {
         var main_input = document.getElementsByClassName(nep_class);
@@ -39,6 +62,7 @@
             ndpYearCount: 200
         });
     }
+
     function neptoeng(nep_class, id_name) {
         console.log('hi');
         var mainInput = document.getElementsByClassName(nep_class);
@@ -59,14 +83,17 @@
             ndpYearCount: 200
         });
     }
+
     function getFormattedDate(dateStr) {
         var parts = dateStr.split('-');
         return new Date(parts[2], parts[1] - 1, parts[0]);
     }
+
     function reformatdate(datestr) {
         var parts = datestr.split('-');
         return parts[2] + '-' + parts[1] + '-' + parts[0];
     }
+
     function engtonep(this_date, idName) {
         let dateTime = $(this_date).val();
         if (dateTime) {
@@ -95,7 +122,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    const {log: myLog} =  console;
     toastr.options = {
         "closeButton": true,
         "debug": false,

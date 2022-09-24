@@ -7,6 +7,7 @@ use App\Models\DynamicValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class DynamicValuesController extends Controller
 {
@@ -18,7 +19,7 @@ class DynamicValuesController extends Controller
     {
         $dynamic_values = DynamicValue::where('key', $request->setup)->paginate(10);
         return $this->view($this->page . "index", [
-            'dynamic_values' => $dynamic_values
+            'dynamic_values' => $dynamic_values,
         ]);
     }
 
@@ -26,7 +27,10 @@ class DynamicValuesController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'key' => ['required'],
-            'name' => ['required'],
+            'name' => ['required',
+        Rule::unique('dynamic_values')->where(function($q) use($request){
+            return $q->where('key', $request->key);
+        })->ignore($request->id)],
         ]);
 
         if ($validator->fails()) {
@@ -35,11 +39,12 @@ class DynamicValuesController extends Controller
         try {
             DB::beginTransaction();
             $value = [
-              'name' => $request->name,
-              'status' => 1,
+                'name' => $request->name,
+                'status' => 1,
             ];
             DynamicValue::updateOrCreate([
                 'id' => $request->id,
+                'key' => $request->key,
             ], [
                 'key' => $request->key,
                 'name' => $request->name,
@@ -47,7 +52,7 @@ class DynamicValuesController extends Controller
             ]);
             DB::commit();
             return response()->json(['message' => 'Successfully created']);
-        } catch (\Exception $e) {
+        } catch (\Exception$e) {
             DB::rollBack();
             return $this->sendDbError($e->getMessage());
         }
