@@ -31,7 +31,7 @@ class EmployeeRequest extends FormRequest
             'branch_id' => 'nullable',
             'department_id' => 'nullable',
             'login_id' => 'required',
-            'supervisor' => 'nullable',
+            'supervisor_id' => 'nullable',
             'status' => 'required',
             'type' => 'required'
         ];

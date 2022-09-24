@@ -10,13 +10,14 @@ use App\Models\Designation;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        $data['employee'] = User::all();
+        $data['employees'] = User::all();
         return view('employee.index', $data);
     }
 
@@ -25,7 +26,7 @@ class EmployeeController extends Controller
         $data['company'] = Company::all();
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
-        $data['supervisor'] = User::all();
+        $data['supervisors'] = User::all();
         $data['designation'] = Designation::all();
         $data['role'] = Role::all();
         return view('employee.create', $data);
@@ -34,14 +35,24 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         try {
-            $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-            $login_id = Company::find($request->company_id)->code . '-' . $next_id;
-            $data = $request->validated();
-            $data['login_id'] = $login_id;
-            $data['password'] = Str::random(7);
-            User::create($data);
+            DB::beginTransaction();
+//            $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
+//            $login_id = Company::find($request->company_id)->code . '-' . $next_id;
+            $extra = [
+                'nepali_dob' => $request->nepali_dob,
+                'nepali_join_date' => $request->nepali_join_date,
+            ];
+            $request->only((new User())->getFillable());
+            $request->request->add([
+                'extra' => $extra,
+//                'login_id' => $login_id,
+                'password' => Str::random(7)
+            ]);
+            User::create($request->all());
+            DB::commit();
             return back()->with('success', 'Employee has been created');
         } catch (Exception $e) {
+            DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
     }
@@ -51,23 +62,30 @@ class EmployeeController extends Controller
         $data['company'] = Company::all();
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
-        $data['supervisor'] = User::all();
+        $data['supervisors'] = User::all();
         $data['designation'] = Designation::all();
         $data['role'] = Role::all();
+        $data['employee'] = $employee;
         return view('employee.edit', $data);
     }
 
     public function update(EmployeeRequest $request, User $employee)
     {
         try {
-            $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-            $login_id = Company::find($request->company_id)->code . '-' . $next_id;
-            $data = $request->validated();
-            $data['login_id'] = $login_id;
-            $data['password'] = Str::random(7);
-            $employee->update($data);
-            return redirect()->route('employee.index')->with('success', 'Employee has been created');
+            DB::beginTransaction();
+            $extra = [
+                'nepali_dob' => $request->nepali_dob,
+                'nepali_join_date' => $request->nepali_join_date,
+            ];
+            $request->only((new User())->getFillable());
+            $request->request->add([
+                'extra' => $extra,
+            ]);
+            $employee->update($request->all());
+            DB::commit();
+            return redirect()->route('employee.index')->with('success', 'Employee has been updated');
         } catch (Exception $e) {
+            DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
     }
