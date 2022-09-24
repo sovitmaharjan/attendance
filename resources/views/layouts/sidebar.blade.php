@@ -2,6 +2,11 @@
 $route = request()->route()->uri;
 $permissionNav = Request::is('permission*');
 $roleNav = Request::is('role*');
+$companyNav = Request::is('company*');
+$branchNav = Request::is('branch*');
+$departmentNav = Request::is('department*');
+$designationNav = Request::is('designation*');
+$employeeNav = Request::is('employee*');
 @endphp
 
 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
@@ -93,7 +98,7 @@ $roleNav = Request::is('role*');
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -108,7 +113,7 @@ $roleNav = Request::is('role*');
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('company.index') }}">
+                            <a class="menu-link @yield('company')" href="{{ route('company.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -116,7 +121,7 @@ $roleNav = Request::is('role*');
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('branch.index') }}">
+                            <a class="menu-link @yield('branch')" href="{{ route('branch.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -124,7 +129,7 @@ $roleNav = Request::is('role*');
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('department.index') }}">
+                            <a class="menu-link @yield('department')" href="{{ route('department.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -132,7 +137,7 @@ $roleNav = Request::is('role*');
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('designation.index') }}">
+                            <a class="menu-link @yield('designation')" href="{{ route('designation.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -140,7 +145,7 @@ $roleNav = Request::is('role*');
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('employee.index') }}">
+                            <a class="menu-link @yield('employee')" href="{{ route('employee.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
