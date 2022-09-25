@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('role', 'active')
+@section('branch', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -48,7 +48,7 @@
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
                 <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('branch.update', $data->id) }}" enctype="multipart/form-data">
+                    action="{{ route('branch.update', $branch->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -62,21 +62,21 @@
                             <div class="card-body pt-0">
 
                                 <div class="row">
-                                    <x-form-inline-input label="Branch Name" name="name" value="{{$data->name}}" type="text" info="Compay name must be unique" class="required form-label" col="6" />
-                                    <x-form-inline-input label="Branch Code" name="code" value="{{$data->code}}" type="text" info="Compay code must be unique" class="required form-label" col="6" />
+                                    <x-form-inline-input label="Branch Name" name="name" value="{{$branch->name}}" type="text" info="Compay name must be unique" class="required form-label" col="6" />
+                                    <x-form-inline-input label="Branch Code" name="code" value="{{$branch->code}}" type="text" info="Compay code must be unique" class="required form-label" col="6" />
                                 </div>
 
-                                <x-form-input label="Branch Email" class="required form-label" name="email" value="{{$data->email}}" info="Must be a valid email" type="email" />
+                                <x-form-input label="Branch Email" class="required form-label" name="email" value="{{$branch->email}}" info="Must be a valid email" type="email" />
 
                                 <div class="row">
-                                    <x-form-inline-input class="required form-label" value="{{$data->address}}" name="address"  type="text" col="4" />
-                                    <x-form-inline-input class="required form-label" value="{{$data->phone}}" name="phone"  type="number" col="4" />
-                                    <x-form-inline-input class="form-label" value="{{$data->mobile}}" name="mobile"  type="number" col="4" />
+                                    <x-form-inline-input class="required form-label" value="{{$branch->address}}" name="address"  type="text" col="4" />
+                                    <x-form-inline-input class="required form-label" value="{{$branch->phone}}" name="phone"  type="number" col="4" />
+                                    <x-form-inline-input class="form-label" value="{{$branch->mobile}}" name="mobile"  type="number" col="4" />
                                 </div>
 
                                 <x-form-select class="required form-label" label="Branch"  name="company_id">
                                     @foreach($company as $item)
-                                        <option value="{{$item->id}}" {{$data->company_id == $item->id  ? 'selected' : ''}}>{{$item->name}}</option>
+                                        <option value="{{$item->id}}" {{$branch->company_id == $item->id  ? 'selected' : ''}}>{{$item->name}}</option>
                                     @endforeach
                                 </x-form-select>
 

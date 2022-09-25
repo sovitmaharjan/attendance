@@ -74,18 +74,18 @@
                                 </div>
 
 
-                                <x-form-select class="required form-label" label="Parent Company"  name="company_id">
+                                <x-form-select class="required form-label" label="Select Company"  name="company_id">
                                     @foreach($company as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </x-form-select>
 
 
-                                <x-form-select class="required form-label" label="Parent Branch"  name="branch_id">
-                                    @foreach($branch as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </x-form-select>
+{{--                                <x-form-select class="required form-label" label="Parent Branch"  name="branch_id">--}}
+{{--                                    @foreach($records as $item)--}}
+{{--                                        <option value="{{$item->id}}">{{$item->name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </x-form-select>--}}
 
                             </div>
                         </div>

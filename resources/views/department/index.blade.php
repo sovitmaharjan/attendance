@@ -113,10 +113,10 @@
                                                 {{ $data->mobile }}
                                             </td>
                                             <td>
-                                                {{ $data->company_details->name }}
+                                                {{ $data->company_detail->name }}
                                             </td>
                                             <td>
-                                                {{ $data->branch_details->name }}
+                                                {{ $data->branch_detail->name }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
