@@ -45,4 +45,9 @@ if (!function_exists('getFormattedDate')){
     function getFormattedDate($date){
         return date('Y-m-d', strtotime($date));
     }
+
+    
 }
+
+
+

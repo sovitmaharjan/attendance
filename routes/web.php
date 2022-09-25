@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\HolidayTypeController;
@@ -15,7 +16,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index']);
+// duita name login vayara maila  hatako hoi yo mathi ko chai
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetPasswordMail'])->name('reset-password-mail');
 Route::get('/reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');
@@ -30,10 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/permission-group', PermissionGroupController::class);
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
-    Route::resource('/company', PermissionController::class);
-    Route::resource('/branch', PermissionController::class);
-    Route::resource('/department', PermissionController::class);
-    Route::resource('/designation', PermissionController::class);
+
     Route::resource('/employee', EmployeeController::class);
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
@@ -46,3 +45,5 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
+
+include(__DIR__.'/Routes/company.php');
