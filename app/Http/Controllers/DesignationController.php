@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\BranchRequest;
-use Illuminate\Support\Facades\DB;
 use App\Helper\Helper;
-use App\Models\Branch;
-use App\Models\Company;
+use App\Models\Designation;
 
-class BranchController extends Controller
+class DesignationController extends Controller
 {
-
     function __construct(){
         $this->helper = new Helper;
      }
@@ -23,9 +19,9 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $page = "Branch";
-        $data['records'] = Branch::all();
-        return view('branch.index', $data, compact('page'));
+        $page = "Designation";
+        $data['records'] = Designation::all();
+        return view('designation.index', $data, compact('page'));
     }
 
     /**
@@ -35,9 +31,8 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $page = "Branch";
-        $company = Company::all();
-        return view('branch.create', compact('page', 'company'));
+        $page = "Designation";
+        return view('designation.create', compact('page'));
     }
 
     /**
@@ -46,15 +41,18 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BranchRequest $request, Branch $branch)
+    public function store(Request $request, Designation $designation)
     {
+        $validated = $request->validate([
+            'title' => 'required|unique:designations,title'
+        ]);
+
         try{
-            $data = $this->helper->getObject($branch, $request);
-            $data['company_id'] = $request->company_id;
+            $data = $this->helper->getObject($designation, $request);
             $data->save();
-            return back()->with('success', 'New Branch has been added');
+            return back()->with('success', 'New Designation has been added');
          }catch(\Exception$e){
-            return $e->getMessage();
+            return $this->$e->getMessage();
          }
     }
 
@@ -77,10 +75,9 @@ class BranchController extends Controller
      */
     public function edit($id)
     {
-        $page = "Branch";
-        $company = Company::all();
-        $data = Branch::findOrFail($id);
-        return view('branch.edit', compact('page', 'data', 'company'));
+        $page = "Designation";
+        $data = Designation::findOrFail($id);
+        return view('designation.edit', compact('page', 'data'));
     }
 
     /**
@@ -92,11 +89,10 @@ class BranchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $company = Branch::findOrFail($id);
-        $data = $this->helper->getObject($company, $request);
-        $data['company_id'] = $request->company_id;
+        $designation = Designation::findOrFail($id);
+        $data = $this->helper->getObject($designation, $request);
         $data->update();
-        return to_route('branch.index')->with('success', 'Branch has been updated');
+        return to_route('designation.index')->with('success', 'Designation has been updated');
     }
 
     /**
@@ -107,7 +103,7 @@ class BranchController extends Controller
      */
     public function destroy($id)
     {
-        $company = Branch::findOrFail($id)->delete();
-        return to_route('branch.index')->with('success', 'Branch has been deleted');
+        $designation = Designation::findOrFail($id)->delete();
+        return to_route('designation.index')->with('success', 'Designation has been deleted');
     }
 }

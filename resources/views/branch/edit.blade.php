@@ -1,31 +1,31 @@
-@extends("layouts.app")
-@section('permission', 'active')
-@section("content")
+@extends('layouts.app')
+@section('role', 'active')
+@section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Permission</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{$page}}</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Permission</li>
+                        <li class="breadcrumb-item text-muted">{{$page}}</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">Create</li>
+                        <li class="breadcrumb-item text-dark">Edit</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("permission.index") }}"
+                        <a href="{{ route('branch.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,54 +41,51 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("permission.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('branch.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
                 <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route("permission.store") }}" enctype="multipart/form-data">
+                    action="{{ route('branch.update', $data->id) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
+                                    <span class="mt-1 fs-7">Fields with <span class="required"></span> are required
+                                    </span>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
-                                <div class="mb-10 fv-row">
-                                    <label class="required form-label">Permission Name</label>
-                                    <input type="text" name="name" class="form-control mb-2" placeholder="Permission name"
-                                        value="{{ old("name") }}" required/>
-                                    <div class="text-muted fs-7">A permission name is required and recommended to be unique.
-                                    </div>
-                                    @error("name")
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="name" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
+
+                                <div class="row">
+                                    <x-form-inline-input label="Branch Name" name="name" value="{{$data->name}}" type="text" info="Compay name must be unique" class="required form-label" col="6" />
+                                    <x-form-inline-input label="Branch Code" name="code" value="{{$data->code}}" type="text" info="Compay code must be unique" class="required form-label" col="6" />
                                 </div>
-                                <div class="mb-10 fv-row">
-                                    <label class="required form-label">Permission Group</label>
-                                    <select class="form-select mb-2" data-control="select2" name="permission_group_id"
-                                        data-hide-search="true" data-placeholder="Select an option" required>
-                                        <option></option>
-                                        @foreach ($permission_group as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('permission_group_id')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="permission_group_id" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
+
+                                <x-form-input label="Branch Email" class="required form-label" name="email" value="{{$data->email}}" info="Must be a valid email" type="email" />
+
+                                <div class="row">
+                                    <x-form-inline-input class="required form-label" value="{{$data->address}}" name="address"  type="text" col="4" />
+                                    <x-form-inline-input class="required form-label" value="{{$data->phone}}" name="phone"  type="number" col="4" />
+                                    <x-form-inline-input class="form-label" value="{{$data->mobile}}" name="mobile"  type="number" col="4" />
                                 </div>
+
+                                <x-form-select class="required form-label" label="Branch"  name="company_id">
+                                    @foreach($company as $item)
+                                        <option value="{{$item->id}}" {{$data->company_id == $item->id  ? 'selected' : ''}}>{{$item->name}}</option>
+                                    @endforeach
+                                </x-form-select>
+
                             </div>
                         </div>
+
+
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("permission.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('branch.index') }}" id="kt_ecommerce_add_product_cancel"
                                 class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>

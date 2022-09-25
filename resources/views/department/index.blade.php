@@ -1,5 +1,4 @@
 @extends("layouts.app")
-@section('role', 'active')
 @section("content")
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -7,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Permission</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{$page}}</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,16 +15,18 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Role</li>
+                        <li class="breadcrumb-item text-muted">{{$page}}</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-dark">List</li>
                     </ul>
                 </div>
+
+
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("role.index") }}"
+                        <a href="{{ route("department.index") }}"
                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,7 +42,7 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("role.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("department.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
@@ -50,13 +51,13 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Roles List</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">{{$page}} List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you permission group </span> --}}
                         </h3>
                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
                              data-bs-trigger="hover"
                              title="">
-                            <a href="{{ route("role.create") }}" class="btn btn-primary">
+                            <a href="{{ route("department.create") }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -80,22 +81,46 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Code</th>
+                                        <th>Address</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Mobile</th>
+                                        <th>Company</th>
+                                        <th>Branch</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($roles as $key => $role)
+                                    @foreach ($records as $key => $data)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>
-                                                {{ $role->name }}
+                                                {{ $data->name }}
                                             </td>
                                             <td>
-                                                {{ $role->slug }}
+                                                {{ $data->code }}
+                                            </td>
+                                            <td>
+                                                {{ $data->address }}
+                                            </td>
+                                            <td>
+                                                {{ $data->email }}
+                                            </td>
+                                            <td>
+                                                {{ $data->phone }}
+                                            </td>
+                                            <td>
+                                                {{ $data->mobile }}
+                                            </td>
+                                            <td>
+                                                {{ $data->company_details->name }}
+                                            </td>
+                                            <td>
+                                                {{ $data->branch_details->name }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    <a href="{{ route("role.edit", $role->id) }}"
+                                                    <a href="{{ route("department.edit", $data->id) }}"
                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -109,15 +134,15 @@
                                                                 </svg>
                                                             </span>
                                                     </a>
-                                                    <form id="form{{ $role->id }}"
-                                                          action="{{ route("role.destroy", $role->id) }}"
+                                                    <form id="form{{ $data->id }}"
+                                                          action="{{ route("department.destroy", $data->id) }}"
                                                           method="POST">
                                                         @csrf
                                                         @method("delete")
                                                     </form>
                                                     <a href="javascript:viod(0);"
                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
-                                                       data-id="{{ $role->id }}" data-name="{{ $role->name }}">
+                                                       data-id="{{ $data->id }}" data-name="{{ $data->name }}">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
