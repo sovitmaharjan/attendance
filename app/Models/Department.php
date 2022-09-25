@@ -27,12 +27,12 @@ class Department extends Model
         return $this->morphOne(ModelHasStatus::class, 'model');
     }
 
-    public function company_details(){
+    public function company_detail(){
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 
 
-    public function branch_details(){
+    public function branch_detail(){
         return $this->belongsTo(Branch::class, 'branch_id', 'id');
     }
 }

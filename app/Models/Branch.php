@@ -26,7 +26,7 @@ class Branch extends Model
         return $this->morphOne(ModelHasStatus::class, 'model');
     }
 
-    public function company_details(){
+    public function company_detail(){
         return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 }
