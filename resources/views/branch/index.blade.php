@@ -1,4 +1,5 @@
 @extends("layouts.app")
+@section('branch', 'active')
 @section("content")
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -112,7 +113,7 @@
                                                 {{ $data->mobile }}
                                             </td>
                                             <td>
-                                                {{ $data->company_details->name }}
+                                                {{ $data->company_detail->name }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
