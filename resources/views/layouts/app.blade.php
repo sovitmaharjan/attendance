@@ -5,6 +5,7 @@
     <title>Demo</title>
     @include('layouts.meta')
     @include('layouts.style')
+    @include('layouts.remove-up-down-arrow-number')
 </head>
 <body id="kt_body"
       class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"

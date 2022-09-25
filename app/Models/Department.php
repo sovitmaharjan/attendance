@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Company;
+use App\Models\Branch;
 
 class Department extends Model
 {
@@ -23,5 +25,14 @@ class Department extends Model
     public function status()
     {
         return $this->morphOne(ModelHasStatus::class, 'model');
+    }
+
+    public function company_details(){
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+
+    public function branch_details(){
+        return $this->belongsTo(Branch::class, 'branch_id', 'id');
     }
 }
