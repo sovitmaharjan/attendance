@@ -61,16 +61,9 @@
                         <div class="separator mx-1 my-4"></div>
                     </div>
                 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'permission-group' || request()->route()->uri == 'permission' || request()->route()->uri == 'role' ? 'here show' : '' }}">
-=======
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $permissionNav || $roleNav ? 'here show' : '' }}">
->>>>>>> c35cb53e2bff53c3d08e09120f819b09a0f0940b
-=======
                 <div data-kt-menu-trigger="click"
                      class="menu-item menu-accordion {{ $permissionNav || $roleNav ? 'here show' : '' }}">
->>>>>>> 85d6e156530db9f59d2cae031319b9b6beba9ef9
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -91,16 +84,9 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'permission-group' || request()->route()->uri == 'permission' ? 'here show' : '' }}">
-=======
                         <div data-kt-menu-trigger="click" class="menu-item {{ $permissionNav ? 'here show' : '' }} menu-accordion">
->>>>>>> c35cb53e2bff53c3d08e09120f819b09a0f0940b
-=======
                         <div data-kt-menu-trigger="click"
                              class="menu-item {{ $permissionNav ? 'here show' : '' }} menu-accordion">
->>>>>>> 85d6e156530db9f59d2cae031319b9b6beba9ef9
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -110,16 +96,9 @@
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                    <a class="menu-link {{ request()->route()->uri == 'permission-group' ? 'active' : '' }}" href="{{ route('permission-group.index') }}">
-=======
                                     <a class="menu-link @yield('permission_group')" href="{{ route('permission-group.index') }}">
->>>>>>> c35cb53e2bff53c3d08e09120f819b09a0f0940b
-=======
                                     <a class="menu-link @yield('permission_group')"
                                        href="{{ route('permission-group.index') }}">
->>>>>>> 85d6e156530db9f59d2cae031319b9b6beba9ef9
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -127,11 +106,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-<<<<<<< HEAD
-                                    <a class="menu-link {{ request()->route()->uri == 'permission' ? 'active' : '' }}" href="{{ route('permission.index') }}">
-=======
                                     <a class="menu-link @yield('permission')" href="{{ route('permission.index') }}">
->>>>>>> c35cb53e2bff53c3d08e09120f819b09a0f0940b
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -141,11 +116,7 @@
                             </div>
                         </div>
                         <div class="menu-item">
-<<<<<<< HEAD
-                            <a class="menu-link {{ request()->route()->uri == 'role' ? 'active' : '' }}" href="{{ route('role.index') }}">
-=======
                             <a class="menu-link @yield('role')" href="{{ route('role.index') }}">
->>>>>>> c35cb53e2bff53c3d08e09120f819b09a0f0940b
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -154,16 +125,9 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'comapany' || request()->route()->uri == 'branch' || request()->route()->uri == 'department' || request()->route()->uri == 'designation' || request()->route()->uri == 'employee' || request()->route()->uri == 'shift' || request()->route()->uri == 'roster-assignment' || request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' ? 'here show' : '' }}">
-=======
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav ? 'here show' : '' }}">
->>>>>>> c35cb53e2bff53c3d08e09120f819b09a0f0940b
-=======
                 <div data-kt-menu-trigger="click"
                      class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav ? 'here show' : '' }}">
->>>>>>> 85d6e156530db9f59d2cae031319b9b6beba9ef9
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
