@@ -49,12 +49,10 @@ class EmployeeController extends Controller
                 'password' => Str::random(7)
             ]);
             $employee = User::create($request->all());
-            // if (isset($request->image) && $request->image != null) {
-            //     dd('wer');
-            //     $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
-            // }
+            if (isset($request->image) && $request->image != null) {
+                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            }
             DB::commit();
-            dd('here');
             return back()->with('success', 'Employee has been created');
         } catch (Exception $e) {
             DB::rollBack();
