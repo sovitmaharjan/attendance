@@ -15,7 +15,7 @@
      data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a href="{{ route('dashboard') }}">
-            <img alt="Logo" src="assets/media/logos/logo-1-dark.svg" class="h-25px logo"/>
+            <img alt="Logo" src="{{ asset('assets/media/logos/logo-1-dark.svg') }}" class="h-25px logo"/>
         </a>
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
              data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
@@ -61,7 +61,6 @@
                         <div class="separator mx-1 my-4"></div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $permissionNav || $roleNav ? 'here show' : '' }}">
                 <div data-kt-menu-trigger="click"
                      class="menu-item menu-accordion {{ $permissionNav || $roleNav ? 'here show' : '' }}">
                     <span class="menu-link">
@@ -84,7 +83,6 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item {{ $permissionNav ? 'here show' : '' }} menu-accordion">
                         <div data-kt-menu-trigger="click"
                              class="menu-item {{ $permissionNav ? 'here show' : '' }} menu-accordion">
                             <span class="menu-link">
@@ -96,7 +94,6 @@
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link @yield('permission_group')" href="{{ route('permission-group.index') }}">
                                     <a class="menu-link @yield('permission_group')"
                                        href="{{ route('permission-group.index') }}">
                                         <span class="menu-bullet">
@@ -125,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav ? 'here show' : '' }}">
                 <div data-kt-menu-trigger="click"
                      class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav ? 'here show' : '' }}">
                     <span class="menu-link">
