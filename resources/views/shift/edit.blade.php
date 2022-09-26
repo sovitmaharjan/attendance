@@ -6,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Holiday</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Shift</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -15,7 +15,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Holiday</li>
+                        <li class="breadcrumb-item text-muted">Shift</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("holiday.index") }}"
+                        <a href="{{ route("shift.index") }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -40,31 +40,32 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("holiday.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("shift.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="holiday_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route("holiday.update", $holiday->id) }}" enctype="multipart/form-data">
+                <form id="shift_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route("shift.update", $shift->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span>
+                                        are required </span>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Name</label>
-                                    <input type="text" name="name" class="form-control mb-2" placeholder="Holiday name"
-                                        value="{{ $holiday->name ?? old("name") }}" required/>
-                                    <div class="text-muted fs-7">A holiday name is required and recommended to be unique.
+                                    <input type="text" name="name" class="form-control mb-2" placeholder="Shift name"
+                                        value="{{ old('name') ?? $shift->name }}" />
+                                    <div class="text-muted fs-7">A shift name is required and recommended to be unique.
                                     </div>
-                                    @error("name")
+                                    @error('name')
                                         <div class="fv-plugins-message-container invalid-feedback">
                                             <div data-field="name" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
@@ -73,53 +74,67 @@
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Date</label>
-                                            <div class="d-flex gap-5">
-                                                <input type="text" class="form-control mb-2" name="date"
-                                                    value="{{ $holiday->date->format('Y-m-d') ?? old('date') }}" placeholder="yyyy-dd-mm" required />
-                                                <input type="text" class="form-control mb-2" name="nepali_date"
-                                                    value="{{ $holiday->date->format('Y-m-d') ?? old('nepali_date') }}" placeholder="yyyy-dd-mm" />
+                                            <label class="required form-label">In Time</label>
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="09:00:00" name="in_time"
+                                                value="{{ old('in_time') ?? date("h:i", strtotime($shift->in_time)) }}" />
+                                        @error('in_time')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="in_time" data-validator="notEmpty">{{ $message }}</div>
                                             </div>
+                                        @enderror
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">In Time(Last)</label>
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="19:15:00" name="in_time_last"
+                                                value="{{ old('in_time_last') ?? date("h:i", strtotime($shift->in_time_last)) }}" />
+                                            @error('in_time_last')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="in_time_last" data-validator="notEmpty">{{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
-                                    @error("date")
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="date" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Type</label>
-                                    <select class="form-select mb-2" data-control="select2" name="holiday_type_id"
-                                        data-hide-search="true" data-placeholder="Select an option" required>
-                                        <option></option>
-                                        @foreach ($holiday_type as $item)
-                                            <option value="{{ $item->id }}" {{ $holiday->holiday_type_id == $item->id ? 'selected' : '' }}>{{ $item->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('holiday_type_id')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="holiday_type_id" data-validator="notEmpty">{{ $message }}</div>
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Out Time</label>
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="05:00:00" name="out_time"
+                                                value="{{ old('out_time') ?? date("h:i", strtotime($shift->out_time)) }}" />
+                                            @error('out_time')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="out_time" data-validator="notEmpty">{{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
-                                    @enderror
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Out Time(Last)</label>
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="05:15:00" name="out_time_last"
+                                                value="{{ old('out_time_last') ?? date("h:i", strtotime($shift->out_time_last)) }}" />
+                                            @error('out_time_last')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="out_time_last" data-validator="notEmpty">{{ $message }}</div>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Quantity</label>
-                                    <input type="text" name="quantity" class="form-control mb-2" placeholder="Holiday quantity"
-                                        value="{{ $holiday->quantity ?? old("quantity") }}" required/>
-                                    <div class="text-muted fs-7">Assign number of day for the holiday.</div>
-                                    @error("quantity")
+                                    <label class="required form-label">Break Time</label>
+                                    <input type="number" name="break_time" class="form-control mb-2"
+                                        placeholder="30:00" value="{{ old('break_time') ?? $shift->break_time }}" />
+                                    @error('break_time')
                                         <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="quantity" data-validator="notEmpty">{{ $message }}</div>
+                                            <div data-field="break_time" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("holiday.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('shift.index') }}" id="kt_ecommerce_add_product_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_holiday_submit" class="btn btn-primary">
+                            <button type="submit" id="kt_ecommerce_add_shift_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

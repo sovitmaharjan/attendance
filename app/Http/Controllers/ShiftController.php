@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ShiftRequest;
 use App\Models\Shift;
+use Carbon\Carbon;
 use Exception;
 
 class ShiftController extends Controller
@@ -21,7 +22,13 @@ class ShiftController extends Controller
 
     public function store(ShiftRequest $request)
     {
+        // dd($request->all());
         try {
+            // $data = [
+            //     'name' => $request->name,
+            //     'in_time' => Carbon::parse($request->in_time)
+            // ];
+            // dd($data);
             Shift::create($request->validated());
             return back()->with('success', 'Shift has been created');
         } catch (Exception $e) {

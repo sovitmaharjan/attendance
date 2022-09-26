@@ -6,25 +6,21 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ShiftRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'in_time' => 'required|date_format:H:i',
+            'in_time_last' => 'required|date_format:H:i',
+            'out_time' => 'required|date_format:H:i',
+            'out_time_last' => 'required|date_format:H:i',
+            'break_time' => 'required|numeric',
+            'extra' => 'nullable'
         ];
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
+use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
+    // Route::resource('leave', LeaveController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        // dd($errors)
+    @endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -61,7 +64,7 @@
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Name</label>
                                     <input type="text" name="name" class="form-control mb-2" placeholder="Shift name"
-                                        value="{{ old('name') }}" required />
+                                        value="{{ old('name') }}" />
                                     <div class="text-muted fs-7">A shift name is required and recommended to be unique.
                                     </div>
                                     @error('name')
@@ -74,18 +77,23 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">In Time</label>
-                                            <input type="text" class="form-control mb-2" name="in_time"
-                                                value="{{ old('in_time') }}" required />
-                                        </div>
-                                        @error('date')
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="09:00:00" name="in_time"
+                                                value="{{ old('in_time') }}" />
+                                        @error('in_time')
                                             <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="date" data-validator="notEmpty">{{ $message }}</div>
+                                                <div data-field="in_time" data-validator="notEmpty">{{ $message }}</div>
                                             </div>
                                         @enderror
+                                        </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">In Time(Last)</label>
-                                            <input type="text" class="form-control mb-2" name="in_time_last"
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="19:15:00" name="in_time_last"
                                                 value="{{ old('in_time_last') }}" />
+                                            @error('in_time_last')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="in_time_last" data-validator="notEmpty">{{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -93,55 +101,33 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Out Time</label>
-                                            <input type="text" class="form-control mb-2" name="out_time"
-                                                value="{{ old('out_time') }}" required />
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="05:00:00" name="out_time"
+                                                value="{{ old('out_time') }}" />
+                                            @error('out_time')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="out_time" data-validator="notEmpty">{{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
-                                        @error('date')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="date" data-validator="notEmpty">{{ $message }}</div>
-                                            </div>
-                                        @enderror
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Out Time(Last)</label>
-                                            <input type="text" class="form-control mb-2" name="out_time_last"
+                                            <input type="text" class="form-control mb-2 timepicker" placeholder="05:15:00" name="out_time_last"
                                                 value="{{ old('out_time_last') }}" />
+                                            @error('out_time_last')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="out_time_last" data-validator="notEmpty">{{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">tpye</label>
-                                            <div class="d-flex gap-5">
-                                                <select class="form-select mb-2" name="type" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select an option" required>
-                                                    <option></option>
-                                                    <option value="Mr." {{ old('type') == 'Mr.' ? 'selected' : '' }}>Mr.</option>
-                                                    <option value="Mrs." {{ old('type') == 'Mrs.' ? 'selected' : '' }}>Mrs.</option>
-                                                    <option value="Miss." {{ old('type') == 'Miss' ? 'selected' : '' }}>Miss</option>
-                                                    <option value="Mx." {{ old('type') == 'Mx.' ? 'selected' : '' }}>Mx.</option>
-                                                    <option value="Ms." {{ old('type') == 'Ms.' ? 'selected' : '' }}>Ms.</option>
-                                                    <option value="Dr." {{ old('type') == 'Dr.' ? 'selected' : '' }}>Dr.</option>
-                                                    <option value="Er." {{ old('type') == 'Er.' ? 'selected' : '' }}>Er.</option>
-                                                </select>
-                                                <input type="text" class="form-control mb-2" name="firstname"
-                                                    value="{{ old('firstname') }}" placeholder="Firstname" required />
-                                                <input type="text" class="form-control mb-2" name="middlename"
-                                                    value="{{ old('middlename') }}" placeholder="Middlename" />
-                                                <input type="text" class="form-control mb-2" name="lastname"
-                                                    value="{{ old('lastname') }}" placeholder="Lastname" required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-10 fv-row">
-                                    <label class="required form-label">Quantity</label>
-                                    <input type="text" name="quantity" class="form-control mb-2"
-                                        placeholder="Shift quantity" value="{{ old('quantity') }}" required />
-                                    <div class="text-muted fs-7">Assign number of day for the shift.</div>
-                                    @error('quantity')
+                                    <label class="required form-label">Break Time</label>
+                                    <input type="number" name="break_time" class="form-control mb-2"
+                                        placeholder="30:00" value="{{ old('break_time') }}" />
+                                    @error('break_time')
                                         <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="quantity" data-validator="notEmpty">{{ $message }}</div>
+                                            <div data-field="break_time" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
                                     @enderror
                                 </div>
