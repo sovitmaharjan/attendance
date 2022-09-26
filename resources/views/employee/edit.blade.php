@@ -232,6 +232,25 @@
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Citizenship No</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="citizenship_no"
+                                                       value="{{ old('citizenship_no', $employee->extra && array_key_exists('citizenship_no', $employee->extra) ? $employee->extra['citizenship_no'] : '')  }}" placeholder="05-01-27-87654"/>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Pan Np</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="pan_no"
+                                                       value="{{ old('pan_no', $employee->extra && array_key_exists('pan_no', $employee->extra) ? $employee->extra['pan_no'] : '') }}"
+                                                       placeholder="1072345"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Email</label>
                                             <input type="text" class="form-control mb-2" name="email"
                                                    value="{{ old('email', $employee->email) }}" placeholder="example@mail.com" required/>
