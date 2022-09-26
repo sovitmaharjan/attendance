@@ -60,7 +60,7 @@
                                         are required </span>
                                 </div>
                             </div>
-                            <div class="card-body pt-0">
+                            <div class="card-body">
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -132,58 +132,120 @@
                                     </div>
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Shift</label>
-                                            <select class="form-select mb-2" id="shift" name="shift"
-                                                data-control="select2" data-hide-search="false"
-                                                data-placeholder="Select Shift" required>
-                                                <option></option>
-                                                @foreach ($shift as $item)
-                                                    <option value="{{ $item->name }}" @selected(old('shift') == $item->name)>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('shift')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="shift" data-validator="notEmpty">{{ $message }}
+                                    <div class="py-5">
+                                        <div class="rounded border p-5">
+                                            <!--begin::Repeater-->
+                                            <div id="kt_docs_repeater_basic">
+                                                <!--begin::Form group-->
+                                                <div class="form-group">
+                                                    <div data-repeater-list="kt_docs_repeater_basic">
+                                                        <div data-repeater-item="">
+                                                            <div class="form-group row mb-5">
+                                                                <div class="col-md-3">
+                                                                    <label class="required form-label">Shift</label>
+                                                                    <select class="form-select mb-2" id="shift"
+                                                                        name="shift" data-control="select2"
+                                                                        data-hide-search="false"
+                                                                        data-placeholder="Select Shift" required>
+                                                                        <option></option>
+                                                                        @foreach ($shift as $item)
+                                                                            <option value="{{ $item->name }}"
+                                                                                @selected(old('shift') == $item->name)>
+                                                                                {{ $item->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('shift')
+                                                                        <div
+                                                                            class="fv-plugins-message-container invalid-feedback">
+                                                                            <div data-field="shift" data-validator="notEmpty">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="required form-label">From</label>
+                                                                    <input type="text"
+                                                                        class="form-control mb-2 from_date"
+                                                                        onchange="engtonep($(this), 'nep_from_data')"
+                                                                        value="{{ old('from_date') }}"
+                                                                        placeholder="yyyy-dd-mm" id="from_date"
+                                                                        name="from_date"
+                                                                        value="{{ old('from_date') }}" />
+                                                                    @error('from_date')
+                                                                        <div
+                                                                            class="fv-plugins-message-container invalid-feedback">
+                                                                            <div data-field="from_date"
+                                                                                data-validator="notEmpty">{{ $message }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @enderror
+                                                                    <input type="text"
+                                                                        class="form-control mb-2 nep_from_data"
+                                                                        name="nepali_from_date"
+                                                                        onclick="neptoeng('nep_from_data', 'from_date')"
+                                                                        value="{{ old('nepali_from_date') }}"
+                                                                        placeholder="yyyy-dd-mm" id="nep_from_data">
+                                                                    @error('nepali_from_date')
+                                                                        <div
+                                                                            class="fv-plugins-message-container invalid-feedback">
+                                                                            <div data-field="nepali_from_date"
+                                                                                data-validator="notEmpty">{{ $message }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="required form-label">To</label>
+                                                                    <input type="text"
+                                                                        class="form-control mb-2 to_date"
+                                                                        onchange="engtonep($(this), 'nep_to_date')"
+                                                                        value="{{ old('from_date') }}"
+                                                                        placeholder="yyyy-dd-mm" id="to_date"
+                                                                        name="from_date"
+                                                                        value="{{ old('from_date') }}" />
+                                                                    @error('from_date')
+                                                                        <div
+                                                                            class="fv-plugins-message-container invalid-feedback">
+                                                                            <div data-field="from_date"
+                                                                                data-validator="notEmpty">{{ $message }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @enderror
+                                                                    <input type="text"
+                                                                        class="form-control mb-2 nep_to_date"
+                                                                        name="nepali_from_date"
+                                                                        onclick="neptoeng('nep_to_date', 'to_date')"
+                                                                        value="{{ old('nepali_from_date') }}"
+                                                                        placeholder="yyyy-dd-mm" id="nep_to_date">
+                                                                    @error('nepali_from_date')
+                                                                        <div
+                                                                            class="fv-plugins-message-container invalid-feedback">
+                                                                            <div data-field="nepali_from_date"
+                                                                                data-validator="notEmpty">{{ $message }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a href="javascript:;" data-repeater-delete=""
+                                                                        class="btn btn-sm btn-light-danger mt-3 mt-md-9">
+                                                                        <i class="la la-trash-o fs-3"></i>Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">From</label>
-                                            <input type="text" class="form-control mb-2" placeholder="yyyy-mm-dd"
-                                                id="out_time" name="out_time" value="{{ old('out_time') }}" />
-                                            @error('out_time')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="out_time" data-validator="notEmpty">{{ $message }}
-                                                    </div>
+                                                <!--end::Form group-->
+                                                <!--begin::Form group-->
+                                                <div class="form-group">
+                                                    <a href="javascript:;" data-repeater-create=""
+                                                        class="btn btn-light-primary">
+                                                        <i class="la la-plus"></i>Add</a>
                                                 </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">To</label>
-                                            <input type="text" class="form-control mb-2" placeholder="yyyy-mm-dd"
-                                                id="out_time" name="out_time" value="{{ old('out_time') }}" />
-                                            @error('out_time')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="out_time" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Add</label>
-                                            <input type="text" class="form-control mb-2" placeholder="05:15:00"
-                                                id="out_time_last" name="out_time_last"
-                                                value="{{ old('out_time_last') }}" />
-                                            @error('out_time_last')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="out_time_last" data-validator="notEmpty">
-                                                        {{ $message }}</div>
-                                                </div>
-                                            @enderror
+                                                <!--end::Form group-->
+                                            </div>
+                                            <!--end::Repeater-->
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +267,16 @@
     </div>
 @endSection
 @section('script')
+    <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
+        $('.from_date, .to_date').datepicker({
+            format: 'yyyy-mm-dd',
+            todayHighlight: true,
+            todayBtn: 'linked',
+            clearBtn: true,
+            autoclose: true,
+        });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -255,6 +326,22 @@
                     $('#employee_id').val(data.id);
                 }
             });
+        });
+
+        $('#kt_docs_repeater_basic').repeater({
+            initEmpty: false,
+
+            defaultValues: {
+                'text-input': 'foo'
+            },
+
+            show: function() {
+                $(this).slideDown();
+            },
+
+            hide: function(deleteElement) {
+                $(this).slideUp(deleteElement);
+            }
         });
     </script>
 @endsection
