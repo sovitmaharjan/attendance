@@ -163,7 +163,7 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-2">
                                                                     <label class="required form-label">From</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 from_date"
@@ -180,6 +180,9 @@
                                                                             </div>
                                                                         </div>
                                                                     @enderror
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label class="form-label">&nbsp;</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 nep_from_data"
                                                                         name="nepali_from_date"
@@ -195,7 +198,7 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-2">
                                                                     <label class="required form-label">To</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 to_date"
@@ -212,6 +215,9 @@
                                                                             </div>
                                                                         </div>
                                                                     @enderror
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label class="form-label">&nbsp;</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 nep_to_date"
                                                                         name="nepali_from_date"
@@ -227,10 +233,10 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-1">
                                                                     <a href="javascript:;" data-repeater-delete=""
                                                                         class="btn btn-sm btn-light-danger mt-3 mt-md-9">
-                                                                        <i class="la la-trash-o fs-3"></i>Delete</a>
+                                                                        <i class="la la-trash-o fs-3"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -292,7 +298,8 @@
                 method: 'GET',
                 url: url,
                 success: function(data) {
-                    console.log(data);
+                    myLog(data);
+
                 }
             });
         });
@@ -321,8 +328,8 @@
                 url: url,
                 success: function(data) {
                     console.log(data);
-                    // $('#branch').val(data.branch_id);
-                    // $('#department').val(data.department_id);
+                    $('#branch').val(data.branch_id).trigger('change');
+                    $('#department').val(data.department_id).trigger('change');
                     $('#employee_id').val(data.id);
                 }
             });
