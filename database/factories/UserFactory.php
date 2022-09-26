@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
+use App\Models\Designation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,12 +19,48 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $company = rand(1, 2);
+        if ($company == 1) {
+            $branch = rand(1, 2);
+            if ($branch == 1) {
+                $department = rand(1, 2);
+            } 
+            if ($branch == 2) {
+                $department = rand(2, 4);
+            }
+        } else {
+            $branch = rand(3, 4);
+            if ($branch == 3) {
+                $department = rand(1, 2);
+            } 
+            if ($branch == 4) {
+                $department = rand(2, 4);
+            }
+        }
+        $gender = ['Male', 'Female'];
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'prefix' => fake()->suffix(),
+            'firstname' => fake()->firstName(),
+            'middlename' => fake()->lastName(),
+            'lastname' => fake()->lastName(),
+            'email' => fake()->email(),
+            'phone' => fake()->phoneNumber(),
+            'address' => fake()->address(),
+            'gender' => $gender[rand(0, 1)],
+            'marital_status' => 'Unmarried',
+            'dob' => fake()->date('Y-m-d'),
+            'join_date' => now(),
+            'company_id' => $company,
+            'branch_id' => $branch,
+            'department_id' => $department,
+            'designation_id' => Designation::find(1)->id,
+            'login_id' => Company::find($company)->code . '-' . rand(0, 99) . rand(0, 99),
+            'supervisor_id' => null,
+            'password' => bcrypt('123'),
+            'login_count' => 0,
+            'status' => 'Working',
+            'type' => 'Permanent',
+            'role_id' => 1,
         ];
     }
 

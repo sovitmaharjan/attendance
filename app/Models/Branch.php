@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Branch extends Model
 {
     use HasFactory, SoftDeletes;
+    
+    protected static function booted()
+    {
+        if(auth()->user()) {
+            static::addGlobalScope('company', function ($q) {
+                $q->where('company_id', auth()->user()->company_id);
+            });
+        }
+    }
 
     protected $fillable = [
         'name',
@@ -23,5 +32,20 @@ class Branch extends Model
     public function status()
     {
         return $this->morphOne(ModelHasStatus::class, 'model');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(User::class);
     }
 }

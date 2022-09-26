@@ -38,5 +38,7 @@ class UserTableSeeder extends Seeder
             'type' => 'Permanent',
             'role_id' => 1,
         ]);
+
+        User::factory(10)->create();
     }
 }

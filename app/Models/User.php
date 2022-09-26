@@ -15,6 +15,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia;
+    
+    protected static function booted()
+    {
+        if(auth()->user()) {
+            static::addGlobalScope('company', function ($q) {
+                $q->where('company_id', auth()->user()->company_id);
+            });
+        }
+    }
 
     protected $fillable = [
         'prefix',

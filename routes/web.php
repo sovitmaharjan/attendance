@@ -13,7 +13,8 @@ use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
-use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\ShiftAssignmentController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -39,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
+    Route::resource('/shift-assignment', ShiftAssignmentController::class);
     // Route::resource('leave', LeaveController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
@@ -46,5 +48,16 @@ Route::group(['middleware' => ['auth']], function () {
        Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
        Route::get('get/{id}', [DynamicValuesController::class, 'edit'])->name('edit');
     });
+
+    // ajax route
+    Route::get('api/branch/{branch_id}', function($branch_id) {
+        return getBranchDetails($branch_id);
+    })->name('api.branch.show');
+    Route::get('api/department/{department_id}', function($department_id) {
+        return getDepartmentDetails($department_id);
+    })->name('api.department.show');
+    Route::get('api/employee/{employee_id}', function($employee_id) {
+        return getEmployeeDetails($employee_id);
+    })->name('api.employee.show');
 });
 
