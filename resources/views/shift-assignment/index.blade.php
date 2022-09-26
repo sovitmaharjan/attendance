@@ -134,18 +134,15 @@
                                 <div class="mb-10 fv-row">
                                     <div class="py-5">
                                         <div class="rounded border p-5">
-                                            <!--begin::Repeater-->
                                             <div id="kt_docs_repeater_basic">
-                                                <!--begin::Form group-->
                                                 <div class="form-group">
                                                     <div data-repeater-list="kt_docs_repeater_basic">
                                                         <div data-repeater-item="">
                                                             <div class="form-group row mb-5">
                                                                 <div class="col-md-3">
                                                                     <label class="required form-label">Shift</label>
-                                                                    <select class="form-select mb-2" id="shift"
-                                                                        name="shift" data-control="select2"
-                                                                        data-hide-search="false"
+                                                                    <select class="form-select mb-2 shift" name="shift"
+                                                                        data-control="select2" data-hide-search="false"
                                                                         data-placeholder="Select Shift" required>
                                                                         <option></option>
                                                                         @foreach ($shift as $item)
@@ -163,14 +160,11 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-2">
+                                                                <div class="col-md-2 from">
                                                                     <label class="required form-label">From</label>
                                                                     <input type="text"
-                                                                        class="form-control mb-2 from_date"
-                                                                        onchange="engtonep($(this), 'nep_from_data')"
-                                                                        value="{{ old('from_date') }}"
-                                                                        placeholder="yyyy-dd-mm" id="from_date"
-                                                                        name="from_date"
+                                                                        class="form-control mb-2 from_date" date-id="from"
+                                                                        placeholder="yyyy-dd-mm" name="from_date"
                                                                         value="{{ old('from_date') }}" />
                                                                     @error('from_date')
                                                                         <div
@@ -181,53 +175,49 @@
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-2">
+                                                                <div class="col-md-2 nep_from">
                                                                     <label class="form-label">&nbsp;</label>
                                                                     <input type="text"
-                                                                        class="form-control mb-2 nep_from_data"
-                                                                        name="nepali_from_date"
-                                                                        onclick="neptoeng('nep_from_data', 'from_date')"
-                                                                        value="{{ old('nepali_from_date') }}"
-                                                                        placeholder="yyyy-dd-mm" id="nep_from_data">
-                                                                    @error('nepali_from_date')
+                                                                        class="form-control mb-2 nep_from_date"
+                                                                        name="nep_from_date"
+                                                                        value="{{ old('nep_from_date') }}"
+                                                                        placeholder="yyyy-dd-mm" id="nep_from_date">
+                                                                    @error('nep_from_date')
                                                                         <div
                                                                             class="fv-plugins-message-container invalid-feedback">
-                                                                            <div data-field="nepali_from_date"
+                                                                            <div data-field="nep_from_date"
                                                                                 data-validator="notEmpty">{{ $message }}
                                                                             </div>
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-2">
+                                                                <div class="col-md-2 to">
                                                                     <label class="required form-label">To</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 to_date"
-                                                                        onchange="engtonep($(this), 'nep_to_date')"
-                                                                        value="{{ old('from_date') }}"
-                                                                        placeholder="yyyy-dd-mm" id="to_date"
-                                                                        name="from_date"
-                                                                        value="{{ old('from_date') }}" />
-                                                                    @error('from_date')
+                                                                        value="{{ old('to_date') }}" date-id="to"
+                                                                        placeholder="yyyy-dd-mm" name="to_date"
+                                                                        value="{{ old('to_date') }}" />
+                                                                    @error('to_date')
                                                                         <div
                                                                             class="fv-plugins-message-container invalid-feedback">
-                                                                            <div data-field="from_date"
+                                                                            <div data-field="to_date"
                                                                                 data-validator="notEmpty">{{ $message }}
                                                                             </div>
                                                                         </div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="col-md-2">
+                                                                <div class="col-md-2 nep_to">
                                                                     <label class="form-label">&nbsp;</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 nep_to_date"
-                                                                        name="nepali_from_date"
-                                                                        onclick="neptoeng('nep_to_date', 'to_date')"
-                                                                        value="{{ old('nepali_from_date') }}"
+                                                                        name="nep_to_date"
+                                                                        value="{{ old('nep_to_date') }}"
                                                                         placeholder="yyyy-dd-mm" id="nep_to_date">
-                                                                    @error('nepali_from_date')
+                                                                    @error('nep_to_date')
                                                                         <div
                                                                             class="fv-plugins-message-container invalid-feedback">
-                                                                            <div data-field="nepali_from_date"
+                                                                            <div data-field="nep_to_date"
                                                                                 data-validator="notEmpty">{{ $message }}
                                                                             </div>
                                                                         </div>
@@ -242,16 +232,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--end::Form group-->
-                                                <!--begin::Form group-->
                                                 <div class="form-group">
                                                     <a href="javascript:;" data-repeater-create=""
                                                         class="btn btn-light-primary">
                                                         <i class="la la-plus"></i>Add</a>
                                                 </div>
-                                                <!--end::Form group-->
                                             </div>
-                                            <!--end::Repeater-->
+
                                         </div>
                                     </div>
                                 </div>
@@ -299,6 +286,7 @@
                 url: url,
                 success: function(data) {
                     myLog(data);
+                    data.departments.foreach()
 
                 }
             });
@@ -335,6 +323,22 @@
             });
         });
 
+        // $('#kt_docs_repeater_basic').repeater({
+        //     initEmpty: false,
+
+        //     defaultValues: {
+        //         'text-input': 'foo'
+        //     },
+
+        //     show: function() {
+        //         $(this).slideDown();
+        //     },
+
+        //     hide: function(deleteElement) {
+        //         $(this).slideUp(deleteElement);
+        //     }
+        // });
+
         $('#kt_docs_repeater_basic').repeater({
             initEmpty: false,
 
@@ -344,10 +348,108 @@
 
             show: function() {
                 $(this).slideDown();
+                $(this).find('.shift').select2();
+                $(this).find('.from_date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    todayHighlight: true,
+                    todayBtn: 'linked',
+                    clearBtn: true,
+                    autoclose: true,
+                });
+                $(this).find('.to_date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    todayHighlight: true,
+                    todayBtn: 'linked',
+                    clearBtn: true,
+                    autoclose: true,
+                });
+                $(this).find('.nep_from_date').on('click', function() {
+                    var a = $(this);
+                    a.nepaliDatePicker({
+                        language: "english",
+                        onChange: function() {
+                            var from = a.parent().prev('div').find('.from_date');
+                            myLog(from);
+                            // let nepalidate = a.val();
+                            // let dateObj = NepaliFunctions.ParseDate(nepalidate);
+                            // let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
+                            // let year = engDate.year;
+                            // let month = NepaliFunctions.Get2DigitNo(engDate.month);
+                            // let day = NepaliFunctions.Get2DigitNo(engDate.day);
+                            // let engValue = year + '-' + month + '-' + day;
+                            // from.val(engValue);
+                        },
+                        ndpYear: true,
+                        ndpMonth: true,
+                        ndpYearCount: 200
+                    });
+                })
             },
 
             hide: function(deleteElement) {
                 $(this).slideUp(deleteElement);
+            },
+
+            ready: function() {
+                $('.shift').select2();
+                $('.from_date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    todayHighlight: true,
+                    todayBtn: 'linked',
+                    clearBtn: true,
+                    autoclose: true,
+                });
+                $('.to_date').datepicker({
+                    format: 'yyyy-mm-dd',
+                    todayHighlight: true,
+                    todayBtn: 'linked',
+                    clearBtn: true,
+                    autoclose: true,
+                });
+                $('.nep_from_date').on('click', function() {
+                    var a = $(this);
+                    myLog('click');
+                    // a.nepaliDatePicker({
+                    //     language: "english",
+                    //     onChange: function() {
+                    //         var from = a.parent().prev('div').find('.from_date');
+                    //         myLog(from);
+                    //         let nepalidate = a.val();
+                    //         let dateObj = NepaliFunctions.ParseDate(nepalidate);
+                    //         let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
+                    //         let year = engDate.year;
+                    //         let month = NepaliFunctions.Get2DigitNo(engDate.month);
+                    //         let day = NepaliFunctions.Get2DigitNo(engDate.day);
+                    //         let engValue = year + '-' + month + '-' + day;
+                    //         from.val(engValue);
+                    //     },
+                    //     ndpYear: true,
+                    //     ndpMonth: true,
+                    //     ndpYearCount: 200
+                    // });
+                })
+                $('.nep_to_date').on('click', function() {
+                    var a = $(this);
+                    myLog('click');
+                    a.nepaliDatePicker({
+                        language: "english",
+                        onChange: function() {
+                            var from = a.parent().prev('div').find('.to_date');
+                            myLog(from);
+                            let nepalidate = a.val();
+                            let dateObj = NepaliFunctions.ParseDate(nepalidate);
+                            let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
+                            let year = engDate.year;
+                            let month = NepaliFunctions.Get2DigitNo(engDate.month);
+                            let day = NepaliFunctions.Get2DigitNo(engDate.day);
+                            let engValue = year + '-' + month + '-' + day;
+                            from.val(engValue);
+                        },
+                        ndpYear: true,
+                        ndpMonth: true,
+                        ndpYearCount: 200
+                    });
+                })
             }
         });
     </script>
