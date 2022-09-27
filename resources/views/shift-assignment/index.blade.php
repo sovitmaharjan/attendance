@@ -27,7 +27,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('shift.index') }}"
+                        <a href="{{ route('shift-assignment.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -43,14 +43,14 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('shift.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('shift-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
                 <form id="shift_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('shift.store') }}" enctype="multipart/form-data">
+                    action="{{ route('shift-assignment.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
@@ -146,7 +146,7 @@
                                                                         data-placeholder="Select Shift" required>
                                                                         <option></option>
                                                                         @foreach ($shift as $item)
-                                                                            <option value="{{ $item->name }}"
+                                                                            <option value="{{ $item->id }}"
                                                                                 @selected(old('shift') == $item->name)>
                                                                                 {{ $item->name }}</option>
                                                                         @endforeach
@@ -245,7 +245,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('shift.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('shift-assignment.index') }}" id="kt_ecommerce_add_product_cancel"
                                 class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="kt_ecommerce_add_shift_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
@@ -378,7 +378,41 @@
                         ndpMonth: true,
                         ndpYearCount: 200
                     });
-                })
+                });
+                $(document).find('.from_date').one('change', function() {
+                    var from = $(this).parent().next('div').find('.nep_from_date');
+                    let dateObj = new Date($(this).val());
+                    let year = dateObj.getUTCFullYear();
+                    let month = dateObj.getUTCMonth() + 1;
+                    let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
+                    let nepaliDate = NepaliFunctions.AD2BS({
+                        year: year,
+                        month: month,
+                        day: day
+                    });
+                    let nepaliYear = nepaliDate.year;
+                    let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
+                    let nepaliDay = ("0" + nepaliDate.day).slice(-2);
+                    let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
+                    from.val(nepaliValue);
+                });
+                $(this).find('.to_date').one('change', function() {
+                    var to = $(this).parent().next('div').find('.nep_to_date');
+                    let dateObj = new Date($(this).val());
+                    let year = dateObj.getUTCFullYear();
+                    let month = dateObj.getUTCMonth() + 1;
+                    let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
+                    let nepaliDate = NepaliFunctions.AD2BS({
+                        year: year,
+                        month: month,
+                        day: day
+                    });
+                    let nepaliYear = nepaliDate.year;
+                    let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
+                    let nepaliDay = ("0" + nepaliDate.day).slice(-2);
+                    let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
+                    to.val(nepaliValue);
+                });
             },
 
             hide: function(deleteElement) {
@@ -444,10 +478,40 @@
             }
         });
 
-        $('.from_date').one('change', function(e) {
-            var qwer = $(this);
-            console.log(e);
-            console.log(qwer);
-        })
+        $('.from_date').one('change', function() {
+            var from = $(this).parent().next('div').find('.nep_from_date');
+            let dateObj = new Date($(this).val());
+            let year = dateObj.getUTCFullYear();
+            let month = dateObj.getUTCMonth() + 1;
+            let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
+            let nepaliDate = NepaliFunctions.AD2BS({
+                year: year,
+                month: month,
+                day: day
+            });
+            let nepaliYear = nepaliDate.year;
+            let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
+            let nepaliDay = ("0" + nepaliDate.day).slice(-2);
+            let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
+            from.val(nepaliValue);
+        });
+        
+        $('.to_date').one('change', function() {
+            var to = $(this).parent().next('div').find('.nep_to_date');
+            let dateObj = new Date($(this).val());
+            let year = dateObj.getUTCFullYear();
+            let month = dateObj.getUTCMonth() + 1;
+            let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
+            let nepaliDate = NepaliFunctions.AD2BS({
+                year: year,
+                month: month,
+                day: day
+            });
+            let nepaliYear = nepaliDate.year;
+            let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
+            let nepaliDay = ("0" + nepaliDate.day).slice(-2);
+            let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
+            to.val(nepaliValue);
+        });
     </script>
 @endsection

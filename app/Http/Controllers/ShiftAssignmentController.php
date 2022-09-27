@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShiftAssignmentRequest;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Shift;
@@ -17,5 +18,12 @@ class ShiftAssignmentController extends Controller
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         $data['shift'] = Shift::orderBy('name', 'asc')->get();
         return view('shift-assignment.index', $data);
+    }
+
+    public function store(ShiftAssignmentRequest $request) {
+        dd($request->all());
+        foreach($request->shift_repeater as $item) {
+            
+        }
     }
 }
