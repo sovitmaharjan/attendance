@@ -45,6 +45,7 @@ class Department extends Model
     public function branch_detail()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');
+
     }
 
     public function company()

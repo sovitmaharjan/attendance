@@ -78,4 +78,3 @@ function getEmployeeDetails($employee_id)
     }
     return response()->json($data);
 }
-

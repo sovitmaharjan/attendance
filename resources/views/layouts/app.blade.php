@@ -6,6 +6,10 @@
     <title>Demo</title>
     @include('layouts.meta')
     @include('layouts.style')
+<<<<<<< HEAD
+=======
+    {{-- @include('layouts.remove-up-down-arrow-number') --}}
+>>>>>>> 20850131e949465753fe79cad1057b05b3762b3c
 </head>
 
 <body id="kt_body"
