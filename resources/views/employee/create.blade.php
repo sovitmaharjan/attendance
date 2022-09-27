@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('employee', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -223,6 +224,25 @@
                                                 <input type="text" class="form-control mb-2" name="address"
                                                        value="{{ old('address') }}"
                                                        placeholder="Putalisadak, Kathmandu"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Citizenship No</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="citizenship_no"
+                                                       value="{{ old('citizenship_no') }}" placeholder="05-01-27-87654"/>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Pan Np</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="pan_no"
+                                                       value="{{ old('pan_no') }}"
+                                                       placeholder="1072345"/>
                                             </div>
                                         </div>
                                     </div>

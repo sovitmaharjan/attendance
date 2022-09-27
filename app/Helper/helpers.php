@@ -48,6 +48,8 @@ if (!function_exists('getFormattedDate')) {
     {
         return date('Y-m-d', strtotime($date));
     }
+
+    
 }
 
 function getBranchDetails($branch_id)

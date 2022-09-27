@@ -1296,11 +1296,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center ms-1 ms-lg-3">
+                {{-- <div class="d-flex align-items-center ms-1 ms-lg-3">
                     <a class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px" href="../../demo1/dist/documentation/getting-started/dark-mode.html">
                         <i class="fonticon-sun fs-2"></i>
                     </a>
-                </div>
+                </div> --}}
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                         <img src="{{ asset('assets/media/avatars/300-1.jpg') }}" alt="user" />

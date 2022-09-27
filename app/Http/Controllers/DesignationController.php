@@ -4,18 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helper\Helper;
-use App\Http\Requests\DepartmentRequest;
-use App\Models\Branch;
-use App\Models\Company;
-use App\Models\Department;
+use App\Models\Designation;
 
-class DepartmentController extends Controller
+class DesignationController extends Controller
 {
-
     function __construct(){
         $this->helper = new Helper;
      }
-
 
     /**
      * Display a listing of the resource.
@@ -24,9 +19,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $page = "Department";
-        $data['records'] = Department::all();
-        return view('department.index', $data, compact('page'));
+        $page = "Designation";
+        $data['records'] = Designation::all();
+        return view('designation.index', $data, compact('page'));
     }
 
     /**
@@ -36,10 +31,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $page = "Department";
-        $company = Company::all();
-        $branch = Branch::all();
-        return view('branch.create', compact('page', 'company', 'branch'));
+        $page = "Designation";
+        return view('designation.create', compact('page'));
     }
 
     /**
@@ -48,16 +41,18 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DepartmentRequest $request, Department $department)
+    public function store(Request $request, Designation $designation)
     {
+        $validated = $request->validate([
+            'title' => 'required|unique:designations,title'
+        ]);
+
         try{
-            $data = $this->helper->getObject($department, $request);
-            $data['company_id'] = $request->company_id;
-            $data['branch_id'] = $request->branch_id;
+            $data = $this->helper->getObject($designation, $request);
             $data->save();
-            return back()->with('success', 'New Department has been added');
+            return back()->with('success', 'New Designation has been added');
          }catch(\Exception$e){
-            return $e->getMessage();
+            return $this->$e->getMessage();
          }
     }
 
@@ -80,11 +75,9 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        $page = "Department";
-        $company = Company::all();
-        $branch = Branch::all();
-        $data = Department::findOrFail($id);
-        return view('department.edit', compact('page', 'data', 'company', 'branch'));
+        $page = "Designation";
+        $data = Designation::findOrFail($id);
+        return view('designation.edit', compact('page', 'data'));
     }
 
     /**
@@ -96,12 +89,10 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $company = Department::findOrFail($id);
-        $data = $this->helper->getObject($company, $request);
-        $data['company_id'] = $request->company_id;
-        $data['branch_id'] = $request->branch_id;
+        $designation = Designation::findOrFail($id);
+        $data = $this->helper->getObject($designation, $request);
         $data->update();
-        return to_route('department.index')->with('success', 'Department has been updated');
+        return to_route('designation.index')->with('success', 'Designation has been updated');
     }
 
     /**
@@ -112,7 +103,7 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $company = Department::findOrFail($id)->delete();
-        return to_route('department.index')->with('success', 'Department has been deleted');
+        $designation = Designation::findOrFail($id)->delete();
+        return to_route('designation.index')->with('success', 'Designation has been deleted');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Company;
 
 class Branch extends Model
 {
@@ -34,18 +35,7 @@ class Branch extends Model
         return $this->morphOne(ModelHasStatus::class, 'model');
     }
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
-
-    public function departments()
-    {
-        return $this->hasMany(Department::class);
-    }
-
-    public function employees()
-    {
-        return $this->hasMany(User::class);
+    public function company_detail(){
+        return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 }
