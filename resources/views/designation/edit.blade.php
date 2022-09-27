@@ -61,7 +61,21 @@
                             </div>
                             <div class="card-body pt-0">
 
-                                <x-form-input label="Designation" class="required form-label" name="title" value="{{$data->title}}" info="Must be a valid email" type="text" />
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Designation</label>
+                                            <input type="text" class="form-control mb-2" name="title"
+                                                value="{{ $data->title }}" />
+                                        </div>
+                                        @error('title')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="title" data-validator="notEmpty">
+                                                {{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

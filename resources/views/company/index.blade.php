@@ -92,25 +92,25 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>
-                                                {{ $data->name }}
+                                                {{ $data->name  ?? 'Not assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->code }}
+                                                {{ $data->code  ?? 'Not assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->address }}
+                                                {{ $data->address   ?? 'Not assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->email }}
+                                                {{ $data->email ?? 'Not assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->phone }}
+                                                {{ $data->phone ?? 'Not assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->mobile }}
+                                                {{ $data->mobile ?? 'Not assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->website }}
+                                                {{ $data->website   ?? 'Not assigned' }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">

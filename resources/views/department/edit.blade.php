@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('role', 'active')
+@section('branch', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -61,30 +61,129 @@
                             </div>
                             <div class="card-body pt-0">
 
-                                <div class="row">
-                                    <x-form-inline-input label="Department Name" name="name" value="{{$data->name}}" type="text" info="Compay name must be unique" class="required form-label" col="6" />
-                                    <x-form-inline-input label="Department Code" name="code" value="{{$data->code}}" type="text" info="Compay code must be unique" class="required form-label" col="6" />
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department Name</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="name"
+                                                    value="{{ $data->name }}" />
+                                            </div>
+                                            @error('name')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="name" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department Code</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="code"
+                                                    value="{{ $data->code }}" placeholder="ABCD" />
+                                            </div>
+                                            @error('code')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="code" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <x-form-input label="Department Email" class="required form-label" name="email" value="{{$data->email}}" info="Must be a valid email" type="email" />
-
-                                <div class="row">
-                                    <x-form-inline-input label="Department Address" class="required form-label" value="{{$data->address}}" name="address"  type="text" col="4" />
-                                    <x-form-inline-input label="Department Phone" class="required form-label" value="{{$data->phone}}" name="phone"  type="number" col="4" />
-                                    <x-form-inline-input label="Department Mobile" class="form-label" value="{{$data->mobile}}" name="mobile"  type="number" col="4" />
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department Email</label>
+                                            <input type="text" class="form-control mb-2" name="email"
+                                                value="{{ $data->email }}" placeholder="example@mail.com"/>
+                                            <div class="text-muted fs-7">Must be a valid email</div>
+                                        </div>
+                                        @error('email')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="email" data-validator="notEmpty">
+                                                {{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                    </div>
                                 </div>
 
-                                <x-form-select class="required form-label" label="Parent Company"  name="company_id">
-                                    @foreach($company as $item)
-                                        <option value="{{$item->id}}" {{$data->company_id == $item->id  ? 'selected' : ''}}>{{$item->name}}</option>
-                                    @endforeach
-                                </x-form-select>
 
-                                <x-form-select class="required form-label" label="Parent Branch"  name="branch_id">
-                                    @foreach($branch as $item)
-                                        <option value="{{$item->id}}" {{$data->branch_id == $item->id  ? 'selected' : ''}}>{{$item->name}}</option>
-                                    @endforeach
-                                </x-form-select>
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department Address</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="address"
+                                                    value="{{ $data->address }}" placeholder="Kathmandu, Nepal" />
+                                            </div>
+                                            @error('address')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="address" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department Phone Number</label>
+                                            <div class="d-flex">
+                                                <input type="number" min="1" class="form-control mb-2"
+                                                    name="phone" value="{{ $data->phone }}" />
+                                            </div>
+                                            @error('phone')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="phone" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Department Mobile Number</label>
+                                            <div class="d-flex">
+                                                <input type="number" min="1" class="form-control mb-2"
+                                                    name="mobile" value="{{ $data->mobile }}" />
+                                            </div>
+                                            @error('mobile')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="mobile" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Select Company</label>
+                                            <select class="form-select mb-2" name="company_id" data-control="select2"
+                                                    data-hide-search="false" data-placeholder="Select Branch"
+                                                    required>
+                                                @foreach ($company as $item)
+                                                    <option
+                                                        value="{{ $item->id }}" {{$data->company_id == $item->id  ? 'selected' : ''}}>{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Select Branch</label>
+                                            <select class="form-select mb-2" name="branch_id" data-control="select2"
+                                                    data-hide-search="false" data-placeholder="Select Branch"
+                                                    required>
+                                                @foreach ($branch as $item)
+                                                    <option
+                                                        value="{{ $item->id }}"  {{$data->branch_id == $item->id  ? 'selected' : ''}}>{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>

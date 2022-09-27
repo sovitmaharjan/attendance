@@ -25,11 +25,11 @@ class BranchRequest extends FormRequest
     {
         return [
             'name'=>'required|unique:branches,name',
-            'code'=>'required|unique:branches,code',
+            'code'=>'required|unique:branches,code|max:8',
             'address'=>'required',
             'email'=>'required|email|unique:branches,email',
             'phone'=>'required|digits:10|numeric',
-            'mobile'=>'sometimes|numeric',
+            'mobile'=>'sometimes',
             'company_id'=>'required'
         ];
     }

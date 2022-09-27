@@ -25,11 +25,11 @@ class DepartmentRequest extends FormRequest
     {
         return [
             'name'=>'required|unique:departments,name',
-            'code'=>'required|unique:departments,code',
+            'code'=>'required|unique:departments,code|max:8',
             'address'=>'required',
             'email'=>'required|email|unique:departments,email',
             'phone'=>'required|digits:10|numeric',
-            'mobile'=>'sometimes|numeric',
+            'mobile'=>'sometimes',
             'company_id'=>'required',
             'branch_id'=>'required',
         ];

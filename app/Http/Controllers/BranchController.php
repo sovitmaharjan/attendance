@@ -50,8 +50,8 @@ class BranchController extends Controller
     {
         $page = "Branch";
         $company = Company::all();
-        $branch = Branch::findOrFail($id);
-        return view('branch.edit', compact('page', 'branch', 'company'));
+        $data = Branch::findOrFail($id);
+        return view('branch.edit', compact('page', 'data', 'company'));
     }
 
     public function update(Request $request, $id)

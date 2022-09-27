@@ -25,11 +25,11 @@ class CompanyRequest extends FormRequest
     {
         return [
             'name'=>'required|unique:companies,name',
-            'code'=>'required|unique:companies,code',
+            'code'=>'required|unique:companies,code|max:8',
             'address'=>'required',
             'email'=>'required|email|unique:companies,email',
             'phone'=>'required|digits:10|numeric',
-            'mobile'=>'sometimes|numeric',
+            'mobile'=>'sometimes',
             'website'=>'required'
         ];
     }

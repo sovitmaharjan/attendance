@@ -61,20 +61,119 @@
                             </div>
                             <div class="card-body pt-0">
 
-                                <div class="row">
-                                    <x-form-inline-input label="Company Name" name="name" value="{{$data->name}}" type="text" info="Compay name must be unique" class="required form-label" col="6" />
-                                    <x-form-inline-input label="Company Code" name="code" value="{{$data->code}}" type="text" info="Compay code must be unique" class="required form-label" col="6" />
-                                </div>
-
-                                <x-form-input label="Company Email" class="required form-label" name="email" value="{{$data->email}}" info="Must be a valid email" type="email" />
-
-                                <div class="row">
-                                    <x-form-inline-input class="required form-label" label="Company Address" name="address" value="{{$data->address}}" type="text" col="4" />
-                                    <x-form-inline-input class="required form-label" label="Company Phone Number" name="phone" value="{{$data->phone}}" type="number" col="4" />
-                                    <x-form-inline-input class="form-label" label="Company Mobile Number" name="mobile" value="{{$data->mobile ?? ''}}" type="number" col="4" />
-                                </div>
-
-                                <x-form-input class="required form-label" label="Company Website"  name="website" value="{{$data->website}}" type="text" />
+                                    <div class="mb-10 fv-row">
+                                        <div class="d-flex flex-wrap gap-5">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Name</label>
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control mb-2" name="name"
+                                                        value="{{ $data->name }}" />
+                                                </div>
+                                                @error('name')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="name" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
+                                            </div>
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Code</label>
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control mb-2" name="code"
+                                                        value="{{ $data->code }}" />
+                                                </div>
+                                                @error('code')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="code" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="mb-10 fv-row">
+                                        <div class="d-flex flex-wrap gap-5">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Email</label>
+                                                <input type="text" class="form-control mb-2" name="email"
+                                                    value="{{ $data->email }}" />
+                                                <div class="text-muted fs-7">Must be a valid email</div>
+                                            </div>
+                                            @error('email')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="email" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="mb-10 fv-row">
+                                        <div class="d-flex flex-wrap gap-5">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Address</label>
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control mb-2" name="address"
+                                                        value="{{ $data->address }}" />
+                                                </div>
+                                                @error('address')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="address" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
+                                            </div>
+    
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Phone Number</label>
+                                                <div class="d-flex">
+                                                    <input type="number" min="1" class="form-control mb-2"
+                                                        name="phone" value="{{ $data->phone }}" />
+                                                </div>
+                                                @error('phone')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="phone" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
+                                            </div>
+    
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Mobile Number</label>
+                                                <div class="d-flex">
+                                                    <input type="number" min="1" class="form-control mb-2"
+                                                        name="mobile" value="{{ $data->mobile }}" />
+                                                </div>
+                                                @error('mobile')
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="mobile" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="mb-10 fv-row">
+                                        <div class="d-flex flex-wrap gap-5">
+                                            <div class="fv-row w-100 flex-md-root">
+                                                <label class="required form-label">Company Website</label>
+                                                <input type="text" class="form-control mb-2" name="website"
+                                                    value="{{ $data->website }}" />
+                                            </div>
+    
+                                            @error('website')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="website" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
 
                             </div>
                         </div>

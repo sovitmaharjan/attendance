@@ -86,7 +86,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>
-                                                {{ $data->title }}
+                                                {{ $data->title ?? 'Not Assigned' }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">

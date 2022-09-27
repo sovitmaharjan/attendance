@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{$page}}</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ $page }}</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">{{$page}}</li>
+                        <li class="breadcrumb-item text-muted">{{ $page }}</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -60,20 +60,120 @@
                             </div>
                             <div class="card-body pt-0">
 
-                                <div class="row">
-                                    <x-form-inline-input label="Company Name" name="name" placeholder="ABC Company" type="text" info="Compay name must be unique" class="required form-label" col="6" />
-                                    <x-form-inline-input label="Company Code" name="code" placeholder="ABCC" type="text" info="Compay code must be unique" class="required form-label" col="6" />
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Name</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="name"
+                                                    value="{{ old('name') }}" placeholder="ABC Company" />
+                                            </div>
+                                            @error('name')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="name" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Code</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="code"
+                                                    value="{{ old('code') }}" placeholder="ABCC" />
+                                            </div>
+                                            @error('code')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="code" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <x-form-input label="Company Email" class="required form-label" name="email" placeholder="company@mail.com" info="Must be a valid email" type="email" />
 
-                                <div class="row">
-                                    <x-form-inline-input class="required form-label" label="Company Address" name="address" placeholder="ABC Company" type="text" col="4" />
-                                    <x-form-inline-input class="required form-label" label="Company Phone Number" name="phone"  type="number" col="4" />
-                                    <x-form-inline-input class="form-label" label="Company Mobile Number" name="mobile"  type="number" col="4" />
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Email</label>
+                                            <input type="text" class="form-control mb-2" name="email"
+                                                value="{{ old('email') }}" placeholder="example@mail.com"/>
+                                            <div class="text-muted fs-7">Must be a valid email</div>
+                                        </div>
+                                        @error('email')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="email" data-validator="notEmpty">
+                                                {{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                    </div>
                                 </div>
 
-                                <x-form-input class="required form-label" label="Company Website"  name="website" placeholder="https://company.com/" type="text" />
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Address</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="address"
+                                                    value="{{ old('address') }}" placeholder="Kathmandu, Nepal" />
+                                            </div>
+                                            @error('address')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="address" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Phone Number</label>
+                                            <div class="d-flex">
+                                                <input type="number" min="1" class="form-control mb-2"
+                                                    name="phone" value="{{ old('phone') }}" />
+                                            </div>
+                                            @error('phone')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="phone" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Mobile Number</label>
+                                            <div class="d-flex">
+                                                <input type="number" min="1" class="form-control mb-2"
+                                                    name="mobile" value="{{ old('mobile') }}" />
+                                            </div>
+                                            @error('mobile')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="mobile" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Website</label>
+                                            <input type="text" class="form-control mb-2" name="website"
+                                                value="{{ old('website') }}" placeholder="https://company.com/"/>
+                                        </div>
+
+                                        @error('website')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="website" data-validator="notEmpty">
+                                                {{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                    </div>
+                                </div>
 
                             </div>
                         </div>

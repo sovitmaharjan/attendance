@@ -39,7 +39,7 @@ class DepartmentController extends Controller
         $page = "Department";
         $company = Company::all();
         $branch = Branch::all();
-        return view('branch.create', compact('page', 'company', 'branch'));
+        return view('department.create', compact('page', 'company', 'branch'));
     }
 
     /**
