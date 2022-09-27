@@ -134,9 +134,9 @@
                                 <div class="mb-10 fv-row">
                                     <div class="py-5">
                                         <div class="rounded border p-5">
-                                            <div id="kt_docs_repeater_basic">
+                                            <div id="shift_repeater">
                                                 <div class="form-group">
-                                                    <div data-repeater-list="kt_docs_repeater_basic">
+                                                    <div data-repeater-list="shift_repeater">
                                                         <div data-repeater-item="">
                                                             <div class="form-group row mb-5">
                                                                 <div class="col-md-3">
@@ -181,7 +181,7 @@
                                                                         class="form-control mb-2 nep_from_date"
                                                                         name="nep_from_date"
                                                                         value="{{ old('nep_from_date') }}"
-                                                                        placeholder="yyyy-dd-mm" id="nep_from_date">
+                                                                        placeholder="yyyy-dd-mm">
                                                                     @error('nep_from_date')
                                                                         <div
                                                                             class="fv-plugins-message-container invalid-feedback">
@@ -213,7 +213,7 @@
                                                                         class="form-control mb-2 nep_to_date"
                                                                         name="nep_to_date"
                                                                         value="{{ old('nep_to_date') }}"
-                                                                        placeholder="yyyy-dd-mm" id="nep_to_date">
+                                                                        placeholder="yyyy-dd-mm">
                                                                     @error('nep_to_date')
                                                                         <div
                                                                             class="fv-plugins-message-container invalid-feedback">
@@ -262,14 +262,6 @@
 @section('script')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
-        $('.from_date, .to_date').datepicker({
-            format: 'yyyy-mm-dd',
-            todayHighlight: true,
-            todayBtn: 'linked',
-            clearBtn: true,
-            autoclose: true,
-        });
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -286,7 +278,7 @@
                 url: url,
                 success: function(data) {
                     myLog(data);
-                    data.departments.foreach()
+                    // data.departments.foreach()
 
                 }
             });
@@ -323,23 +315,7 @@
             });
         });
 
-        // $('#kt_docs_repeater_basic').repeater({
-        //     initEmpty: false,
-
-        //     defaultValues: {
-        //         'text-input': 'foo'
-        //     },
-
-        //     show: function() {
-        //         $(this).slideDown();
-        //     },
-
-        //     hide: function(deleteElement) {
-        //         $(this).slideUp(deleteElement);
-        //     }
-        // });
-
-        $('#kt_docs_repeater_basic').repeater({
+        $('#shift_repeater').repeater({
             initEmpty: false,
 
             defaultValues: {
@@ -369,15 +345,34 @@
                         language: "english",
                         onChange: function() {
                             var from = a.parent().prev('div').find('.from_date');
-                            myLog(from);
-                            // let nepalidate = a.val();
-                            // let dateObj = NepaliFunctions.ParseDate(nepalidate);
-                            // let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
-                            // let year = engDate.year;
-                            // let month = NepaliFunctions.Get2DigitNo(engDate.month);
-                            // let day = NepaliFunctions.Get2DigitNo(engDate.day);
-                            // let engValue = year + '-' + month + '-' + day;
-                            // from.val(engValue);
+                            let nepalidate = a.val();
+                            let dateObj = NepaliFunctions.ParseDate(nepalidate);
+                            let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
+                            let year = engDate.year;
+                            let month = NepaliFunctions.Get2DigitNo(engDate.month);
+                            let day = NepaliFunctions.Get2DigitNo(engDate.day);
+                            let engValue = year + '-' + month + '-' + day;
+                            from.val(engValue);
+                        },
+                        ndpYear: true,
+                        ndpMonth: true,
+                        ndpYearCount: 200
+                    });
+                });
+                $(this).find('.nep_to_date').on('click', function() {
+                    var a = $(this);
+                    a.nepaliDatePicker({
+                        language: "english",
+                        onChange: function() {
+                            var from = a.parent().prev('div').find('.to_date');
+                            let nepalidate = a.val();
+                            let dateObj = NepaliFunctions.ParseDate(nepalidate);
+                            let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
+                            let year = engDate.year;
+                            let month = NepaliFunctions.Get2DigitNo(engDate.month);
+                            let day = NepaliFunctions.Get2DigitNo(engDate.day);
+                            let engValue = year + '-' + month + '-' + day;
+                            from.val(engValue);
                         },
                         ndpYear: true,
                         ndpMonth: true,
@@ -408,34 +403,10 @@
                 });
                 $('.nep_from_date').on('click', function() {
                     var a = $(this);
-                    myLog('click');
-                    // a.nepaliDatePicker({
-                    //     language: "english",
-                    //     onChange: function() {
-                    //         var from = a.parent().prev('div').find('.from_date');
-                    //         myLog(from);
-                    //         let nepalidate = a.val();
-                    //         let dateObj = NepaliFunctions.ParseDate(nepalidate);
-                    //         let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
-                    //         let year = engDate.year;
-                    //         let month = NepaliFunctions.Get2DigitNo(engDate.month);
-                    //         let day = NepaliFunctions.Get2DigitNo(engDate.day);
-                    //         let engValue = year + '-' + month + '-' + day;
-                    //         from.val(engValue);
-                    //     },
-                    //     ndpYear: true,
-                    //     ndpMonth: true,
-                    //     ndpYearCount: 200
-                    // });
-                })
-                $('.nep_to_date').on('click', function() {
-                    var a = $(this);
-                    myLog('click');
                     a.nepaliDatePicker({
                         language: "english",
                         onChange: function() {
-                            var from = a.parent().prev('div').find('.to_date');
-                            myLog(from);
+                            var from = a.parent().prev('div').find('.from_date');
                             let nepalidate = a.val();
                             let dateObj = NepaliFunctions.ParseDate(nepalidate);
                             let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
@@ -449,8 +420,34 @@
                         ndpMonth: true,
                         ndpYearCount: 200
                     });
-                })
+                });
+                $('.nep_to_date').on('click', function() {
+                    var a = $(this);
+                    a.nepaliDatePicker({
+                        language: "english",
+                        onChange: function() {
+                            var from = a.parent().prev('div').find('.to_date');
+                            let nepalidate = a.val();
+                            let dateObj = NepaliFunctions.ParseDate(nepalidate);
+                            let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
+                            let year = engDate.year;
+                            let month = NepaliFunctions.Get2DigitNo(engDate.month);
+                            let day = NepaliFunctions.Get2DigitNo(engDate.day);
+                            let engValue = year + '-' + month + '-' + day;
+                            from.val(engValue);
+                        },
+                        ndpYear: true,
+                        ndpMonth: true,
+                        ndpYearCount: 200
+                    });
+                });
             }
         });
+
+        $('.from_date').one('change', function(e) {
+            var qwer = $(this);
+            console.log(e);
+            console.log(qwer);
+        })
     </script>
 @endsection
