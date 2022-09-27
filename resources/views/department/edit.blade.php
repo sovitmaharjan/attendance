@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('branch', 'active')
+@section('department', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -190,7 +190,7 @@
 
 
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('branch.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('department.index') }}" id="kt_ecommerce_add_product_cancel"
                                 class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>

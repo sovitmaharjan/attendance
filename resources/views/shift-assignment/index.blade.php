@@ -1,8 +1,6 @@
 @extends('layouts.app')
+@section('shift_assignment', 'active')
 @section('content')
-    @php
-        // dd($errors)
-    @endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -277,7 +275,7 @@
                 method: 'GET',
                 url: url,
                 success: function(data) {
-                    myLog(data);
+                    // myLog(data);
                     // data.departments.foreach()
 
                 }
@@ -293,12 +291,12 @@
                 method: 'GET',
                 url: url,
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                 }
             });
         });
 
-        $(document).on('change', '#employee', function(e) {
+        $('#employee').one('change', function(e) {
             e.preventDefault();
             var id = $(this).val();
             var url = "{{ route('api.employee.show', ':id') }}";

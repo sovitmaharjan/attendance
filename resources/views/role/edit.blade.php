@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("permission.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route("role.index") }}" id="kt_ecommerce_add_product_cancel"
                                class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>

@@ -7,6 +7,12 @@
     $departmentNav = Request::is('department*');
     $designationNav = Request::is('designation*');
     $employeeNav = Request::is('employee*');
+    $shiftNav = Request::is('shift*');
+    $shiftAssignmentNav = Request::is('shift-assignment*');
+    $holidayTypeNav = Request::is('holiday-type*');
+    $holidayNav = Request::is('holiday*');
+    $leaveNav = Request::is('leave*');
+    $dynamicValuesNav = Request::is('dynamic-values*')
 @endphp
 
 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside"
@@ -123,7 +129,7 @@
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav ? 'here show' : '' }}">
+                     class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav  || $holidayTypeNav  || $holidayNav  || $leaveNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -184,34 +190,34 @@
                                 <span class="menu-title">Employee</span>
                             </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $shiftNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Roster</span>
+                                <span class="menu-title">Shift</span>
                                 <span class="menu-arrow"></span>
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday-type.index') }}">
+                                    <a class="menu-link @yield('shift')" href="{{ route('shift.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Work shift</span>
+                                        <span class="menu-title">Shift</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday.index') }}">
+                                    <a class="menu-link @yield('shift_assignment')" href="{{ route('shift-assignment.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Roster Assign</span>
+                                        <span class="menu-title">Shift Assignment</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $holidayTypeNav || $holidayNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -221,7 +227,7 @@
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday-type.index') }}">
+                                    <a class="menu-link @yield('holiday_type')" href="{{ route('holiday-type.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -229,7 +235,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('holiday.index') }}">
+                                    <a class="menu-link @yield('holiday')" href="{{ route('holiday.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -323,7 +329,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $dynamicValuesNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -345,7 +351,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dynamic_values.index', ['setup' => 'prefix']) }}">
+                            <a class="menu-link @yield('prefix')" href="{{ route('dynamic_values.index', ['setup' => 'prefix']) }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -353,7 +359,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link"
+                            <a class="menu-link @yield('marital_status')"
                                href="{{ route('dynamic_values.index', ['setup' => 'marital_status']) }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -362,7 +368,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link"
+                            <a class="menu-link @yield('employee_status')"
                                href="{{ route('dynamic_values.index', ['setup' => 'employee_status']) }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -370,7 +376,7 @@
                                 <span class="menu-title">Employee Status</span>
                             </a>
                         </div>
-                        <div class="menu-item">
+                        <div class="menu-item @yield('employee_type')">
                             <a class="menu-link"
                                href="{{ route('dynamic_values.index', ['setup' => 'employee_type']) }}">
                                 <span class="menu-bullet">
