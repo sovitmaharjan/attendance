@@ -36,8 +36,8 @@ class EmployeeController extends Controller
     {
         try {
             DB::beginTransaction();
-//            $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-//            $login_id = Company::find($request->company_id)->code . '-' . $next_id;
+            // $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
+            // $login_id = Company::find($request->company_id)->code . '-' . $next_id;
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
                 'nepali_join_date' => $request->nepali_join_date,
@@ -47,10 +47,13 @@ class EmployeeController extends Controller
             $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
-//                'login_id' => $login_id,
+                // 'login_id' => $login_id,
                 'password' => Str::random(7)
             ]);
-            User::create($request->all());
+            $employee = User::create($request->all());
+            if (isset($request->image) && $request->image != null) {
+                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            }
             DB::commit();
             return back()->with('success', 'Employee has been created');
         } catch (Exception $e) {
@@ -86,6 +89,10 @@ class EmployeeController extends Controller
                 'extra' => $extra,
             ]);
             $employee->update($request->all());
+            if (isset($request->image) && $request->image != null) {
+                $employee->clearMediaCollection('image');
+                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            }
             DB::commit();
             return redirect()->route('employee.index')->with('success', 'Employee has been updated');
         } catch (Exception $e) {

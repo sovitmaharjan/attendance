@@ -9,10 +9,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia;
+    
+    protected static function booted()
+    {
+        if(auth()->user()) {
+            static::addGlobalScope('company', function ($q) {
+                $q->where('company_id', auth()->user()->company_id);
+            });
+        }
+    }
 
     protected $fillable = [
         'prefix',
@@ -55,10 +66,10 @@ class User extends Authenticatable
         'extra' => 'array',
     ];
 
-    public function fullName() : Attribute
+    public function fullName(): Attribute
     {
         return Attribute::make(
-          get: fn() => $this->firstname . ' ' . ($this->middlename ? $this->middlename . ' ' : '') . $this->lastname
+            get: fn () => $this->firstname . ' ' . ($this->middlename ? $this->middlename . ' ' : '') . $this->lastname
         );
     }
 

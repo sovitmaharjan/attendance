@@ -61,7 +61,7 @@
                             <div class="card-body text-center pt-0">
                                 <div class="image-input image-input-outline image-input-empty"
                                      data-kt-image-input="true"
-                                     style="background-image: url({{ asset('assets/admin/media/svg/files/blank-image.svg') }})">
+                                     style="background-image: url({{ asset('assets/media/svg/files/blank-image.svg') }})">
                                     <div class="image-input-wrapper w-200px h-200px bgi-position-center"
                                          style="background-size: 95%;"></div>
                                     <label

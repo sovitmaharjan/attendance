@@ -9,12 +9,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call(StatusTableSeeder::class);
         $this->call(CompanyTableSeeder::class);
         $this->call(BranchTableSeeder::class);
@@ -22,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DesignationTableSeeder::class);
         $this->call(PermissionGroupTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(ShiftTableSeeder::class);
         $this->call(HolidayTypeTableSeeder::class);
         $this->call(HolidayTableSeeder::class);
     }
