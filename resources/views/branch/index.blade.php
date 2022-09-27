@@ -26,7 +26,7 @@
 
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("department.index") }}"
+                        <a href="{{ route("branch.index") }}"
                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -42,7 +42,7 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("department.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("branch.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
                              data-bs-trigger="hover"
                              title="">
-                            <a href="{{ route("department.create") }}" class="btn btn-primary">
+                            <a href="{{ route("branch.create") }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -120,7 +120,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    <a href="{{ route("department.edit", $data->id) }}"
+                                                    <a href="{{ route("branch.edit", $data->id) }}"
                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -135,7 +135,7 @@
                                                             </span>
                                                     </a>
                                                     <form id="form{{ $data->id }}"
-                                                          action="{{ route("department.destroy", $data->id) }}"
+                                                          action="{{ route("branch.destroy", $data->id) }}"
                                                           method="POST">
                                                         @csrf
                                                         @method("delete")
