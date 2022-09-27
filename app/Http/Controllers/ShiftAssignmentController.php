@@ -8,10 +8,8 @@ use App\Models\Department;
 use App\Models\Shift;
 use App\Models\ShiftAssignment;
 use App\Models\User;
-use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ShiftAssignmentController extends Controller
@@ -27,7 +25,6 @@ class ShiftAssignmentController extends Controller
 
     public function store(ShiftAssignmentRequest $request)
     {
-        // dd($request->all());
         try {
             DB::beginTransaction();
             foreach ($request->shift_repeater as $item) {
