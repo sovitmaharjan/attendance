@@ -1,9 +1,9 @@
 <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
-<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
 <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/js/nepali-datepicker.min.js') }}"></script>
 
@@ -31,26 +31,6 @@
     //         ndpYearCount: 200
     //     });
     // });
-
-    // dark and light mode
-    var defaultThemeMode = "light";
-    var themeMode;
-    if (document.documentElement) {
-        myLog(document.documentElement.getAttribute('data-theme-mode'))
-        if (document.documentElement.hasAttribute("data-theme-mode")) {
-            themeMode = document.documentElement.getAttribute("data-theme-mode");
-        } else {
-            if (localStorage.getItem("data-theme") !== null) {
-                themeMode = localStorage.getItem("data-theme");
-            } else {
-                themeMode = defaultThemeMode;
-            }
-        }
-        if (themeMode === "system") {
-            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.setAttribute("data-theme", themeMode);
-    }
 
 
     function nepaliPicker(nep_class) {
