@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Company;
 use App\Models\Designation;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,5 +38,7 @@ class UserTableSeeder extends Seeder
             'type' => 'Permanent',
             'role_id' => 1,
         ]);
+
+        User::factory(10)->create();
     }
 }

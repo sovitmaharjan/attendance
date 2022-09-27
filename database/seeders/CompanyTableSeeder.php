@@ -19,7 +19,23 @@ class CompanyTableSeeder extends Seeder
             'mobile' => '+977-9876543210',
             'website' => 'testcompany.com',
         ]);
-        // dd($company);
+        $company->status()->updateOrCreate([
+            'model_id' => $company->id,
+            'model_type' => get_class($company)
+        ],
+        [
+            'status_id' => $status_id ?? 1
+        ]);
+
+        $company = Company::create([
+            'name' => 'Test Company 2',
+            'code' => 'TCOM2',
+            'address' => 'test address 2',
+            'email' => 'testcompany2@email.com',
+            'phone' => '+977-0512330194',
+            'mobile' => '+977-9876444210',
+            'website' => 'testcompany2.com',
+        ]);
         $company->status()->updateOrCreate([
             'model_id' => $company->id,
             'model_type' => get_class($company)
