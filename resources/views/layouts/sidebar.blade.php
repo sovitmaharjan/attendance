@@ -128,8 +128,9 @@
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav  || $holidayTypeNav  || $holidayNav  || $leaveNav ? 'here show' : '' }}">
+                @can('view-dashboard')
+                    <div data-kt-menu-trigger="click"
+                         class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav  || $holidayTypeNav  || $holidayNav  || $leaveNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -147,50 +148,51 @@
                         <span class="menu-title">System Setting</span>
                         <span class="menu-arrow"></span>
                     </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link @yield('company')" href="{{ route('company.index') }}">
+                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                            <div class="menu-item">
+                                <a class="menu-link @yield('company')" href="{{ route('company.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Company</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @yield('branch')" href="{{ route('branch.index') }}">
+                                    <span class="menu-title">Company</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link @yield('branch')" href="{{ route('branch.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Branch</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @yield('department')" href="{{ route('department.index') }}">
+                                    <span class="menu-title">Branch</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link @yield('department')" href="{{ route('department.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Department</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link @yield('designation')" href="{{ route('designation.index') }}">
+                                    <span class="menu-title">Department</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link @yield('designation')" href="{{ route('designation.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Designation</span>
-                            </a>
-                        </div>
+                                    <span class="menu-title">Designation</span>
+                                </a>
+                            </div>
 
 
-                        <div class="menu-item">
-                            <a class="menu-link @yield('employee')" href="{{ route('employee.index') }}">
+                            <div class="menu-item">
+                                <a class="menu-link @yield('employee')" href="{{ route('employee.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Employee</span>
-                            </a>
-                        </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $shiftNav ? 'here show' : '' }}">
+                                    <span class="menu-title">Employee</span>
+                                </a>
+                            </div>
+                            <div data-kt-menu-trigger="click"
+                                 class="menu-item menu-accordion {{ $shiftNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -198,26 +200,28 @@
                                 <span class="menu-title">Shift</span>
                                 <span class="menu-arrow"></span>
                             </span>
-                            <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                <div class="menu-item">
-                                    <a class="menu-link @yield('shift')" href="{{ route('shift.index') }}">
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link @yield('shift')" href="{{ route('shift.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Shift</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-link @yield('shift_assignment')" href="{{ route('shift-assignment.index') }}">
+                                            <span class="menu-title">Shift</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link @yield('shift_assignment')"
+                                           href="{{ route('shift-assignment.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Shift Assignment</span>
-                                    </a>
+                                            <span class="menu-title">Shift Assignment</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $holidayTypeNav || $holidayNav ? 'here show' : '' }}">
+                            <div data-kt-menu-trigger="click"
+                                 class="menu-item menu-accordion {{ $holidayTypeNav || $holidayNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -225,36 +229,37 @@
                                 <span class="menu-title">Holiday</span>
                                 <span class="menu-arrow"></span>
                             </span>
-                            <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                <div class="menu-item">
-                                    <a class="menu-link @yield('holiday_type')" href="{{ route('holiday-type.index') }}">
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link @yield('holiday_type')"
+                                           href="{{ route('holiday-type.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Holiday Type</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-link @yield('holiday')" href="{{ route('holiday.index') }}">
+                                            <span class="menu-title">Holiday Type</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link @yield('holiday')" href="{{ route('holiday.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Holiday</span>
-                                    </a>
+                                            <span class="menu-title">Holiday</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <div class="menu-item">
+                                <a class="menu-link" href="{{ route('dashboard') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Leave</span>
-                            </a>
+                                    <span class="menu-title">Leave</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                @endcan
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -329,7 +334,8 @@
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $dynamicValuesNav ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click"
+                     class="menu-item menu-accordion {{ $dynamicValuesNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -351,7 +357,8 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link @yield('prefix')" href="{{ route('dynamic_values.index', ['setup' => 'prefix']) }}">
+                            <a class="menu-link @yield('prefix')"
+                               href="{{ route('dynamic_values.index', ['setup' => 'prefix']) }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
