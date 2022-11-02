@@ -13,6 +13,7 @@ use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
+use App\Http\Controllers\ForceAttendanceController;
 use App\Http\Controllers\ShiftAssignmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class);
+    Route::resource('/force-attendance', ForceAttendanceController::class);
     // Route::resource('leave', LeaveController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
