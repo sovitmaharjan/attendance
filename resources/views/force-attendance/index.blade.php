@@ -299,44 +299,6 @@
             });
         });
 
-        $('#start_date').on('change', function() {
-            var from = $(this).parent().next('div').find('#nepali_start_date');
-            console.log($(this).val());
-            console.log(from);
-            let dateObj = new Date($(this).val());
-            let year = dateObj.getUTCFullYear();
-            let month = dateObj.getUTCMonth() + 1;
-            let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
-            let nepaliDate = NepaliFunctions.AD2BS({
-                year: year,
-                month: month,
-                day: day
-            });
-            let nepaliYear = nepaliDate.year;
-            let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
-            let nepaliDay = ("0" + nepaliDate.day).slice(-2);
-            let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
-            from.val(nepaliValue);
-        });
-        
-        $('.to_date').on('change', function() {
-            var to = $(this).parent().next('div').find('.nep_to_date');
-            let dateObj = new Date($(this).val());
-            let year = dateObj.getUTCFullYear();
-            let month = dateObj.getUTCMonth() + 1;
-            let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
-            let nepaliDate = NepaliFunctions.AD2BS({
-                year: year,
-                month: month,
-                day: day
-            });
-            let nepaliYear = nepaliDate.year;
-            let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
-            let nepaliDay = ("0" + nepaliDate.day).slice(-2);
-            let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
-            to.val(nepaliValue);
-        });
-
         $('#button').on('click', function() {
             const date1 = $("#start_date").val();
             const date2 = $("#end_date").val();
