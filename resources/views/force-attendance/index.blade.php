@@ -340,7 +340,6 @@
         $('#button').on('click', function() {
             const date1 = $("#start_date").val();
             const date2 = $("#end_date").val();
-            var id = $(this).val();
             var url = "{{ route('api.get-employee-shift') }}";
             data = {
                 'employee_id': $('#employee_id').val(),
