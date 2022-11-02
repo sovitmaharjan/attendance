@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('shift_assignment', 'active')
+@section('force_attendance', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -335,11 +335,6 @@
             let nepaliDay = ("0" + nepaliDate.day).slice(-2);
             let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
             to.val(nepaliValue);
-        });
-
-        $(document).ready(function() {
-            $("#start_date").flatpickr();
-            $("#end_date").flatpickr();
         });
 
         $('#button').on('click', function() {
