@@ -20,6 +20,12 @@ class ShiftAssignment extends Model
 
     protected $casts = [
         'date' => 'datetime',
+        'in_time' => 'datetime',
+        'out_time' => 'datetime',
         'extra' => 'array',
     ];
+
+    public function shift() {
+        return $this->belongsTo(Shift::class);
+    }
 }

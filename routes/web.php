@@ -61,5 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('api/employee/{employee_id}', function($employee_id) {
         return getEmployeeDetails($employee_id);
     })->name('api.employee.show');
+
+    Route::get('/api/getEmployeeShift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('api.get-employee-shift');
 });
 

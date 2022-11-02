@@ -118,7 +118,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Employee Id</label>
                                             <input type="text" class="form-control mb-2" id="employee_id"
-                                                name="employee_id" value="{{ old('employee_id') }}" />
+                                                name="employee_id" value="{{ old('employee_id') ?? 1 }}" />
                                             @error('employee_id')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="employee_id" data-validator="notEmpty">
@@ -134,7 +134,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Start Date</label>
                                             <input type="text" class="form-control mb-2" id="start_date"
-                                                name="start_date" value="2022-11-01" />
+                                                name="start_date" value="2022-09-01" />
                                             @error('start_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="start_date" data-validator="notEmpty">
@@ -158,7 +158,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">End Date</label>
                                             <input type="text" class="form-control mb-2" id="end_date"
-                                                name="end_date" value="2022-11-11" />
+                                                name="end_date" value="2022-09-11" />
                                             @error('end_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="end_date" data-validator="notEmpty">
@@ -217,65 +217,10 @@
                                                         <th class="border-right">Date</th>
                                                         <th class="border-right">Shift</th>
                                                         <th class="border-right">In Time</th>
-                                                        <th class="border-right">Out Date</th>
                                                         <th>Out Time</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbody">
-                                                    <tr class="border-color">
-                                                        <td class="border-right">
-                                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" value="1" />
-                                                            </div>
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[0][in_date]" value="test0" />
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[0][shift]" value="test1" />
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[0][in_time]" value="test2" />
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[0][out_date]" value="test3" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[0][out_time]" value="test4" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="border-color">
-                                                        <td class="border-right">
-                                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" value="1" />
-                                                            </div>
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[1][in_date]" value="test5" />
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[1][shift]" value="test6" />
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[1][in_time]" value="test7" />
-                                                        </td>
-                                                        <td class="border-right">
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[1][out_date]" value="test8" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control border-0 mxtb" id="test"
-                                                                name="force_attendance[1][out_time]" value="test9" />
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -398,44 +343,47 @@
         });
 
         $('#button').on('click', function() {
-            const date1 = new Date($("#start_date").val());
-            const date2 = new Date($("#end_date").val());
-            const diffInMs = Math.abs(date2 - date1);
-            const day = diffInMs / (1000 * 60 * 60 * 24);
-            let html = '';
-            let dt = date1;
-            for (let i = 0; i <= day; i++) {
-                if (i == 0) {
-                    dt.setDate(dt.getDate() + 0);
-                } else {
-                    dt.setDate(dt.getDate() + 1);
+            const date1 = $("#start_date").val();
+            const date2 = $("#end_date").val();
+            var id = $(this).val();
+            var url = "{{ route('api.get-employee-shift') }}";
+            data = {
+                'employee_id': $('#employee_id').val(),
+                'start_date': date1,
+                'end_date': date2
+            };
+            $.ajax({
+                method: 'GET',
+                url: url,
+                data: data,
+                success: function(data) {
+                    let html = '';
+                    data.forEach((e, i) => {
+                        html += '<tr class="border-color">' +
+                            '<td class="border-right">' +
+                                '<div class="form-check form-check-sm form-check-custom form-check-solid">' +
+                                    '<input class="form-check-input" type="checkbox" name="force_attendance[' + i + '][checkbox]" value="" />' +
+                                '</div>' +
+                            '</td>' +
+                            '<td class="border-right">' +
+                                '<input type="text" class="form-control border-0 mxtb" name="force_attendance[' + i + '][date]" value="' + e.date + '" />' +
+                            '</td>' +
+                            '<td class="border-right">' +
+                                e.shift.name + '<br />(' + e.shift.in_time + '-' + e.shift.out_time + ')' +
+                                '<input type="hidden" class="form-control border-0 mxtb" name="force_attendance[' + i + '][shift]" value="' + e.shift.id + '" />' +
+                            '</td>' +
+                            '<td class="border-right">' +
+                                '<input type="text" class="form-control border-0 mxtb" name="force_attendance[' + i + '][in_time]" value="' + e.in_time + '" />' +
+                            '</td>' +
+                            '<td>' +
+                                '<input type="text" class="form-control border-0 mxtb" name="force_attendance[' + i + '][out_time]" value="' + e.out_time + '" />' +
+                            '</td>' +
+                        '</tr>';
+                    });
+                    $('#tbody').html('');
+                    $('#tbody').html(html);
                 }
-                let date = dt.getFullYear().toString() +'-'+ dt.getMonth().toString() +'-'+ (dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate());
-                html += '<tr class="border-color">' +
-                    '<td class="border-right">' +
-                        '<div class="form-check form-check-sm form-check-custom form-check-solid">' +
-                            '<input class="form-check-input" type="checkbox" value="" />' +
-                        '</div>' +
-                    '</td>' +
-                    '<td class="border-right">' +
-                        '<input type="text" class="form-control border-0 mxtb" id="test" name="force_attendance[' + i + '][in_date]" value="test0" />' +
-                    '</td>' +
-                    '<td class="border-right">' +
-                        '<input type="text" class="form-control border-0 mxtb" id="test" name="force_attendance[' + i + '][shift]" value="test1" />' +
-                    '</td>' +
-                    '<td class="border-right">' +
-                        '<input type="text" class="form-control border-0 mxtb" id="test" name="force_attendance[' + i + '][in_time]" value="test2" />' +
-                    '</td>' +
-                    '<td class="border-right">' +
-                       '<input type="text" class="form-control border-0 mxtb" id="test" name="force_attendance[' + i + '][out_date]" value="test3" />' +
-                    '</td>' +
-                    '<td>' +
-                        '<input type="text" class="form-control border-0 mxtb" id="test" name="force_attendance[' + i + '][out_time]" value="test4" />' +
-                    '</td>' +
-                '</tr>';
-            }
-            $('#tbody').html('');
-            $('#tbody').html(html);
+            });
         })
     </script>
 @endsection
