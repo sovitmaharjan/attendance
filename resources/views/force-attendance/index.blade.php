@@ -340,6 +340,6 @@
                     $('#tbody').html(html);
                 }
             });
-        })
+        });
     </script>
 @endsection
