@@ -91,7 +91,7 @@ $route = request()->route()->uri;
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'comapany' || request()->route()->uri == 'branch' || request()->route()->uri == 'department' || request()->route()->uri == 'designation' || request()->route()->uri == 'employee' || request()->route()->uri == 'shift' || request()->route()->uri == 'roster-assignment' || request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'comapany' || request()->route()->uri == 'branch' || request()->route()->uri == 'department' || request()->route()->uri == 'designation' || request()->route()->uri == 'employee' || request()->route()->uri == 'shift' || request()->route()->uri == 'roster-assignment' || request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' || request()->route()->uri == 'leave-type' || request()->route()->uri == 'leave' ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -199,13 +199,32 @@ $route = request()->route()->uri;
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'leave-type' || request()->route()->uri == 'leave' ? 'here show' : '' }}">
+                            <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Leave</span>
-                            </a>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->route()->uri == 'leave-type' ? 'active' : '' }}" href="{{ route('leave-type.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Leave Type</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->route()->uri == 'leave' ? 'active' : '' }}" href="{{ route('leave.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Leave</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -273,7 +292,7 @@ $route = request()->route()->uri;
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">

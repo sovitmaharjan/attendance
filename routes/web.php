@@ -14,6 +14,8 @@ use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
 use App\Http\Controllers\ForceAttendanceController;
+use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ShiftAssignmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +30,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => []], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/permission-group', PermissionGroupController::class);
     Route::resource('/permission', PermissionController::class);
@@ -43,7 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/shift', ShiftController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class);
     Route::resource('/force-attendance', ForceAttendanceController::class);
-    // Route::resource('leave', LeaveController::class);
+    Route::resource('/leave-type', LeaveTypeController::class);
+    Route::resource('/leave', LeaveController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
