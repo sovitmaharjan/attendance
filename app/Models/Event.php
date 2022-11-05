@@ -24,4 +24,9 @@ class Event extends Model
         ->generateSlugsFrom('title')
         ->saveSlugsTo('slug');
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany(User::class, 'employee_event');
+    }
 }

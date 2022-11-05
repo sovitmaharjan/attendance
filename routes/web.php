@@ -14,6 +14,7 @@ use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
+use App\Http\Controllers\EventAssignmentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use Illuminate\Http\Request;
@@ -48,6 +49,11 @@ Route::group(['middleware' => ['auth']], function () {
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
        Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
        Route::get('get/{id}', [DynamicValuesController::class, 'edit'])->name('edit');
+    });
+
+    Route::group(['prefix' => 'event-assignment', 'as' => 'event-assignment.'], function(){
+        Route::get('create/{event_id?}', [EventAssignmentController::class, 'create'])->name('create');
+        Route::post('store', [EventAssignmentController::class, 'store'])->name('store');
     });
 
     // ajax route

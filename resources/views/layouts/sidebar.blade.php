@@ -14,7 +14,7 @@
     $leaveNav = Request::is('leave*');
     $dynamicValuesNav = Request::is('dynamic-values*');
     $eventNav = Request::is('event*');
-    $employeeEventNav = Request::is('employee-event*');
+    $eventAssignmentNav = Request::is('event-assignment*');
 @endphp
 
 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside"
@@ -136,7 +136,7 @@
                 </div>
                 @can('view-dashboard')
                     <div data-kt-menu-trigger="click"
-                        class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav || $holidayTypeNav || $holidayNav || $leaveNav ? 'here show' : '' }}">
+                        class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav || $holidayTypeNav || $holidayNav || $leaveNav || $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -255,7 +255,7 @@
                                 </div>
                             </div>
                             <div data-kt-menu-trigger="click"
-                                class="menu-item menu-accordion {{ $eventNav || $employeeEventNav ? 'here show' : '' }}">
+                                class="menu-item menu-accordion {{ $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
                                 <span class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
@@ -273,11 +273,11 @@
                                         </a>
                                     </div>
                                     <div class="menu-item">
-                                        <a class="menu-link @yield('employee_event')" href="{{ route('event.index') }}">
+                                        <a class="menu-link @yield('event_assignment')" href="{{ route('event-assignment.create') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
-                                            <span class="menu-title">Employee Event</span>
+                                            <span class="menu-title">Event Assignment</span>
                                         </a>
                                     </div>
                                 </div>
