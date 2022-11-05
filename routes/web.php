@@ -14,6 +14,7 @@ use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/role', RoleController::class);
 
     Route::resource('/employee', EmployeeController::class);
+    Route::resource('/event', EventController::class);
     Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);

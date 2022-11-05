@@ -78,3 +78,9 @@ function getEmployeeDetails($employee_id)
     }
     return response()->json($data);
 }
+
+if(!function_exists('statusTitle')){
+    function statusTitle($status){
+        return $status == 1 ? 'Active' : 'Inactive';
+    }
+}
