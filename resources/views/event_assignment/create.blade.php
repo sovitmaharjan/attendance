@@ -96,7 +96,7 @@
                                         data-hide-search="true" data-placeholder="Select an option" multiple required>
                                         <option></option>
                                         @foreach ($employees as $employee)
-                                            <option value="{{ $employee->id }}" @selected(old('event_id', in_array($event->id, $event_employee_ids)) == $event->id)>
+                                            <option value="{{ $employee->id }}" @selected(old('event_id', in_array($employee->id, $event_employee_ids)) == $event->id)>
                                                 {{ $employee->full_name }}</option>
                                         @endforeach
                                     </select>

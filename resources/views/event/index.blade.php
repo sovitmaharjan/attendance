@@ -174,6 +174,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Employee List</h5>
+                    <a href="javascript:void(0);" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                        id="route">
+                        Edit
+                    </a>
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
                         aria-label="Close">
@@ -247,18 +251,21 @@
         $(document).ready(function() {
             $("#kt_modal_new_target").on("hidden.bs.modal", function() {
                 $(".modal-body").html("");
+                $("#route").attr('href', 'javascript:void(0)');
             });
 
             $("#kt_modal_new_target").on('show.bs.modal', function(e) {
                 var id = $(e.relatedTarget).data('target-id');
-                console.log(id);
                 if (id != "undefined" && id != undefined && id != 'null' && id != null) {
                     var url = "{{ route('event-assignment.event_employee_list', ':id') }}",
                         url = url.replace(":id", id);
+                    var event_employee_assign_route = "{{ route('event-assignment.create', ':id') }}",
+                        event_employee_assign_route = event_employee_assign_route.replace(":id", id);
                     $.ajax({
                         url: url,
                         dataType: 'html',
-                        success: function(res){
+                        success: function(res) {
+                            $("#route").attr('href', event_employee_assign_route);
                             $(".modal-body").html(res);
                         }
                     })
