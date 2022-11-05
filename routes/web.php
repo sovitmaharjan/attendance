@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'event-assignment', 'as' => 'event-assignment.'], function(){
         Route::get('create/{event_id?}', [EventAssignmentController::class, 'create'])->name('create');
         Route::post('store', [EventAssignmentController::class, 'store'])->name('store');
+        Route::get('employee/{event_id}', [EventAssignmentController::class, 'event_employee_list'])->name('event_employee_list');
     });
 
     // ajax route
