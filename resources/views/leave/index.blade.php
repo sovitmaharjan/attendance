@@ -89,7 +89,7 @@
                                                     {{ $value->leaveType ? $value->leaveType->title : 'typeless leave' }}
                                                 </td>
                                                 <td>
-                                                    {{ $value->days_allowed }}
+                                                    {{ $value->allowed_days }}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">

@@ -13,7 +13,7 @@ class Leave extends Model
     protected $fillable = [
         'name',
         'leave_type_id',
-        'days_allowed'
+        'allowed_days'
     ];
 
     public function leaveType()

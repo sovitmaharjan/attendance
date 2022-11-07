@@ -6,20 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('leaves', function (Blueprint $table) {
+        Schema::create('leave_assignments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('leave_type_id')->nullable()->constrained();
-            $table->integer('allowed_days');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        Schema::dropIfExists('leaves');
+        Schema::dropIfExists('leave_assignments');
     }
 };

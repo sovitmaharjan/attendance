@@ -86,12 +86,12 @@
                                 </div>
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Days Allowed</label>
-                                    <input type="text" name="days_allowed" class="form-control mb-2" placeholder="Number of days allowed"
-                                        value="{{ old("days_allowed") }}" required/>
+                                    <input type="text" name="allowed_days" class="form-control mb-2" placeholder="Number of days allowed"
+                                        value="{{ old("allowed_days") }}" required/>
                                     <div class="text-muted fs-7">Assign number of day for the leave.</div>
-                                    @error("days_allowed")
+                                    @error("allowed_days")
                                         <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="days_allowed" data-validator="notEmpty">{{ $message }}</div>
+                                            <div data-field="allowed_days" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
                                     @enderror
                                 </div>

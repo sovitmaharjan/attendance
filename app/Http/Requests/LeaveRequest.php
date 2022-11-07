@@ -18,7 +18,7 @@ class LeaveRequest extends FormRequest
                 ? 'required|unique:leaves,name,' . $this->route('leave')->id
                 : 'required|unique:leaves',
             'leave_type_id' => 'nullable',
-            'days_allowed' => 'required'
+            'allowed_days' => 'required'
         ];
     }
 }
