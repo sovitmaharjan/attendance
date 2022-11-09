@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class ForceAttendanceController extends Controller
 {
-    public function index()
+    public function create()
     {
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
-        return view('force-attendance.index', $data);
+        return view('force-attendance.create', $data);
     }
 
     public function store(ForceAttendanceRequest $request)
@@ -36,7 +36,7 @@ class ForceAttendanceController extends Controller
                 ]);
             }
             DB::commit();
-            return redirect()->route('force-attendance.index')->with('success', 'Force attendance has been updated');
+            return redirect()->route('force-attendance.create')->with('success', 'Force attendance has been updated');
         } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());

@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/force-attendance', ForceAttendanceController::class);
     Route::resource('/leave', LeaveController::class);
     Route::resource('/leave-assignment', LeaveAssignmentController::class);
-    Route::post('/qweqwe', [LeaveApplicationController::class, 'store']);
+    Route::resource('/leave-application', LeaveApplicationController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');

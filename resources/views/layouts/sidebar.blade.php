@@ -216,7 +216,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <a class="menu-link @yield('shift_assignment')"
-                                            href="{{ route('shift-assignment.index') }}">
+                                            href="{{ route('shift-assignment.create') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -281,7 +281,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <a class="menu-link @yield('leave_assignment')"
-                                            href="{{ route('leave-assignment.index') }}">
+                                            href="{{ route('leave-assignment.create') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -313,7 +313,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="{{ route('force-attendance.create') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -321,7 +321,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="#">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -350,19 +350,27 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="#">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Force Attendance</span>
+                                <span class="menu-title">Leave Applied List</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="{{ route('leave-application.create') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Force Batch Attendace</span>
+                                <span class="menu-title">Leave Application</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="#">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Leave Cancellation</span>
                             </a>
                         </div>
                     </div>
