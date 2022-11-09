@@ -8,9 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('holiday_types', function (Blueprint $table) {
+        Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
+            $table->float('allowed_days');
+            $table->json('extra')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -18,6 +20,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('holiday_types');
+        Schema::dropIfExists('leaves');
     }
 };

@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Holiday Type</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Leave</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,16 +16,16 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Holiday Type</li>
+                        <li class="breadcrumb-item text-muted">Leave</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">Create</li>
+                        <li class="breadcrumb-item text-dark">Edit</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("holiday-type.index") }}"
+                        <a href="{{ route("leave.index") }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,44 +41,53 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("holiday-type.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("leave.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="brand_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route("holiday-type.update", $holiday_type->id) }}" enctype="multipart/form-data">
+                <form id="leave_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route("leave.update", $leave->id) }}" enctype="multipart/form-data">
                     @csrf
-                    @method("put")
+                    @method('patch')
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    {{-- <h2>Create Holiday Type</h2> --}}
                                     <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
-
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Holiday Type Name</label>
-                                    <input type="text" name="title" class="form-control mb-2" placeholder="Holiday type title"
-                                        value="{{ $holiday_type->title ?? old("title") }}" required/>
-                                    <div class="text-muted fs-7">A holiday type title is required and recommended to be unique.
+                                    <label class="required form-label">Name</label>
+                                    <input type="text" name="name" class="form-control mb-2" placeholder="Leave name"
+                                        value="{{ $leave->name ?? old("name") }}" required/>
+                                    <div class="text-muted fs-7">A leave name is required and recommended to be unique.
                                     </div>
-                                    @error("title")
+                                    @error("name")
                                         <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
+                                            <div data-field="name" data-validator="notEmpty">{{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <label class="required form-label">Day(s) Allowed</label>
+                                    <input type="text" name="allowed_days" class="form-control mb-2" placeholder="Number of day(s) allowed"
+                                        value="{{ $leave->allowed_days ?? old("allowed_days") }}" required/>
+                                    <div class="text-muted fs-7">Assign number of day for the leave.</div>
+                                    @error("allowed_days")
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="allowed_days" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("holiday-type.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route("leave.index") }}" id="kt_ecommerce_add_product_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_brand_submit" class="btn btn-primary">
+                            <button type="submit" id="kt_ecommerce_add_leave_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
