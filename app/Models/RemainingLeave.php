@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LeaveAssignment extends Model
+class RemainingLeave extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,6 @@ class LeaveAssignment extends Model
         'leave_id',
         'employee_id',
         'year',
-        'allowed_days'
+        'remaining_allowed_days'
     ];
 }

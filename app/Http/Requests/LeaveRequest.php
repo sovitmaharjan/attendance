@@ -17,7 +17,6 @@ class LeaveRequest extends FormRequest
             'name' => (strtolower(request()->method()) == 'put' || strtolower(request()->method()) == 'patch')
                 ? 'required|unique:leaves,name,' . $this->route('leave')->id
                 : 'required|unique:leaves',
-            'leave_type_id' => 'nullable',
             'allowed_days' => 'required'
         ];
     }

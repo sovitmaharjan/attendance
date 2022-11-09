@@ -91,7 +91,7 @@ $route = request()->route()->uri;
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'comapany' || request()->route()->uri == 'branch' || request()->route()->uri == 'department' || request()->route()->uri == 'designation' || request()->route()->uri == 'employee' || request()->route()->uri == 'shift' || request()->route()->uri == 'roster-assignment' || request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' || request()->route()->uri == 'leave-type' || request()->route()->uri == 'leave' ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'comapany' || request()->route()->uri == 'branch' || request()->route()->uri == 'department' || request()->route()->uri == 'designation' || request()->route()->uri == 'employee' || request()->route()->uri == 'shift' || request()->route()->uri == 'shift-assignment' || request()->route()->uri == 'holiday' || request()->route()->uri == 'leave' ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -145,12 +145,12 @@ $route = request()->route()->uri;
                                 <span class="menu-title">Employee</span>
                             </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'shift' ? 'here show' : '' }}">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'shift' || request()->route()->uri == 'shift-assignment' ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Roster</span>
+                                <span class="menu-title">Shift</span>
                                 <span class="menu-arrow"></span>
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -163,43 +163,24 @@ $route = request()->route()->uri;
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link {{ request()->route()->uri == 'roster-assignment' ? 'active' : '' }}" href="{{ route('holiday.index') }}">
+                                    <a class="menu-link {{ request()->route()->uri == 'shift-assignment' ? 'active' : '' }}" href="{{ route('shift-assignment.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Roster Assignment</span>
+                                        <span class="menu-title">Shift Assignment</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'holiday-type' || request()->route()->uri == 'holiday' ? 'here show' : '' }}">
-                            <span class="menu-link">
+                        <div class="menu-item">
+                            <a class="menu-link {{ request()->route()->uri == 'holiday' ? 'active' : '' }}" href="{{ route('holiday.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Holiday</span>
-                                <span class="menu-arrow"></span>
-                            </span>
-                            <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                <div class="menu-item">
-                                    <a class="menu-link {{ request()->route()->uri == 'holiday-type' ? 'active' : '' }}" href="{{ route('holiday-type.index') }}">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Holiday Type</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-link {{ request()->route()->uri == 'holiday' ? 'active' : '' }}" href="{{ route('holiday.index') }}">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Holiday</span>
-                                    </a>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'leave-type' || request()->route()->uri == 'leave' ? 'here show' : '' }}">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->route()->uri == 'leave' ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -209,19 +190,19 @@ $route = request()->route()->uri;
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link {{ request()->route()->uri == 'leave-type' ? 'active' : '' }}" href="{{ route('leave-type.index') }}">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Leave Type</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
                                     <a class="menu-link {{ request()->route()->uri == 'leave' ? 'active' : '' }}" href="{{ route('leave.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
                                         <span class="menu-title">Leave</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->route()->uri == 'leave-assignment' ? 'active' : '' }}" href="{{ route('leave-assignment.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Leave Assignment</span>
                                     </a>
                                 </div>
                             </div>

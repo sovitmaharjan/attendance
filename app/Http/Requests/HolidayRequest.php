@@ -18,7 +18,6 @@ class HolidayRequest extends FormRequest
                 ? 'required|unique:holidays,name,' . $this->route('holiday')->id
                 : 'required|unique:holidays',
             'date' => 'required',
-            'holiday_type_id' => 'required',
             'quantity' => 'required'
         ];
     }

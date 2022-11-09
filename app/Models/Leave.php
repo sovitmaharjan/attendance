@@ -12,12 +12,6 @@ class Leave extends Model
 
     protected $fillable = [
         'name',
-        'leave_type_id',
         'allowed_days'
     ];
-
-    public function leaveType()
-    {
-        return $this->belongsTo(LeaveType::class);
-    }
 }

@@ -70,21 +70,6 @@
                                     @enderror
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Type</label>
-                                    <select class="form-select mb-2" data-control="select2" name="leave_type_id"
-                                        data-hide-search="true" data-placeholder="Select an option">
-                                        <option></option>
-                                        @foreach ($leave_type as $item)
-                                            <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('leave_type_id')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="leave_type_id" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-10 fv-row">
                                     <label class="required form-label">Days Allowed</label>
                                     <input type="text" name="allowed_days" class="form-control mb-2" placeholder="Number of days allowed"
                                         value="{{ old("allowed_days") }}" required/>

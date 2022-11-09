@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LeaveRequest;
 use App\Models\Leave;
-use App\Models\LeaveType;
 use Exception;
 
 class LeaveController extends Controller
@@ -17,8 +16,7 @@ class LeaveController extends Controller
 
     public function create()
     {
-        $data['leave_type'] = LeaveType::all();
-        return view('leave.create', $data);
+        return view('leave.create');
     }
 
     public function store(LeaveRequest $request)
@@ -34,7 +32,6 @@ class LeaveController extends Controller
     public function edit(Leave $leave)
     {
         $data['leave'] = $leave;
-        $data['leave_type'] = LeaveType::all();
         return view('leave.edit', $data);
     }
 

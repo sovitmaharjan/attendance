@@ -73,7 +73,6 @@
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Type</th>
                                             <th>Days Allowed</th>
                                             <th>Action</th>
                                         </tr>
@@ -84,9 +83,6 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
                                                     {{ $value->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->leaveType ? $value->leaveType->title : 'typeless leave' }}
                                                 </td>
                                                 <td>
                                                     {{ $value->allowed_days }}

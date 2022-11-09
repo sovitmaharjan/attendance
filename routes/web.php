@@ -7,17 +7,16 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidayController;
-use App\Http\Controllers\HolidayTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
 use App\Http\Controllers\ForceAttendanceController;
+use App\Http\Controllers\LeaveApplicationController;
+use App\Http\Controllers\LeaveAssignmentController;
 use App\Http\Controllers\LeaveController;
-use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\ShiftAssignmentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -30,7 +29,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => []], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/permission-group', PermissionGroupController::class);
     Route::resource('/permission', PermissionController::class);
@@ -40,13 +39,13 @@ Route::group(['middleware' => []], function () {
     Route::resource('/department', PermissionController::class);
     Route::resource('/designation', PermissionController::class);
     Route::resource('/employee', EmployeeController::class);
-    Route::resource('/holiday-type', HolidayTypeController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class);
     Route::resource('/force-attendance', ForceAttendanceController::class);
-    Route::resource('/leave-type', LeaveTypeController::class);
     Route::resource('/leave', LeaveController::class);
+    Route::resource('/leave-assignment', LeaveAssignmentController::class);
+    Route::post('/qweqwe', [LeaveApplicationController::class, 'store']);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
@@ -67,4 +66,3 @@ Route::group(['middleware' => []], function () {
 
     Route::get('/api/getEmployeeShift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('api.get-employee-shift');
 });
-

@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $GLOBALS['roles'] = Role::get();
+        // $GLOBALS['roles'] = Role::get();
     }
 }

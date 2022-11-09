@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('leave_type_id')->nullable()->constrained();
-            $table->integer('allowed_days');
+            $table->float('allowed_days');
+            $table->json('extra')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
