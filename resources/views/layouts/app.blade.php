@@ -3,7 +3,7 @@
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Demo</title>
+    <title>Attendance</title>
     @include('layouts.meta')
     @include('layouts.style')
 </head>

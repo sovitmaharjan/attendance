@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\PermissionController;
@@ -16,10 +17,13 @@ use App\Http\Controllers\ForceAttendanceController;
 use App\Http\Controllers\LeaveApplicationController;
 use App\Http\Controllers\LeaveAssignmentController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\EventAssignmentController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index']);
+// duita name login vayara maila  hatako hoi yo mathi ko chai
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetPasswordMail'])->name('reset-password-mail');
 Route::get('/reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');
@@ -34,11 +38,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/permission-group', PermissionGroupController::class);
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
-    Route::resource('/company', PermissionController::class);
-    Route::resource('/branch', PermissionController::class);
-    Route::resource('/department', PermissionController::class);
-    Route::resource('/designation', PermissionController::class);
+
     Route::resource('/employee', EmployeeController::class);
+    Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class);
@@ -51,6 +53,12 @@ Route::group(['middleware' => ['auth']], function () {
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
        Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
        Route::get('get/{id}', [DynamicValuesController::class, 'edit'])->name('edit');
+    });
+
+    Route::group(['prefix' => 'event-assignment', 'as' => 'event-assignment.'], function(){
+        Route::get('create/{event_id?}', [EventAssignmentController::class, 'create'])->name('create');
+        Route::post('store', [EventAssignmentController::class, 'store'])->name('store');
+        Route::get('employee/{event_id}', [EventAssignmentController::class, 'event_employee_list'])->name('event_employee_list');
     });
 
     // ajax route
@@ -66,3 +74,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/api/getEmployeeShift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('api.get-employee-shift');
 });
+
+include(__DIR__.'/Routes/company.php');

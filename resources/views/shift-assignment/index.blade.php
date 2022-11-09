@@ -1,8 +1,6 @@
 @extends('layouts.app')
+@section('shift_assignment', 'active')
 @section('content')
-    @php
-        // dd($errors)
-    @endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -277,7 +275,7 @@
                 method: 'GET',
                 url: url,
                 success: function(data) {
-                    myLog(data);
+                    // myLog(data);
                     // data.departments.foreach()
 
                 }
@@ -293,12 +291,12 @@
                 method: 'GET',
                 url: url,
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                 }
             });
         });
 
-        $(document).on('change', '#employee', function(e) {
+        $('#employee').on('change', function(e) {
             e.preventDefault();
             var id = $(this).val();
             var url = "{{ route('api.employee.show', ':id') }}";
@@ -379,7 +377,7 @@
                         ndpYearCount: 200
                     });
                 });
-                $(document).find('.from_date').one('change', function() {
+                $(document).find('.from_date').on('change', function() {
                     var from = $(this).parent().next('div').find('.nep_from_date');
                     let dateObj = new Date($(this).val());
                     let year = dateObj.getUTCFullYear();
@@ -396,7 +394,7 @@
                     let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
                     from.val(nepaliValue);
                 });
-                $(this).find('.to_date').one('change', function() {
+                $(this).find('.to_date').on('change', function() {
                     var to = $(this).parent().next('div').find('.nep_to_date');
                     let dateObj = new Date($(this).val());
                     let year = dateObj.getUTCFullYear();
@@ -478,7 +476,7 @@
             }
         });
 
-        $('.from_date').one('change', function() {
+        $('.from_date').on('change', function() {
             var from = $(this).parent().next('div').find('.nep_from_date');
             let dateObj = new Date($(this).val());
             let year = dateObj.getUTCFullYear();
@@ -496,7 +494,7 @@
             from.val(nepaliValue);
         });
         
-        $('.to_date').one('change', function() {
+        $('.to_date').on('change', function() {
             var to = $(this).parent().next('div').find('.nep_to_date');
             let dateObj = new Date($(this).val());
             let year = dateObj.getUTCFullYear();

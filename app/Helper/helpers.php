@@ -48,6 +48,8 @@ if (!function_exists('getFormattedDate')) {
     {
         return date('Y-m-d', strtotime($date));
     }
+
+
 }
 
 function getBranchDetails($branch_id)
@@ -75,4 +77,10 @@ function getEmployeeDetails($employee_id)
         return 'This employee doesnot exist or belongs to other company';
     }
     return response()->json($data);
+}
+
+if(!function_exists('statusTitle')){
+    function statusTitle($status){
+        return $status == 1 ? 'Active' : 'Inactive';
+    }
 }

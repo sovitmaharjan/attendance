@@ -41,6 +41,8 @@ class EmployeeController extends Controller
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
                 'nepali_join_date' => $request->nepali_join_date,
+                'citizenship_no' => $request->citizenship_no,
+                'pan_no' => $request->pan_no,
             ];
             $request->only((new User())->getFillable());
             $request->request->add([
@@ -79,6 +81,8 @@ class EmployeeController extends Controller
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
                 'nepali_join_date' => $request->nepali_join_date,
+                'citizenship_no' => $request->citizenship_no,
+                'pan_no' => $request->pan_no,
             ];
             $request->only((new User())->getFillable());
             $request->request->add([
