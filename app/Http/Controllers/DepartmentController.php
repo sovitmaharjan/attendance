@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartmentOffDaysTrack;
 use App\Models\DynamicValue;
 use Illuminate\Http\Request;
 use App\Helper\Helper;
@@ -102,6 +103,15 @@ class DepartmentController extends Controller
                 'name' => $request->key,
                 'value' => $value,
                 'status' => 1
+            ]);
+            DepartmentOffDaysTrack::updateOrCreate([
+               'department_id' => $request->department_id,
+               'date' => date('Y-m-d'),
+            ],[
+                'department_id' => $request->department_id,
+                'days' => $request->days,
+                'date' => date('y-m-d'),
+                'date_time' => date('Y-m-d h:i:s')
             ]);
             DB::commit();
             return response()->json(['message' => 'Successfully assigned']);
