@@ -75,7 +75,6 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Date</th>
-                                            <th>Type</th>
                                             <th>Quantity</th>
                                             <th>Action</th>
                                         </tr>
@@ -89,9 +88,6 @@
                                                 </td>
                                                 <td>
                                                     {{ $value->date->format('Y-m-d') }}
-                                                </td>
-                                                <td>
-                                                    {{ $value->holidayType->title }}
                                                 </td>
                                                 <td>
                                                     {{ $value->quantity }}

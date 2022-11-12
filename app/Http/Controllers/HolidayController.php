@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HolidayRequest;
 use App\Models\Holiday;
-use App\Models\HolidayType;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -18,8 +17,7 @@ class HolidayController extends Controller
 
     public function create()
     {
-        $data['holiday_type'] = HolidayType::all();
-        return view('holiday.create', $data);
+        return view('holiday.create');
     }
 
     public function store(HolidayRequest $request)
@@ -35,7 +33,6 @@ class HolidayController extends Controller
     public function edit(Holiday $holiday)
     {
         $data['holiday'] = $holiday;
-        $data['holiday_type'] = HolidayType::all();
         return view('holiday.edit', $data);
     }
 

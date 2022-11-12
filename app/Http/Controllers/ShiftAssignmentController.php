@@ -45,6 +45,7 @@ class ShiftAssignmentController extends Controller
                     );
                 }
             }
+            dd('here');
             DB::commit();
             return back()->with('success', 'Shift has been assigned');
         } catch (Exception $e) {

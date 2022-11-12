@@ -2,16 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\HolidayType;
+use App\Models\Leave;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class HolidayTypeTableSeeder extends Seeder
+class LeaveTableSeeder extends Seeder
 {
     public function run()
     {
-        HolidayType::create([
-            'title' => 'test holiday type 1'
+        Leave::create([
+            'name' => 'Test Leave',
+            'allowed_days' => '12',
         ]);
     }
 }
