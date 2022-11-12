@@ -78,7 +78,7 @@
                                         <div>
                                             <div class="d-inline-flex">
                                                 <input type="checkbox" class="me-2 w-20px h-20px" id="group_{{$index}}"
-                                                       onchange="checkAllPermissions(this, {{$index}})">
+                                                       onchange="checkAllPe```````````````````rmissions(this, {{$index}})">
                                                 <label class="form-label my-auto">{{$permission_group->name}}</label>
                                             </div>
                                             <div class="mb-10 row ms-4 mt-3">

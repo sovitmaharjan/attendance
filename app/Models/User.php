@@ -98,4 +98,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'employee_event');
+    }
 }
