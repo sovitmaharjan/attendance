@@ -221,11 +221,12 @@
                         </div>
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-8 fv-row">
-                            <input type="hidden" id="Id" name="id">
+                            <input type="hidden" id="departmentId" name="department_id">
+                            <input type="hidden" id="dynamicId" name="id">
+                            <input type="hidden" name="key" id="keyname">
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="required form-label">Days</label>
-                                <div class="d-flex gap-5">
-                                    <input type="hidden" name="key" id="keyname">
+                                <div class="d-flex gap-5" id="daysSection">
                                     <select class="form-select mb-2" id="assignedDays" name="days[]"
                                             data-control="select2"
                                             data-hide-search="false" data-placeholder="Select Days"
@@ -348,30 +349,48 @@
                 var offDaysList = JSON.parse('<?= json_encode((array)getDays()); ?>');
                 $("#departmentName").html(department_name);
                 $("#keyname").val('department_' + id);
-                $("#Id").val(id);
+                $("#departmentId").val(id);
                 if (id != "undefined" && id != undefined && id != 'null' && id != null) {
                     var url = "{{route('departmentOffDays', ':id')}}",
                         url = url.replace(":id", id);
+                    // $.ajax({
+                    //    url: url,
+                    //    dataType: 'html',
+                    //    success: function(res){
+                    //        $("#daysSection").html(res);
+                    //    }
+                    // });
                     $.get(url, function (res) {
                         if (res.status == false) {
                             // toastr.error(res.message);
                         } else {
+                            $("#dynamicId").val(res.dynamic_id);
                             let off_days = res.off_days;
-                            $("#assignedDays").html("<option value=''>Days</option>");
+                            $("#assignedDays").html("<option value=''></option>");
                             $.each(offDaysList, function (key, off_day) {
                                 let $option = $('<option></option>').val(off_day).html(off_day);
-                                $.each(off_days, function (k, v) {
-                                    console.log(v);
-                                    if (offDaysList.includes(v)) {
-                                        $option = $option.attr("selected", "selected");
+                                off_days.filter(value => {
+                                    if ($option[0] !== 'undefined' && $option[0] !== undefined  && $option[0].childNodes[0].nodeValue === value) {
+                                        $option = $option.attr('selected', 'selected');
                                     }
-                                })
+                                });
                                 $("#assignedDays").append($option);
                             });
+
+
                         }
                     });
                 }
             });
         })
+
+        const areCommonElements = (offDaysList, off_days) => {
+            const [shortArr, longArr] = (offDaysList.length < off_days.length) ? [offDaysList, off_days] : [off_days, offDaysList];
+            const longArrSet = new Set(longArr);
+            shortArr.map(function (k) {
+                return k;
+            });
+            return shortArr;
+        };
     </script>
 @endSection

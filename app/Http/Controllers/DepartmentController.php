@@ -81,6 +81,7 @@ class DepartmentController extends Controller
 
     public function assingOffDays(Request $request)
     {
+//        dd($request->all());
         $validator = Validator::make($request->all(), [
             'key' => ['required'],
         ]);
@@ -113,8 +114,10 @@ class DepartmentController extends Controller
     public function departmentOffDays(Request $request, $id)
     {
         $off_days = DynamicValue::where('key', 'department_' . $id)->first();
+//        return view('department.off_days', compact('off_days'));
         if ($off_days) {
             return response()->json([
+                'dynamic_id' => $off_days->id,
                 'off_days' => $off_days->value['off_days'],
                 'status' => true,
                 'message' => 'Off Days fetched !!!'
