@@ -15,6 +15,7 @@ use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DynamicValuesController;
 use App\Http\Controllers\ShiftAssignmentController;
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
        Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
        Route::get('get/{id}', [DynamicValuesController::class, 'edit'])->name('edit');
     });
+
+    Route::get('department/off/days/{id}', [DepartmentController::class, 'departmentOffDays'])->name('departmentOffDays');
+    Route::post('department/off/days', [DepartmentController::class, 'assingOffDays'])->name('assignOffDays');
 
     // ajax route
     Route::get('api/branch/{branch_id}', function($branch_id) {

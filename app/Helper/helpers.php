@@ -78,3 +78,13 @@ function getEmployeeDetails($employee_id)
     }
     return response()->json($data);
 }
+
+if (!function_exists('getDays')){
+    function getDays(){
+        $arr =  [
+            'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+        ];
+
+        return (object) $arr;
+    }
+}
