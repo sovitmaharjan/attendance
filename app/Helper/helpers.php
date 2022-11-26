@@ -79,8 +79,19 @@ function getEmployeeDetails($employee_id)
     return response()->json($data);
 }
 
-if(!function_exists('statusTitle')){
-    function statusTitle($status){
+if (!function_exists('getDays')) {
+    function getDays()
+    {
+        $arr = [
+            'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+        ];
+
+        return (object)$arr;
+    }
+}
+if (!function_exists('statusTitle')) {
+    function statusTitle($status)
+    {
         return $status == 1 ? 'Active' : 'Inactive';
     }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LeaveApplicationRequest;
+use App\Models\Branch;
+use App\Models\Department;
 use App\Models\Leave;
 use App\Models\LeaveApplication;
+use App\Models\User;
 use Carbon\Carbon;
 
 class LeaveApplicationController extends Controller
@@ -12,6 +15,14 @@ class LeaveApplicationController extends Controller
     public function index()
     {
         //
+    }
+
+    public function create()
+    {
+        $data['branch'] = Branch::orderBy('name', 'asc')->get();
+        $data['department'] = Department::orderBy('name', 'asc')->get();
+        $data['employee'] = User::orderBy('firstname', 'asc')->get();
+        return view('leave-application.create', $data);
     }
 
     public function store(LeaveApplicationRequest $request)
