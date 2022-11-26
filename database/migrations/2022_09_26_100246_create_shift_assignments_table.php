@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('shift_id')->constrained();
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
-            $table->dateTime('in_time')->nullable();
-            $table->dateTime('out_time')->nullable();
-            $table->dateTime('date');
+            $table->time('in_time')->nullable();
+            $table->time('out_time')->nullable();
+            $table->dateTime('date')->unique();
             $table->json('extra')->nullable();
             $table->timestamps();
         });

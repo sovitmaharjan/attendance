@@ -14,6 +14,8 @@
     $dynamicValuesNav = Request::is('dynamic-values*');
     $eventNav = Request::is('event*');
     $eventAssignmentNav = Request::is('event-assignment*');
+    $quickAttendanceNav = Request::is('quick-attendance*');
+    $monthlyAttendanceNav = Request::is('monthly-attendance*');
 @endphp
 
 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside"
@@ -435,7 +437,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="{{ route('dashboard') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -454,8 +456,8 @@
                         </span>
                         <span class="menu-title">Out Station</span>
                     </a>
-                </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                </div> --}}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $quickAttendanceNav || $monthlyAttendanceNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -474,7 +476,7 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $quickAttendanceNav || $monthlyAttendanceNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -484,27 +486,27 @@
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('dashboard') }}">
+                                    <a class="menu-link @yield('quick_attendance')" href="{{ route('quick-attendance') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Report 1</span>
+                                        <span class="menu-title">Quick Attendance</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('dashboard') }}">
+                                    <a class="menu-link @yield('monthly_attendance')" href="{{ route('monthly-attendance') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Report 2</span>
+                                        <span class="menu-title">Monthly Attendance</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('dashboard') }}">
+                                    <a class="menu-link @yield('quick_attendance')" href="{{ route('quick-attendance') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Report 3</span>
+                                        <span class="menu-title">Datewise Attendance</span>
                                     </a>
                                 </div>
                             </div>

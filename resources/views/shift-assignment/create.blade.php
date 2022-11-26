@@ -162,7 +162,7 @@
                                                                     <label class="required form-label">From</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 from_date" date-id="from"
-                                                                        placeholder="yyyy-dd-mm" name="from_date"
+                                                                        placeholder="yyyy-dd-mm" name="from_date" autocomplete="off"
                                                                         value="{{ old('from_date') }}" />
                                                                     @error('from_date')
                                                                         <div
@@ -177,7 +177,7 @@
                                                                     <label class="form-label">&nbsp;</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 nep_from_date"
-                                                                        name="nep_from_date"
+                                                                        name="nep_from_date" autocomplete="off"
                                                                         value="{{ old('nep_from_date') }}"
                                                                         placeholder="yyyy-dd-mm">
                                                                     @error('nep_from_date')
@@ -191,7 +191,7 @@
                                                                 </div>
                                                                 <div class="col-md-2 to">
                                                                     <label class="required form-label">To</label>
-                                                                    <input type="text"
+                                                                    <input type="text" autocomplete="off"
                                                                         class="form-control mb-2 to_date"
                                                                         value="{{ old('to_date') }}" date-id="to"
                                                                         placeholder="yyyy-dd-mm" name="to_date"
@@ -207,7 +207,7 @@
                                                                 </div>
                                                                 <div class="col-md-2 nep_to">
                                                                     <label class="form-label">&nbsp;</label>
-                                                                    <input type="text"
+                                                                    <input type="text" autocomplete="off"
                                                                         class="form-control mb-2 nep_to_date"
                                                                         name="nep_to_date"
                                                                         value="{{ old('nep_to_date') }}"
