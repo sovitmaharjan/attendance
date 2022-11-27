@@ -21,6 +21,7 @@ use App\Http\Controllers\EventAssignmentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmployeeSubstituteDayController;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('store', [EventAssignmentController::class, 'store'])->name('store');
         Route::get('employee/{event_id}', [EventAssignmentController::class, 'event_employee_list'])->name('event_employee_list');
     });
+
+    Route::post('employee-substitute-day', [EmployeeSubstituteDayController::class, 'store'])->name('subsituteDay');
 
     // ajax route
     Route::get('api/branch/{branch_id}', function($branch_id) {
