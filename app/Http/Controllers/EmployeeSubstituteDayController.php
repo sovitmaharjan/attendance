@@ -28,7 +28,7 @@ class EmployeeSubstituteDayController extends Controller
               'substituted_to_nepali_date' => $request->nepali_substituted_to_date,
             ];
             $request->request->add([
-               'extra' => $extras,
+               'extras' => $extras,
             ]);
             EmployeeSubstituteDay::create($request->all());
             DB::commit();

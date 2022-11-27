@@ -212,7 +212,7 @@
                                     <input type="text" class="form-control mb-2 eng_date" name="work_date"
                                            onchange="engtonep($(this), 'nep_date')"
                                            value="{{ old('work_date') }}" placeholder="yyyy-dd-mm" id="eng_date"
-                                           readonly/>
+                                          readonly />
                                     <input type="hidden" class="form-control mb-2 nep_date" name="nepali_work_date"
                                            onclick="neptoeng('nep_date', 'eng_date')"
                                            value="{{ old('nepali_work_date') }}" placeholder="yyyy-dd-mm"
@@ -226,8 +226,8 @@
                                     <input type="text" class="form-control mb-2 eng_dat" name="substituted_to_date"
                                            onchange="engtonep($(this), 'nep_dat')"
                                            value="{{ old('substituted_to_date') }}" placeholder="yyyy-dd-mm"
-                                           id="eng_dat"
-                                           readonly/>
+                                           id="eng_dat" readonly
+                                           />
                                     <input type="hidden" class="form-control mb-2 nep_dat"
                                            name="nepali_substituted_to_date"
                                            onclick="neptoeng('nep_dat', 'eng_dat')"
@@ -330,7 +330,7 @@
                 $(this).find('form')[0].reset();
             });
 
-            $("#kt_modal_new_target").on('show.bs.modal', function (e) {
+            $("#kt_modal_new_target").on('shown.bs.modal', function (e) {
                 var id = $(e.relatedTarget).data('target-id');
                 var employee_name = $(e.relatedTarget).data('name');
                 $("#employeeName").html(employee_name);
