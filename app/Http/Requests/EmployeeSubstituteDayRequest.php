@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
 
 class EmployeeSubstituteDayRequest extends FormRequest
 {
@@ -28,5 +31,13 @@ class EmployeeSubstituteDayRequest extends FormRequest
             'work_date' => ['required', 'date'],
             'substituted_to_date' => ['required', 'date'],
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'errors' => $validator->errors(),
+            'success' => false,
+        ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }
 }
