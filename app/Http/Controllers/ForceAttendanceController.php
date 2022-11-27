@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class ForceAttendanceController extends Controller
 {
-    public function index()
+    public function create()
     {
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
-        return view('force-attendance.index', $data);
+        return view('force-attendance.create', $data);
     }
 
     public function store(ForceAttendanceRequest $request)
@@ -36,7 +36,7 @@ class ForceAttendanceController extends Controller
                 ]);
             }
             DB::commit();
-            return redirect()->route('force-attendance.index')->with('success', 'Force attendance has been updated');
+            return redirect()->route('force-attendance.create')->with('success', 'Force attendance has been updated');
         } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
@@ -49,8 +49,8 @@ class ForceAttendanceController extends Controller
                 'id' => $m->id,
                 'shift' => $m->shift,
                 'employee_id' => $m->employee_id,
-                'in_time' => $m->in_time ? $m->in_time->format('H:i') : '',
-                'out_time' => $m->out_time ? $m->out_time->format('H:i') : '',
+                'in_time' => $m->in_time ? date('H:i', strtotime($m->in_time)) : '',
+                'out_time' => $m->out_time ? date('H:i', strtotime($m->out_time)) : '',
                 'date' => $m->date->format('Y-m-d'),
                 'extra' => $m->extra,
                 'created_at' => $m->created_at->format('Y-m-d'),

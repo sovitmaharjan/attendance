@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceReportController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -51,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/force-attendance', ForceAttendanceController::class);
     Route::resource('/leave', LeaveController::class);
     Route::resource('/leave-assignment', LeaveAssignmentController::class);
-    Route::post('/qweqwe', [LeaveApplicationController::class, 'store']);
+    Route::resource('/leave-application', LeaveApplicationController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
@@ -82,6 +83,9 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('api.employee.show');
 
     Route::get('/api/getEmployeeShift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('api.get-employee-shift');
+
+    Route::get('/quick-attendance',[AttendanceReportController::class, 'quickAttendanceReport'])->name('quick-attendance');
+    Route::get('/monthly-attendance',[AttendanceReportController::class, 'monthlyAttendanceReport'])->name('monthly-attendance');
 });
 
 include(__DIR__.'/Routes/company.php');
