@@ -342,7 +342,6 @@
             $('.require').css('display', 'none');
             e.preventDefault();
             var formData = ($("#kt_modal_new_target_form").serialize());
-            console.log(formData)
             var action = $("#kt_modal_new_target_form").attr('action');
             $.ajax({
                 url: action,
