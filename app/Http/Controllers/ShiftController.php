@@ -22,7 +22,7 @@ class ShiftController extends Controller
 
     public function store(ShiftRequest $request)
     {
-        // dd($request->all());
+        dd($request->all());
         try {
             // $data = [
             //     'name' => $request->name,

@@ -41,7 +41,7 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("role.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route("company.create") }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
