@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{$page}}</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ $page }}</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">{{$page}}</li>
+                        <li class="breadcrumb-item text-muted">{{ $page }}</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -47,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="company_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('company.update', $data->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
@@ -61,128 +61,128 @@
                             </div>
                             <div class="card-body pt-0">
 
-                                    <div class="mb-10 fv-row">
-                                        <div class="d-flex flex-wrap gap-5">
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Name</label>
-                                                <div class="d-flex">
-                                                    <input type="text" class="form-control mb-2" name="name"
-                                                        value="{{ $data->name }}" />
-                                                </div>
-                                                @error('name')
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Name</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="name"
+                                                    value="{{ $data->name }}" />
+                                            </div>
+                                            @error('name')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="name" data-validator="notEmpty">
                                                         {{ $message }}</div>
                                                 </div>
                                             @enderror
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Code</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="code"
+                                                    value="{{ $data->code }}" />
                                             </div>
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Code</label>
-                                                <div class="d-flex">
-                                                    <input type="text" class="form-control mb-2" name="code"
-                                                        value="{{ $data->code }}" />
-                                                </div>
-                                                @error('code')
+                                            @error('code')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="code" data-validator="notEmpty">
                                                         {{ $message }}</div>
                                                 </div>
                                             @enderror
-                                            </div>
                                         </div>
                                     </div>
-    
-    
-                                    <div class="mb-10 fv-row">
-                                        <div class="d-flex flex-wrap gap-5">
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Email</label>
-                                                <input type="text" class="form-control mb-2" name="email"
-                                                    value="{{ $data->email }}" />
-                                                <div class="text-muted fs-7">Must be a valid email</div>
-                                            </div>
-                                            @error('email')
+                                </div>
+
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Email</label>
+                                            <input type="text" class="form-control mb-2" name="email"
+                                                value="{{ $data->email }}" />
+                                            <div class="text-muted fs-7">Must be a valid email</div>
+                                        </div>
+                                        @error('email')
                                             <div class="fv-plugins-message-container invalid-feedback">
                                                 <div data-field="email" data-validator="notEmpty">
                                                     {{ $message }}</div>
                                             </div>
                                         @enderror
-                                        </div>
                                     </div>
-    
-    
-                                    <div class="mb-10 fv-row">
-                                        <div class="d-flex flex-wrap gap-5">
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Address</label>
-                                                <div class="d-flex">
-                                                    <input type="text" class="form-control mb-2" name="address"
-                                                        value="{{ $data->address }}" />
-                                                </div>
-                                                @error('address')
+                                </div>
+
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Address</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" name="address"
+                                                    value="{{ $data->address }}" />
+                                            </div>
+                                            @error('address')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="address" data-validator="notEmpty">
                                                         {{ $message }}</div>
                                                 </div>
                                             @enderror
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Phone Number</label>
+                                            <div class="d-flex">
+                                                <input type="number" min="1" class="form-control mb-2"
+                                                    name="phone" value="{{ $data->phone }}" />
                                             </div>
-    
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Phone Number</label>
-                                                <div class="d-flex">
-                                                    <input type="number" min="1" class="form-control mb-2"
-                                                        name="phone" value="{{ $data->phone }}" />
-                                                </div>
-                                                @error('phone')
+                                            @error('phone')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="phone" data-validator="notEmpty">
                                                         {{ $message }}</div>
                                                 </div>
                                             @enderror
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Mobile Number</label>
+                                            <div class="d-flex">
+                                                <input type="number" min="1" class="form-control mb-2"
+                                                    name="mobile" value="{{ $data->mobile }}" />
                                             </div>
-    
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Mobile Number</label>
-                                                <div class="d-flex">
-                                                    <input type="number" min="1" class="form-control mb-2"
-                                                        name="mobile" value="{{ $data->mobile }}" />
-                                                </div>
-                                                @error('mobile')
+                                            @error('mobile')
                                                 <div class="fv-plugins-message-container invalid-feedback">
                                                     <div data-field="mobile" data-validator="notEmpty">
                                                         {{ $message }}</div>
                                                 </div>
                                             @enderror
-                                            </div>
                                         </div>
                                     </div>
-    
-    
-                                    <div class="mb-10 fv-row">
-                                        <div class="d-flex flex-wrap gap-5">
-                                            <div class="fv-row w-100 flex-md-root">
-                                                <label class="required form-label">Company Website</label>
-                                                <input type="text" class="form-control mb-2" name="website"
-                                                    value="{{ $data->website }}" />
-                                            </div>
-    
-                                            @error('website')
+                                </div>
+
+
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Company Website</label>
+                                            <input type="text" class="form-control mb-2" name="website"
+                                                value="{{ $data->website }}" />
+                                        </div>
+
+                                        @error('website')
                                             <div class="fv-plugins-message-container invalid-feedback">
                                                 <div data-field="website" data-validator="notEmpty">
                                                     {{ $message }}</div>
                                             </div>
                                         @enderror
-                                        </div>
                                     </div>
+                                </div>
 
                             </div>
                         </div>
 
 
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('company.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('company.index') }}" id="company_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
+                            <button type="submit" id="company_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

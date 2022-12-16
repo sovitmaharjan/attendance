@@ -47,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="designation_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('designation.update', $data->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
@@ -81,9 +81,9 @@
 
 
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('designation.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('designation.index') }}" id="designation_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
+                            <button type="submit" id="designation_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

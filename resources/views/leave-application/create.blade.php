@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('leave_application', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -46,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="leave_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="leave_application_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('leave-assignment.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -296,9 +297,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('leave-assignment.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('leave-assignment.index') }}" id="leave_application_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_leave_submit" class="btn btn-primary">
+                            <button type="submit" id="leave_application_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

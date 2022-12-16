@@ -22,13 +22,7 @@ class ShiftController extends Controller
 
     public function store(ShiftRequest $request)
     {
-        dd($request->all());
         try {
-            // $data = [
-            //     'name' => $request->name,
-            //     'in_time' => Carbon::parse($request->in_time)
-            // ];
-            // dd($data);
             Shift::create($request->validated());
             return back()->with('success', 'Shift has been created');
         } catch (Exception $e) {

@@ -72,7 +72,7 @@
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
-                                <table id="kt_datatable_example_5"
+                                <table id="event_datatable"
                                     class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
@@ -208,7 +208,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $("#kt_datatable_example_5").DataTable({
+            $("#event_datatable").DataTable({
                 "language": {
                     "lengthMenu": "Show _MENU_",
                 },

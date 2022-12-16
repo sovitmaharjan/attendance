@@ -124,9 +124,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("holiday.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route("holiday.index") }}" id="event_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_holiday_submit" class="btn btn-primary">
+                            <button type="submit" id="event_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

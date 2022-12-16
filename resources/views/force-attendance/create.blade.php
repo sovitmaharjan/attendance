@@ -24,8 +24,8 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route('shift-assignment.index') }}"
+                    {{-- <div class="m-0">
+                        <a href="{{ route('force-attendance.create') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -40,14 +40,14 @@
                             </span>
                             List
                         </a>
-                    </div>
-                    <a href="{{ route('shift-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    </div> --}}
+                    <a href="{{ route('force-attendance.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="force_attendance" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="force-attendance_attendance" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('force-attendance.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -235,9 +235,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('shift-assignment.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('force-attendance.create') }}" id="force_attendance_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_shift_submit" class="btn btn-primary">
+                            <button type="submit" id="force_attendance_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

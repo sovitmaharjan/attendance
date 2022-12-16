@@ -17,7 +17,7 @@ class LoginController extends Controller
         if (!auth()->attempt($request->validated())) {
             return back()->with('error', 'Invalid credentials');
         }
-        return redirect()->route('dashboard')->with('success', 'Login successful');
+        return redirect()->intended(route('dashboard'))->with('success', 'Login successful');
     }
 
     public function logout()

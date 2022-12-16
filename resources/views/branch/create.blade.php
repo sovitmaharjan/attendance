@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{$page}}</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ $page }}</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">{{$page}}</li>
+                        <li class="breadcrumb-item text-muted">{{ $page }}</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -47,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="branch_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('branch.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -60,8 +60,8 @@
                             </div>
                             <div class="card-body pt-0">
 
-                              
-                                
+
+
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -71,11 +71,11 @@
                                                     value="{{ old('name') }}" placeholder="ABC Branch" />
                                             </div>
                                             @error('name')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="name" data-validator="notEmpty">
-                                                    {{ $message }}</div>
-                                            </div>
-                                        @enderror
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="name" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Code</label>
@@ -84,11 +84,11 @@
                                                     value="{{ old('code') }}" placeholder="ABCD" />
                                             </div>
                                             @error('code')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="code" data-validator="notEmpty">
-                                                    {{ $message }}</div>
-                                            </div>
-                                        @enderror
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="code" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -99,15 +99,15 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Email</label>
                                             <input type="text" class="form-control mb-2" name="email"
-                                                value="{{ old('email') }}" placeholder="example@mail.com"/>
+                                                value="{{ old('email') }}" placeholder="example@mail.com" />
                                             <div class="text-muted fs-7">Must be a valid email</div>
                                         </div>
                                         @error('email')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="email" data-validator="notEmpty">
-                                                {{ $message }}</div>
-                                        </div>
-                                    @enderror
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="email" data-validator="notEmpty">
+                                                    {{ $message }}</div>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -123,11 +123,11 @@
                                                     value="{{ old('address') }}" placeholder="Kathmandu, Nepal" />
                                             </div>
                                             @error('address')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="address" data-validator="notEmpty">
-                                                    {{ $message }}</div>
-                                            </div>
-                                        @enderror
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="address" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="fv-row w-100 flex-md-root">
@@ -137,11 +137,11 @@
                                                     name="phone" value="{{ old('phone') }}" />
                                             </div>
                                             @error('phone')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="phone" data-validator="notEmpty">
-                                                    {{ $message }}</div>
-                                            </div>
-                                        @enderror
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="phone" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="fv-row w-100 flex-md-root">
@@ -151,11 +151,11 @@
                                                     name="mobile" value="{{ old('mobile') }}" />
                                             </div>
                                             @error('mobile')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="mobile" data-validator="notEmpty">
-                                                    {{ $message }}</div>
-                                            </div>
-                                        @enderror
+                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                    <div data-field="mobile" data-validator="notEmpty">
+                                                        {{ $message }}</div>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -166,30 +166,28 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Select Company</label>
                                             <select class="form-select mb-2" name="company_id" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select Branch"
-                                                    required>
+                                                data-hide-search="false" data-placeholder="Select Branch" required>
                                                 @foreach ($company as $item)
-                                                    <option
-                                                        value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
 
 
-                                
-                                
+
+
                                     </div>
                                 </div>
-                              
+
 
                             </div>
                         </div>
 
 
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('branch.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('branch.index') }}" id="branch_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_permission_submit" class="btn btn-primary">
+                            <button type="submit" id="branch_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

@@ -10,7 +10,8 @@ use Exception;
 class PermissionController extends Controller
 {
 
-    public  function show(){
+    public  function show()
+    {
         //
     }
 

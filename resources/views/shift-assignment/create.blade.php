@@ -20,13 +20,13 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">Create</li>
                     </ul>
+                    <li class="breadcrumb-item text-dark">Create</li>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('shift-assignment.index') }}"
-                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                        <button type="button" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
+                            data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
@@ -38,8 +38,8 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            List
-                        </a>
+                            Assign off day
+                        </button>
                     </div>
                     <a href="{{ route('shift-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="shift_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="shift_assignment_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('shift-assignment.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -59,6 +59,9 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class="d-flex align-items-center gap-2 gap-lg-3 justify-content-end mb-10">
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Assign off days</button>
+                                </div>
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -92,7 +95,8 @@
                                             </select>
                                             @error('department')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="department" data-validator="notEmpty">{{ $message }}
+                                                    <div data-field="department" data-validator="notEmpty">
+                                                        {{ $message }}
                                                     </div>
                                                 </div>
                                             @enderror
@@ -162,7 +166,8 @@
                                                                     <label class="required form-label">From</label>
                                                                     <input type="text"
                                                                         class="form-control mb-2 from_date" date-id="from"
-                                                                        placeholder="yyyy-dd-mm" name="from_date" autocomplete="off"
+                                                                        placeholder="yyyy-dd-mm" name="from_date"
+                                                                        autocomplete="off"
                                                                         value="{{ old('from_date') }}" />
                                                                     @error('from_date')
                                                                         <div
@@ -243,9 +248,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('shift-assignment.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('shift-assignment.create') }}" id="shift_assignment_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_shift_submit" class="btn btn-primary">
+                            <button type="submit" id="shift_assignment_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -253,6 +258,101 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <div class="modal-content rounded">
+                    <div class="modal-header pb-0 border-0 justify-content-end">
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                        rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                        transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                        <form id="kt_modal_new_target_form" class="form" action="{{ route('assignOffDays') }}">
+                            <div class="mb-13 text-center">
+                                <h1 class="mb-3">Assign Off Days To <span id="departmentName"></span></h1>
+                            </div>
+                            <div class="d-flex flex-column mb-8 fv-row">
+                                {{-- <div class="mb-10 fv-row"> --}}
+                                <div class="d-flex flex-wrap gap-5">
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <label class="required form-label">Branch</label>
+                                        <select class="form-select mb-2" id="branch" name="branch"
+                                            data-control="select2" data-hide-search="false"
+                                            data-placeholder="Select Branch" required>
+                                            <option></option>
+                                            @foreach ($branch as $item)
+                                                <option value="{{ $item->id }}" @selected(old('branch') == $item->id)>
+                                                    {{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('branch')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="branch" data-validator="notEmpty">{{ $message }}
+                                                </div>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <label class="required form-label">Department</label>
+                                        <select class="form-select mb-2" id="department" name="department"
+                                            data-control="select2" data-hide-search="false"
+                                            data-placeholder="Select Department" required>
+                                            <option></option>
+                                            @foreach ($department as $item)
+                                                <option value="{{ $item->id }}" @selected(old('department') == $item->id)>
+                                                    {{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('department')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="department" data-validator="notEmpty">
+                                                    {{ $message }}
+                                                </div>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                {{-- </div> --}}
+                                <input type="hidden" id="departmentId" name="department_id">
+                                <input type="hidden" id="dynamicId" name="id">
+                                <input type="hidden" name="key" id="keyname">
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Days</label>
+                                    <div class="d-flex gap-5" id="daysSection">
+                                        <select class="form-select mb-2" id="assignedDays" name="days[]"
+                                            data-control="select2" data-hide-search="false"
+                                            data-placeholder="Select Days" required multiple>
+                                            <option></option>
+                                            @foreach (getDays() as $day)
+                                                <option value="{{ $day }}">{{ $day }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3"
+                                    data-bs-dismiss="modal">Cancel
+                                </button>
+                                <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                    <span class="indicator-label">Submit</span>
+                                    <span class="indicator-progress">Please wait...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -493,7 +593,7 @@
             let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
             from.val(nepaliValue);
         });
-        
+
         $('.to_date').on('change', function() {
             var to = $(this).parent().next('div').find('.nep_to_date');
             let dateObj = new Date($(this).val());

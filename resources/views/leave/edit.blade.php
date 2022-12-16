@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section('holiday_type', 'active')
+@section('leave', 'active')
 @section("content")
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -85,9 +85,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("leave.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route("leave.index") }}" id="leave_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_leave_submit" class="btn btn-primary">
+                            <button type="submit" id="leave_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

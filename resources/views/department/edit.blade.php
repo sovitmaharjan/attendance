@@ -47,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="permission_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="department_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('department.update', $data->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
