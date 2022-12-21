@@ -13,8 +13,8 @@ class LeaveApplication extends Model
     protected $fillable = [
         'leave_id',
         'employee_id',
-        'start_date',
-        'end_date',
+        'from_date',
+        'to_date',
         'leave_days_count',
         'remaining_allowed_days',
         'description',

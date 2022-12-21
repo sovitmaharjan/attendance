@@ -27,16 +27,16 @@ class LeaveApplicationController extends Controller
 
     public function store(LeaveApplicationRequest $request)
     {
-        $start_date = Carbon::parse($request->start_date);
-        $end_date = Carbon::parse($request->end_date);
-        $leave_days_count = $start_date->diffInDays($end_date) + 1;
+        $from_date = Carbon::parse($request->from_date);
+        $to_date = Carbon::parse($request->to_date);
+        $leave_days_count = $from_date->diffInDays($to_date) + 1;
         $allowed_days = Leave::find($request->leave_id)->allowed_days;
         $remaining_allowed_days = $allowed_days - $leave_days_count;
         $leave_application = LeaveApplication::create([
             'leave_id' => $request->leave_id,
             'employee_id' => $request->employee_id,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'from_date' => $request->from_date,
+            'to_date' => $request->to_date,
             'leave_days_count' => $leave_days_count,
             'remaining_allowed_days' => $remaining_allowed_days,
             'description' => $request->description,

@@ -1,6 +1,6 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('holiday', 'active')
-@section("content")
+@section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -11,7 +11,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("holiday.index") }}"
+                        <a href="{{ route('holiday.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,30 +41,31 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("holiday.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('holiday.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
                 <form id="holiday_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route("holiday.store") }}" enctype="multipart/form-data">
+                    action="{{ route('holiday.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span>
+                                        are required </span>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Name</label>
-                                    <input type="text" name="name" class="form-control mb-2" placeholder="Holiday name"
-                                        value="{{ old("name") }}" required/>
+                                    <input type="text" name="name" class="form-control mb-2"
+                                        placeholder="Holiday name" value="{{ old('name') }}" required />
                                     <div class="text-muted fs-7">A holiday name is required and recommended to be unique.
                                     </div>
-                                    @error("name")
+                                    @error('name')
                                         <div class="fv-plugins-message-container invalid-feedback">
                                             <div data-field="name" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
@@ -73,36 +74,51 @@
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Date</label>
-                                            <div class="d-flex gap-5">
-                                                <input type="text" class="form-control mb-2" name="date"
-                                                    value="{{ old('date') }}" placeholder="yyyy-dd-mm" required />
-                                                <input type="text" class="form-control mb-2" name="nepali_date"
-                                                    value="{{ old('nepali_date') }}" placeholder="yyyy-dd-mm" />
+                                            <label class="required form-label">From</label>
+                                            <input type="text" class="form-control mb-2 from_date" date-id="from"
+                                                placeholder="yyyy-dd-mm" name="from_date" autocomplete="off" value="{{ old('from_date') }}"
+                                                required>
+                                        </div>
+                                        @error('from_date')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="from_date" data-validator="notEmpty">{{ $message }}</div>
                                             </div>
+                                        @enderror
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">&nbsp;</label>
+                                            <input type="text" class="form-control mb-2 nep_from_date"
+                                                name="nep_from_date" autocomplete="off" value="{{ old('nep_from_date') }}"
+                                                placeholder="yyyy-dd-mm">
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">To</label>
+                                            <input type="text" autocomplete="off" class="form-control mb-2 to_date"
+                                                value="{{ old('to_date') }}" date-id="to" placeholder="yyyy-dd-mm" name="to_date"
+                                                required>
+                                        </div>
+                                        @error('to_date')
+                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                <div data-field="to_date" data-validator="notEmpty">{{ $message }}</div>
+                                            </div>
+                                        @enderror
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">&nbsp;</label>
+                                            <input type="text" autocomplete="off"
+                                                class="form-control mb-2 nep_to_date" name="nep_to_date" value="{{ old('nep_to_date') }}"
+                                                placeholder="yyyy-dd-mm">
                                         </div>
                                     </div>
-                                    @error("date")
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="date" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
                                 </div>
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Quantity</label>
-                                    <input type="text" name="quantity" class="form-control mb-2" placeholder="Holiday quantity"
-                                        value="{{ old("quantity") }}" required/>
-                                    <div class="text-muted fs-7">Assign number of day for the holiday.</div>
-                                    @error("quantity")
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="quantity" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
+                                    <input type="text" id="quantity" name="quantity" class="form-control mb-2"
+                                        value="{{ old('quantity') }}" readonly />
+                                    {{-- <div class="text-muted fs-7">Assign number of day for the holiday.</div> --}}
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("holiday.index") }}" id="holiday_cancel"
+                            <a href="{{ route('holiday.index') }}" id="holiday_cancel"
                                 class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="holiday_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
@@ -116,3 +132,15 @@
         </div>
     </div>
 @endSection
+
+@section('script')
+    <script>
+        $(document).on('change', '.from_date, .to_date', function() {
+            const date1 = new Date($('.from_date').val() ? $('.from_date').val() : $('.to_date').val());
+            const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());
+            const diffTime = Math.abs(date2 - date1);
+            const days = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) + 1;
+            $('#quantity').val(days);
+        })
+    </script>
+@endsection

@@ -12,7 +12,8 @@ class HolidayTableSeeder extends Seeder
     {
         Holiday::create([
             'name' => 'test holiday 1',
-            'date' => '2022-04-04',
+            'from_date' => '2022-04-04',
+            'to_date' => '2022-04-04',
             'quantity' => 1
         ]);
     }

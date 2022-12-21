@@ -133,11 +133,11 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Start Date</label>
-                                            <input type="text" class="form-control mb-2" id="start_date"
-                                                name="start_date" value="" autocomplete="off" />
-                                            @error('start_date')
+                                            <input type="text" class="form-control mb-2" id="from_date"
+                                                name="from_date" value="" autocomplete="off" />
+                                            @error('from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="start_date" data-validator="notEmpty">
+                                                    <div data-field="from_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -145,11 +145,11 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2" id="nepali_start_date"
-                                                name="nepali_start_date" value="" autocomplete="off" />
-                                            @error('nepali_start_date')
+                                            <input type="text" class="form-control mb-2" id="nepali_from_date"
+                                                name="nepali_from_date" value="" autocomplete="off" />
+                                            @error('nepali_from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nepali_start_date" data-validator="notEmpty">
+                                                    <div data-field="nepali_from_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -157,11 +157,11 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">End Date</label>
-                                            <input type="text" class="form-control mb-2" id="end_date"
-                                                name="end_date" value="" autocomplete="off" />
-                                            @error('end_date')
+                                            <input type="text" class="form-control mb-2" id="to_date"
+                                                name="to_date" value="" autocomplete="off" />
+                                            @error('to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="end_date" data-validator="notEmpty">
+                                                    <div data-field="to_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -169,11 +169,11 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2" id="nepali_end_date"
-                                                name="nepali_end_date" value="" autocomplete="off" />
-                                            @error('nepali_end_date')
+                                            <input type="text" class="form-control mb-2" id="nepali_to_date"
+                                                name="nepali_to_date" value="" autocomplete="off" />
+                                            @error('nepali_to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nepali_end_date" data-validator="notEmpty">
+                                                    <div data-field="nepali_to_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -258,7 +258,7 @@
             }
         });
 
-        $('#start_date').datepicker({
+        $('#from_date').datepicker({
             format: 'yyyy-mm-dd',
             todayHighlight: true,
             todayBtn: 'linked',
@@ -266,7 +266,7 @@
             autoclose: true,
         });
 
-        $('#end_date').datepicker({
+        $('#to_date').datepicker({
             format: 'yyyy-mm-dd',
             todayHighlight: true,
             todayBtn: 'linked',
@@ -322,13 +322,13 @@
         });
 
         $('#button').on('click', function() {
-            const date1 = $("#start_date").val();
-            const date2 = $("#end_date").val();
+            const date1 = $("#from_date").val();
+            const date2 = $("#to_date").val();
             var url = "{{ route('api.get-employee-shift') }}";
             data = {
                 'employee_id': $('#employee_id').val(),
-                'start_date': date1,
-                'end_date': date2
+                'from_date': date1,
+                'to_date': date2
             };
             $.ajax({
                 method: 'GET',

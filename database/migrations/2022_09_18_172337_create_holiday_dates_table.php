@@ -8,19 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('holidays', function (Blueprint $table) {
+        Schema::create('holiday_dates', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->dateTime('from_date');
-            $table->dateTime('to_date');
-            $table->integer('quantity');
-            $table->softDeletes();
+            $table->foreignId('holiday_id')->constrained()->onDelete('cascade');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('holiday_dates');
     }
 };

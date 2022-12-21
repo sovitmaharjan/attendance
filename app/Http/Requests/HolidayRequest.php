@@ -17,8 +17,8 @@ class HolidayRequest extends FormRequest
             'name' => (strtolower(request()->method()) == 'put' || strtolower(request()->method()) == 'patch')
                 ? 'required|unique:holidays,name,' . $this->route('holiday')->id
                 : 'required|unique:holidays',
-            'date' => 'required',
-            'quantity' => 'required'
+            'from_date' => 'required',
+            'to_date' => 'required',
         ];
     }
 }

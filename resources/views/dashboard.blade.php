@@ -2499,8 +2499,8 @@
                                             <div class="fv-row mb-9">
                                                 <label class="fs-6 fw-bold mb-2 required">Event Start Date</label>
                                                 <input class="form-control form-control-solid"
-                                                    name="calendar_event_start_date" placeholder="Pick a start date"
-                                                    id="kt_calendar_datepicker_start_date" />
+                                                    name="calendar_event_from_date" placeholder="Pick a start date"
+                                                    id="kt_calendar_datepicker_from_date" />
                                             </div>
                                         </div>
                                         <div class="col" data-kt-calendar="datepicker">
@@ -2517,8 +2517,8 @@
                                             <div class="fv-row mb-9">
                                                 <label class="fs-6 fw-bold mb-2 required">Event End Date</label>
                                                 <input class="form-control form-control-solid"
-                                                    name="calendar_event_end_date" placeholder="Pick a end date"
-                                                    id="kt_calendar_datepicker_end_date" />
+                                                    name="calendar_event_to_date" placeholder="Pick a end date"
+                                                    id="kt_calendar_datepicker_to_date" />
                                             </div>
                                         </div>
                                         <div class="col" data-kt-calendar="datepicker">
@@ -2630,7 +2630,7 @@
                                     </span>
                                     <div class="fs-6">
                                         <span class="fw-bolder">Starts</span>
-                                        <span data-kt-calendar="event_start_date"></span>
+                                        <span data-kt-calendar="event_from_date"></span>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-9">
@@ -2643,7 +2643,7 @@
                                     </span>
                                     <div class="fs-6">
                                         <span class="fw-bolder">Ends</span>
-                                        <span data-kt-calendar="event_end_date"></span>
+                                        <span data-kt-calendar="event_to_date"></span>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center">
