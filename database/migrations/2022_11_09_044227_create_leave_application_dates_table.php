@@ -8,16 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('remaining_leaves', function (Blueprint $table) {
+        Schema::create('leave_application_dates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('leave_assignment_id')->constrained()->onDelete('cascade');
-            $table->float('remaining_days');
+            $table->foreignId('leave_application_id')->constrained()->ondelete('cascade');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('remaining_leaves');
+        Schema::dropIfExists('leave_application_dates');
     }
 };

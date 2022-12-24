@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('leave_application', 'active')
 @section('content')
+    {{-- @dd($errors) --}}
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('leave-assignment.index') }}"
+                        <a href="{{ route('leave-application.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,14 +42,14 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('leave-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('leave-application.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
                 <form id="leave_application_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('leave-assignment.store') }}">
+                    action="{{ route('leave-application.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
@@ -133,14 +134,18 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Leave</label>
-                                            <select class="form-select mb-2" id="leave" name="leave"
-                                                data-control="select2" data-hide-search="false"
-                                                data-placeholder="Select Branch" required>
+                                            <select class="form-select mb-2 leave" name="leave_id" data-control="select2"
+                                                data-hide-search="false" data-placeholder="Select Leave" required>
                                                 <option></option>
+                                                @foreach ($leave as $item)
+                                                    <option value="{{ $item->id }}" @selected(old('leave_id') == $item->id)>
+                                                        {{ $item->name }}</option>
+                                                @endforeach
                                             </select>
-                                            @error('leave')
+                                            @error('leave_id')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="leave" data-validator="notEmpty">{{ $message }}
+                                                    <div data-field="leave_id" data-validator="notEmpty">
+                                                        {{ $message }}
                                                     </div>
                                                 </div>
                                             @enderror
@@ -148,7 +153,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">From</label>
                                             <input type="text" class="form-control mb-2 from_date" date-id="from"
-                                                placeholder="yyyy-dd-mm" name="from_date"
+                                                placeholder="yyyy-dd-mm" name="from_date" autocomplete="off"
                                                 value="{{ old('from_date') }}" />
                                             @error('from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
@@ -159,36 +164,38 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2 from_date" date-id="from"
-                                                placeholder="yyyy-dd-mm" name="from_date"
-                                                value="{{ old('from_date') }}" />
-                                            @error('from_date')
+                                            <input type="text" class="form-control mb-2 nep_from_date"
+                                                name="nep_from_date" autocomplete="off"
+                                                value="{{ old('nep_from_date') }}" placeholder="yyyy-dd-mm">
+                                            @error('nep_from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="from_date" data-validator="notEmpty">{{ $message }}
+                                                    <div data-field="nep_from_date" data-validator="notEmpty">
+                                                        {{ $message }}
                                                     </div>
                                                 </div>
                                             @enderror
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">To</label>
-                                            <input type="text" class="form-control mb-2 from_date" date-id="from"
-                                                placeholder="yyyy-dd-mm" name="from_date"
-                                                value="{{ old('from_date') }}" />
-                                            @error('from_date')
+                                            <input type="text" autocomplete="off" class="form-control mb-2 to_date"
+                                                value="{{ old('to_date') }}" date-id="to" placeholder="yyyy-dd-mm"
+                                                name="to_date" value="{{ old('to_date') }}" />
+                                            @error('to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="from_date" data-validator="notEmpty">{{ $message }}
+                                                    <div data-field="to_date" data-validator="notEmpty">{{ $message }}
                                                     </div>
                                                 </div>
                                             @enderror
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2 from_date" date-id="from"
-                                                placeholder="yyyy-dd-mm" name="from_date"
-                                                value="{{ old('from_date') }}" />
-                                            @error('from_date')
+                                            <input type="text" autocomplete="off"
+                                                class="form-control mb-2 nep_to_date" name="nep_to_date"
+                                                value="{{ old('nep_to_date') }}" placeholder="yyyy-dd-mm">
+                                            @error('nep_to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="from_date" data-validator="notEmpty">{{ $message }}
+                                                    <div data-field="nep_to_date" data-validator="notEmpty">
+                                                        {{ $message }}
                                                     </div>
                                                 </div>
                                             @enderror
@@ -297,7 +304,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('leave-assignment.index') }}" id="leave_application_cancel"
+                            <a href="{{ route('leave-application.index') }}" id="leave_application_cancel"
                                 class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="leave_application_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>

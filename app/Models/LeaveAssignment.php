@@ -15,4 +15,9 @@ class LeaveAssignment extends Model
         'year',
         'allowed_days'
     ];
+
+    public function remaining_days()
+    {
+        return $this->hasOne(RemainingLeave::class);
+    }
 }

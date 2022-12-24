@@ -15,9 +15,8 @@ return new class extends Migration
             $table->dateTime('from_date');
             $table->dateTime('to_date');
             $table->float('leave_days_count');
-            $table->float('remaining_allowed_days');
             $table->text('description')->nullable();
-            $table->tinyInteger('is_approved')->default(0);
+            $table->tinyInteger('is_approved')->default(1);
             $table->foreignId('approver')->nullable()->constrained('users');
             $table->json('extra')->nullable();
             $table->timestamps();

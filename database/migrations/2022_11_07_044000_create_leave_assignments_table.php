@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('leave_id')->constrained();
-            $table->integer('year')->nullable();
+            $table->integer('year');
             $table->float('allowed_days');
             $table->timestamps();
         });

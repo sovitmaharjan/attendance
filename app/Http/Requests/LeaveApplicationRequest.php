@@ -18,7 +18,6 @@ class LeaveApplicationRequest extends FormRequest
             'employee_id' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
-            'leave_days_count' => 'required',
             'description' => 'required',
             'approver' => 'nullable',
         ];

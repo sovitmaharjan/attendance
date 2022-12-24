@@ -29,20 +29,22 @@ class LeaveAssignmentController extends Controller
         try {
             DB::beginTransaction();
             foreach ($request->leave_repeater as $item) {
-                LeaveAssignment::create([
-                    'leave_id' => $item['leave'],
-                    'employee_id' => $request->employee,
-                    'year' => $item['year'],
-                    'allowed_days' => $item['allowed_days']
-                ]);
-                RemainingLeave::updateOrCreate(
+                $leave_assignment = LeaveAssignment::updateOrCreate(
                     [
                         'leave_id' => $item['leave'],
                         'employee_id' => $request->employee,
-                        'year' => $item['year']
                     ],
                     [
-                        'remaining_allowed_days' => $item['allowed_days']
+                        'year' => $item['year'],
+                        'allowed_days' => $item['allowed_days']
+                    ]
+                );
+                $leave_assignment->remaining_days()->updateOrCreate(
+                    [
+                        'leave_assignment_id' => $leave_assignment->id
+                    ],
+                    [
+                        'remaining_days' => $item['allowed_days']
                     ]
                 );
             }
