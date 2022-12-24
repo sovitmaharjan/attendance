@@ -89,21 +89,6 @@
                                     @enderror
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Type</label>
-                                    <select class="form-select mb-2" data-control="select2" name="holiday_type_id"
-                                        data-hide-search="true" data-placeholder="Select an option" required>
-                                        <option></option>
-                                        @foreach ($holiday_type as $item)
-                                            <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('holiday_type_id')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="holiday_type_id" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-10 fv-row">
                                     <label class="required form-label">Quantity</label>
                                     <input type="text" name="quantity" class="form-control mb-2" placeholder="Holiday quantity"
                                         value="{{ old("quantity") }}" required/>

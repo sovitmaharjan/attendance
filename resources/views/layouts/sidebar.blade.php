@@ -9,12 +9,13 @@
     $employeeNav = Request::is('employee*');
     $shiftNav = Request::is('shift*');
     $shiftAssignmentNav = Request::is('shift-assignment*');
-    $holidayTypeNav = Request::is('holiday-type*');
     $holidayNav = Request::is('holiday*');
     $leaveNav = Request::is('leave*');
     $dynamicValuesNav = Request::is('dynamic-values*');
     $eventNav = Request::is('event*');
     $eventAssignmentNav = Request::is('event-assignment*');
+    $quickAttendanceNav = Request::is('quick-attendance*');
+    $monthlyAttendanceNav = Request::is('monthly-attendance*');
 @endphp
 
 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside"
@@ -136,7 +137,7 @@
                 </div>
                 @can('view-dashboard')
                     <div data-kt-menu-trigger="click"
-                        class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav || $holidayTypeNav || $holidayNav || $leaveNav || $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
+                        class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav || $holidayNav || $leaveNav || $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -217,7 +218,7 @@
                                     </div>
                                     <div class="menu-item">
                                         <a class="menu-link @yield('shift_assignment')"
-                                            href="{{ route('shift-assignment.index') }}">
+                                            href="{{ route('shift-assignment.create') }}">
                                             <span class="menu-bullet">
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
@@ -226,33 +227,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div data-kt-menu-trigger="click"
-                                class="menu-item menu-accordion {{ $holidayTypeNav || $holidayNav ? 'here show' : '' }}">
-                                <span class="menu-link">
+                            <div class="menu-item">
+                                <a class="menu-link @yield('holiday')" href="{{ route('holiday.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Holiday</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link @yield('holiday_type')" href="{{ route('holiday-type.index') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Holiday Type</span>
-                                        </a>
-                                    </div>
-                                    <div class="menu-item">
-                                        <a class="menu-link @yield('holiday')" href="{{ route('holiday.index') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Holiday</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div data-kt-menu-trigger="click"
                                 class="menu-item menu-accordion {{ $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
@@ -282,13 +263,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="menu-item">
-                                <a class="menu-link" href="{{ route('dashboard') }}">
+                            <div data-kt-menu-trigger="click"
+                                class="menu-item menu-accordion">
+                                <span class="menu-link">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Leave</span>
-                                </a>
+                                    <span class="menu-arrow"></span>
+                                </span>
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link @yield('leave')" href="{{ route('leave.index') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Leave</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link @yield('leave_assignment')"
+                                            href="{{ route('leave-assignment.create') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Leave Assignment</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -313,7 +315,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="{{ route('force-attendance.create') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -321,7 +323,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="#">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -350,19 +352,27 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="#">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Force Attendance</span>
+                                <span class="menu-title">Leave Applied List</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('dashboard') }}">
+                            <a class="menu-link" href="{{ route('leave-application.create') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Force Batch Attendace</span>
+                                <span class="menu-title">Leave Application</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="#">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Leave Cancellation</span>
                             </a>
                         </div>
                     </div>
@@ -427,7 +437,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="{{ route('dashboard') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -446,8 +456,8 @@
                         </span>
                         <span class="menu-title">Out Station</span>
                     </a>
-                </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                </div> --}}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $quickAttendanceNav || $monthlyAttendanceNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -466,7 +476,7 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ $quickAttendanceNav || $monthlyAttendanceNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -476,27 +486,27 @@
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('dashboard') }}">
+                                    <a class="menu-link @yield('quick_attendance')" href="{{ route('quick-attendance') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Report 1</span>
+                                        <span class="menu-title">Quick Attendance</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('dashboard') }}">
+                                    <a class="menu-link @yield('monthly_attendance')" href="{{ route('monthly-attendance') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Report 2</span>
+                                        <span class="menu-title">Monthly Attendance</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="{{ route('dashboard') }}">
+                                    <a class="menu-link @yield('quick_attendance')" href="{{ route('quick-attendance') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Report 3</span>
+                                        <span class="menu-title">Datewise Attendance</span>
                                     </a>
                                 </div>
                             </div>

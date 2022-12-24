@@ -6,17 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Holiday extends Model
+class Leave extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
-        'date',
-        'quantity'
-    ];
-
-    public $casts = [
-        'date' => 'datetime'
+        'allowed_days'
     ];
 }

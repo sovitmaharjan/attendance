@@ -6,17 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Holiday extends Model
+class EmployeeSubstituteDay extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'name',
-        'date',
-        'quantity'
-    ];
+    protected $fillable = ['employee_id', 'work_date', 'substituted_to_date', 'extras'];
 
-    public $casts = [
-        'date' => 'datetime'
+    protected $casts = [
+      'extras' => 'array'
     ];
 }

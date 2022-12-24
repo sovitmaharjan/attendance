@@ -131,6 +131,22 @@
                                                                 </svg>
                                                             </span>
                                                     </a>
+                                                    <a href="javascript:void(0);" data-target-id="{{$data->id}}"
+                                                       data-id="{{$data->id}}" data-name="{{$data->name}}"
+                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                                       title="Assign Off Days" data-bs-toggle="modal"
+                                                       data-bs-target="#kt_modal_new_target">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             fill="currentColor" class="bi bi-list-task"
+                                                             viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+                                                            <path
+                                                                d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+                                                            <path fill-rule="evenodd"
+                                                                  d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+                                                        </svg>
+                                                    </a>
                                                     <form id="form{{ $data->id }}"
                                                           action="{{ route("department.destroy", $data->id) }}"
                                                           method="POST">
@@ -168,6 +184,85 @@
             </div>
         </div>
     </div>
+
+    <!--begin::Modal - New Prefix-->
+    <div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                          transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+									<rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                          transform="rotate(45 7.41422 6)" fill="currentColor"/>
+								</svg>
+							</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                    <!--begin:Form-->
+                    <form id="kt_modal_new_target_form" class="form" action="{{route('assignOffDays')}}">
+                        <div class="mb-13 text-center">
+                            <!--begin::Title-->
+                            <h1 class="mb-3">Assign Off Days To <span id="departmentName"></span></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <input type="hidden" id="departmentId" name="department_id">
+                            <input type="hidden" id="dynamicId" name="id">
+                            <input type="hidden" name="key" id="keyname">
+                            <div class="fv-row w-100 flex-md-root">
+                                <label class="required form-label">Days</label>
+                                <div class="d-flex gap-5" id="daysSection">
+                                    <select class="form-select mb-2" id="assignedDays" name="days[]"
+                                            data-control="select2"
+                                            data-hide-search="false" data-placeholder="Select Days"
+                                            required multiple>
+                                        <option></option>
+                                        @foreach(getDays() as $day)
+                                            <option
+                                                value="{{$day}}">{{$day}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Actions-->
+                        <div class="text-center">
+                            <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3"
+                                    data-bs-dismiss="modal">Cancel
+                            </button>
+                            <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary">
+                                <span class="indicator-label">Submit</span>
+                                <span class="indicator-progress">Please wait...
+									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+                    <!--end:Form-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - New Target-->
 @endSection
 @section("script")
     <script>
@@ -210,6 +305,92 @@
                     }
                 })
             });
+
+
+            $("#kt_modal_new_target_submit").on('click', function (e) {
+                $('.require').css('display', 'none');
+                e.preventDefault();
+                var formData = ($("#kt_modal_new_target_form").serialize());
+                var action = $("#kt_modal_new_target_form").attr('action');
+                $.ajax({
+                    url: action,
+                    type: 'post',
+                    data: formData,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.db_error) {
+                            toastr.warning(data.db_error);
+                        } else if (!data.db_error && !data.errors) {
+                            toastr.success(data.message);
+                            $("#kt_modal_new_target").modal('hide');
+                            location.reload();
+                        }
+                        if (data.errors) {
+                            e.stopPropagation();
+                            $.each(data.errors, function (key, value) {
+                                $('.' + key).css('display', 'block').html(value);
+                            })
+                        } else {
+                            $("#kt_modal_new_target").modal('hide');
+                        }
+                    }
+                });
+            });
+
+
+            $("#kt_modal_new_target").on("hidden.bs.modal", function () {
+                $(".require").css("display", "none");
+                $(this).find('form')[0].reset();
+            });
+
+            $("#kt_modal_new_target").on('show.bs.modal', function (e) {
+                var id = $(e.relatedTarget).data('target-id');
+                var department_name = $(e.relatedTarget).data('name');
+                var offDaysList = JSON.parse('<?= json_encode((array)getDays()); ?>');
+                $("#departmentName").html(department_name);
+                $("#keyname").val('department_' + id);
+                $("#departmentId").val(id);
+                if (id != "undefined" && id != undefined && id != 'null' && id != null) {
+                    var url = "{{route('departmentOffDays', ':id')}}",
+                        url = url.replace(":id", id);
+                    // $.ajax({
+                    //    url: url,
+                    //    dataType: 'html',
+                    //    success: function(res){
+                    //        $("#daysSection").html(res);
+                    //    }
+                    // });
+                    $.get(url, function (res) {
+                        if (res.status == false) {
+                            // toastr.error(res.message);
+                        } else {
+                            $("#dynamicId").val(res.dynamic_id);
+                            let off_days = res.off_days;
+                            $("#assignedDays").html("<option value=''></option>");
+                            $.each(offDaysList, function (key, off_day) {
+                                let $option = $('<option></option>').val(off_day).html(off_day);
+                                off_days.filter(value => {
+                                    if ($option[0] !== 'undefined' && $option[0] !== undefined  && $option[0].childNodes[0].nodeValue === value) {
+                                        $option = $option.attr('selected', 'selected');
+                                    }
+                                });
+                                $("#assignedDays").append($option);
+                            });
+
+
+                        }
+                    });
+                }
+            });
         })
+
+        const areCommonElements = (offDaysList, off_days) => {
+            const [shortArr, longArr] = (offDaysList.length < off_days.length) ? [offDaysList, off_days] : [off_days, offDaysList];
+            const longArrSet = new Set(longArr);
+            shortArr.map(function (k) {
+                return k;
+            });
+            return shortArr;
+        };
     </script>
 @endSection

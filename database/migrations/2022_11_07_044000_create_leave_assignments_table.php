@@ -8,20 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('shift_assignments', function (Blueprint $table) {
+        Schema::create('leave_assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shift_id')->constrained();
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
-            $table->time('in_time')->nullable();
-            $table->time('out_time')->nullable();
-            $table->dateTime('date')->unique();
-            $table->json('extra')->nullable();
+            $table->foreignId('leave_id')->constrained();
+            $table->integer('year')->nullable();
+            $table->float('allowed_days');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('shift_assignments');
+        Schema::dropIfExists('leave_assignments');
     }
 };
