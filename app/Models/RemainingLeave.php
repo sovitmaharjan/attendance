@@ -10,9 +10,14 @@ class RemainingLeave extends Model
     use HasFactory;
 
     protected $fillable = [
-        'leave_id',
+        'leave_assignment_id',
         'employee_id',
         'year',
-        'remaining_allowed_days'
+        'remaining_days'
     ];
+
+    public function leaveAssignment()
+    {
+        return $this->belongsTo(LeaveAssignment::class);
+    }
 }

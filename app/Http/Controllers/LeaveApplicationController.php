@@ -8,7 +8,9 @@ use App\Models\Department;
 use App\Models\Leave;
 use App\Models\LeaveApplication;
 use App\Models\User;
-use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class LeaveApplicationController extends Controller
 {
@@ -22,26 +24,29 @@ class LeaveApplicationController extends Controller
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
+        $data['leave'] = Leave::all();
         return view('leave-application.create', $data);
     }
 
     public function store(LeaveApplicationRequest $request)
     {
-        $start_date = Carbon::parse($request->start_date);
-        $end_date = Carbon::parse($request->end_date);
-        $leave_days_count = $start_date->diffInDays($end_date) + 1;
-        $allowed_days = Leave::find($request->leave_id)->allowed_days;
-        $remaining_allowed_days = $allowed_days - $leave_days_count;
-        $leave_application = LeaveApplication::create([
-            'leave_id' => $request->leave_id,
-            'employee_id' => $request->employee_id,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'leave_days_count' => $leave_days_count,
-            'remaining_allowed_days' => $remaining_allowed_days,
-            'description' => $request->description,
-            'approver' => $request->approver,
-        ]);
-        dd($leave_application);
+        try {
+            DB::beginTransaction();
+            $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
+            $data = $request->validated();
+            $data['leave_days_count'] = $difference + 1;
+            $leave_application = LeaveApplication::create($data);
+            for ($i = 0; $i <= $difference; $i++) {
+                $leave_application->leave_application_dates()->create([
+                    'date' => Carbon::parse($request->from_date)->addDays($i)
+                ]);
+            }
+            DB::commit();
+            return back()->with('success', 'Your leave application has been created and pending for approval');
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+            return back()->with('error', $e->getMessage());
+        }
     }
 }

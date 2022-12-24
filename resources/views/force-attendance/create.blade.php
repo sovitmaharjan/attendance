@@ -24,8 +24,8 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route('shift-assignment.index') }}"
+                    {{-- <div class="m-0">
+                        <a href="{{ route('force-attendance.create') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -40,14 +40,14 @@
                             </span>
                             List
                         </a>
-                    </div>
-                    <a href="{{ route('shift-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    </div> --}}
+                    <a href="{{ route('force-attendance.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="force_attendance" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="force-attendance_attendance" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('force-attendance.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -133,11 +133,11 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Start Date</label>
-                                            <input type="text" class="form-control mb-2" id="start_date"
-                                                name="start_date" value="" autocomplete="off" />
-                                            @error('start_date')
+                                            <input type="text" class="form-control mb-2" id="from_date"
+                                                name="from_date" value="" autocomplete="off" />
+                                            @error('from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="start_date" data-validator="notEmpty">
+                                                    <div data-field="from_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -145,11 +145,11 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2" id="nepali_start_date"
-                                                name="nepali_start_date" value="" autocomplete="off" />
-                                            @error('nepali_start_date')
+                                            <input type="text" class="form-control mb-2" id="nepali_from_date"
+                                                name="nepali_from_date" value="" autocomplete="off" />
+                                            @error('nepali_from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nepali_start_date" data-validator="notEmpty">
+                                                    <div data-field="nepali_from_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -157,11 +157,11 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">End Date</label>
-                                            <input type="text" class="form-control mb-2" id="end_date"
-                                                name="end_date" value="" autocomplete="off" />
-                                            @error('end_date')
+                                            <input type="text" class="form-control mb-2" id="to_date"
+                                                name="to_date" value="" autocomplete="off" />
+                                            @error('to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="end_date" data-validator="notEmpty">
+                                                    <div data-field="to_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -169,11 +169,11 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2" id="nepali_end_date"
-                                                name="nepali_end_date" value="" autocomplete="off" />
-                                            @error('nepali_end_date')
+                                            <input type="text" class="form-control mb-2" id="nepali_to_date"
+                                                name="nepali_to_date" value="" autocomplete="off" />
+                                            @error('nepali_to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nepali_end_date" data-validator="notEmpty">
+                                                    <div data-field="nepali_to_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -235,9 +235,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('shift-assignment.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('force-attendance.create') }}" id="force_attendance_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_shift_submit" class="btn btn-primary">
+                            <button type="submit" id="force_attendance_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -258,7 +258,7 @@
             }
         });
 
-        $('#start_date').datepicker({
+        $('#from_date').datepicker({
             format: 'yyyy-mm-dd',
             todayHighlight: true,
             todayBtn: 'linked',
@@ -266,7 +266,7 @@
             autoclose: true,
         });
 
-        $('#end_date').datepicker({
+        $('#to_date').datepicker({
             format: 'yyyy-mm-dd',
             todayHighlight: true,
             todayBtn: 'linked',
@@ -322,13 +322,13 @@
         });
 
         $('#button').on('click', function() {
-            const date1 = $("#start_date").val();
-            const date2 = $("#end_date").val();
+            const date1 = $("#from_date").val();
+            const date2 = $("#to_date").val();
             var url = "{{ route('api.get-employee-shift') }}";
             data = {
                 'employee_id': $('#employee_id').val(),
-                'start_date': date1,
-                'end_date': date2
+                'from_date': date1,
+                'to_date': date2
             };
             $.ajax({
                 method: 'GET',

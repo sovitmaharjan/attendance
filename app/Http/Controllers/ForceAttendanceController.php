@@ -44,7 +44,7 @@ class ForceAttendanceController extends Controller
     }
 
     public function getEmployeeShift() {
-        $shift = ShiftAssignment::where('employee_id', request()->employee_id)->whereBetween('date', [request()->start_date, request()->end_date])->get()->map(function($m) {
+        $shift = ShiftAssignment::where('employee_id', request()->employee_id)->whereBetween('date', [request()->from_date, request()->to_date])->get()->map(function($m) {
             return [
                 'id' => $m->id,
                 'shift' => $m->shift,

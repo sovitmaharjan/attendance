@@ -12,11 +12,18 @@ class Holiday extends Model
 
     protected $fillable = [
         'name',
-        'date',
+        'from_date',
+        'to_date',
         'quantity'
     ];
 
     public $casts = [
-        'date' => 'datetime'
+        'from_date' => 'datetime',
+        'to_date' => 'datetime'
     ];
+
+    public function holiday_dates()
+    {
+        return $this->hasMany(HolidayDate::class);
+    }
 }

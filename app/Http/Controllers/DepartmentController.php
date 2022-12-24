@@ -12,11 +12,9 @@ use App\Models\Company;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class DepartmentController extends Controller
 {
-
     function __construct()
     {
         $this->helper = new Helper;
@@ -45,7 +43,7 @@ class DepartmentController extends Controller
             $data['branch_id'] = $request->branch_id;
             $data->save();
             return back()->with('success', 'New Department has been added');
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             return $e->getMessage();
         }
     }
@@ -82,7 +80,7 @@ class DepartmentController extends Controller
 
     public function assingOffDays(Request $request)
     {
-//        dd($request->all());
+        //        dd($request->all());
         $validator = Validator::make($request->all(), [
             'key' => ['required'],
         ]);
@@ -105,9 +103,9 @@ class DepartmentController extends Controller
                 'status' => 1
             ]);
             DepartmentOffDaysTrack::updateOrCreate([
-               'department_id' => $request->department_id,
-               'date' => date('Y-m-d'),
-            ],[
+                'department_id' => $request->department_id,
+                'date' => date('Y-m-d'),
+            ], [
                 'department_id' => $request->department_id,
                 'days' => $request->days,
                 'date' => date('y-m-d'),
@@ -115,7 +113,7 @@ class DepartmentController extends Controller
             ]);
             DB::commit();
             return response()->json(['message' => 'Successfully assigned']);
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return $this->sendDbError($e->getMessage());
         }
@@ -124,7 +122,7 @@ class DepartmentController extends Controller
     public function departmentOffDays(Request $request, $id)
     {
         $off_days = DynamicValue::where('key', 'department_' . $id)->first();
-//        return view('department.off_days', compact('off_days'));
+        //        return view('department.off_days', compact('off_days'));
         if ($off_days) {
             return response()->json([
                 'dynamic_id' => $off_days->id,

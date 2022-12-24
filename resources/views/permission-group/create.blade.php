@@ -1,6 +1,6 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('permission_group', 'active')
-@section("content")
+@section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -11,7 +11,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route("permission-group.index") }}"
+                        <a href="{{ route('permission-group.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,30 +41,32 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route("permission-group.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('permission-group.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="brand_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route("permission-group.store") }}" enctype="multipart/form-data">
+                <form id="permission_group_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('permission-group.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span> are required </span>
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span>
+                                        are required </span>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Permission Group Name</label>
-                                    <input type="text" name="name" class="form-control mb-2" placeholder="Permission group name"
-                                        value="{{ old("name") }}" required/>
-                                    <div class="text-muted fs-7">A permission group name is required and recommended to be unique.
+                                    <input type="text" name="name" class="form-control mb-2"
+                                        placeholder="Permission group name" value="{{ old('name') }}" required />
+                                    <div class="text-muted fs-7">A permission group name is required and recommended to be
+                                        unique.
                                     </div>
-                                    @error("name")
+                                    @error('name')
                                         <div class="fv-plugins-message-container invalid-feedback">
                                             <div data-field="name" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
@@ -73,9 +75,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route("permission-group.index") }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('permission-group.index') }}" id="permission_group_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_brand_submit" class="btn btn-primary">
+                            <button type="submit" id="permission_group_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

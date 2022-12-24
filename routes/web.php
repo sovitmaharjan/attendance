@@ -54,16 +54,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/leave-assignment', LeaveAssignmentController::class);
     Route::resource('/leave-application', LeaveApplicationController::class);
 
-    Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function(){
-       Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
-       Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
-       Route::get('get/{id}', [DynamicValuesController::class, 'edit'])->name('edit');
+    Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function () {
+        Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
+        Route::post('/save', [DynamicValuesController::class, 'save'])->name('save');
+        Route::get('get/{id}', [DynamicValuesController::class, 'edit'])->name('edit');
     });
 
     Route::get('department/off/days/{id}', [DepartmentController::class, 'departmentOffDays'])->name('departmentOffDays');
     Route::post('department/off/days', [DepartmentController::class, 'assingOffDays'])->name('assignOffDays');
 
-    Route::group(['prefix' => 'event-assignment', 'as' => 'event-assignment.'], function(){
+    Route::group(['prefix' => 'event-assignment', 'as' => 'event-assignment.'], function () {
         Route::get('create/{event_id?}', [EventAssignmentController::class, 'create'])->name('create');
         Route::post('store', [EventAssignmentController::class, 'store'])->name('store');
         Route::get('employee/{event_id}', [EventAssignmentController::class, 'event_employee_list'])->name('event_employee_list');
@@ -72,20 +72,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('employee-substitute-day', [EmployeeSubstituteDayController::class, 'store'])->name('subsituteDay');
 
     // ajax route
-    Route::get('api/branch/{branch_id}', function($branch_id) {
+    Route::get('api/branch/{branch_id}', function ($branch_id) {
         return getBranchDetails($branch_id);
     })->name('api.branch.show');
-    Route::get('api/department/{department_id}', function($department_id) {
+    Route::get('api/department/{department_id}', function ($department_id) {
         return getDepartmentDetails($department_id);
     })->name('api.department.show');
-    Route::get('api/employee/{employee_id}', function($employee_id) {
+    Route::get('api/employee/{employee_id}', function ($employee_id) {
         return getEmployeeDetails($employee_id);
     })->name('api.employee.show');
 
     Route::get('/api/getEmployeeShift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('api.get-employee-shift');
 
-    Route::get('/quick-attendance',[AttendanceReportController::class, 'quickAttendanceReport'])->name('quick-attendance');
-    Route::get('/monthly-attendance',[AttendanceReportController::class, 'monthlyAttendanceReport'])->name('monthly-attendance');
+    Route::match(['get', 'post'], '/quick-attendance', [AttendanceReportController::class, 'quickAttendanceReport'])->name('quick-attendance');
+    Route::match(['get', 'post'], '/monthly-attendance', [AttendanceReportController::class, 'monthlyAttendanceReport'])->name('monthly-attendance');
 });
 
-include(__DIR__.'/Routes/company.php');
+include(__DIR__ . '/Routes/company.php');

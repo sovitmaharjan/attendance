@@ -10,10 +10,8 @@ return new class extends Migration
     {
         Schema::create('remaining_leaves', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('leave_id')->constrained();
-            $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
-            $table->integer('year');
-            $table->float('remaining_allowed_days');
+            $table->foreignId('leave_assignment_id')->constrained()->onDelete('cascade');
+            $table->float('remaining_days');
             $table->timestamps();
         });
     }

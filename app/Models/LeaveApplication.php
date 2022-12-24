@@ -13,10 +13,9 @@ class LeaveApplication extends Model
     protected $fillable = [
         'leave_id',
         'employee_id',
-        'start_date',
-        'end_date',
+        'from_date',
+        'to_date',
         'leave_days_count',
-        'remaining_allowed_days',
         'description',
         'is_approved',
         'approver',
@@ -26,4 +25,9 @@ class LeaveApplication extends Model
     public $casts = [
         'date' => 'datetime'
     ];
+
+    public function leave_application_dates()
+    {
+        return $this->hasMany(LeaveApplicationDate::class);
+    }
 }

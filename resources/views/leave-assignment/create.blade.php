@@ -1,8 +1,6 @@
 @extends('layouts.app')
+@section('leave_assignment', 'active')
 @section('content')
-    @php
-        // dd($errors)
-    @endphp
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -27,7 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('leave-assignment.index') }}"
+                        <a href="{{ route('leave.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -40,7 +38,7 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            List
+                            Leave List
                         </a>
                     </div>
                     <a href="{{ route('leave-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
@@ -49,7 +47,7 @@
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="leave_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="leave_assignment_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('leave-assignment.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -212,9 +210,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('leave-assignment.index') }}" id="kt_ecommerce_add_product_cancel"
+                            <a href="{{ route('leave-assignment.create') }}" id="leave_assignment_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_leave_submit" class="btn btn-primary">
+                            <button type="submit" id="leave_assignment_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
