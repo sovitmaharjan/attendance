@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('leave_application_dates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('leave_application_id')->constrained()->ondelete('cascade');
-            $table->dateTime('date');
+            $table->date('date');
             $table->timestamps();
         });
     }

@@ -15,6 +15,6 @@ class HolidayDate extends Model
     ];
 
     public $casts = [
-        'date' => 'datetime'
+        'date' => 'date'
     ];
 }   

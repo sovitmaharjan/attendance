@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Other']);
             $table->string('marital_status');
-            $table->dateTime('dob')->nullable();
-            $table->dateTime('join_date')->default(now());
+            $table->date('dob')->nullable();
+            $table->date('join_date')->default(now());
 
             $table->foreignId('company_id')->constrained();
             $table->foreignId('branch_id')->nullable()->constrained();

@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('leave_id')->constrained();
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
-            $table->dateTime('from_date');
-            $table->dateTime('to_date');
+            $table->date('from_date');
+            $table->date('to_date');
             $table->float('leave_days_count');
             $table->text('description')->nullable();
             $table->tinyInteger('is_approved')->default(1);

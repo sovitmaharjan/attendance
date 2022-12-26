@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('holiday_dates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('holiday_id')->constrained()->onDelete('cascade');
-            $table->dateTime('date');
+            $table->date('date');
             $table->timestamps();
         });
     }

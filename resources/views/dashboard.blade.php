@@ -161,9 +161,10 @@
                                             </span>
                                             <div class="m-0">
                                                 <span class="fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1 text-warning"
-                                                    style="color: #5e6278">4</span>
+                                                    style="color: #5e6278">{{ $branch ?? 'n/a' }}</span>
                                             </div>
-                                            <a href="#" class="text-warning fw-bold fs-6">Branch</a>
+                                            <a href="{{ route('branch.index') }}"
+                                                class="text-warning fw-bold fs-6">Branch</a>
                                         </div>
                                         <div class="col bg-light-primary px-6 py-8 rounded-2 mb-7">
                                             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
@@ -179,9 +180,10 @@
                                             </span>
                                             <div class="m-0">
                                                 <span class="fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1 text-primary"
-                                                    style="color: #5e6278">9</span>
+                                                    style="color: #5e6278">{{ $department ?? 'n/a' }}</span>
                                             </div>
-                                            <a href="#" class="text-primary fw-bold fs-6">Department</a>
+                                            <a href="{{ route('department.index') }}"
+                                                class="text-primary fw-bold fs-6">Department</a>
                                         </div>
                                     </div>
                                     <div class="row g-0">
@@ -199,9 +201,10 @@
                                             </span>
                                             <div class="m-0">
                                                 <span class="fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1 text-danger"
-                                                    style="color: #5e6278">200</span>
+                                                    style="color: #5e6278">{{ $employee ?? 'n/a' }}</span>
                                             </div>
-                                            <a href="#" class="text-danger fw-bold fs-6 mt-2">Employee</a>
+                                            <a href="{{ route('employee.index') }}"
+                                                class="text-danger fw-bold fs-6 mt-2">Department Employee</a>
                                         </div>
                                         <div class="col bg-light-success px-6 py-8 rounded-2">
                                             <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
@@ -217,9 +220,10 @@
                                             </span>
                                             <div class="m-0">
                                                 <span class="fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1 text-success"
-                                                    style="color: #5e6278">55</span>
+                                                    style="color: #5e6278">{{ $total_employee ?? 'n/a' }}</span>
                                             </div>
-                                            <a href="#" class="text-success fw-bold fs-6 mt-2">Count</a>
+                                            <a href="{{ route('employee.index') }}"
+                                                class="text-success fw-bold fs-6 mt-2">All Employee</a>
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +233,7 @@
                     <div class="col-xl-4">
                         <div class="card card-xl-stretch mb-xl-8">
                             <div class="card-header border-0">
-                                <h3 class="card-title fw-bolder text-dark">Present (99)</h3>
+                                <h3 class="card-title fw-bolder text-dark">Present ({{ $present->count() ?? 'n/a' }})</h3>
                                 <div class="card-toolbar">
                                     <button
                                         class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
@@ -362,1281 +366,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @foreach ($present as $item)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="symbol symbol-45px me-5">
+                                                                <img src="assets/media/avatars/300-14.jpg"
+                                                                    alt="" />
+                                                            </div>
+                                                            <div class="d-flex justify-content-start flex-column">
+                                                                <a href="#"
+                                                                    class="text-dark fw-bolder text-hover-primary fs-6">
+                                                                    Ana Simmons
+                                                                </a>
+                                                                <span
+                                                                    class="text-muted fw-bold text-muted d-block fs-7">HTML,
+                                                                    JS, ReactJS</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -1646,7 +396,7 @@
                     <div class="col-xl-4">
                         <div class="card card-xl-stretch mb-xl-8">
                             <div class="card-header border-0">
-                                <h3 class="card-title fw-bolder text-dark">Absent (8)</h3>
+                                <h3 class="card-title fw-bolder text-dark">Absent ({{ $absent->count() ?? 'n/a' }})</h3>
                                 <div class="card-toolbar">
                                     <button
                                         class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
@@ -1779,227 +529,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
+                                            @foreach ($absent as $item)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="symbol symbol-45px me-5">
+                                                                <img src="assets/media/avatars/300-14.jpg"
+                                                                    alt="" />
+                                                            </div>
+                                                            <div class="d-flex justify-content-start flex-column">
+                                                                <a href="#"
+                                                                    class="text-dark fw-bolder text-hover-primary fs-6">
+                                                                    {{ $item->employee->firstname }}
+                                                                    {{ $item->employee->middlename }}
+                                                                    {{ $item->employee->lastname }}
+                                                                </a>
+                                                                <span
+                                                                    class="text-muted fw-bold text-muted d-block fs-7">{{ $item->employee->designation->title }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -2139,102 +690,30 @@
                                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                         <thead>
                                             <tr class="fs-7 fw-bolder border-0 text-gray-400">
-                                                <th class="min-w-150px" colspan="2">EVENT</th>
-                                                <th class="min-w-150px text-end pe-0" colspan="2">DAY</th>
-                                                <th class="text-end min-w-150px" colspan="2">DATE</th>
+                                                <th class="min-w-150px">EVENT</th>
+                                                <th class="text-end min-w-150px">DATE</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Someone Birthday</a>
-                                                </td>
-                                                <td class="pe-0" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Sunday</span>
-                                                    </div>
-                                                </td>
-                                                <td class="" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 1</a>
-                                                </td>
-                                                <td class="pe-0" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Monday</span>
-                                                    </div>
-                                                </td>
-                                                <td class="" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Dashain</a>
-                                                </td>
-                                                <td class="pe-0" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Tuesday</span>
-                                                    </div>
-                                                </td>
-                                                <td class="" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 2</a>
-                                                </td>
-                                                <td class="pe-0" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Wednesday</span>
-                                                    </div>
-                                                </td>
-                                                <td class="" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 3</a>
-                                                </td>
-                                                <td class="pe-0" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Thursday</span>
-                                                    </div>
-                                                </td>
-                                                <td class="" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="" colspan="2">
-                                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Holiday 4</a>
-                                                </td>
-                                                <td class="pe-0" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">Friday</span>
-                                                    </div>
-                                                </td>
-                                                <td class="" colspan="2">
-                                                    <div class="d-flex justify-content-end">
-                                                        <span class="text-dark fw-bolder fs-6 me-3">2022-04-01</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @foreach ($event as $item)
+                                                <tr>
+                                                    <td class="">
+                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">
+                                                            {{ $item->name }}
+                                                            @if($item->type == 'birthday')
+                                                                <span class="badge badge-light-warning">Birthday</span>
+                                                            @elseif ($item->type == 'holiday')
+                                                                <span class="badge badge-light-success">Holiday</span>
+                                                            @endif
+                                                        </a>
+                                                    </td>
+                                                    <td class="pe-0">
+                                                        <div class="d-flex justify-content-end">
+                                                            <span class="text-gray-800 fw-bolder fs-6 me-1">{{ $item->date }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -2244,128 +723,7 @@
                     <div class="col-xl-4">
                         <div class="card card-xl-stretch mb-xl-8">
                             <div class="card-header border-0">
-                                <h3 class="card-title fw-bolder text-dark">Leave (3)</h3>
-                                <div class="card-toolbar">
-                                    <button
-                                        class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
-                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
-                                        data-kt-menu-overflow="true">
-                                        <span class="svg-icon svg-icon-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.3" x="2" y="2" width="20"
-                                                    height="20" rx="4" fill="currentColor" />
-                                                <rect x="11" y="11" width="2.6" height="2.6"
-                                                    rx="1.3" fill="currentColor" />
-                                                <rect x="15" y="11" width="2.6" height="2.6"
-                                                    rx="1.3" fill="currentColor" />
-                                                <rect x="7" y="11" width="2.6" height="2.6"
-                                                    rx="1.3" fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
-                                        data-kt-menu="true">
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Options
-                                            </div>
-                                        </div>
-                                        <div class="separator mb-3 opacity-75"></div>
-                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                            data-kt-menu-placement="right-end">
-                                            <a href="#" class="menu-link px-3">
-                                                <span class="menu-title">Company 1</span>
-                                                <span class="menu-arrow"></span>
-                                            </a>
-                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 1</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 2</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                            data-kt-menu-placement="right-end">
-                                            <a href="#" class="menu-link px-3">
-                                                <span class="menu-title">Company 2</span>
-                                                <span class="menu-arrow"></span>
-                                            </a>
-                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 1</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 2</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="menu-item px-3 my-1">
-                                            <a href="#" class="menu-link px-3">Other</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h3 class="card-title fw-bolder text-dark">Leave ({{ $leave->count() }})</h3>
                             </div>
                             <div class="card-body pt-2">
                                 <div class="table-responsive">
@@ -2377,57 +735,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
+                                            @foreach ($leave as $item)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="d-flex justify-content-start flex-column">
+                                                                <a href="#"
+                                                                    class="text-dark fw-bolder text-hover-primary fs-6 my-4">
+                                                                    {{ $item->name }}
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <div class="symbol symbol-45px me-5">
-                                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                                        </div>
-                                                        <div class="d-flex justify-content-start flex-column">
-                                                            <a href="#"
-                                                                class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                Ana Simmons
-                                                            </a>
-                                                            <span class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                JS, ReactJS</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -2490,8 +811,8 @@
                                         <label class="form-check form-check-custom form-check-solid">
                                             <input class="form-check-input" type="checkbox" value=""
                                                 id="kt_calendar_datepicker_allday" />
-                                            <span class="form-check-label fw-bold"
-                                                for="kt_calendar_datepicker_allday">All Day</span>
+                                            <span class="form-check-label fw-bold" for="kt_calendar_datepicker_allday">All
+                                                Day</span>
                                         </label>
                                     </div>
                                     <div class="row row-cols-lg-2 g-10">
@@ -2537,8 +858,7 @@
                                     <button type="button" id="kt_modal_add_event_submit" class="btn btn-primary">
                                         <span class="indicator-label">Submit</span>
                                         <span class="indicator-progress">Please wait...
-                                            <span
-                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>
                                 </div>
                             </form>
@@ -2624,8 +944,7 @@
                                     <span class="svg-icon svg-icon-1 svg-icon-success me-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
-                                            <circle fill="currentColor" cx="12" cy="12"
-                                                r="8" />
+                                            <circle fill="currentColor" cx="12" cy="12" r="8" />
                                         </svg>
                                     </span>
                                     <div class="fs-6">
@@ -2637,8 +956,7 @@
                                     <span class="svg-icon svg-icon-1 svg-icon-danger me-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
                                             viewBox="0 0 24 24" version="1.1">
-                                            <circle fill="currentColor" cx="12" cy="12"
-                                                r="8" />
+                                            <circle fill="currentColor" cx="12" cy="12" r="8" />
                                         </svg>
                                     </span>
                                     <div class="fs-6">

@@ -19,11 +19,17 @@ class ShiftAssignment extends Model
     ];
 
     protected $casts = [
-        'date' => 'datetime',
+        'date' => 'date',
         'extra' => 'array',
     ];
 
-    public function shift() {
+    public function shift()
+    {
         return $this->belongsTo(Shift::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(User::class);
     }
 }

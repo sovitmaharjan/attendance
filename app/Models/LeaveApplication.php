@@ -23,7 +23,7 @@ class LeaveApplication extends Model
     ];
 
     public $casts = [
-        'date' => 'datetime'
+        'date' => 'date'
     ];
 
     public function leave_application_dates()

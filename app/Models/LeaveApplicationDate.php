@@ -15,6 +15,6 @@ class LeaveApplicationDate extends Model
     ];
 
     public $casts = [
-        'date' => 'datetime'
+        'date' => 'date'
     ];
 }

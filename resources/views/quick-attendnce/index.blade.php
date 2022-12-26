@@ -273,7 +273,11 @@
                                                 <td>{{ $item->out_remark }}</td>
                                                 <td>{{ $item->work_hour }}</td>
                                                 <td>N/A</td>
-                                                <td></td>
+                                                <td>
+                                                    {{ $item->holiday_name }}
+                                                    <br />{{ $item->leave_name }}
+                                                    <br />{{ $item->off_day }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     @endisset

@@ -18,8 +18,8 @@ class Holiday extends Model
     ];
 
     public $casts = [
-        'from_date' => 'datetime',
-        'to_date' => 'datetime'
+        'from_date' => 'date',
+        'to_date' => 'date'
     ];
 
     public function holiday_dates()

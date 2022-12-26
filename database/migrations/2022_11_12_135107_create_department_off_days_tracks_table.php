@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Department::class)->nullable()->onDelete('cascade');
             $table->json('days')->nullable();
             $table->date('date')->nullable();
-            $table->dateTime('date_time')->nullable();
+            $table->date('date_time')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

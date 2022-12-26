@@ -61,9 +61,9 @@ class User extends Authenticatable implements HasMedia
     protected $appends = ['full_name'];
 
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'dob' => 'datetime',
-        'join_date' => 'datetime',
+        'email_verified_at' => 'date',
+        'dob' => 'date',
+        'join_date' => 'date',
         'extra' => 'array',
     ];
 

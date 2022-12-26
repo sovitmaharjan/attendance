@@ -18,39 +18,49 @@ class AttendanceReportController extends Controller
         if ($request->employee) {
             $data['report'] = DB::table('shift_assignments as sa')
                 ->join('shifts as s', 's.id', '=', 'sa.shift_id')
+                ->leftJoin('holiday_dates as hd', 'hd.date', '=', 'sa.date')
+                ->leftJoin('holidays as h', 'h.id', '=', 'hd.holiday_id')
+                ->leftJoin(
+                    DB::raw('(select 
+                        lad.date as q1_date,
+                        la.to_date as q1_to_date,
+                        l.name as q1_leave_name
+                    from leave_applications la 
+                    join leaves l on l.id = la.leave_id
+                    join leave_application_dates lad on lad.leave_application_id = la.id
+                    where la.employee_id = 1) q1'),
+                    function ($join) {
+                        $join->on('q1.q1_date', '=', 'sa.date');
+                    }
+                )
                 ->select(
                     'sa.id',
                     'sa.shift_id',
                     'sa.employee_id',
                     DB::raw('IFNULL(DATE_FORMAT(sa.in_time, "%H:%i"), "") as in_time'),
                     DB::raw('IFNULL(DATE_FORMAT(sa.out_time, "%H:%i"), "") as out_time'),
-                    DB::raw('DATE_FORMAT(sa.date, "%Y-%m-%d") as date'),
+                    'sa.date',
                     DB::raw('DATE_FORMAT(sa.date, "%W") as day'),
                     'sa.extra',
-                    DB::raw('DATE_FORMAT(sa.created_at, "%Y-%m-%d") as created_at'),
-                    DB::raw('DATE_FORMAT(sa.updated_at, "%Y-%m-%d") as updated_at'),
                     's.name as shift_name',
                     DB::raw('DATE_FORMAT(s.in_time, "%H:%i") as shift_in_time'),
                     DB::raw('DATE_FORMAT(s.out_time, "%H:%i") as shift_out_time'),
                     DB::raw('DATE_FORMAT(s.in_time_last, "%H:%i") as in_time_last'),
                     DB::raw('DATE_FORMAT(s.out_time_last, "%H:%i") as out_time_last'),
                     's.break_time',
-                    DB::raw('DATE_FORMAT(s.created_at, "%Y-%m-%d") as shift_created_at'),
-                    DB::raw('DATE_FORMAT(s.updated_at, "%Y-%m-%d") as shift_updated_at'),
                     DB::raw('IFNULL(s.extra, "") as shift_extra'),
                     DB::raw('(case when sa.in_time is not null then (case when sa.in_time > s.in_time then "late in" when sa.in_time = s.in_time then "on time"  else "early in" end) else "" end) as in_remark'),
                     DB::raw('(case when sa.out_time is not null then (case when sa.out_time > s.out_time then "late out" when sa.out_time = s.out_time then "on time"  else "early out" end) else "" end) as out_remark'),
                     DB::raw('IFNULL(DATE_FORMAT(TIMEDIFF(sa.in_time, s.in_time), "%H:%i"), "") as in_diff'),
                     DB::raw('IFNULL(DATE_FORMAT(TIMEDIFF(sa.out_time, s.out_time), "%H:%i"), "") as out_diff'),
-                    DB::raw('IFNULL(DATE_FORMAT(TIMEDIFF(sa.out_time, sa.in_time), "%H:%i"), "") as work_hour')
+                    DB::raw('IFNULL(DATE_FORMAT(TIMEDIFF(sa.out_time, sa.in_time), "%H:%i"), "") as work_hour'),
+                    DB::raw('(case when hd.date is not null then h.name else "" end) as holiday_name'),
+                    'q1.q1_leave_name as leave_name',
+                    DB::raw('case when JSON_SEARCH((select days from department_off_days_tracks where department_id = 1), "one", DATE_FORMAT(sa.date, "%W")) is null then "" else "Off day" end as off_day')
                 )
-                ->where([
-                    'employee_id' => $request->employee
-                ])
-                ->whereBetween('date', [$request->from_date, $request->to_date])
                 ->orderBy('date')
                 ->get();
-                // dd($data['report'], $request->all());
+            // dd($data['report'], $request->all());
         }
         return view('quick-attendnce.index', $data);
     }
