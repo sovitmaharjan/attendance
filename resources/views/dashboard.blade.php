@@ -233,7 +233,13 @@
                     <div class="col-xl-4">
                         <div class="card card-xl-stretch mb-xl-8">
                             <div class="card-header border-0">
-                                <h3 class="card-title fw-bolder text-dark">Present ({{ $present->count() ?? 'n/a' }})</h3>
+                                <h3 class="card-title fw-bolder text-dark">
+                                    Present ({{ $present->count() ?? 'n/a' }})
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        aria-label="Shifts must be assigned to the employee"
+                                        data-bs-original-title="Shifts must be assigned to the employee"
+                                        data-kt-initialized="1"></i>
+                                </h3>
                                 <div class="card-toolbar">
                                     <button
                                         class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
@@ -396,7 +402,13 @@
                     <div class="col-xl-4">
                         <div class="card card-xl-stretch mb-xl-8">
                             <div class="card-header border-0">
-                                <h3 class="card-title fw-bolder text-dark">Absent ({{ $absent->count() ?? 'n/a' }})</h3>
+                                <h3 class="card-title fw-bolder text-dark">
+                                    Absent ({{ $absent->count() ?? 'n/a' }})
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                        aria-label="Shifts musht be assigned to the employee"
+                                        data-bs-original-title="Shifts must be assigned to the employee"
+                                        data-kt-initialized="1"></i>
+                                </h3>
                                 <div class="card-toolbar">
                                     <button
                                         class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
@@ -563,131 +575,12 @@
                         <div class="card card-xl-stretch mb-5 mb-xl-8">
                             <div class="card-header border-0">
                                 <h3 class="card-title fw-bolder text-dark">Upcoming Events</h3>
-                                <div class="card-toolbar">
-                                    <button
-                                        class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
-                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
-                                        data-kt-menu-overflow="true">
-                                        <span class="svg-icon svg-icon-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.3" x="2" y="2" width="20"
-                                                    height="20" rx="4" fill="currentColor" />
-                                                <rect x="11" y="11" width="2.6" height="2.6"
-                                                    rx="1.3" fill="currentColor" />
-                                                <rect x="15" y="11" width="2.6" height="2.6"
-                                                    rx="1.3" fill="currentColor" />
-                                                <rect x="7" y="11" width="2.6" height="2.6"
-                                                    rx="1.3" fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
-                                        data-kt-menu="true">
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Options
-                                            </div>
-                                        </div>
-                                        <div class="separator mb-3 opacity-75"></div>
-                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                            data-kt-menu-placement="right-end">
-                                            <a href="#" class="menu-link px-3">
-                                                <span class="menu-title">Company 1</span>
-                                                <span class="menu-arrow"></span>
-                                            </a>
-                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 1</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 2</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                            data-kt-menu-placement="right-end">
-                                            <a href="#" class="menu-link px-3">
-                                                <span class="menu-title">Company 2</span>
-                                                <span class="menu-arrow"></span>
-                                            </a>
-                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 1</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
-                                                    <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 2</span>
-                                                        <span class="menu-arrow"></span>
-                                                    </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="menu-item px-3 my-1">
-                                            <a href="#" class="menu-link px-3">Other</a>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="card-body py-3">
                                 <div class="table-responsive">
-                                    <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                    <table
+                                        class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 datatable-setting-1">
                                         <thead>
                                             <tr class="fs-7 fw-bolder border-0 text-gray-400">
                                                 <th class="min-w-150px">EVENT</th>
@@ -698,9 +591,10 @@
                                             @foreach ($event as $item)
                                                 <tr>
                                                     <td class="">
-                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">
+                                                        <a href="#"
+                                                            class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">
                                                             {{ $item->name }}
-                                                            @if($item->type == 'birthday')
+                                                            @if ($item->type == 'birthday')
                                                                 <span class="badge badge-light-warning">Birthday</span>
                                                             @elseif ($item->type == 'holiday')
                                                                 <span class="badge badge-light-success">Holiday</span>
@@ -709,7 +603,8 @@
                                                     </td>
                                                     <td class="pe-0">
                                                         <div class="d-flex justify-content-end">
-                                                            <span class="text-gray-800 fw-bolder fs-6 me-1">{{ $item->date }}</span>
+                                                            <span
+                                                                class="text-gray-800 fw-bolder fs-6 me-1">{{ $item->date }}</span>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -998,7 +893,7 @@
                 },
                 "dom": "<'row'" +
                     // "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                    "<'col-sm-12 d-flex align-items-center justify-content-center'f>" +
+                    "<'col-sm-12 d-flex align-items-center justify-content-end'f>" +
                     ">" +
 
                     "<'table-responsive'tr>" +

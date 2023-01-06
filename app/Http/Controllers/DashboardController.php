@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Department;
-use App\Models\Holiday;
 use App\Models\Leave;
 use App\Models\ShiftAssignment;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 

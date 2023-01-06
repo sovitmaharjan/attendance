@@ -272,7 +272,7 @@
                                                 <td>{{ $item->out_diff }}</td>
                                                 <td>{{ $item->out_remark }}</td>
                                                 <td>{{ $item->work_hour }}</td>
-                                                <td>N/A</td>
+                                                <td>n/a</td>
                                                 <td>
                                                     {{ $item->holiday_name }}
                                                     <br />{{ $item->leave_name }}

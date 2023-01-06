@@ -12,12 +12,12 @@ class HolidayTableSeeder extends Seeder
     {
         $holiday = Holiday::create([
             'name' => 'test holiday 1',
-            'from_date' => '2022-11-03',
-            'to_date' => '2022-11-03',
+            'from_date' => '2022-11-18',
+            'to_date' => '2022-11-18',
             'quantity' => 1
         ]);
         $holiday->holiday_dates()->create([
-            'date' => '2022-11-03'
+            'date' => '2022-11-18'
         ]);
     }
 }

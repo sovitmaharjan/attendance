@@ -67,10 +67,14 @@ class AttendanceReportController extends Controller
 
     public function monthlyAttendanceReport(Request $request)
     {
+        // dd($request->all());
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         if ($request->employee) {
+            dd(
+                DB::select('call countable_report(?,?,?)', array($request->employee, $request->from_date, $request->to_date))
+            );
             DB::statement("SET SQL_MODE=''");
             $data['report'] = DB::table('shift_assignments as sa')
                 ->join('shifts as s', 's.id', '=', 'sa.shift_id')

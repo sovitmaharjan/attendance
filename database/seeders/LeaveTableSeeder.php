@@ -35,12 +35,12 @@ class LeaveTableSeeder extends Seeder
                 'remaining_days' => 12
             ]
         );
-        $difference = Carbon::parse('2022-11-03')->diffInDays(Carbon::parse('2022-11-05'));
+        $difference = Carbon::parse('2022-11-17')->diffInDays(Carbon::parse('2022-11-17'));
         $data = [
             'leave_id' => 1,
             'employee_id' => 1,
-            'from_date' => '2022-11-03',
-            'to_date' => '2022-11-05',
+            'from_date' => '2022-11-17',
+            'to_date' => '2022-11-17',
             'leave_days_count' => $difference + 1,
             'employee_id' => 1,
             'approver' => 1
@@ -49,7 +49,7 @@ class LeaveTableSeeder extends Seeder
         $leave_application = LeaveApplication::create($data);
         for ($i = 0; $i <= $difference; $i++) {
             $leave_application->leave_application_dates()->create([
-                'date' => Carbon::parse('2022-11-03')->addDays($i)
+                'date' => Carbon::parse('2022-11-17')->addDays($i)
             ]);
         }
         $leave_assignment->remaining_days()->where('leave_assignment_id', $leave_assignment->id)->decrement('remaining_days', $difference + 1);
