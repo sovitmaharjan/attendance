@@ -72,38 +72,9 @@ class AttendanceReportController extends Controller
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         if ($request->employee) {
-            dd(
-                DB::select('call countable_report(?,?,?)', array($request->employee, $request->from_date, $request->to_date))
-            );
-            DB::statement("SET SQL_MODE=''");
-            $data['report'] = DB::table('shift_assignments as sa')
-                ->join('shifts as s', 's.id', '=', 'sa.shift_id')
-                ->select(
-                    DB::raw('count(*) as total_day'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as weekend_day'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as absent_day'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as public_holiday'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as working_day'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as absent_day'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as kriya'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as maternity'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as paternity'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as isolation'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as travel'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as present_day'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as work_in_weekend'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as work_on_public_holiday'),
-                    DB::raw('count(case when DAYOFWEEK(sa.date) in (1, 7) then 1 end) as worked_hour')
-                )
-                ->where([
-                    'employee_id' => 1
-                ])
-                ->whereBetween('date', ['2022-11-01', '2022-11-20'])
-                ->orderBy('date')
-                ->first();
+            $data['report'] = DB::select('call countable_report(?,?,?)', array($request->employee, $request->from_date, $request->to_date))[0];
             // dd($data['report']);
         }
-        DB::statement("SET SQL_MODE='ONLY_FULL_GROUP_BY'");
         return view('monthly-attendance.index', $data);
     }
 }

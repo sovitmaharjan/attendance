@@ -245,22 +245,17 @@
                                     <thead>
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>Employee (Id)</th>
-                                            <th>Total Days</th>
-                                            <th>Weekend</th>
-                                            <th>PH</th>
-                                            <th>Working Day</th>
-                                            <th>Absent Day</th>
+                                            <th>Total Day</th>
+                                            <th>Off Day</th>
+                                            <th>Holiday</th>
+                                            <th>To Work Day</th>
                                             
-                                            <th>Kriya</th>
-                                            <th>Maternity</th>
-                                            <th>Paternity</th>
-                                            <th>Isolation</th>
+                                            <th>Worked Day</th>
+                                            <th>Leave Taken</th>
+                                            <th>Absent Day</th>
+                                            <th>Work On Holiday</th>
 
-                                            <th>Present Day</th>
-                                            <th>Worked On Weekend</th>
-                                            <th>Worked On PH</th>
-                                            <th>Total Present Days</th>
-                                            <th>Worked Hours</th>
+                                            <th>Worked Hour</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -268,19 +263,16 @@
                                         <tr>
                                             <td>employee data </td>
                                             <td>{{ $report->total_day }}</td>
-                                            <td>{{ $report->weekend_day }}</td>
-                                            <td>{{ $report->absent_day }}</td>
-                                            <td>{{ $report->public_holiday }}</td>
+                                            <td>{{ $report->off_day }}</td>
+                                            <td>{{ $report->holiday }}</td>
                                             <td>{{ $report->working_day }}</td>
-                                            <td>{{ $report->kriya }}</td>
-                                            <td>{{ $report->maternity }}</td>
-                                            <td>{{ $report->paternity }}</td>
-                                            <td>{{ $report->isolation }}</td>
-                                            <td>{{ $report->travel }}</td>
-                                            <td>{{ $report->present_day }}</td>
-                                            <td>{{ $report->work_in_weekend }}</td>
-                                            <td>{{ $report->work_on_public_holiday }}</td>
-                                            <td>{{ $report->worked_hour }}</td>
+                                            
+                                            <td>{{ $report->worked_day }}</td>
+                                            <td>{{ $report->leave_taken }}</td>
+                                            <td>{{ $report->absent_day }}</td>
+                                            <td>{{ $report->worked_on_holiday }}</td>
+                                            
+                                            <td>{{ $report->work_hour }}</td>
                                         </tr>
                                     @endisset
                                     </tbody>
