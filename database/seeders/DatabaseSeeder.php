@@ -41,5 +41,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShiftAssignmentTableSeeder::class);
         $this->call(HolidayTableSeeder::class);
         $this->call(LeaveTableSeeder::class);
+        $this->call(DynamicValueTableSeeder::class);
     }
 }

@@ -10,17 +10,24 @@ class DynamicValueTableSeeder extends Seeder
 {
     public function run()
     {
-        $data['prefix'] = ['Mr.', 'Mrs.', 'Miss', 'Mx.', 'Ms.', 'Dr.', 'Er.'];
-        $data['marital_status'] = ['Married', 'Unmarried', 'Divorced', 'Separated'];
-        $data['status'] = ['Working', 'Suspended', 'Discharged', 'Dismissed', 'Resigned', 'Inactive'];
-        $data['type'] = ['Temporary', 'Permanent', 'Contract', 'Casual', 'Trainee', 'Probation'];
+        $data['prefix'] = ['Mr.', 'Mrs.', 'Ms.'];
+        $data['marital_status'] = ['Married', 'Unmarried', 'Divorced'];
+        $data['status'] = ['Working', 'Suspended', 'Dismissed', 'Resigned', 'Inactive'];
+        $data['type'] = ['Temporary', 'Permanent', 'Contract', 'Trainee', 'Probation'];
 
-        // foreach($data as $key => $item) {
-        //     foreach($item as $item2) {
-        //         DynamicValue::create([
-                    
-        //         ]);
-        //     }
-        // }
+        foreach($data as $key => $item) {
+            $key = $key;
+            foreach($item as $item2) {
+                DynamicValue::create([
+                    'key' => $key,
+                    'value' => json_encode([
+                        'name' => $item2,
+                        'value' => 1
+                    ]),
+                    'name' => 'Mr.',
+                    'status' => 1
+                ]);
+            }
+        }
     }
 }

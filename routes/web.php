@@ -27,6 +27,15 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('test--49', function() {
+    dd(
+        json_encode([
+            'name' => 'asd',
+            'value' => 1
+        ])
+    );
+});
+
 Route::get('/login', [LoginController::class, 'index']);
 // duita name login vayara maila  hatako hoi yo mathi ko chai
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
