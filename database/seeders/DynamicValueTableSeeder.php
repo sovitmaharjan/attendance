@@ -12,8 +12,8 @@ class DynamicValueTableSeeder extends Seeder
     {
         $data['prefix'] = ['Mr.', 'Mrs.', 'Ms.'];
         $data['marital_status'] = ['Married', 'Unmarried', 'Divorced'];
-        $data['status'] = ['Working', 'Suspended', 'Dismissed', 'Resigned', 'Inactive'];
-        $data['type'] = ['Temporary', 'Permanent', 'Contract', 'Trainee', 'Probation'];
+        $data['employee_status'] = ['Working', 'Suspended', 'Dismissed', 'Resigned', 'Inactive'];
+        $data['employee_type'] = ['Temporary', 'Permanent', 'Contract', 'Trainee', 'Probation'];
 
         foreach($data as $key => $item) {
             $key = $key;
@@ -24,7 +24,7 @@ class DynamicValueTableSeeder extends Seeder
                         'name' => $item2,
                         'value' => 1
                     ]),
-                    'name' => 'Mr.',
+                    'name' => $item2,
                     'status' => 1
                 ]);
             }
