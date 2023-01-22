@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
 
-    Route::resource('/employee', EmployeeController::class);
+    Route::resource('/employee', EmployeeController::class); //->middleware(['checkPermission:delete-dashboard'])
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);

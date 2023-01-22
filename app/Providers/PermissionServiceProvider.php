@@ -45,5 +45,12 @@ class PermissionServiceProvider extends ServiceProvider
             }
             return false;
         });
+
+        Blade::if('hasRole', function ($role){
+            if(Auth::user()->role->slug == $role){
+                return true;
+            }
+            return false;
+        });
     }
 }
