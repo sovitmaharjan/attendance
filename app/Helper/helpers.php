@@ -95,3 +95,9 @@ if (!function_exists('statusTitle')) {
         return $status == 1 ? 'Active' : 'Inactive';
     }
 }
+
+if (!function_exists('getUser')){
+    function getUser(){
+        return \Illuminate\Support\Facades\Auth::user();
+    }
+}
