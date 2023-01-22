@@ -139,7 +139,7 @@
                 </div>
                 {{-- @can('view-dashboard') --}}
 {{--                @hasRole('company-admin')--}}
-                @hasAnyRole(['admin', 'company-admin'])
+{{--                @hasAnyRole(['admin', 'company-admin'])--}}
                 <div data-kt-menu-trigger="click"
                     class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav || $holidayNav || $leaveNav || $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
                     <span class="menu-link">
@@ -301,7 +301,7 @@
                 </div>
                 {{-- @endcan --}}
 {{--                @endhasRole--}}
-                @endhasAnyRole
+{{--                @endhasAnyRole--}}
                 <div data-kt-menu-trigger="click"
                     class="menu-item menu-accordion {{ $forceAttendanceNav ? 'here show' : '' }}">
                     <span class="menu-link">
