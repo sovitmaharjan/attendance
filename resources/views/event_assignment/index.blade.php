@@ -43,7 +43,9 @@
                             </a>
                         </div>
                     @endcan
-                    <a href="{{ route("event.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    @can('add-event')
+                        <a href="{{ route("event.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -55,10 +57,11 @@
                             <span class="card-label fw-bolder fs-3 mb-1">Event List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you holiday group </span> --}}
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                             data-bs-trigger="hover"
-                             title="">
-                            <a href="{{ route("event.create") }}" class="btn btn-primary">
+                        @can('add-event')
+                            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 data-bs-trigger="hover"
+                                 title="">
+                                <a href="{{ route("event.create") }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -68,9 +71,10 @@
                                               fill="currentColor"></rect>
                                     </svg>
                                 </span>
-                                Add New
-                            </a>
-                        </div>
+                                    Add New
+                                </a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -105,8 +109,9 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    <a href="{{ route("event.edit", $event->id) }}"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    @can('edit-event')
+                                                        <a href="{{ route("event.edit", $event->id) }}"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -118,16 +123,18 @@
                                                                         fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
-                                                    <form id="form{{ $event->id }}"
-                                                          action="{{ route("event.destroy", $event->id) }}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method("delete")
-                                                    </form>
-                                                    <a href="javascript:viod(0);"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
-                                                       data-id="{{ $event->id }}" data-name="{{ $event->title }}">
+                                                        </a>
+                                                    @endcan
+                                                    @can('delete-event')
+                                                        <form id="form{{ $event->id }}"
+                                                              action="{{ route("event.destroy", $event->id) }}"
+                                                              method="POST">
+                                                            @csrf
+                                                            @method("delete")
+                                                        </form>
+                                                        <a href="javascript:viod(0);"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
+                                                           data-id="{{ $event->id }}" data-name="{{ $event->title }}">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -142,7 +149,8 @@
                                                                           fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
+                                                        </a>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>
