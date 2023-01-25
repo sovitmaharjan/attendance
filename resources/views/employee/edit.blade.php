@@ -24,9 +24,10 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route('employee.index') }}"
-                           class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                    @can('view-employee')
+                        <div class="m-0">
+                            <a href="{{ route('employee.index') }}"
+                               class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -38,16 +39,20 @@
                                           fill="black"></path>
                                 </svg>
                             </span>
-                            List
-                        </a>
-                    </div>
-                    <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
+                                List
+                            </a>
+                        </div>
+                    @endcan
+                    @can('add-employee')
+                        <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    @endcan
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form class="form d-flex flex-column flex-lg-row" method="POST" action="{{ route('employee.update', $employee->id) }}"
+                <form class="form d-flex flex-column flex-lg-row" method="POST"
+                      action="{{ route('employee.update', $employee->id) }}"
                       enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -139,11 +144,14 @@
                                                     @endforeach
                                                 </select>
                                                 <input type="text" class="form-control mb-2" name="firstname"
-                                                       value="{{ old('firstname', $employee->firstname) }}" placeholder="Firstname" required/>
+                                                       value="{{ old('firstname', $employee->firstname) }}"
+                                                       placeholder="Firstname" required/>
                                                 <input type="text" class="form-control mb-2" name="middlename"
-                                                       value="{{ old('middlename', $employee->middlename) }}" placeholder="Middlename"/>
+                                                       value="{{ old('middlename', $employee->middlename) }}"
+                                                       placeholder="Middlename"/>
                                                 <input type="text" class="form-control mb-2" name="lastname"
-                                                       value="{{ old('lastname', $employee->lastname) }}" placeholder="Lastname" required/>
+                                                       value="{{ old('lastname', $employee->lastname) }}"
+                                                       placeholder="Lastname" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -185,12 +193,14 @@
                                             <div class="d-flex gap-5">
                                                 <input type="text" class="form-control mb-2 eng_date" name="dob"
                                                        onchange="engtonep($(this), 'nep_date')"
-                                                       value="{{ old('dob', getFormattedDate($employee->dob)) }}" placeholder="yyyy-dd-mm" id="eng_date"
+                                                       value="{{ old('dob', getFormattedDate($employee->dob)) }}"
+                                                       placeholder="yyyy-dd-mm" id="eng_date"
                                                        readonly
                                                        required/>
                                                 <input type="text" class="form-control mb-2 nep_date" name="nepali_dob"
                                                        onclick="neptoeng('nep_date', 'eng_date')"
-                                                       value="{{ old('nepali_dob', $employee->extra != null && $employee->extra['nepali_dob'] ? $employee->extra['nepali_dob'] : '') }}" placeholder="yyyy-dd-mm"
+                                                       value="{{ old('nepali_dob', $employee->extra != null && $employee->extra['nepali_dob'] ? $employee->extra['nepali_dob'] : '') }}"
+                                                       placeholder="yyyy-dd-mm"
                                                        id="nep_date"/>
                                             </div>
                                         </div>
@@ -199,12 +209,14 @@
                                             <div class="d-flex gap-5">
                                                 <input type="text" onchange="engtonep($(this), 'nep_join_date')"
                                                        class="form-control mb-2 join_date" name="join_date"
-                                                       value="{{ old('join_date', getFormattedDate($employee->join_date)) }}" placeholder="yyyy-dd-mm"
+                                                       value="{{ old('join_date', getFormattedDate($employee->join_date)) }}"
+                                                       placeholder="yyyy-dd-mm"
                                                        id="join_date"
                                                        required readonly/>
                                                 <input type="text" onclick="neptoeng('nep_join_date', 'eng_join_date')"
                                                        class="form-control mb-2 nep_join_date" name="nepali_join_date"
-                                                       value="{{ old('nepali_join_date', $employee->extra != null && $employee->extra['nepali_join_date'] ? $employee->extra['nepali_join_date'] : '') }}" placeholder="yyyy-dd-mm"
+                                                       value="{{ old('nepali_join_date', $employee->extra != null && $employee->extra['nepali_join_date'] ? $employee->extra['nepali_join_date'] : '') }}"
+                                                       placeholder="yyyy-dd-mm"
                                                        id="nep_join_date" readonly/>
                                             </div>
                                         </div>
@@ -216,7 +228,8 @@
                                             <label class="required form-label">Phone</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" name="phone"
-                                                       value="{{ old('phone', $employee->phone) }}" placeholder="9800000000"/>
+                                                       value="{{ old('phone', $employee->phone) }}"
+                                                       placeholder="9800000000"/>
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -235,7 +248,8 @@
                                             <label class="required form-label">Citizenship No</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" name="citizenship_no"
-                                                       value="{{ old('citizenship_no', $employee->extra && array_key_exists('citizenship_no', $employee->extra) ? $employee->extra['citizenship_no'] : '')  }}" placeholder="05-01-27-87654"/>
+                                                       value="{{ old('citizenship_no', $employee->extra && array_key_exists('citizenship_no', $employee->extra) ? $employee->extra['citizenship_no'] : '')  }}"
+                                                       placeholder="05-01-27-87654"/>
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -253,7 +267,8 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Email</label>
                                             <input type="text" class="form-control mb-2" name="email"
-                                                   value="{{ old('email', $employee->email) }}" placeholder="example@mail.com" required/>
+                                                   value="{{ old('email', $employee->email) }}"
+                                                   placeholder="example@mail.com" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -314,7 +329,8 @@
                                                     data-hide-search="false" data-placeholder="Select Role">
                                                 <option></option>
                                                 @foreach($GLOBALS['roles'] as $role)
-                                                    <option value="{{$role->id}}" @selected(old('role_id', $employee->role_id) == $role->id)>{{$role->name}}</option>
+                                                    <option
+                                                        value="{{$role->id}}" @selected(old('role_id', $employee->role_id) == $role->id)>{{$role->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -375,7 +391,8 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Official Email</label>
                                             <input type="text" class="form-control mb-2" name="official_email"
-                                                   value="{{ old('official_email', $employee->official_email) }}" placeholder="example@mail.com"/>
+                                                   value="{{ old('official_email', $employee->official_email) }}"
+                                                   placeholder="example@mail.com"/>
                                         </div>
                                     </div>
                                 </div>

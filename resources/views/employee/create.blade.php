@@ -24,9 +24,10 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route('employee.index') }}"
-                           class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                    @can('view-employee')
+                        <div class="m-0">
+                            <a href="{{ route('employee.index') }}"
+                               class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -38,16 +39,20 @@
                                           fill="black"></path>
                                 </svg>
                             </span>
-                            List
-                        </a>
-                    </div>
-                    <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
+                                List
+                            </a>
+                        </div>
+                    @endcan
+                    @can('add-employee')
+                        <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    @endcan
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="employee_form" class="form d-flex flex-column flex-lg-row" method="POST" action="{{ route('employee.store') }}"
+                <form id="employee_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                      action="{{ route('employee.store') }}"
                       enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="company_id" value="{{auth()->user()->company_id}}">
@@ -235,7 +240,8 @@
                                             <label class="required form-label">Citizenship No</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" name="citizenship_no"
-                                                       value="{{ old('citizenship_no') }}" placeholder="05-01-27-87654"/>
+                                                       value="{{ old('citizenship_no') }}"
+                                                       placeholder="05-01-27-87654"/>
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -295,7 +301,7 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -316,7 +322,8 @@
                                                     data-hide-search="false" data-placeholder="Select Role">
                                                 <option></option>
                                                 @foreach($GLOBALS['roles'] as $role)
-                                                    <option value="{{$role->id}}" @selected(old('role_id') == $role->id)>{{$role->name}}</option>
+                                                    <option
+                                                        value="{{$role->id}}" @selected(old('role_id') == $role->id)>{{$role->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
