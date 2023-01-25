@@ -24,9 +24,10 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route("employee.index") }}"
-                           class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                    @can('view-employee')
+                        <div class="m-0">
+                            <a href="{{ route("employee.index") }}"
+                               class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -38,10 +39,13 @@
                                           fill="black"></path>
                                 </svg>
                             </span>
-                            List
-                        </a>
-                    </div>
-                    <a href="{{ route("employee.create") }}" class="btn btn-sm btn-primary">Create</a>
+                                List
+                            </a>
+                        </div>
+                    @endcan
+                    @can('add-employee')
+                        <a href="{{ route("employee.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -53,10 +57,11 @@
                             <span class="card-label fw-bolder fs-3 mb-1">Employee List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you employee group </span> --}}
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                             data-bs-trigger="hover"
-                             title="">
-                            <a href="{{ route("employee.create") }}" class="btn btn-primary">
+                        @can('add-employee')
+                            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 data-bs-trigger="hover"
+                                 title="">
+                                <a href="{{ route("employee.create") }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -66,9 +71,10 @@
                                               fill="currentColor"></rect>
                                     </svg>
                                 </span>
-                                Add New
-                            </a>
-                        </div>
+                                    Add New
+                                </a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -101,8 +107,9 @@
                                             <td>{{$employee->status}}</td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    <a href="{{ route("employee.edit", $employee->id) }}"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    @can('edit-employee')
+                                                        <a href="{{ route("employee.edit", $employee->id) }}"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -114,17 +121,19 @@
                                                                         fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
-                                                    <form id="form{{ $employee->id }}"
-                                                          action="{{ route("employee.destroy", $employee->id) }}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method("delete")
-                                                    </form>
-                                                    <a href="javascript:viod(0);"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
-                                                       data-id="{{ $employee->id }}"
-                                                       data-name="{{ $employee->firstname . ' ' . $employee->middlename ? $employee->middlename . ' ' : '' . $employee->lastname }}">
+                                                        </a>
+                                                    @endcan
+                                                    @can('delete-employee')
+                                                        <form id="form{{ $employee->id }}"
+                                                              action="{{ route("employee.destroy", $employee->id) }}"
+                                                              method="POST">
+                                                            @csrf
+                                                            @method("delete")
+                                                        </form>
+                                                        <a href="javascript:viod(0);"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
+                                                           data-id="{{ $employee->id }}"
+                                                           data-name="{{ $employee->firstname . ' ' . $employee->middlename ? $employee->middlename . ' ' : '' . $employee->lastname }}">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -139,13 +148,16 @@
                                                                           fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
-                                                    <a href="javascript:viod(0);"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
-                                                       data-target-id="{{$employee->id}}"
-                                                       data-id="{{$employee->id}}" data-name="{{$employee->full_name}}"
-                                                       data-bs-toggle="modal"
-                                                       data-bs-target="#kt_modal_new_target">
+                                                        </a>
+                                                    @endcan
+                                                    @can('substitute-work-day')
+                                                        <a href="javascript:viod(0);"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
+                                                           data-target-id="{{$employee->id}}"
+                                                           data-id="{{$employee->id}}"
+                                                           data-name="{{$employee->full_name}}"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#kt_modal_new_target">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                      height="16" fill="currentColor"
@@ -155,7 +167,8 @@
                                                                           </path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
+                                                        </a>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>
@@ -212,7 +225,7 @@
                                     <input type="text" class="form-control mb-2 eng_date" name="work_date"
                                            onchange="engtonep($(this), 'nep_date')"
                                            value="{{ old('work_date') }}" placeholder="yyyy-dd-mm" id="eng_date"
-                                          readonly />
+                                           readonly/>
                                     <input type="hidden" class="form-control mb-2 nep_date" name="nepali_work_date"
                                            onclick="neptoeng('nep_date', 'eng_date')"
                                            value="{{ old('nepali_work_date') }}" placeholder="yyyy-dd-mm"
@@ -227,7 +240,7 @@
                                            onchange="engtonep($(this), 'nep_dat')"
                                            value="{{ old('substituted_to_date') }}" placeholder="yyyy-dd-mm"
                                            id="eng_dat" readonly
-                                           />
+                                    />
                                     <input type="hidden" class="form-control mb-2 nep_dat"
                                            name="nepali_substituted_to_date"
                                            onclick="neptoeng('nep_dat', 'eng_dat')"
@@ -349,7 +362,7 @@
                 data: formData,
                 dataType: 'json',
                 success: function (data) {
-                    if(data.success === true){
+                    if (data.success === true) {
                         toastr.success(data.message);
                         $("#kt_modal_new_target").modal('hide');
                         location.reload();
