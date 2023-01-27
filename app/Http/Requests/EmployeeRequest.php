@@ -18,8 +18,8 @@ class EmployeeRequest extends FormRequest
             'firstname' => ['required'],
             'middlename' => ['nullable'],
             'lastname' => ['required'],
-            'email' => ['required', 'unique:users,email,'.$this->id],
-            'phone' => ['required', 'numeric'],
+            'email' => ['required', 'unique:users,email,'.request()->route()->parameter('employee')->id],
+            'phone' => ['required'],
             'address' => ['required'],
             'gender' => ['required', 'in:Male,Female,Other'],
             'marital_status' => ['required'],
@@ -34,7 +34,7 @@ class EmployeeRequest extends FormRequest
             'supervisor_id' => ['nullable'],
             'status' => ['required'],
             'type' => ['required'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:5120']
+            'base64' => ['nullable']
         ];
     }
 }
