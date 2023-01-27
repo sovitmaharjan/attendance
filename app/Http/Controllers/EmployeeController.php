@@ -17,7 +17,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $data['employees'] = User::all();
+        $data['employees'] = User::orderBy('id', 'desc')->get();
         return view('employee.index', $data);
     }
 
@@ -36,8 +36,6 @@ class EmployeeController extends Controller
     {
         try {
             DB::beginTransaction();
-            // $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-            // $login_id = Company::find($request->company_id)->code . '-' . $next_id;
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
                 'nepali_join_date' => $request->nepali_join_date,
@@ -47,17 +45,17 @@ class EmployeeController extends Controller
             $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
-                // 'login_id' => $login_id,
                 'password' => Str::random(7)
             ]);
             $employee = User::create($request->all());
-            if (isset($request->image) && $request->image != null) {
-                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            if (isset($request->base64) && $request->base64 != null) {
+                $employee->addMediaFromBase64($request->base64)->usingFilename(md5(Str::random(8) . time()) . '.' . explode('/', mime_content_type($request->base64))[1])->toMediaCollection('image');
             }
             DB::commit();
-            return back()->with('success', 'Employee has been created');
+            return redirect()->route('employee.index')->with('success', 'Employee has been created');
         } catch (Exception $e) {
             DB::rollBack();
+            dd($e);
             return back()->with('error', $e->getMessage());
         }
     }
@@ -89,12 +87,16 @@ class EmployeeController extends Controller
                 'extra' => $extra,
             ]);
             $employee->update($request->all());
-            if (isset($request->image) && $request->image != null) {
-                $employee->clearMediaCollection('image');
-                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            if (isset($request->base64) && $request->base64 != null) {
+                if($request->base64 == 1) {
+                    $employee->clearMediaCollection('image');
+                } else {
+                    $employee->clearMediaCollection('image');
+                    $employee->addMediaFromBase64($request->base64)->usingFilename(md5(Str::random(8) . time()) . '.' . explode('/', mime_content_type($request->base64))[1])->toMediaCollection('image');
+                }
             }
             DB::commit();
-            return redirect()->route('employee.index')->with('success', 'Employee has been updated');
+            return back()->with('success', 'Employee has been updated');
         } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());

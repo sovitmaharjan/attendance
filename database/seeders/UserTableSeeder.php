@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
 {
     public function run()
     {
-        $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
+        $next_id = User::orderBy('id', 'desc')->first() != false ? User::orderBy('id', 'desc')->first()->id + 1 : 1;
         User::create([
             'prefix' => 'Mr.',
             'firstname' => 'Tom',
