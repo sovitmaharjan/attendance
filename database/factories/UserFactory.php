@@ -39,7 +39,7 @@ class UserFactory extends Factory
         }
         $gender = ['Male', 'Female'];
         return [
-            'prefix' => fake()->suffix(),
+            'prefix' => 'Mr.',
             'firstname' => fake()->firstName(),
             'middlename' => fake()->lastName(),
             'lastname' => fake()->lastName(),

@@ -37,7 +37,7 @@ if (!function_exists('getGenders')) {
 if (!function_exists('generateLoginId')) {
     function generateLoginId($company_id)
     {
-        $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
+        $next_id = User::orderBy('id', 'desc')->first() != false ? User::orderBy('id', 'desc')->first()->id + 1 : 1;
         $login_id = Company::find($company_id)->code . '-' . $next_id;
         return $login_id;
     }
@@ -93,5 +93,11 @@ if (!function_exists('statusTitle')) {
     function statusTitle($status)
     {
         return $status == 1 ? 'Active' : 'Inactive';
+    }
+}
+
+if (!function_exists('getUser')){
+    function getUser(){
+        return \Illuminate\Support\Facades\Auth::user();
     }
 }

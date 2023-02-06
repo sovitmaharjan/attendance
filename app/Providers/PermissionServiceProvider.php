@@ -40,7 +40,21 @@ class PermissionServiceProvider extends ServiceProvider
         }
 
         Blade::if('can', function($permission){
-            if(Auth::user()->hasPermission($permission)){
+            if(getUser()->hasPermission($permission)){
+                return true;
+            }
+            return false;
+        });
+
+        Blade::if('hasRole', function ($role){
+            if(getUser()->role->slug == $role){
+                return true;
+            }
+            return false;
+        });
+
+        Blade::if('hasAnyRole', function ($roles=[]){
+            if (in_array(getUser()->role->slug, $roles)){
                 return true;
             }
             return false;

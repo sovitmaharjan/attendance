@@ -11,14 +11,14 @@ class Branch extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected static function booted()
-    {
-        if (auth()->user()) {
-            static::addGlobalScope('company', function ($q) {
-                $q->where('company_id', auth()->user()->company_id);
-            });
-        }
-    }
+    // protected static function booted()
+    // {
+    //     if (auth()->user()) {
+    //         static::addGlobalScope('company', function ($q) {
+    //             $q->where('company_id', auth()->user()->company_id);
+    //         });
+    //     }
+    // }
 
     protected $fillable = [
         'name',
