@@ -12,8 +12,8 @@ class BranchTableSeeder extends Seeder
     public function run()
     {
         $branch = Branch::create([
-            'name' => 'Test Branch',
-            'code' => 'TBRA',
+            'name' => 'Test Branch 1',
+            'code' => 'TBRA1',
             'address' => 'test branch address',
             'email' => 'testbranch@email.com',
             'phone' => '+977-051223454',

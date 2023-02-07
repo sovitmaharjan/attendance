@@ -71,7 +71,7 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch</label>
-                                            <select class="form-select mb-2" id="branch" name="branch"
+                                            <select class="form-select mb-2 branch-select" id="" name="branch"
                                                     data-control="select2" data-hide-search="false"
                                                     data-placeholder="Select Branch" required>
                                                 <option></option>
@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Department</label>
-                                            <select class="form-select mb-2" id="department" name="department"
+                                            <select class="form-select mb-2 department-select" id="" name="department"
                                                     data-control="select2" data-hide-search="false"
                                                     data-placeholder="Select Department" required>
                                                 <option></option>
@@ -110,7 +110,7 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Employee</label>
-                                            <select class="form-select mb-2" id="employee" name="employee"
+                                            <select class="form-select mb-2 employee-select" id="" name="employee"
                                                     data-control="select2" data-hide-search="false"
                                                     data-placeholder="Select Employee" required>
                                                 <option></option>
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Employee Id</label>
-                                            <input type="text" class="form-control mb-2" id="employee_id"
+                                            <input type="text" class="form-control mb-2 employee-id" id="employee_id"
                                                    name="employee_id" value="{{ old('employee_id') }}"/>
                                             @error('employee_id')
                                             <div class="fv-plugins-message-container invalid-feedback">
@@ -297,7 +297,7 @@
                                 <div class="d-flex flex-wrap gap-5">
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="required form-label">Branch</label>
-                                        <select class="form-select mb-2" id="branch" name="branch"
+                                        <select class="form-select mb-2 branch-select" id="branch" name="branch"
                                                 data-control="select2" data-hide-search="false"
                                                 data-placeholder="Select Branch" required>
                                             <option></option>
@@ -378,20 +378,33 @@
             }
         });
 
-        $(document).on('change', '#branch', function (e) {
+        $(document).on('change', '.branch-select', function (e) {
             e.preventDefault();
-            var id = $(this).val();
-            var url = "{{ route('api.branch.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                method: 'GET',
-                url: url,
-                success: function (data) {
-                    // myLog(data);
-                    // data.departments.foreach()
+            var studentSelect = $('.employee-select');
+            var newOption = new Option('asdasd', 2222);
+            studentSelect.append(newOption).trigger('change');
+            studentSelect.append('<option>asd</option>').trigger('change');
 
-                }
-            });
+            // var id = $(this).val();
+            // var url = "{{ route('api.branch.show', ':id') }}";
+            // url = url.replace(':id', id);
+            // $.ajax({
+            //     method: 'GET',
+            //     url: url,
+            //     success: function (data) {
+            //         console.log(data);
+            //         $('.department-select').empty().trigger("change");
+            //         $.each(data.departments, function(i, e) {
+            //             var newOption = new Option(e.name, e.id);
+            //             $('.department-select').append(newOption).trigger('change');
+            //         });
+            //         // $.each(data.employees, function(i, e) {
+            //         //     employee += '<option value="' + e.id + '">' + e.name + '</option>'
+            //         //     console.log(i, e);
+            //         // });
+            //         // $('.department-select').append(department);
+            //     }
+            // });
         });
 
         $(document).on('change', '#department', function (e) {
