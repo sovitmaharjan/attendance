@@ -4,34 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
-use App\Helper\Helper;
 use App\Models\Company;
+use App\Models\SiteSetting;
 use Exception;
 
 class CompanyController extends Controller
 {
-    function __construct()
-    {
-        $this->helper = new Helper;
-    }
-
     public function index()
     {
-        $data['page'] = "Company";
-        $data['records'] = Company::all();
-        return view('company.index', $data);
-    }
-
-    public function create()
-    {
-        $data['page'] = "Company";
+        // for ($i = 0; $i < 10; $i++) { 
+        //     if ($i % 2 == 0) {
+        //         echo 'st<br/>';
+        //     }
+        //     echo $i . '<br/>';
+        // }
+        // die();
+        $data['keys'] = SiteSetting::$keys;
+        $data['site_settings'] = SiteSetting::all();
         return view('company.create', $data);
     }
 
-    public function store(CompanyRequest $request, Company $company)
+    public function store(CompanyRequest $request)
     {
         try {
-            $data = $this->helper->getObject($company, $request);
+            foreach(SiteSetting::$keys as $key => $value)
+            $data = saveModel(new Company, $request);
             $data->save();
             return back()->with('success', 'New company has been added');
         } catch (Exception $e) {

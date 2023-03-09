@@ -48,8 +48,6 @@ if (!function_exists('getFormattedDate')) {
     {
         return date('Y-m-d', strtotime($date));
     }
-
-
 }
 
 function getBranchDetails($branch_id)
@@ -100,4 +98,11 @@ if (!function_exists('getUser')){
     function getUser(){
         return \Illuminate\Support\Facades\Auth::user();
     }
+}
+
+function saveModel($model, $request)
+{
+    $data = $request->only($model->getFillable());
+    $model->fill($data);
+    return $model;
 }
