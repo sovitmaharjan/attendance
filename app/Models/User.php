@@ -17,15 +17,6 @@ class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia, HasPermissionsTrait;
 
-    // protected static function booted()
-    // {
-    //     if(auth()->user()) {
-    //         static::addGlobalScope('company', function ($q) {
-    //             $q->where('company_id', auth()->user()->company_id);
-    //         });
-    //     }
-    // }
-
     protected $fillable = [
         'prefix',
         'firstname',
@@ -38,7 +29,6 @@ class User extends Authenticatable implements HasMedia
         'marital_status',
         'dob',
         'join_date',
-        'company_id',
         'branch_id',
         'department_id',
         'designation_id',
@@ -73,12 +63,7 @@ class User extends Authenticatable implements HasMedia
             get: fn () => $this->firstname . ' ' . ($this->middlename ? $this->middlename . ' ' : '') . $this->lastname
         );
     }
-
-    public function company()
-    {
-        return $this->belongsTo(Company::class, 'company_id', 'id');
-    }
-
+    
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');

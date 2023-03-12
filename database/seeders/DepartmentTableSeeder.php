@@ -19,7 +19,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepartment@email.com',
             'phone' => '+977-051234554',
             'mobile' => '+977-982345350',
-            'company_id' => 1,
             'branch_id' => 1,
         ]);
         $department->status()->updateOrCreate([
@@ -37,7 +36,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepartme2nt@email.com',
             'phone' => '+977-0512234554',
             'mobile' => '+977-9822345350',
-            'company_id' => 1,
             'branch_id' => 1,
         ]);
         $department->status()->updateOrCreate([
@@ -55,7 +53,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepart3ment@email.com',
             'phone' => '+977-0513234554',
             'mobile' => '+977-9382345350',
-            'company_id' => 1,
             'branch_id' => 2,
         ]);
         $department->status()->updateOrCreate([
@@ -73,7 +70,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepartm4ent@email.com',
             'phone' => '+977-0512344554',
             'mobile' => '+977-9824345350',
-            'company_id' => 1,
             'branch_id' => 2,
         ]);
         $department->status()->updateOrCreate([
@@ -91,7 +87,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepart5ment@email.com',
             'phone' => '+977-0512534554',
             'mobile' => '+977-9825345350',
-            'company_id' => 2,
             'branch_id' => 3,
         ]);
         $department->status()->updateOrCreate([
@@ -108,7 +103,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepart6ment@email.com',
             'phone' => '+977-0512364554',
             'mobile' => '+977-9823645350',
-            'company_id' => 2,
             'branch_id' => 3,
         ]);
         $department->status()->updateOrCreate([
@@ -126,7 +120,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepartmen7t@email.com',
             'phone' => '+977-0512374554',
             'mobile' => '+977-9823745350',
-            'company_id' => 2,
             'branch_id' => 4,
         ]);
         $department->status()->updateOrCreate([
@@ -144,7 +137,6 @@ class DepartmentTableSeeder extends Seeder
             'email' => 'testdepartm8ent@email.com',
             'phone' => '+977-0512834554',
             'mobile' => '+977-9828345350',
-            'company_id' => 2,
             'branch_id' => 4,
         ]);
         $department->status()->updateOrCreate([

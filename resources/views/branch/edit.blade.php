@@ -159,25 +159,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Select Company</label>
-                                            <select class="form-select mb-2" name="company_id" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select Branch" required>
-                                                @foreach ($company as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ $data->company_id == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
 

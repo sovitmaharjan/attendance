@@ -50,7 +50,6 @@ class UserFactory extends Factory
             'marital_status' => 'Unmarried',
             'dob' => fake()->date('Y-m-d'),
             'join_date' => now(),
-            'company_id' => $company,
             'branch_id' => $branch,
             'department_id' => $department,
             'designation_id' => Designation::find(1)->id,

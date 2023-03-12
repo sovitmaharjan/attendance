@@ -110,7 +110,6 @@
                     action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="company_id" value="{{ auth()->user()->company_id }}">
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">

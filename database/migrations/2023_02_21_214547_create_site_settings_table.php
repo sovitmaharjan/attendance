@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('key');
             $table->string('value')->nullable();
             $table->string('type')->default('text');
+            $table->json('extra')->nullable();
             $table->timestamps();
         });
     }

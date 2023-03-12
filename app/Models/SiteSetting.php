@@ -2,19 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class SiteSetting extends Model
+class SiteSetting extends Model implements HasMedia
 {
-    use HasFactory;
+    use InteractsWithMedia;
+
+    protected $fillable = [
+        'key',
+        'value',
+        'text',
+        'extra'
+    ];
 
     public static $keys = [
-        "name" => [
+        "company_name" => [
             "type" => "text",
             "element" => "text",
             "visible" => 1,
-            "display_text" => "Name"
+            "display_text" => "Company Name"
         ],
         "email" => [
             "type" => "text",

@@ -30,7 +30,6 @@ class DepartmentRequest extends FormRequest
             'email'=>'required|email|unique:departments,email',
             'phone'=>'required|digits:10|numeric',
             'mobile'=>'sometimes',
-            'company_id'=>'required',
             'branch_id'=>'required',
         ];
     }
