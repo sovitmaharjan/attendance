@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\BranchRequest;
 use App\Helper\Helper;
+use App\Http\Requests\Branch\StoreBranchRequest;
 use App\Models\Branch;
-use App\Models\Company;
 
 class BranchController extends Controller
 {
+    protected $helper;
 
     function __construct(){
         $this->helper = new Helper;
@@ -25,15 +25,13 @@ class BranchController extends Controller
     public function create()
     {
         $page = "Branch";
-        $company = Company::all();
-        return view('branch.create', compact('page', 'company'));
+        return view('branch.create', compact('page'));
     }
 
-    public function store(BranchRequest $request, Branch $branch)
+    public function store(StoreBranchRequest $request, Branch $branch)
     {
         try{
             $data = $this->helper->getObject($branch, $request);
-            $data['company_id'] = $request->company_id;
             $data->save();
             return back()->with('success', 'New Branch has been added');
          }catch(\Exception$e){
@@ -49,16 +47,14 @@ class BranchController extends Controller
     public function edit($id)
     {
         $page = "Branch";
-        $company = Company::all();
         $data = Branch::findOrFail($id);
-        return view('branch.edit', compact('page', 'data', 'company'));
+        return view('branch.edit', compact('page', 'data'));
     }
 
     public function update(Request $request, $id)
     {
         $branch = Branch::findOrFail($id);
         $data = $this->helper->getObject($branch, $request);
-        $data['company_id'] = $request->company_id;
         $data->update();
         return to_route('branch.index')->with('success', 'Branch has been updated');
     }

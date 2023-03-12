@@ -4,59 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
-use App\Helper\Helper;
-use App\Models\Company;
+use App\Models\SiteSetting;
 use Exception;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
-    function __construct()
-    {
-        $this->helper = new Helper;
-    }
-
     public function index()
     {
-        $data['page'] = "Company";
-        $data['records'] = Company::all();
-        return view('company.index', $data);
-    }
-
-    public function create()
-    {
-        $data['page'] = "Company";
+        $data['keys'] = SiteSetting::$keys;
+        $data['site_settings'] = SiteSetting::all();
         return view('company.create', $data);
     }
 
-    public function store(CompanyRequest $request, Company $company)
+    public function store(CompanyRequest $request)
     {
         try {
-            $data = $this->helper->getObject($company, $request);
-            $data->save();
-            return back()->with('success', 'New company has been added');
+            foreach(SiteSetting::$keys as $key => $data) {
+                $value = $data["type"] == "image" ? $request->file($key) : $request->get($key);
+                if (!$value) {
+                    continue;
+                }
+                $site_setting = SiteSetting::updateOrCreate([
+                    "key" => $key,
+                ], [
+                    "value" => $data["type"] == "text" ? $value : null,
+                    "type" => $data["type"]
+                ]);
+                if ($data["type"] == "image") {
+                    $site_setting->clearMediaCollection();
+                    $site_setting->addMedia($request->file($key))->usingFilename(md5(Str::random(8) . time()) . '.' . explode('/', mime_content_type($request->file($key)))[1])->toMediaCollection();
+                }
+            }
+            return back()->with('success', 'Company data has been saved');
         } catch (Exception $e) {
             return $this->$e->getMessage();
         }
-    }
-
-    public function edit($id)
-    {
-        $page = "Company";
-        $data = Company::findOrFail($id);
-        return view('company.edit', compact('page', 'data'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $company = Company::findOrFail($id);
-        $data = $this->helper->getObject($company, $request);
-        $data->update();
-        return to_route('company.index')->with('success', 'Company has been updated');
-    }
-
-    public function destroy($id)
-    {
-        $company = Company::findOrFail($id)->delete();
-        return to_route('company.index')->with('success', 'Company has been deleted');
     }
 }

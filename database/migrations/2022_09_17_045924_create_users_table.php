@@ -22,7 +22,6 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->date('join_date')->default(now());
 
-            $table->foreignId('company_id')->constrained();
             $table->foreignId('branch_id')->nullable()->constrained();
             $table->foreignId('department_id')->nullable()->constrained();
             $table->foreignId('designation_id')->constrained();

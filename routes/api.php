@@ -1,19 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth', 'as' => ''], function () {
+    Route::get('api/branch/{branch_id}', function ($branch_id) {
+        return getBranchDetails($branch_id);
+    })->name('branch.show');
+    Route::get('api/department/{department_id}', function ($department_id) {
+        return getDepartmentDetails($department_id);
+    })->name('department.show');
+    Route::get('api/employee/{employee_id}', function ($employee_id) {
+        return getEmployeeDetails($employee_id);
+    })->name('employee.show');
+    Route::get('/api/getEmployeeShift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('get-employee-shift');
 });

@@ -27,7 +27,6 @@ class EmployeeRequest extends FormRequest
             'nepali_dob' => ['nullable'],
             'join_date' => ['required', 'date', 'date_format:Y-m-d'],
             'nepali_join_date' => ['nullable'],
-            'company_id' => ['required'],
             'branch_id' => ['nullable'],
             'department_id' => ['nullable'],
             'login_id' => ['required'],

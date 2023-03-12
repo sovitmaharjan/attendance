@@ -11,15 +11,6 @@ class Branch extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // protected static function booted()
-    // {
-    //     if (auth()->user()) {
-    //         static::addGlobalScope('company', function ($q) {
-    //             $q->where('company_id', auth()->user()->company_id);
-    //         });
-    //     }
-    // }
-
     protected $fillable = [
         'name',
         'code',
@@ -33,16 +24,6 @@ class Branch extends Model
     public function status()
     {
         return $this->morphOne(ModelHasStatus::class, 'model');
-    }
-
-    public function company_detail()
-    {
-        return $this->belongsTo(Company::class, 'company_id', 'id');
-    }
-
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
     }
 
     public function departments()

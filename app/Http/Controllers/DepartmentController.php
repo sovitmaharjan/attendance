@@ -39,7 +39,6 @@ class DepartmentController extends Controller
     {
         try {
             $data = $this->helper->getObject($department, $request);
-            $data['company_id'] = $request->company_id;
             $data['branch_id'] = $request->branch_id;
             $data->save();
             return back()->with('success', 'New Department has been added');
@@ -66,7 +65,6 @@ class DepartmentController extends Controller
     {
         $company = Department::findOrFail($id);
         $data = $this->helper->getObject($company, $request);
-        $data['company_id'] = $request->company_id;
         $data['branch_id'] = $request->branch_id;
         $data->update();
         return to_route('department.index')->with('success', 'Department has been updated');
