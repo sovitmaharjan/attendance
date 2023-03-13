@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Helper\Helper;
 use App\Http\Requests\Branch\StoreBranchRequest;
+use App\Http\Requests\Branch\UpdateBranchRequest;
 use App\Models\Branch;
 
 class BranchController extends Controller
@@ -39,29 +39,23 @@ class BranchController extends Controller
          }
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
+    public function edit(Branch $branch)
     {
         $page = "Branch";
-        $data = Branch::findOrFail($id);
+        $data = $branch;
         return view('branch.edit', compact('page', 'data'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateBranchRequest $request, Branch $branch)
     {
-        $branch = Branch::findOrFail($id);
         $data = $this->helper->getObject($branch, $request);
         $data->update();
-        return to_route('branch.index')->with('success', 'Branch has been updated');
+        return back()->with('success', 'Branch has been updated');
     }
 
-    public function destroy($id)
+    public function destroy(Branch $branch)
     {
-        $branch = Branch::findOrFail($id)->delete();
+        $branch->delete();
         return to_route('branch.index')->with('success', 'Branch has been deleted');
     }
 }

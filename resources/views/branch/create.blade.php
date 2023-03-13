@@ -63,28 +63,24 @@
                                 </div>
                             </div>
                             <div class="card-body pt-0">
-
-
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Name</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" id="name"
-                                                    name="name" value="{{ old('name') }}" placeholder="ABC Branch" />
+                                                    name="name" value="{{ old('name') }}" placeholder="Branch Name" />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Code</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" id="code"
-                                                    name="code" value="{{ old('code') }}" placeholder="ABCD" />
+                                                    name="code" value="{{ old('code') }}" placeholder="XYZ" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -95,8 +91,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -107,7 +101,6 @@
                                                     placeholder="Kathmandu, Nepal" />
                                             </div>
                                         </div>
-
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Phone Number</label>
                                             <div class="d-flex">
@@ -115,7 +108,6 @@
                                                     id="phone" name="phone" value="{{ old('phone') }}" />
                                             </div>
                                         </div>
-
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Mobile Number</label>
                                             <div class="d-flex">
@@ -127,8 +119,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('branch.index') }}" id="branch_cancel"
                                 class="btn btn-light me-5">Cancel</a>

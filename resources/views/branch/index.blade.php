@@ -81,7 +81,7 @@
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
-                                <table id="branch_datatable"
+                                <table id="basic-datatable"
                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
@@ -179,48 +179,4 @@
             </div>
         </div>
     </div>
-@endSection
-@section('script')
-    <script>
-        $(document).ready(function () {
-            $("#branch_datatable").DataTable({
-                "language": {
-                    "lengthMenu": "Show _MENU_",
-                },
-                "dom": "<'row'" +
-                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-                    ">" +
-
-                    "<'table-responsive'tr>" +
-
-                    "<'row'" +
-                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                    ">"
-            });
-            $(".delete").on("click", function () {
-                event.preventDefault();
-                var t = $(this);
-                var name = t.data("name");
-                var id = t.data("id");
-                Swal.fire({
-                    text: "You are about to delete " + name + " data. Are you sure?",
-                    icon: "warning",
-                    buttonsStyling: false,
-                    showCancelButton: true,
-                    confirmButtonText: "Delete",
-                    cancelButtonText: "Cancel",
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: "btn btn-danger"
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $("#form" + id).submit();
-                    }
-                })
-            });
-        })
-    </script>
 @endSection
