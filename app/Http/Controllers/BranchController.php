@@ -6,14 +6,16 @@ use App\Helper\Helper;
 use App\Http\Requests\Branch\StoreBranchRequest;
 use App\Http\Requests\Branch\UpdateBranchRequest;
 use App\Models\Branch;
+use Exception;
 
 class BranchController extends Controller
 {
     protected $helper;
 
-    function __construct(){
+    function __construct()
+    {
         $this->helper = new Helper;
-     }
+    }
 
     public function index()
     {
@@ -30,13 +32,13 @@ class BranchController extends Controller
 
     public function store(StoreBranchRequest $request, Branch $branch)
     {
-        try{
+        try {
             $data = $this->helper->getObject($branch, $request);
             $data->save();
             return back()->with('success', 'New Branch has been added');
-         }catch(\Exception$e){
+        } catch (Exception $e) {
             return $e->getMessage();
-         }
+        }
     }
 
     public function edit(Branch $branch)
@@ -48,9 +50,13 @@ class BranchController extends Controller
 
     public function update(UpdateBranchRequest $request, Branch $branch)
     {
-        $data = $this->helper->getObject($branch, $request);
-        $data->update();
-        return back()->with('success', 'Branch has been updated');
+        try {
+            $data = $this->helper->getObject($branch, $request);
+            $data->update();
+            return back()->with('success', 'Branch has been updated');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function destroy(Branch $branch)

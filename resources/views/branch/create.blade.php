@@ -69,7 +69,7 @@
                                             <label class="required form-label">Branch Name</label>
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" id="name"
-                                                    name="name" value="{{ old('name') }}" placeholder="Branch Name" />
+                                                    name="name" value="{{ old('name') }}" placeholder="Branch Name" required/>
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
