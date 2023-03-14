@@ -15,8 +15,10 @@ class StoreHolidayRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:holidays',
-            'from_date' => 'required|date',
-            'to_date' => 'required|date|after_or_equal:from_date'
+            'from_date' => 'required|date|date_format:Y-m-d',
+            'to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date',
+            'nep_from_date' => 'nullable|date|date_format:Y-m-d',
+            'nep_to_date' => 'nullable|date|date_format:Y-m-d|after_or_equal:from_date'
         ];
     }
 }

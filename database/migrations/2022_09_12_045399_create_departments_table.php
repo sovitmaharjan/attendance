@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('branch_id')->constrained();
             $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

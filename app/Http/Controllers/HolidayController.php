@@ -59,6 +59,10 @@ class HolidayController extends Controller
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
             $data = $request->validated();
             $data['quantity'] = $difference + 1;
+            $data['extra'] = [
+                'nep_from_date' => $request->nep_from_date,
+                'nep_to_date' => $request->nep_to_date
+            ];
             $holiday->update($data);
             $holiday->holiday_dates()->delete();
             for($i = 0; $i <= $difference; $i++) {

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

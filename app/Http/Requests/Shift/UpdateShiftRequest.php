@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Shift;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShiftRequest extends FormRequest
+class UpdateShiftRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,12 +14,12 @@ class ShiftRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:shifts,name,' . $this->route('shift')->id,
             'in_time' => 'required|date_format:H:i',
-            'in_time_last' => 'required|date_format:H:i',
+            'in_time_last' => 'nullable|date_format:H:i',
             'out_time' => 'required|date_format:H:i',
-            'out_time_last' => 'required|date_format:H:i',
-            'break_time' => 'required|numeric',
+            'out_time_last' => 'nullable|date_format:H:i',
+            'break_time' => 'nullable|numeric',
             'extra' => 'nullable'
         ];
     }

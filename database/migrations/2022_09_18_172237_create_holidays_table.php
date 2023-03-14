@@ -15,7 +15,6 @@ return new class extends Migration
             $table->date('to_date');
             $table->integer('quantity');
             $table->json('extra')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }
