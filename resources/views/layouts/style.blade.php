@@ -10,5 +10,5 @@
 <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}">
-<link rel="stylesheet" href="{{asset('assets/css/nepali-datepicker.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/nepali.datepicker.v4.0.1.min.css')}}">
 @yield('style')

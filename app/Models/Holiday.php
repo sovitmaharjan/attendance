@@ -14,12 +14,14 @@ class Holiday extends Model
         'name',
         'from_date',
         'to_date',
-        'quantity'
+        'quantity',
+        'extra'
     ];
 
     public $casts = [
         'from_date' => 'date',
-        'to_date' => 'date'
+        'to_date' => 'date',
+        'extra' => 'array'
     ];
 
     public function holiday_dates()

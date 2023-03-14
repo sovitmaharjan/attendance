@@ -30,6 +30,11 @@ class BranchController extends Controller
         return view('branch.create', compact('page'));
     }
 
+    public function show($id)
+    {
+        //
+    }
+
     public function store(StoreBranchRequest $request, Branch $branch)
     {
         try {

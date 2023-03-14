@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HolidayRequest;
+use App\Http\Requests\Holiday\StoreHolidayRequest;
+use App\Http\Requests\Holiday\UpdateHolidayRequest;
 use App\Models\Holiday;
 use Exception;
 use Illuminate\Support\Carbon;
@@ -21,13 +22,17 @@ class HolidayController extends Controller
         return view('holiday.create');
     }
 
-    public function store(HolidayRequest $request)
+    public function store(StoreHolidayRequest $request)
     {
         try {
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
             $data = $request->validated();
             $data['quantity'] = $difference + 1;
+            $data['extra'] = [
+                'nep_from_date' => $request->nep_from_date,
+                'nep_to_date' => $request->nep_to_date
+            ];
             $holiday = Holiday::create($data);
             for($i = 0; $i <= $difference; $i++) {
                 $holiday->holiday_dates()->create([
@@ -47,7 +52,7 @@ class HolidayController extends Controller
         return view('holiday.edit', $data);
     }
 
-    public function update(HolidayRequest $request, Holiday $holiday)
+    public function update(UpdateHolidayRequest $request, Holiday $holiday)
     {
         try {
             DB::beginTransaction();
@@ -62,7 +67,7 @@ class HolidayController extends Controller
                 ]);
             }
             DB::commit();
-            return redirect()->route('holiday.index')->with('success', 'Holiday has been updated');
+            return back()->with('success', 'Holiday has been updated');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }
