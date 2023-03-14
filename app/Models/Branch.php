@@ -17,13 +17,9 @@ class Branch extends Model
         'email',
         'phone',
         'mobile',
+        'status',
         'extra'
     ];
-
-    public function status()
-    {
-        return $this->morphOne(ModelHasStatus::class, 'model');
-    }
 
     public function departments()
     {

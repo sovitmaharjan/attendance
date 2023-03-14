@@ -69,14 +69,14 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Name</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="name"
-                                                    id="name" value="{{ old('name') ?? $data->name }}" />
+                                                <input type="text" class="form-control" name="name"
+                                                    id="name" value="{{ old('name') ?? $data->name }}" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Code</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="code"
+                                                <input type="text" class="form-control" name="code"
                                                     id="code" value="{{ old('code') ?? $data->code }}"
                                                     placeholder="ABCD" />
                                             </div>
@@ -88,11 +88,11 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Email</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="email"
+                                                <input type="text" class="form-control" name="email"
                                                     id="email" value="{{ old('email') ?? $data->email }}"
                                                     placeholder="example@mail.com" />
                                             </div>
-                                            <div class="text-muted fs-7">Must be a valid email</div>
+                                            <div class="text-muted fs-7 mt-2">Must be a valid email</div>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Address</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="address"
+                                                <input type="text" class="form-control" name="address"
                                                     id="address" value="{{ old('address') ?? $data->address }}"
                                                     placeholder="Kathmandu, Nepal" />
                                             </div>
@@ -109,7 +109,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Phone Number</label>
                                             <div class="d-flex">
-                                                <input type="number" min="1" class="form-control mb-2"
+                                                <input type="number" min="1" class="form-control"
                                                     name="phone" id="phone"
                                                     value="{{ old('phone') ?? $data->phone }}" />
                                             </div>
@@ -117,7 +117,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Mobile Number</label>
                                             <div class="d-flex">
-                                                <input type="number" min="1" class="form-control mb-2"
+                                                <input type="number" min="1" class="form-control"
                                                     name="mobile" id="mobile"
                                                     value="{{ old('mobile') ?? $data->mobile }}" />
                                             </div>

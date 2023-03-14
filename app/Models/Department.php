@@ -19,18 +19,13 @@ class Department extends Model
         'email',
         'phone',
         'mobile',
+        'status',
         'extra',
     ];
-
-    public function status()
-    {
-        return $this->morphOne(ModelHasStatus::class, 'model');
-    }
 
     public function branch_detail()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');
-
     }
 
     public function branch()

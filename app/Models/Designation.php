@@ -11,9 +11,4 @@ class Designation extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['title'];
-
-    public function status()
-    {
-        return $this->morphOne(ModelHasStatus::class, 'model');
-    }
 }

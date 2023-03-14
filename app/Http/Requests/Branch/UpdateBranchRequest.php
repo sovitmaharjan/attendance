@@ -18,7 +18,7 @@ class UpdateBranchRequest extends FormRequest
             'code' => 'nullable|unique:branches,code,' . $this->route('branch')->id . '|max:8',
             'address' => 'nullable',
             'email' => 'nullable|email|unique:branches,email,' . $this->route('branch')->id,
-            'phone' => 'nullable|digits:10|numeric',
+            'phone' => 'nullable',
             'mobile' => 'nullable',
         ];
     }

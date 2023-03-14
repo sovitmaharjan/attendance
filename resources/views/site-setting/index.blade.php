@@ -97,7 +97,7 @@
                                                                 id="{{ $key }}" name="{{ $key }}"
                                                                 value="{{ old($key, $site_settings->where('key', $key)->first()['value'] ?? '') }}"
                                                                 placeholder="{{ $value['display_text'] }}"
-                                                                autocomplete="off" />
+                                                                autocomplete="off" {{ $key == 'company_name' ? 'required' : '' }} />
                                                         </div>
                                                     @endif
                                                 </div>

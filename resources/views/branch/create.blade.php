@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 @section('branch', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -68,14 +68,14 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Branch Name</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" id="name"
+                                                <input type="text" class="form-control" id="name"
                                                     name="name" value="{{ old('name') }}" placeholder="Branch Name" required/>
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Code</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" id="code"
+                                                <input type="text" class="form-control" id="code"
                                                     name="code" value="{{ old('code') }}" placeholder="XYZ" />
                                             </div>
                                         </div>
@@ -85,9 +85,9 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Email</label>
-                                            <input type="text" class="form-control mb-2" id="email" name="email"
+                                            <input type="text" class="form-control" id="email" name="email"
                                                 value="{{ old('email') }}" placeholder="example@mail.com" />
-                                            <div class="text-muted fs-7">Must be a valid email</div>
+                                            <div class="text-muted fs-7 mt-2">Must be a valid email</div>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Address</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" id="address"
+                                                <input type="text" class="form-control" id="address"
                                                     name="address" value="{{ old('address') }}"
                                                     placeholder="Kathmandu, Nepal" />
                                             </div>
@@ -104,14 +104,14 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Phone Number</label>
                                             <div class="d-flex">
-                                                <input type="number" min="1" class="form-control mb-2"
+                                                <input type="number" min="1" class="form-control"
                                                     id="phone" name="phone" value="{{ old('phone') }}" />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Branch Mobile Number</label>
                                             <div class="d-flex">
-                                                <input type="number" min="1" class="form-control mb-2"
+                                                <input type="number" min="1" class="form-control"
                                                     id="mobile" name="mobile" value="{{ old('mobile') }}" />
                                             </div>
                                         </div>

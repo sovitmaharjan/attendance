@@ -53,7 +53,7 @@ class UserFactory extends Factory
             'branch_id' => $branch,
             'department_id' => $department,
             'designation_id' => Designation::find(1)->id,
-            'login_id' => Company::find($company)->code . '-' . rand(0, 99) . rand(0, 99),
+            'login_id' => rand(0, 99) . rand(0, 99),
             'supervisor_id' => null,
             'password' => bcrypt('123'),
             'login_count' => 0,

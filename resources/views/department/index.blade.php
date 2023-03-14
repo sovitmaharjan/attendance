@@ -90,7 +90,7 @@
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Mobile</th>
-                                        <th>Company</th>
+                                        <th>Branch</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -117,7 +117,7 @@
                                                 {{ $data->mobile ?? 'Not Assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->company_detail->name ?? 'Not Assigned' }}
+                                                {{ $data->branch->name ?? 'Not Assigned' }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">

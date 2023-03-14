@@ -86,8 +86,8 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <th>Department</th>
                                         <th>Branch</th>
+                                        <th>Department</th>
                                         <th>User Type</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -101,8 +101,8 @@
                                                 {{ $employee->full_name }}
                                             </td>
                                             <td>{{$employee->designation->title}}</td>
-                                            <td>{{$employee->department->name}}</td>
                                             <td>{{$employee->branch->name}}</td>
+                                            <td>{{$employee->department->name}}</td>
                                             <td>{{$employee->role->name}}</td>
                                             <td>{{$employee->status}}</td>
                                             <td>

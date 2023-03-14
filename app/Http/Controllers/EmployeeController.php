@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Branch;
-use App\Models\Company;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Role;
@@ -23,7 +22,6 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        $data['company'] = Company::all();
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
         $data['supervisors'] = User::all();
@@ -62,7 +60,6 @@ class EmployeeController extends Controller
 
     public function edit(User $employee)
     {
-        $data['company'] = Company::all();
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
         $data['supervisors'] = User::all();

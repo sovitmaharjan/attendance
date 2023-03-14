@@ -6,15 +6,17 @@ use App\Models\DepartmentOffDaysTrack;
 use App\Models\DynamicValue;
 use Illuminate\Http\Request;
 use App\Helper\Helper;
-use App\Http\Requests\DepartmentRequest;
+use App\Http\Requests\Department\StoreDepartmentRequest;
+use App\Http\Requests\Department\UpdateDepartmentRequest;
 use App\Models\Branch;
-use App\Models\Company;
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
+    protected $helper;
+
     function __construct()
     {
         $this->helper = new Helper;
@@ -30,12 +32,11 @@ class DepartmentController extends Controller
     public function create()
     {
         $page = "Department";
-        $company = Company::all();
         $branch = Branch::all();
-        return view('department.create', compact('page', 'company', 'branch'));
+        return view('department.create', compact('page', 'branch'));
     }
 
-    public function store(DepartmentRequest $request, Department $department)
+    public function store(StoreDepartmentRequest $request, Department $department)
     {
         try {
             $data = $this->helper->getObject($department, $request);
@@ -47,38 +48,30 @@ class DepartmentController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
+    public function edit(Department $department)
     {
         $page = "Department";
-        $company = Company::all();
         $branch = Branch::all();
-        $data = Department::findOrFail($id);
-        return view('department.edit', compact('page', 'data', 'company', 'branch'));
+        $data = $department;
+        return view('department.edit', compact('page', 'data', 'branch'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        $company = Department::findOrFail($id);
-        $data = $this->helper->getObject($company, $request);
+        $data = $this->helper->getObject($department, $request);
         $data['branch_id'] = $request->branch_id;
         $data->update();
-        return to_route('department.index')->with('success', 'Department has been updated');
+        return back()->with('success', 'Department has been updated');
     }
 
-    public function destroy($id)
+    public function destroy(Department $department)
     {
-        $company = Department::findOrFail($id)->delete();
+        $department->delete();
         return to_route('department.index')->with('success', 'Department has been deleted');
     }
 
     public function assingOffDays(Request $request)
     {
-        //        dd($request->all());
         $validator = Validator::make($request->all(), [
             'key' => ['required'],
         ]);
@@ -120,7 +113,6 @@ class DepartmentController extends Controller
     public function departmentOffDays(Request $request, $id)
     {
         $off_days = DynamicValue::where('key', 'department_' . $id)->first();
-        //        return view('department.off_days', compact('off_days'));
         if ($off_days) {
             return response()->json([
                 'dynamic_id' => $off_days->id,

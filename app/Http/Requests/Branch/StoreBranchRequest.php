@@ -18,7 +18,7 @@ class StoreBranchRequest extends FormRequest
             'code' => 'nullable|unique:branches,code|max:8',
             'address' => 'nullable',
             'email' => 'nullable|email|unique:branches,email',
-            'phone' => 'nullable|digits:10|numeric',
+            'phone' => 'nullable',
             'mobile' => 'nullable',
         ];
     }

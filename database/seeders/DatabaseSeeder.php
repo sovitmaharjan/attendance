@@ -30,8 +30,6 @@ class DatabaseSeeder extends Seeder
                 END IF;
             END
         ");
-        $this->call(StatusTableSeeder::class);
-        $this->call(CompanyTableSeeder::class);
         $this->call(BranchTableSeeder::class);
         $this->call(DepartmentTableSeeder::class);
         $this->call(DesignationTableSeeder::class);
