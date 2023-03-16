@@ -87,7 +87,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control nepali_from_date" id="nepali_from_date"
                                                     name="nepali_from_date" autocomplete="off"
-                                                    value="{{ old('nepali_from_date', $holiday->extra['nepali_from_date']) }}"
+                                                    value="{{ old('nepali_from_date', $holiday->extra['nepali_from_date'] ?? '') }}"
                                                     placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control nepali_to_date"
                                                     id="nepali_to_date" name="nepali_to_date"
-                                                    value="{{ old('nepali_to_date', $holiday->extra['nepali_to_date']) }}"
+                                                    value="{{ old('nepali_to_date', $holiday->extra['nepali_to_date'] ?? '') }}"
                                                     placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>

@@ -6,7 +6,7 @@
         "debug": false,
         "newestOnTop": true,
         "progressBar": true,
-        "positionClass": "toastr-top-right",
+        "positionClass": "toastr-bottom-right",
         "preventDuplicates": true,
         "onclick": null,
         "showDuration": "300",

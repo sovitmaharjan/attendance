@@ -18,7 +18,8 @@ class UpdateEventRequest extends FormRequest
             'from_date' => 'required|date|date_format:Y-m-d',
             'to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date',
             'nepali_from_date' => 'required|date',
-            'nepali_to_date' => 'required|date'
+            'nepali_to_date' => 'required|date',
+            'status' => 'required'
         ];
     }
 }

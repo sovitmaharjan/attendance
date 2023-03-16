@@ -54,7 +54,6 @@
                 <form id="event_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('event.store') }}" enctype="multipart/form-data">
                     @csrf
-                    {{-- @dd($errors) --}}
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
@@ -84,9 +83,10 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control nepali_from_date" id="nepali_from_date"
-                                                    name="nepali_from_date" autocomplete="off"
-                                                    value="{{ old('nepali_from_date') }}" placeholder="yyyy-dd-mm" required />
+                                                <input type="text" class="form-control nepali_from_date"
+                                                    id="nepali_from_date" name="nepali_from_date" autocomplete="off"
+                                                    value="{{ old('nepali_from_date') }}" placeholder="yyyy-dd-mm"
+                                                    required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -100,29 +100,25 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex">
-                                                <input type="text" autocomplete="off" class="form-control nepali_to_date"
-                                                    id="nepali_to_date" name="nepali_to_date" value="{{ old('nepali_to_date') }}"
+                                                <input type="text" autocomplete="off"
+                                                    class="form-control nepali_to_date" id="nepali_to_date"
+                                                    name="nepali_to_date" value="{{ old('nepali_to_date') }}"
                                                     placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="mb-10 fv-row">
-                                    <label class="required form-label">Status</label>
+                                <div class="mb-10 fv-row">
+                                    <label class="required form-label">Quantity</label>
                                     <div class="d-flex">
-                                        <select class="form-select" data-control="select2" id="status" name="status"
-                                            data-hide-search="true" data-placeholder="Select an option" required>
-                                            <option></option>
-                                            <option value="1" @selected(old('status') == '1')>Active</option>
-                                            <option value="0" @selected(old('status') == '0')>Inactive</option>
-                                        </select>
+                                        <input type="text" id="quantity" id="quantity" name="quantity"
+                                            class="form-control" value="{{ old('quantity') }}" readonly />
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('holiday.index') }}" id="event_cancel"
-                                class="btn btn-light me-5">Cancel</a>
+                            <a href="{{ route('event.index') }}" id="event_cancel" class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="event_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
@@ -139,11 +135,41 @@
 
 @section('script')
     <script>
-        $(function() {
-            englishToNepaliDatePicker($('.from_date'), $('.nepali_from_date'));
-            nepaliToEnglishDatepicker($('.nepali_from_date'), $('.from_date'));
-            englishToNepaliDatePicker($('.to_date'), $('.nepali_to_date'));
-            nepaliToEnglishDatepicker($('.nepali_to_date'), $('.to_date'));
+        $('.from_date').flatpickr({
+            onChange: function() {
+                $('.nepali_from_date').val(NepaliFunctions.AD2BS($('.from_date').val()));
+                dateDiff();
+            }
         });
+        $('.nepali_from_date').nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            onChange: function() {
+                $('.from_date').val(NepaliFunctions.BS2AD($('.nepali_from_date').val()));
+                dateDiff();
+            }
+        });
+        $('.to_date').flatpickr({
+            onChange: function() {
+                $('.nepali_to_date').val(NepaliFunctions.AD2BS($('.to_date').val()));
+                dateDiff();
+            }
+        });
+        $('.nepali_to_date').nepaliDatePicker({
+            ndpYear: true,
+            ndpMonth: true,
+            onChange: function() {
+                $('.to_date').val(NepaliFunctions.BS2AD($('.nepali_to_date').val()));
+                dateDiff();
+            }
+        });
+
+        function dateDiff() {
+            const date1 = new Date($('.from_date').val() ? $('.from_date').val() : $('.to_date').val());
+            const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());
+            const diffTime = Math.abs(date2 - date1);
+            const days = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) + 1;
+            $('#quantity').val(days);
+        }
     </script>
 @endsection

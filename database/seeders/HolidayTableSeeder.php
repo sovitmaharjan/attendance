@@ -20,7 +20,7 @@ class HolidayTableSeeder extends Seeder
                 'nepali_to_date' => '2079-08-02'
             ]
         ]);
-        $holiday->holiday_dates()->create([
+        $holiday->holidayDates()->create([
             'date' => '2022-11-18'
         ]);
     }

@@ -12,21 +12,28 @@ class Event extends Model
 {
     use HasFactory, HasSlug, SoftDeletes;
 
-    protected $fillable = ['title', 'slug', 'from_date', 'to_date', 'extras', 'status'];
+    protected $fillable = ['title', 'slug', 'from_date', 'to_date', 'quantity', 'extras', 'status'];
 
     protected $casts = [
+        'from_date' => 'date',
+        'to_date' => 'date',
         'extras' => 'array',
     ];
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-        ->generateSlugsFrom('title')
-        ->saveSlugsTo('slug');
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 
     public function employees()
     {
         return $this->belongsToMany(User::class, 'employee_event');
+    }
+
+    public function eventDates()
+    {
+        return $this->hasMany(EventDate::class);
     }
 }

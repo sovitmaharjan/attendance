@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->date('from_date');
             $table->date('to_date');
+            $table->integer('quantity');
             $table->tinyInteger('status')->default(1);
             $table->json('extras')->nullable();
             $table->softDeletes();

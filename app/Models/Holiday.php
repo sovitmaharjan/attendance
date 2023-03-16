@@ -23,7 +23,7 @@ class Holiday extends Model
         'extra' => 'array'
     ];
 
-    public function holiday_dates()
+    public function holidayDates()
     {
         return $this->hasMany(HolidayDate::class);
     }

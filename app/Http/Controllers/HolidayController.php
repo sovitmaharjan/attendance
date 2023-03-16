@@ -35,7 +35,7 @@ class HolidayController extends Controller
             ];
             $holiday = Holiday::create($data);
             for($i = 0; $i <= $difference; $i++) {
-                $holiday->holiday_dates()->create([
+                $holiday->holidayDates()->create([
                     'date' => Carbon::parse($request->from_date)->addDays($i)
                 ]);
             }
@@ -64,9 +64,9 @@ class HolidayController extends Controller
                 'nepali_to_date' => $request->nepali_to_date
             ];
             $holiday->update($data);
-            $holiday->holiday_dates()->delete();
+            $holiday->holidayDates()->delete();
             for($i = 0; $i <= $difference; $i++) {
-                $holiday->holiday_dates()->create([
+                $holiday->holidayDates()->create([
                     'date' => Carbon::parse($request->from_date)->addDays($i)
                 ]);
             }

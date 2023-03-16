@@ -85,8 +85,8 @@
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>From Date</th>
-                                        <th>To Date</th>
+                                        <th>Date</th>
+                                        <th>Quantity</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -99,10 +99,15 @@
                                                 {{ $event->title }}
                                             </td>
                                             <td>
-                                                {{ $event->from_date }}
+                                                @if($event->quantity > 1)
+                                                    {{ $event->from_date->format('Y-m-d') }}
+                                                    - {{ $event->to_date->format('Y-m-d') }}
+                                                @else
+                                                    {{ $event->from_date->format('Y-m-d') }}
+                                                @endif
                                             </td>
                                             <td>
-                                                {{ $event->to_date }}
+                                                {{ $event->quantity }}
                                             </td>
                                             <td>
                                                 {{ statusTitle($event->status) }}
