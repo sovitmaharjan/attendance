@@ -24,8 +24,8 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'unique:events,title,' . $this->id],
-            'slug' => ['nullable', 'unique:events,title,' . $this->id],
+            'title' => ['required'],
+            'slug' => ['nullable'],
             'from_date' => ['required', 'date'],
             'to_date' => ['required', 'date'],
             'nepali_from_date' => ['required', 'date'],

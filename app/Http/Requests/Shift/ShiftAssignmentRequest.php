@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Shift;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -10,7 +10,7 @@ class ShiftAssignmentRequest extends FormRequest
     {
         return true;
     }
-
+    
     public function rules()
     {
         return [
@@ -22,8 +22,8 @@ class ShiftAssignmentRequest extends FormRequest
             'shift_repeater.*.shift' => 'required',
             'shift_repeater.*.from_date' => 'required|date|date_format:Y-m-d',
             'shift_repeater.*.to_date' => 'required|date|date_format:Y-m-d',
-            'shift_repeater.*.nep_from_date' => 'required|date|date_format:Y-m-d',
-            'shift_repeater.*.nep_to_date' => 'required|date|date_format:Y-m-d'
+            'shift_repeater.*.nepali_from_date' => 'required|date|date_format:Y-m-d',
+            'shift_repeater.*.nepali_to_date' => 'required|date|date_format:Y-m-d'
         ];
     }
 
@@ -33,8 +33,8 @@ class ShiftAssignmentRequest extends FormRequest
             'shift_repeater.*.shift.required' => 'The shift field is required',
             'shift_repeater.*.from_date.required' => 'The from field is required',
             'shift_repeater.*.to_date.required' => 'The to field is required',
-            'shift_repeater.*.nep_from_date.required' => 'The from field is required',
-            'shift_repeater.*.nep_to_date.required' => 'The to field is required'
+            'shift_repeater.*.nepali_from_date.required' => 'The from field is required',
+            'shift_repeater.*.nepali_to_date.required' => 'The to field is required'
         ];
     }
 }

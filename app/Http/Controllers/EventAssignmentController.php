@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class EventAssignmentController extends Controller
 {
 
-    public function create($id=null)
+    public function create($id = null)
     {
         $data['events'] = Event::where('status', 1)->get();
         $data['employees'] = User::all();
@@ -30,7 +30,7 @@ class EventAssignmentController extends Controller
             }
             DB::commit();
             return back()->with('success', 'Event assigned to employee successfully');
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return back()->with("error", $e->getMessage());
         }
@@ -46,7 +46,7 @@ class EventAssignmentController extends Controller
             }
             DB::commit();
             return back()->with('success', 'Event assigned to employee successfully');
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return back()->with("error", $e->getMessage());
         }
@@ -55,12 +55,11 @@ class EventAssignmentController extends Controller
     public function event_employee_list($event_id)
     {
         $event = Event::where('id', $event_id)->first();
-        if($event){
+        if ($event) {
             $data['event'] = $event;
             $data['employees'] = $event->employees;
             return view('event_assignment.employee_list', $data);
         }
         return "<h1>No Data</h1>";
     }
-
 }

@@ -175,18 +175,18 @@
                                                                                 </div>
                                                                             @enderror
                                                                         </div>
-                                                                        <div class="col-md-2 nep_from">
+                                                                        <div class="col-md-2 nepali_from">
                                                                             <label class="form-label">&nbsp;</label>
                                                                             <div class="d-flex">
                                                                                 <input type="text"
-                                                                                    class="form-control nep_from_date"
-                                                                                    name="nep_from_date"
+                                                                                    class="form-control nepali_from_date"
+                                                                                    name="nepali_from_date"
                                                                                     autocomplete="off"
-                                                                                    value="{{ $shift_repeater_value['nep_from_date'] }}"
+                                                                                    value="{{ $shift_repeater_value['nepali_from_date'] }}"
                                                                                     placeholder="yyyy-dd-mm">
                                                                             </div>
                                                                             @error('shift_repeater.' . $key .
-                                                                                '.nep_from_date')
+                                                                                '.nepali_from_date')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
                                                                                     <div data-field="name"
@@ -215,17 +215,17 @@
                                                                                 </div>
                                                                             @enderror
                                                                         </div>
-                                                                        <div class="col-md-2 nep_to">
+                                                                        <div class="col-md-2 nepali_to">
                                                                             <label class="form-label">&nbsp;</label>
                                                                             <div class="d-flex">
                                                                                 <input type="text" autocomplete="off"
-                                                                                    class="form-control nep_to_date"
-                                                                                    name="nep_to_date"
-                                                                                    value="{{ $shift_repeater_value['nep_to_date'] }}"
+                                                                                    class="form-control nepali_to_date"
+                                                                                    name="nepali_to_date"
+                                                                                    value="{{ $shift_repeater_value['nepali_to_date'] }}"
                                                                                     placeholder="yyyy-dd-mm">
                                                                             </div>
                                                                             @error('shift_repeater.' . $key .
-                                                                                '.nep_to_date')
+                                                                                '.nepali_to_date')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
                                                                                     <div data-field="name"
@@ -271,13 +271,13 @@
                                                                                 value="{{ old('from_date') }}" />
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-2 nep_from">
+                                                                    <div class="col-md-2 nepali_from">
                                                                         <label class="form-label">&nbsp;</label>
                                                                         <div class="d-flex">
                                                                             <input type="text"
-                                                                                class="form-control nep_from_date"
-                                                                                name="nep_from_date" autocomplete="off"
-                                                                                value="{{ old('nep_from_date') }}"
+                                                                                class="form-control nepali_from_date"
+                                                                                name="nepali_from_date" autocomplete="off"
+                                                                                value="{{ old('nepali_from_date') }}"
                                                                                 placeholder="yyyy-dd-mm">
                                                                         </div>
                                                                     </div>
@@ -291,13 +291,13 @@
                                                                                 value="{{ old('to_date') }}" />
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-2 nep_to">
+                                                                    <div class="col-md-2 nepali_to">
                                                                         <label class="form-label">&nbsp;</label>
                                                                         <div class="d-flex">
                                                                             <input type="text" autocomplete="off"
-                                                                                class="form-control nep_to_date"
-                                                                                name="nep_to_date"
-                                                                                value="{{ old('nep_to_date') }}"
+                                                                                class="form-control nepali_to_date"
+                                                                                name="nepali_to_date"
+                                                                                value="{{ old('nepali_to_date') }}"
                                                                                 placeholder="yyyy-dd-mm">
                                                                         </div>
                                                                     </div>
@@ -496,30 +496,30 @@
 
                 div.find(".from_date").flatpickr({
                     onChange: function() {
-                        div.find('input.nep_from_date').val(NepaliFunctions.AD2BS(div.find(
+                        div.find('input.nepali_from_date').val(NepaliFunctions.AD2BS(div.find(
                             '.from_date').val()));
                     }
                 });
-                div.find('.nep_from_date').nepaliDatePicker({
+                div.find('.nepali_from_date').nepaliDatePicker({
                     ndpYear: true,
                     ndpMonth: true,
                     onChange: function() {
                         div.find('.from_date').val(NepaliFunctions.BS2AD(div.find(
-                            '.nep_from_date').val()));
+                            '.nepali_from_date').val()));
                     }
                 });
                 div.find(".to_date").flatpickr({
                     onChange: function() {
-                        div.find('.nep_to_date').val(NepaliFunctions.AD2BS(div.find(
+                        div.find('.nepali_to_date').val(NepaliFunctions.AD2BS(div.find(
                             '.to_date').val()));
                     }
                 });
-                div.find('.nep_to_date').nepaliDatePicker({
+                div.find('.nepali_to_date').nepaliDatePicker({
                     ndpYear: true,
                     ndpMonth: true,
                     onChange: function() {
                         div.find('.to_date').val(NepaliFunctions.BS2AD(div.find(
-                            '.nep_to_date').val()));
+                            '.nepali_to_date').val()));
                     }
                 });
             },
@@ -538,31 +538,31 @@
 
                         div.find(".from_date").flatpickr({
                             onChange: function() {
-                                div.find('.nep_from_date').val(NepaliFunctions.AD2BS(div.find(
+                                div.find('.nepali_from_date').val(NepaliFunctions.AD2BS(div.find(
                                         '.from_date')
                                     .val()));
                             }
                         });
-                        div.find('.nep_from_date').nepaliDatePicker({
+                        div.find('.nepali_from_date').nepaliDatePicker({
                             ndpYear: true,
                             ndpMonth: true,
                             onChange: function() {
                                 div.find('.from_date').val(NepaliFunctions.BS2AD(div.find(
-                                        '.nep_from_date')
+                                        '.nepali_from_date')
                                     .val()));
                             }
                         });
                         div.find(".to_date").flatpickr({
                             onChange: function() {
-                                div.find('.nep_to_date').val(NepaliFunctions.AD2BS(div.find('.to_date')
+                                div.find('.nepali_to_date').val(NepaliFunctions.AD2BS(div.find('.to_date')
                                     .val()));
                             }
                         });
-                        div.find('.nep_to_date').nepaliDatePicker({
+                        div.find('.nepali_to_date').nepaliDatePicker({
                             ndpYear: true,
                             ndpMonth: true,
                             onChange: function() {
-                                div.find('.to_date').val(NepaliFunctions.BS2AD(div.find('.nep_to_date')
+                                div.find('.to_date').val(NepaliFunctions.BS2AD(div.find('.nepali_to_date')
                                     .val()));
                             }
                         });
@@ -574,31 +574,31 @@
 
                     div.find(".from_date").flatpickr({
                         onChange: function() {
-                            div.find('.nep_from_date').val(NepaliFunctions.AD2BS(div.find(
+                            div.find('.nepali_from_date').val(NepaliFunctions.AD2BS(div.find(
                                     '.from_date')
                                 .val()));
                         }
                     });
-                    div.find('.nep_from_date').nepaliDatePicker({
+                    div.find('.nepali_from_date').nepaliDatePicker({
                         ndpYear: true,
                         ndpMonth: true,
                         onChange: function() {
                             div.find('.from_date').val(NepaliFunctions.BS2AD(div.find(
-                                    '.nep_from_date')
+                                    '.nepali_from_date')
                                 .val()));
                         }
                     });
                     div.find(".to_date").flatpickr({
                         onChange: function() {
-                            div.find('.nep_to_date').val(NepaliFunctions.AD2BS(div.find('.to_date')
+                            div.find('.nepali_to_date').val(NepaliFunctions.AD2BS(div.find('.to_date')
                                 .val()));
                         }
                     });
-                    div.find('.nep_to_date').nepaliDatePicker({
+                    div.find('.nepali_to_date').nepaliDatePicker({
                         ndpYear: true,
                         ndpMonth: true,
                         onChange: function() {
-                            div.find('.to_date').val(NepaliFunctions.BS2AD(div.find('.nep_to_date')
+                            div.find('.to_date').val(NepaliFunctions.BS2AD(div.find('.nepali_to_date')
                                 .val()));
                         }
                     });

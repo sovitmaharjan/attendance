@@ -164,12 +164,12 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2 nep_from_date"
-                                                name="nep_from_date" autocomplete="off"
-                                                value="{{ old('nep_from_date') }}" placeholder="yyyy-dd-mm">
-                                            @error('nep_from_date')
+                                            <input type="text" class="form-control mb-2 nepali_from_date"
+                                                name="nepali_from_date" autocomplete="off"
+                                                value="{{ old('nepali_from_date') }}" placeholder="yyyy-dd-mm">
+                                            @error('nepali_from_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nep_from_date" data-validator="notEmpty">
+                                                    <div data-field="nepali_from_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>
@@ -190,11 +190,11 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <input type="text" autocomplete="off"
-                                                class="form-control mb-2 nep_to_date" name="nep_to_date"
-                                                value="{{ old('nep_to_date') }}" placeholder="yyyy-dd-mm">
-                                            @error('nep_to_date')
+                                                class="form-control mb-2 nepali_to_date" name="nepali_to_date"
+                                                value="{{ old('nepali_to_date') }}" placeholder="yyyy-dd-mm">
+                                            @error('nepali_to_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nep_to_date" data-validator="notEmpty">
+                                                    <div data-field="nepali_to_date" data-validator="notEmpty">
                                                         {{ $message }}
                                                     </div>
                                                 </div>

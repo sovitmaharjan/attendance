@@ -223,13 +223,13 @@
                                 <label class="required form-label">Work Day</label>
                                 <div class="d-flex gap-5">
                                     <input type="text" class="form-control mb-2 eng_date" name="work_date"
-                                           onchange="engtonep($(this), 'nep_date')"
+                                           onchange="engtonep($(this), 'nepali_date')"
                                            value="{{ old('work_date') }}" placeholder="yyyy-dd-mm" id="eng_date"
                                            readonly/>
-                                    <input type="hidden" class="form-control mb-2 nep_date" name="nepali_work_date"
-                                           onclick="neptoeng('nep_date', 'eng_date')"
+                                    <input type="hidden" class="form-control mb-2 nepali_date" name="nepali_work_date"
+                                           onclick="neptoeng('nepali_date', 'eng_date')"
                                            value="{{ old('nepali_work_date') }}" placeholder="yyyy-dd-mm"
-                                           id="nep_date" readonly/>
+                                           id="nepali_date" readonly/>
                                 </div>
                                 <span class="text-danger require work_date"></span>
                             </div>
@@ -237,15 +237,15 @@
                                 <label class="required form-label">Substituted To Date</label>
                                 <div class="d-flex gap-5">
                                     <input type="text" class="form-control mb-2 eng_dat" name="substituted_to_date"
-                                           onchange="engtonep($(this), 'nep_dat')"
+                                           onchange="engtonep($(this), 'nepali_dat')"
                                            value="{{ old('substituted_to_date') }}" placeholder="yyyy-dd-mm"
                                            id="eng_dat" readonly
                                     />
-                                    <input type="hidden" class="form-control mb-2 nep_dat"
+                                    <input type="hidden" class="form-control mb-2 nepali_dat"
                                            name="nepali_substituted_to_date"
-                                           onclick="neptoeng('nep_dat', 'eng_dat')"
+                                           onclick="neptoeng('nepali_dat', 'eng_dat')"
                                            value="{{ old('nepali_substituted_to_date') }}" placeholder="yyyy-dd-mm"
-                                           id="nep_dat" readonly/>
+                                           id="nepali_dat" readonly/>
                                 </div>
                                 <span class="text-danger require substituted_to_date"></span>
                             </div>

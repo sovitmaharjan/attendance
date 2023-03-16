@@ -17,8 +17,8 @@ class UpdateHolidayRequest extends FormRequest
             'name' => 'required|unique:holidays,name,' . $this->route('holiday')->id,
             'from_date' => 'required|date',
             'to_date' => 'required|date|after_or_equal:from_date',
-            'nep_from_date' => 'nullable|date|date_format:Y-m-d',
-            'nep_to_date' => 'nullable|date|date_format:Y-m-d|after_or_equal:from_date'
+            'nepali_from_date' => 'required|date|date_format:Y-m-d',
+            'nepali_to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date'
         ];
     }
 }

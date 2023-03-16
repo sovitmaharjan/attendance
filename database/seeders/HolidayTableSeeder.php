@@ -16,8 +16,8 @@ class HolidayTableSeeder extends Seeder
             'to_date' => '2022-11-18',
             'quantity' => 1,
             'extra' => [
-                'nep_from_date' => '2079-08-02',
-                'nep_to_date' => '2079-08-02'
+                'nepali_from_date' => '2079-08-02',
+                'nepali_to_date' => '2079-08-02'
             ]
         ]);
         $holiday->holiday_dates()->create([

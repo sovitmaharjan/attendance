@@ -68,7 +68,7 @@
                                     <label class="required form-label">Name</label>
                                     <div class="d-flex">
                                         <input type="text" id="name" name="name" class="form-control"
-                                            placeholder="Holiday name" value="{{ old('name', $holiday->name) }}" />
+                                            placeholder="Holiday name" value="{{ old('name', $holiday->name) }}" required />
                                     </div>
                                 </div>
                                 <div class="mb-10 fv-row">
@@ -76,18 +76,19 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">From</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control from_date" date-id="from"
+                                                <input type="text" class="form-control from_date"
                                                     placeholder="yyyy-dd-mm" id="from_date" name="from_date"
                                                     autocomplete="off"
-                                                    value="{{ old('from_date', $holiday->from_date->format('Y-m-d')) }}">
+                                                    value="{{ old('from_date', $holiday->from_date->format('Y-m-d')) }}" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control nep_from_date" id="nep_from_date"
-                                                    name="nep_from_date" autocomplete="off"
-                                                    value="{{ old('nep_from_date', $holiday->extra['nep_from_date']) }}" placeholder="yyyy-dd-mm">
+                                                <input type="text" class="form-control nepali_from_date" id="nepali_from_date"
+                                                    name="nepali_from_date" autocomplete="off"
+                                                    value="{{ old('nepali_from_date', $holiday->extra['nepali_from_date']) }}"
+                                                    placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -95,15 +96,16 @@
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control to_date"
                                                     value="{{ old('to_date', $holiday->to_date->format('Y-m-d')) }}"
-                                                    date-id="to" placeholder="yyyy-dd-mm" id="to_date" name="to_date" />
+                                                    placeholder="yyyy-dd-mm" id="to_date" name="to_date" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex">
-                                                <input type="text" autocomplete="off" class="form-control nep_to_date"
-                                                    id="nep_to_date" name="nep_to_date" value="{{ old('nep_to_date', $holiday->extra['nep_to_date']) }}"
-                                                    placeholder="yyyy-dd-mm">
+                                                <input type="text" autocomplete="off" class="form-control nepali_to_date"
+                                                    id="nepali_to_date" name="nepali_to_date"
+                                                    value="{{ old('nepali_to_date', $holiday->extra['nepali_to_date']) }}"
+                                                    placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
                                     </div>
@@ -137,29 +139,29 @@
     <script>
         $('.from_date').flatpickr({
             onChange: function() {
-                $('.nep_from_date').val(NepaliFunctions.AD2BS($('.from_date').val()));
+                $('.nepali_from_date').val(NepaliFunctions.AD2BS($('.from_date').val()));
                 dateDiff();
             }
         });
-        $('.nep_from_date').nepaliDatePicker({
+        $('.nepali_from_date').nepaliDatePicker({
             ndpYear: true,
             ndpMonth: true,
             onChange: function() {
-                $('.from_date').val(NepaliFunctions.BS2AD($('.nep_from_date').val()));
+                $('.from_date').val(NepaliFunctions.BS2AD($('.nepali_from_date').val()));
                 dateDiff();
             }
         });
         $('.to_date').flatpickr({
             onChange: function() {
-                $('.nep_to_date').val(NepaliFunctions.AD2BS($('.to_date').val()));
+                $('.nepali_to_date').val(NepaliFunctions.AD2BS($('.to_date').val()));
                 dateDiff();
             }
         });
-        $('.nep_to_date').nepaliDatePicker({
+        $('.nepali_to_date').nepaliDatePicker({
             ndpYear: true,
             ndpMonth: true,
             onChange: function() {
-                $('.to_date').val(NepaliFunctions.BS2AD($('.nep_to_date').val()));
+                $('.to_date').val(NepaliFunctions.BS2AD($('.nepali_to_date').val()));
                 dateDiff();
             }
         });

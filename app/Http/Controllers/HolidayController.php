@@ -30,8 +30,8 @@ class HolidayController extends Controller
             $data = $request->validated();
             $data['quantity'] = $difference + 1;
             $data['extra'] = [
-                'nep_from_date' => $request->nep_from_date,
-                'nep_to_date' => $request->nep_to_date
+                'nepali_from_date' => $request->nepali_from_date,
+                'nepali_to_date' => $request->nepali_to_date
             ];
             $holiday = Holiday::create($data);
             for($i = 0; $i <= $difference; $i++) {
@@ -60,8 +60,8 @@ class HolidayController extends Controller
             $data = $request->validated();
             $data['quantity'] = $difference + 1;
             $data['extra'] = [
-                'nep_from_date' => $request->nep_from_date,
-                'nep_to_date' => $request->nep_to_date
+                'nepali_from_date' => $request->nepali_from_date,
+                'nepali_to_date' => $request->nepali_to_date
             ];
             $holiday->update($data);
             $holiday->holiday_dates()->delete();

@@ -3,8 +3,8 @@
         log: myLog
     } = console;
 
-    // function nepaliPicker(nep_class) {
-    //     var main_input = document.getElementsByClassName(nep_class);
+    // function nepaliPicker(nepali_class) {
+    //     var main_input = document.getElementsByClassName(nepali_class);
     //     main_input.nepaliDatePicker({
     //         language: "english",
     //         ndpYear: true,
@@ -13,13 +13,13 @@
     //     });
     // }
 
-    // function neptoeng(nep_class, id_name) {
+    // function neptoeng(nepali_class, id_name) {
     //     console.log('hi');
-    //     var mainInput = document.getElementsByClassName(nep_class);
+    //     var mainInput = document.getElementsByClassName(nepali_class);
     //     mainInput.nepaliDatePicker({
     //         language: "english",
     //         onChange: function() {
-    //             let nepalidate = $("." + nep_class).val();
+    //             let nepalidate = $("." + nepali_class).val();
     //             let dateObj = NepaliFunctions.ParseDate(nepalidate);
     //             let engDate = NepaliFunctions.BS2AD(dateObj.parsedDate);
     //             let year = engDate.year;

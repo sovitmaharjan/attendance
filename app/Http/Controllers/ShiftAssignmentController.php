@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ShiftAssignmentRequest;
+use App\Http\Requests\Shift\ShiftAssignmentRequest;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Shift;
@@ -40,8 +40,8 @@ class ShiftAssignmentController extends Controller
                         [
                             'shift_id' => $item['shift'],
                             'extra' => [
-                                'nep_from_date' => $item['nep_from_date'],
-                                'nep_to_date' => $item['nep_to_date']
+                                'nepali_from_date' => $item['nepali_from_date'],
+                                'nepali_to_date' => $item['nepali_to_date']
                             ]
                         ]
                     );

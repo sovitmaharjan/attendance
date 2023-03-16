@@ -22,7 +22,7 @@ class EventController extends Controller
 
     public function store(EventRequest $request)
     {
-        try{
+        try {
             DB::beginTransaction();
             $extras = [
                 'nepali_from_date' => $request->nepali_from_date,
@@ -35,7 +35,7 @@ class EventController extends Controller
             $event = Event::create($request->all());
             DB::commit();
             return back()->with('success', 'Event created successfully');
-        } catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
@@ -49,7 +49,7 @@ class EventController extends Controller
 
     public function update(EventRequest $request, Event $event)
     {
-        try{
+        try {
             DB::beginTransaction();
             $extras = [
                 'nepali_from_date' => $request->nepali_from_date,
@@ -62,7 +62,7 @@ class EventController extends Controller
             $event->update($request->all());
             DB::commit();
             return redirect()->route('event.index')->with('success', 'Event updated successfully');
-        } catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
@@ -70,10 +70,10 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
-        try{
+        try {
             $event->delete();
             return redirect()->route('event.index')->with('success', 'Event deleted successfully');
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->route('event.index')->with('error', $e->getMessage());
         }
     }

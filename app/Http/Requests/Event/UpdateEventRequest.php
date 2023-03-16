@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Holiday;
+namespace App\Http\Requests\Event;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreHolidayRequest extends FormRequest
+class UpdateEventRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,11 +14,11 @@ class StoreHolidayRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:holidays',
+            'title' => 'required',
             'from_date' => 'required|date|date_format:Y-m-d',
             'to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date',
-            'nepali_from_date' => 'required|date|date_format:Y-m-d',
-            'nepali_to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date'
+            'nepali_from_date' => 'required|date',
+            'nepali_to_date' => 'required|date'
         ];
     }
 }

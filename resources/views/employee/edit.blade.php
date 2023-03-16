@@ -274,13 +274,13 @@
                                             <label class="required form-label">DOB</label>
                                             <div class="d-flex gap-5">
                                                 <input type="text" class="form-control mb-2 eng_date" name="dob"
-                                                    onchange="engtonep($(this), 'nep_date')"
+                                                    onchange="engtonep($(this), 'nepali_date')"
                                                     value="{{ old('dob', getFormattedDate($employee->dob)) }}"
                                                     placeholder="yyyy-dd-mm" id="eng_date" autocomplete="off" />
-                                                <input type="text" class="form-control mb-2 nep_date"
-                                                    name="nepali_dob" onclick="neptoeng('nep_date', 'eng_date')"
+                                                <input type="text" class="form-control mb-2 nepali_date"
+                                                    name="nepali_dob" onclick="neptoeng('nepali_date', 'eng_date')"
                                                     value="{{ old('nepali_dob', $employee->extra != null && $employee->extra['nepali_dob'] ? $employee->extra['nepali_dob'] : '') }}"
-                                                    placeholder="yyyy-dd-mm" id="nep_date" />
+                                                    placeholder="yyyy-dd-mm" id="nepali_date" />
                                             </div>
                                             @error('dob')
                                                 <div class="fv-plugins-message-container invalid-feedback">
@@ -291,14 +291,14 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Join Date</label>
                                             <div class="d-flex gap-5">
-                                                <input type="text" onchange="engtonep($(this), 'nep_join_date')"
+                                                <input type="text" onchange="engtonep($(this), 'nepali_join_date')"
                                                     class="form-control mb-2 join_date" name="join_date"
                                                     value="{{ old('join_date', getFormattedDate($employee->join_date)) }}"
                                                     placeholder="yyyy-dd-mm" id="join_date" autocomplete="off" />
-                                                <input type="text" onclick="neptoeng('nep_join_date', 'eng_join_date')"
-                                                    class="form-control mb-2 nep_join_date" name="nepali_join_date"
+                                                <input type="text" onclick="neptoeng('nepali_join_date', 'eng_join_date')"
+                                                    class="form-control mb-2 nepali_join_date" name="nepali_join_date"
                                                     value="{{ old('nepali_join_date', $employee->extra != null && $employee->extra['nepali_join_date'] ? $employee->extra['nepali_join_date'] : '') }}"
-                                                    placeholder="yyyy-dd-mm" id="nep_join_date" />
+                                                    placeholder="yyyy-dd-mm" id="nepali_join_date" />
                                             </div>
                                             @error('join_date')
                                                 <div class="fv-plugins-message-container invalid-feedback">
