@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
-    Route::resource('/shift-assignment', ShiftAssignmentController::class);
+    Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
     Route::resource('/force-attendance', ForceAttendanceController::class);
     Route::resource('/leave', LeaveController::class);
     Route::resource('/leave-assignment', LeaveAssignmentController::class);

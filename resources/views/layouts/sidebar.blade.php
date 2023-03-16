@@ -222,7 +222,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link @yield('shift_assignment')"
-                                        href="{{ route('shift-assignment.create') }}">
+                                        href="{{ route('shift-assignment.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>

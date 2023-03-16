@@ -135,7 +135,7 @@
 
 @section('script')
     <script>
-        $(".from_date").flatpickr({
+        $('.from_date').flatpickr({
             onChange: function() {
                 $('.nep_from_date').val(NepaliFunctions.AD2BS($('.from_date').val()));
                 dateDiff();
@@ -149,7 +149,7 @@
                 dateDiff();
             }
         });
-        $(".to_date").flatpickr({
+        $('.to_date').flatpickr({
             onChange: function() {
                 $('.nep_to_date').val(NepaliFunctions.AD2BS($('.to_date').val()));
                 dateDiff();

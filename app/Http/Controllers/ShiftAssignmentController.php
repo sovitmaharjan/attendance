@@ -14,17 +14,18 @@ use Illuminate\Support\Facades\DB;
 
 class ShiftAssignmentController extends Controller
 {
-    public function create()
+    public function index()
     {
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         $data['shift'] = Shift::orderBy('name', 'asc')->get();
-        return view('shift-assignment.create', $data);
+        return view('shift-assignment.index', $data);
     }
 
     public function store(ShiftAssignmentRequest $request)
     {
+        dd($request->all());
         try {
             DB::beginTransaction();
             foreach ($request->shift_repeater as $item) {
