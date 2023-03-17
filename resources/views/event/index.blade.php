@@ -132,7 +132,7 @@
                                                     @endcan
                                                     @can('add-event-assignment')
                                                         @if ($event->status == 1)
-                                                            <a href="{{ route('event-assignment.create', $event->id) }}"
+                                                            <a href="{{ route('event-assignment.index', $event->id) }}"
                                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <i class="bi bi-bookmarks-fill fs-1x"
                                                                    title="Assign To Employee"></i>
@@ -278,7 +278,7 @@
                 if (id != "undefined" && id != undefined && id != 'null' && id != null) {
                     var url = "{{ route('event-assignment.event_employee_list', ':id') }}",
                         url = url.replace(":id", id);
-                    var event_employee_assign_route = "{{ route('event-assignment.create', ':id') }}",
+                    var event_employee_assign_route = "{{ route('event-assignment.index', ':id') }}",
                         event_employee_assign_route = event_employee_assign_route.replace(":id", id);
                     $.ajax({
                         url: url,

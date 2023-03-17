@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('department/off/days', [DepartmentController::class, 'assingOffDays'])->name('assignOffDays');
 
     Route::group(['prefix' => 'event-assignment', 'as' => 'event-assignment.'], function () {
-        Route::get('create/{event_id?}', [EventAssignmentController::class, 'create'])->name('create');
+        Route::get('/{event_id?}', [EventAssignmentController::class, 'index'])->name('index');
         Route::post('store', [EventAssignmentController::class, 'store'])->name('store');
         Route::get('employee/{event_id}', [EventAssignmentController::class, 'event_employee_list'])->name('event_employee_list');
     });

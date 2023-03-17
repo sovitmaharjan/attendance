@@ -259,7 +259,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link @yield('event_assignment')"
-                                        href="{{ route('event-assignment.create') }}">
+                                        href="{{ route('event-assignment.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
