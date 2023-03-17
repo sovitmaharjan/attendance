@@ -55,7 +55,6 @@
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label fw-bolder fs-3 mb-1">Leave List</span>
-                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you leave group </span> --}}
                         </h3>
                         @can('add-leave')
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
