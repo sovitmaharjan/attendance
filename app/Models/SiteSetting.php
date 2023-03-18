@@ -24,6 +24,12 @@ class SiteSetting extends Model implements HasMedia
             "visible" => 1,
             "display_text" => "Company Name"
         ],
+        "company_code" => [
+            "type" => "text",
+            "element" => "text",
+            "visible" => 1,
+            "display_text" => "Company Code"
+        ],
         "email" => [
             "type" => "text",
             "element" => "text",

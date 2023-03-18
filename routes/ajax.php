@@ -7,7 +7,7 @@ use App\Http\Controllers\ForceAttendanceController;
 use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'auth', 'as' => 'ajax.'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'ajax', 'as' => 'ajax.'], function () {
     Route::get('/branch/{branch}', [BranchController::class, 'show'])->name('branch.show');
     Route::get('/department/{department}', [DepartmentController::class, 'show'])->name('department.show');
     Route::get('/employee/{employee}', [EmployeeController::class, 'show'])->name('employee.show');

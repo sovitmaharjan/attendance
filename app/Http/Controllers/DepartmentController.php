@@ -38,7 +38,7 @@ class DepartmentController extends Controller
 
     public function show(Department $department)
     {
-        return $department->load('employees');
+        return response()->json($department->load('employees'));
     }
 
     public function store(StoreDepartmentRequest $request, Department $department)

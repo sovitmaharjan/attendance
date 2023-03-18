@@ -6,7 +6,6 @@ namespace App\Models;
 use App\Permissions\HasPermissionsTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -15,7 +14,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia, HasPermissionsTrait;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasPermissionsTrait;
 
     protected $fillable = [
         'prefix',

@@ -22,7 +22,7 @@ class LeaveController extends Controller
 
     public function show(Leave $leave)
     {
-        return $leave;
+        return response()->json($leave);
     }
 
     public function store(StoreLeaveRequest $request)

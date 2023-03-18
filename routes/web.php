@@ -23,6 +23,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\EmployeeProfileController;
 use App\Http\Controllers\EmployeeSubstituteDayController;
 use App\Http\Controllers\SiteSettingController;
 
@@ -44,12 +45,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/permission', PermissionController::class);
     Route::resource('/role', RoleController::class);
 
-    Route::resource('company', SiteSettingController::class)->only('index', 'create', 'store');
+    Route::resource('company', SiteSettingController::class)->only('index', 'store');
     Route::resource('branch', BranchController::class)->except('show');
     Route::resource('department', DepartmentController::class)->except('show');
     Route::resource('designation', DesignationController::class)->except('show');
 
     Route::resource('/employee', EmployeeController::class)->except('show'); //->middleware(['checkPermission:delete-dashboard'])
+    Route::resource('/employee-profile', EmployeeProfileController::class)->only('index', 'store');
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);

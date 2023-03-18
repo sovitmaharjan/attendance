@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
             $table->string('gender')->nullable();
@@ -36,7 +36,6 @@ return new class extends Migration
             $table->foreignId('role_id')->constrained();
             $table->rememberToken();
             $table->json('extra')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmployeeRequest extends FormRequest
+class UpdateEmployeeRequest extends FormRequest
 {
     public function authorize()
     {
@@ -18,21 +18,24 @@ class EmployeeRequest extends FormRequest
             'firstname' => ['required'],
             'middlename' => ['nullable'],
             'lastname' => ['required'],
-            'email' => ['required', 'unique:users,email,'.request()->route()->parameter('employee')->id],
-            'phone' => ['required'],
-            'address' => ['required'],
-            'gender' => ['required', 'in:Male,Female,Other'],
+            'gender' => ['required'],
             'marital_status' => ['required'],
             'dob' => ['required', 'date', 'date_format:Y-m-d'],
-            'nepali_dob' => ['nullable'],
+            'nepali_dob' => ['required'],
             'join_date' => ['required', 'date', 'date_format:Y-m-d'],
-            'nepali_join_date' => ['nullable'],
-            'branch_id' => ['nullable'],
-            'department_id' => ['nullable'],
+            'nepali_join_date' => ['required'],
+            'phone' => ['required'],
+            'address' => ['required'],
+            'email' => ['required'],
+            'branch_id' => ['required'],
+            'department_id' => ['required'],
+            'designation_id' => ['required'],
+            'role_id' => ['required'],
             'login_id' => ['required'],
             'supervisor_id' => ['nullable'],
             'status' => ['required'],
             'type' => ['required'],
+            'official_email' => ['nullable'],
             'base64' => ['nullable']
         ];
     }

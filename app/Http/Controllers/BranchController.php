@@ -32,7 +32,7 @@ class BranchController extends Controller
 
     public function show(Branch $branch)
     {
-        return $branch->load('departments', 'employees');
+        return response()->json($branch->load('departments', 'employees'));
     }
 
     public function store(StoreBranchRequest $request, Branch $branch)

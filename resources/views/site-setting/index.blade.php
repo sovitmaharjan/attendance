@@ -48,7 +48,7 @@
                                             <div class="d-flex flex-wrap gap-5">
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
-                                                        class="{{ $key == 'company_name' ? 'required' : '' }} form-label">{{ $value['display_text'] }}</label>
+                                                        class="{{ $key == 'company_name' || $key == 'company_code' ? 'required' : '' }} form-label">{{ $value['display_text'] }}</label>
                                                     @if ($value['element'] == 'image')
                                                         <div class="card card-flush py-4">
                                                             <div class="card-body text-center pt-0">
@@ -97,7 +97,8 @@
                                                                 id="{{ $key }}" name="{{ $key }}"
                                                                 value="{{ old($key, $site_settings->where('key', $key)->first()['value'] ?? '') }}"
                                                                 placeholder="{{ $value['display_text'] }}"
-                                                                autocomplete="off" {{ $key == 'company_name' ? 'required' : '' }} />
+                                                                autocomplete="off"
+                                                                {{ $key == 'company_name' || $key == 'company_code' ? 'required' : '' }} />
                                                         </div>
                                                     @endif
                                                 </div>
@@ -105,7 +106,6 @@
                                         </div>
                                     @endif
                                 @endforeach
-
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
@@ -123,3 +123,25 @@
         </div>
     </div>
 @endSection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#company_name').on('keyup', function() {
+                var code = $(this).val().toUpperCase();
+                if (code.length > 4) {
+                    code = code.substring(0, 4);
+                }
+                $('#company_code').val(code);
+            });
+
+            $('#company_code').on('keyup', function() {
+                var code = $(this).val().toUpperCase();
+                if (code.length > 4) {
+                    code = code.substring(0, 4);
+                }
+                $(this).val(code);
+            });
+        });
+    </script>
+@endsection
