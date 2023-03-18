@@ -135,35 +135,19 @@
 
 @section('script')
     <script>
-        $('.from_date').flatpickr({
-            onChange: function() {
-                $('.nepali_from_date').val(NepaliFunctions.AD2BS($('.from_date').val()));
-                dateDiff();
-            }
+        englishToNepaliDatePicker($('.from_date'), $('.nepali_from_date'), function() {
+            dateDiff();
         });
-        $('.nepali_from_date').nepaliDatePicker({
-            ndpYear: true,
-            ndpMonth: true,
-            onChange: function() {
-                $('.from_date').val(NepaliFunctions.BS2AD($('.nepali_from_date').val()));
-                dateDiff();
-            }
+        nepaliToEnglishDatepicker($('.nepali_from_date'), $('.from_date'), function() {
+            dateDiff();
         });
-        $('.to_date').flatpickr({
-            onChange: function() {
-                $('.nepali_to_date').val(NepaliFunctions.AD2BS($('.to_date').val()));
-                dateDiff();
-            }
+        englishToNepaliDatePicker($('.to_date'), $('.nepali_to_date'), function() {
+            dateDiff();
         });
-        $('.nepali_to_date').nepaliDatePicker({
-            ndpYear: true,
-            ndpMonth: true,
-            onChange: function() {
-                $('.to_date').val(NepaliFunctions.BS2AD($('.nepali_to_date').val()));
-                dateDiff();
-            }
+        nepaliToEnglishDatepicker($('.nepali_to_date'), $('.to_date'), function() {
+            dateDiff();
         });
-
+        
         function dateDiff() {
             const date1 = new Date($('.from_date').val() ? $('.from_date').val() : $('.to_date').val());
             const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());

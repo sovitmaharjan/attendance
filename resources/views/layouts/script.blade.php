@@ -18,13 +18,25 @@
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "5000",
+        "timeOut": "10000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+
+    function delay(callback, ms) {
+        var timer = 0;
+        return function() {
+            var context = this,
+                args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                callback.apply(context, args);
+            }, ms || 0);
+        };
+    }
 </script>
 
 @include('partials.datepicker')
@@ -81,3 +93,4 @@
         })
     });
 </script>
+@yield('script')

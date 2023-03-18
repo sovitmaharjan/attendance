@@ -76,7 +76,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control from_date"
                                                     placeholder="yyyy-dd-mm" id="from_date" name="from_date"
-                                                    autocomplete="off" value="{{ old('from_date', $event->from_date) }}"
+                                                    autocomplete="off" value="{{ old('from_date', $event->from_date->format('Y-m-d')) }}"
                                                     required />
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                             <label class="required form-label">To</label>
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control to_date"
-                                                    value="{{ old('to_date', $event->to_date) }}" placeholder="yyyy-dd-mm"
+                                                    value="{{ old('to_date', $event->to_date->format('Y-m-d')) }}" placeholder="yyyy-dd-mm"
                                                     id="to_date" name="to_date" required />
                                             </div>
                                         </div>
@@ -155,35 +155,19 @@
 
 @section('script')
     <script>
-        $('.from_date').flatpickr({
-            onChange: function() {
-                $('.nepali_from_date').val(NepaliFunctions.AD2BS($('.from_date').val()));
-                dateDiff();
-            }
+        englishToNepaliDatePicker($('.from_date'), $('.nepali_from_date'), function() {
+            dateDiff();
         });
-        $('.nepali_from_date').nepaliDatePicker({
-            ndpYear: true,
-            ndpMonth: true,
-            onChange: function() {
-                $('.from_date').val(NepaliFunctions.BS2AD($('.nepali_from_date').val()));
-                dateDiff();
-            }
+        nepaliToEnglishDatepicker($('.nepali_from_date'), $('.from_date'), function() {
+            dateDiff();
         });
-        $('.to_date').flatpickr({
-            onChange: function() {
-                $('.nepali_to_date').val(NepaliFunctions.AD2BS($('.to_date').val()));
-                dateDiff();
-            }
+        englishToNepaliDatePicker($('.to_date'), $('.nepali_to_date'), function() {
+            dateDiff();
         });
-        $('.nepali_to_date').nepaliDatePicker({
-            ndpYear: true,
-            ndpMonth: true,
-            onChange: function() {
-                $('.to_date').val(NepaliFunctions.BS2AD($('.nepali_to_date').val()));
-                dateDiff();
-            }
+        nepaliToEnglishDatepicker($('.nepali_to_date'), $('.to_date'), function() {
+            dateDiff();
         });
-
+        
         function dateDiff() {
             const date1 = new Date($('.from_date').val() ? $('.from_date').val() : $('.to_date').val());
             const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());

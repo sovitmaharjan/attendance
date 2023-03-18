@@ -66,20 +66,22 @@
     //     }
     // }
 
-    function englishToNepaliDatePicker(english, nepali) {
+    function englishToNepaliDatePicker(english, nepali, customFn = null) {
         english.flatpickr({
             onChange: function() {
                 nepali.val(NepaliFunctions.AD2BS(english.val()));
+                customFn ? customFn() : '';
             }
         });
     }
 
-    function nepaliToEnglishDatepicker(nepali, english) {
+    function nepaliToEnglishDatepicker(nepali, english, customFn = null) {
         nepali.nepaliDatePicker({
             ndpYear: true,
             ndpMonth: true,
             onChange: function() {
                 english.val(NepaliFunctions.BS2AD(nepali.val()));
+                customFn ? customFn() : '';
             }
         });
     }

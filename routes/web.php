@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
-    Route::resource('/force-attendance', ForceAttendanceController::class);
+    Route::resource('/force-attendance', ForceAttendanceController::class)->only('index', 'store');
     Route::resource('/leave', LeaveController::class)->except('show');
     Route::resource('/leave-assignment', LeaveAssignmentController::class)->only('index', 'store');
     Route::resource('/leave-application', LeaveApplicationController::class)->only('index', 'store');

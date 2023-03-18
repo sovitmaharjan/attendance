@@ -93,18 +93,6 @@
         });
     });
 
-    function delay(callback, ms) {
-        var timer = 0;
-        return function() {
-            var context = this,
-                args = arguments;
-            clearTimeout(timer);
-            timer = setTimeout(function() {
-                callback.apply(context, args);
-            }, ms || 0);
-        };
-    }
-
     $(document).on('keyup', '#employee_id', delay(function() {
         var id = $(this).val();
         var url = "{{ route('ajax.employee.show', ':id') }}";
@@ -118,7 +106,7 @@
                 $('#branch').val(data.branch_id).trigger('change');
             },
             error: function() {
-                toastr.error('No data');
+                toastr.error('', 'Employee not data');
                 resetSection();
             }
         });
