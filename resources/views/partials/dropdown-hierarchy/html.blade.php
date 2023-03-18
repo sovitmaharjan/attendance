@@ -33,7 +33,7 @@
                     <option></option>
                     @foreach ($employee as $item)
                     <option value="{{ $item->id }}" @selected(old('employee')==$item->id)>
-                        {{ $item->fullname }}
+                        {{ $item->full_name }}
                     </option>
                     @endforeach
                 </select>
@@ -43,6 +43,12 @@
             <label class="required form-label">Employee Id</label>
             <div class="d-flex">
                 <input type="text" class="form-control" id="employee_id" name="employee_id" value="{{ old('employee_id') }}" required/>
+            </div>
+        </div>
+        <div class="fv-row">
+            <div class="col-md-1">
+                <button type="button" id="reset-selection" data-repeater-delete="" class="btn btn-sm btn-light-danger mt-3 mt-md-9" data-bs-toggle="tooltip" data-bs-placement="top" title="reset">
+                    <i class="la la-sync fs-3"></i></button>
             </div>
         </div>
     </div>

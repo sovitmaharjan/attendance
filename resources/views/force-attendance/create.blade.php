@@ -105,7 +105,7 @@
                                                 <option></option>
                                                 @foreach ($employee as $item)
                                                     <option value="{{ $item->id }}" @selected(old('employee') == $item->id)>
-                                                        {{ $item->fullname }}</option>
+                                                        {{ $item->full_name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('employee')
