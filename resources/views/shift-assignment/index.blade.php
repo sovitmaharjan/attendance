@@ -25,8 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <button type="button" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                            data-bs-toggle="modal" data-bs-target="#assign_off_day">
+                        <a href="{{ route('shift.index') }}" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
@@ -38,8 +37,8 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            Assign off day
-                        </button>
+                            Shift List
+                        </a>
                     </div>
                     @can('add-shift-assignment')
                         <a href="{{ route('shift-assignment.index') }}" class="btn btn-sm btn-primary">Create</a>
@@ -61,11 +60,6 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex align-items-center gap-2 gap-lg-3 justify-content-end mb-10">
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#assign_off_day">Assign off days
-                                    </button>
-                                </div>
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         @include('partials.dropdown-hierarchy.branch')
@@ -292,86 +286,6 @@
                 </form>
             </div>
         </div>
-        {{-- <div class="modal fade" id="assign_off_day" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered mw-650px">
-                <div class="modal-content rounded">
-                    <div class="modal-header pb-0 border-0 justify-content-end">
-                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                        rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" fill="currentColor" />
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
-                        <form id="assign_off_day_form" class="form" action="{{ route('assignOffDays') }}">
-                            <div class="mb-13 text-center">
-                                <h1 class="mb-3">Assign Off Days To <span id="departmentName"></span></h1>
-                            </div>
-                            <div class="d-flex flex-column mb-8 fv-row">
-                                <div class="d-flex flex-wrap gap-5">
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="required form-label">Branch</label>
-                                        <select class="form-select branch-select" id="branch" name="branch"
-                                            data-control="select2" data-hide-search="false"
-                                            data-placeholder="Select Branch" required>
-                                            <option></option>
-                                            @foreach ($branch as $item)
-                                                <option value="{{ $item->id }}" @selected(old('branch') == $item->id)>
-                                                    {{ $item->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="required form-label">Department</label>
-                                        <select class="form-select" id="department" name="department"
-                                            data-control="select2" data-hide-search="false"
-                                            data-placeholder="Select Department" required>
-                                            <option></option>
-                                            @foreach ($department as $item)
-                                                <option value="{{ $item->id }}" @selected(old('department') == $item->id)>
-                                                    {{ $item->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <input type="hidden" id="departmentId" name="department_id">
-                                <input type="hidden" id="dynamicId" name="id">
-                                <input type="hidden" name="key" id="keyname">
-                                <div class="fv-row w-100 flex-md-root">
-                                    <label class="required form-label">Days</label>
-                                    <div class="d-flex gap-5" id="daysSection">
-                                        <select class="form-select" id="assignedDays" name="days[]"
-                                            data-control="select2" data-hide-search="false"
-                                            data-placeholder="Select Days" required multiple>
-                                            <option></option>
-                                            @foreach (getDays() as $day)
-                                                <option value="{{ $day }}">{{ $day }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="reset" id="assign_off_day_cancel" class="btn btn-light me-3"
-                                    data-bs-dismiss="modal">Cancel
-                                </button>
-                                <button type="button" id="assign_off_day_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Submit</span>
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 @endSection
 @section('script')

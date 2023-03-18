@@ -39,7 +39,7 @@
                                             fill="black"></path>
                                     </svg>
                                 </span>
-                                List
+                                Event List
                             </a>
                         </div>
                     @endcan
