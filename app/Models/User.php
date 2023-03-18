@@ -17,27 +17,37 @@ class User extends Authenticatable implements HasMedia
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasPermissionsTrait;
 
     protected $fillable = [
+        'login_id',
+        'password',
+
         'prefix',
         'firstname',
         'middlename',
         'lastname',
-        'email',
-        'phone',
-        'address',
+        
         'gender',
         'marital_status',
+        
         'dob',
         'join_date',
+
+        'phone',
+        'address',
+
+        'email',
+
         'branch_id',
         'department_id',
+
         'designation_id',
-        'login_id',
+        'role_id',
+
         'supervisor_id',
-        'password',
         'login_count',
+        
         'status',
         'type',
-        'role_id',
+        
         'official_email',
         'extra',
     ];

@@ -171,10 +171,10 @@
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
                                 </div>
-                                <div class="text-muted fs-7">Set the employee image. Only *.png, *.jpg and *.jpeg image
+                                {{-- <div class="text-muted fs-7">Set the employee image. Only *.png, *.jpg and *.jpeg image
                                     files
                                     are accepted
-                                </div>
+                                </div> --}}
                                 @error('image')
                                     <div class="fv-plugins-message-container invalid-feedback">
                                         {{ $message }}
@@ -297,7 +297,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control dob" date-id="from"
                                                     placeholder="yyyy-dd-mm" id="dob" name="dob"
-                                                    autocomplete="off" value="{{ old('dob') }}" required />
+                                                    autocomplete="off" value="{{ old('dob') }}" />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -305,7 +305,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control nepali_dob" id="nepali_dob"
                                                     name="nepali_dob" autocomplete="off" value="{{ old('nepali_dob') }}"
-                                                    placeholder="yyyy-dd-mm" required />
+                                                    placeholder="yyyy-dd-mm" />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -313,7 +313,7 @@
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control join_date"
                                                     value="{{ old('join_date') }}" date-id="to"
-                                                    placeholder="yyyy-dd-mm" id="join_date" name="join_date" required />
+                                                    placeholder="yyyy-dd-mm" id="join_date" name="join_date" />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -322,7 +322,7 @@
                                                 <input type="text" autocomplete="off"
                                                     class="form-control nepali_join_date" id="nepali_join_date"
                                                     name="nepali_join_date" value="{{ old('nepali_join_date') }}"
-                                                    placeholder="yyyy-dd-mm" required />
+                                                    placeholder="yyyy-dd-mm" />
                                             </div>
                                         </div>
                                     </div>
@@ -353,16 +353,16 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Citizenship Number</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" id="citizenship_no"
-                                                    name="citizenship_no" value="{{ old('citizenship_no') }}"
+                                                <input type="text" class="form-control mb-2" id="citizenship_number"
+                                                    name="citizenship_number" value="{{ old('citizenship_number') }}"
                                                     placeholder="05-01-27-87654" autocomplete="off" />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Pan Number</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" id="pan_no"
-                                                    name="pan_no" value="{{ old('pan_no') }}" placeholder="1072345" />
+                                                <input type="text" class="form-control mb-2" id="pan_number"
+                                                    name="pan_number" value="{{ old('pan_number') }}" placeholder="1072345" />
                                             </div>
                                         </div>
                                     </div>
