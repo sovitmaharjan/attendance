@@ -25,7 +25,6 @@ class ShiftAssignmentController extends Controller
 
     public function store(ShiftAssignmentRequest $request)
     {
-        dd($request->all());
         try {
             DB::beginTransaction();
             foreach ($request->shift_repeater as $item) {

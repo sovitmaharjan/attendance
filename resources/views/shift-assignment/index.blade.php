@@ -66,59 +66,7 @@
                                         data-bs-target="#assign_off_day">Assign off days
                                     </button>
                                 </div>
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Branch</label>
-                                            <div class="d-flex">
-                                                <select class="form-select branch-select" id="branch" name="branch"
-                                                    data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Branch" required>
-                                                    <option></option>
-                                                    @foreach ($branch as $item)
-                                                        <option value="{{ $item->id }}" @selected(old('branch') == $item->id)>
-                                                            {{ $item->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Department</label>
-                                            <div class="d-flex">
-                                                <select class="form-select department-select" id="department"
-                                                    name="department" data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Department">
-                                                    <option></option>
-                                                    @foreach ($department as $item)
-                                                        <option value="{{ $item->id }}" @selected(old('department') == $item->id)>
-                                                            {{ $item->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Employee</label>
-                                            <div class="d-flex">
-                                                <select class="form-select employee-select" id="employee" name="employee"
-                                                    data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Employee">
-                                                    <option></option>
-                                                    @foreach ($employee as $item)
-                                                        <option value="{{ $item->id }}" @selected(old('employee') == $item->id)>
-                                                            {{ $item->full_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Employee Id</label>
-                                            <div class="d-flex">
-                                                <input type="text" class="form-control employee_id" id="employee_id"
-                                                    name="employee_id" value="{{ old('employee_id') }}" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('partials.dropdown-hierarchy.html')
                                 <div class="mb-10 fv-row">
                                     <div class="py-5">
                                         <div class="rounded border p-5">
@@ -136,7 +84,7 @@
                                                                                 <select class="form-select shift"
                                                                                     name="shift" data-control="select2"
                                                                                     data-hide-search="false"
-                                                                                    data-placeholder="Select Shift">
+                                                                                    data-placeholder="Select Shift" required>
                                                                                     <option></option>
                                                                                     @foreach ($shift as $item)
                                                                                         <option
@@ -163,7 +111,7 @@
                                                                                     class="form-control from_date"
                                                                                     placeholder="yyyy-dd-mm"
                                                                                     name="from_date" autocomplete="off"
-                                                                                    value="{{ $shift_repeater_value['from_date'] }}" />
+                                                                                    value="{{ $shift_repeater_value['from_date'] }}" required />
                                                                             </div>
                                                                             @error('shift_repeater.' . $key . '.from_date')
                                                                                 <div
@@ -183,7 +131,7 @@
                                                                                     name="nepali_from_date"
                                                                                     autocomplete="off"
                                                                                     value="{{ $shift_repeater_value['nepali_from_date'] }}"
-                                                                                    placeholder="yyyy-dd-mm">
+                                                                                    placeholder="yyyy-dd-mm" required>
                                                                             </div>
                                                                             @error('shift_repeater.' . $key .
                                                                                 '.nepali_from_date')
@@ -203,7 +151,7 @@
                                                                                     class="form-control to_date"
                                                                                     placeholder="yyyy-dd-mm"
                                                                                     name="to_date"
-                                                                                    value="{{ $shift_repeater_value['to_date'] }}" />
+                                                                                    value="{{ $shift_repeater_value['to_date'] }}" required />
                                                                             </div>
                                                                             @error('shift_repeater.' . $key . '.to_date')
                                                                                 <div
@@ -222,7 +170,7 @@
                                                                                     class="form-control nepali_to_date"
                                                                                     name="nepali_to_date"
                                                                                     value="{{ $shift_repeater_value['nepali_to_date'] }}"
-                                                                                    placeholder="yyyy-dd-mm">
+                                                                                    placeholder="yyyy-dd-mm" required />
                                                                             </div>
                                                                             @error('shift_repeater.' . $key .
                                                                                 '.nepali_to_date')
@@ -252,7 +200,7 @@
                                                                             <select class="form-select shift"
                                                                                 name="shift" data-control="select2"
                                                                                 data-hide-search="false"
-                                                                                data-placeholder="Select Shift">
+                                                                                data-placeholder="Select Shift" required>
                                                                                 <option></option>
                                                                                 @foreach ($shift as $item)
                                                                                     <option value="{{ $item->id }}">
@@ -268,7 +216,7 @@
                                                                                 class="form-control from_date"
                                                                                 placeholder="yyyy-dd-mm" name="from_date"
                                                                                 autocomplete="off"
-                                                                                value="{{ old('from_date') }}" />
+                                                                                value="{{ old('from_date') }}" required />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-2 nepali_from">
@@ -278,7 +226,7 @@
                                                                                 class="form-control nepali_from_date"
                                                                                 name="nepali_from_date" autocomplete="off"
                                                                                 value="{{ old('nepali_from_date') }}"
-                                                                                placeholder="yyyy-dd-mm">
+                                                                                placeholder="yyyy-dd-mm" required />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-2 to">
@@ -288,7 +236,7 @@
                                                                                 class="form-control to_date"
                                                                                 value="{{ old('to_date') }}"
                                                                                 placeholder="yyyy-dd-mm" name="to_date"
-                                                                                value="{{ old('to_date') }}" />
+                                                                                value="{{ old('to_date') }}" required />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-2 nepali_to">
@@ -298,7 +246,7 @@
                                                                                 class="form-control nepali_to_date"
                                                                                 name="nepali_to_date"
                                                                                 value="{{ old('nepali_to_date') }}"
-                                                                                placeholder="yyyy-dd-mm">
+                                                                                placeholder="yyyy-dd-mm" required />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-1">
@@ -421,66 +369,6 @@
 @section('script')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
-        $(document).on('select2:select', '.branch-select', function(e) {
-            e.preventDefault();
-            var studentSelect = $('#employee');
-            var newOption = new Option('asdasd', 2222);
-            studentSelect.append(newOption);
-            // studentSelect.append('<option>asd</option>');
-
-            // var id = $(this).val();
-            // var url = "{{ route('ajax.branch.show', ':id') }}";
-            // url = url.replace(':id', id);
-            // $.ajax({
-            //     method: 'GET',
-            //     url: url,
-            //     success: function (data) {
-            //         console.log(data);
-            //         $('.department-select').empty().trigger("change");
-            //         $.each(data.departments, function(i, e) {
-            //             var newOption = new Option(e.name, e.id);
-            //             $('.department-select').append(newOption).trigger('change');
-            //         });
-            //         // $.each(data.employees, function(i, e) {
-            //         //     employee += '<option value="' + e.id + '">' + e.name + '</option>'
-            //         //     console.log(i, e);
-            //         // });
-            //         // $('.department-select').append(department);
-            //     }
-            // });
-        });
-
-        $(document).on('change', '#department', function(e) {
-            e.preventDefault();
-            var id = $(this).val();
-            var url = "{{ route('ajax.department.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                method: 'GET',
-                url: url,
-                success: function(data) {
-                    // console.log(data);
-                }
-            });
-        });
-
-        $('#employee').on('change', function(e) {
-            e.preventDefault();
-            var id = $(this).val();
-            var url = "{{ route('ajax.employee.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                method: 'GET',
-                url: url,
-                success: function(data) {
-                    console.log(data);
-                    $('#branch').val(data.branch_id).trigger('change');
-                    $('#department').val(data.department_id).trigger('change');
-                    $('#employee_id').val(data.id);
-                }
-            });
-        });
-
         $('#shift_repeater').repeater({
             initEmpty: false,
 
@@ -606,4 +494,5 @@
             }
         });
     </script>
+    @include('partials.dropdown-hierarchy.script')
 @endsection

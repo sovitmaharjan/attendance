@@ -24,12 +24,12 @@
             $('#branch').append(option).trigger('change');
         });
         $('#branch').val(null).trigger('change');
-        
-        $('#employee_id').val(null);
     }
 
     $(document).on('click', '#reset-selection', function() {
         resetSection();
+        
+        $('#employee_id').val(null);
     });
 
     $(document).on('select2:select', '#branch', function() {
