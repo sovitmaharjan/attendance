@@ -44,7 +44,7 @@
                         </div>
                     @endcan
                     @can('add-leave-assignment')
-                        <a href="{{ route('leave-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
+                        <a href="{{ route('leave-assignment.index') }}" class="btn btn-sm btn-primary">Create</a>
                     @endcan
                 </div>
             </div>
@@ -221,7 +221,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('leave-assignment.create') }}" id="leave_assignment_cancel"
+                            <a href="{{ route('leave-assignment.index') }}" id="leave_assignment_cancel"
                                class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="leave_assignment_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>

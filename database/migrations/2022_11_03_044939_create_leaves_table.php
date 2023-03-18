@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('allowed_days');
+            $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

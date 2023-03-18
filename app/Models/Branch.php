@@ -20,6 +20,10 @@ class Branch extends Model
         'extra'
     ];
 
+    protected $casts = [
+        'extra' => 'array'
+    ];
+
     public function departments()
     {
         return $this->hasMany(Department::class);

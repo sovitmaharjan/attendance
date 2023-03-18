@@ -4,14 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Leave extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'name',
-        'allowed_days'
+        'allowed_days',
+        'status',
+        'extra'
+    ];
+
+    protected $casts = [
+        'extra' => 'array'
     ];
 }

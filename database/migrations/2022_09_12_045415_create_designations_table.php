@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->boolean('status')->default(1);
+            $table->json('extra')->nullable();
             $table->timestamps();
         });
     }

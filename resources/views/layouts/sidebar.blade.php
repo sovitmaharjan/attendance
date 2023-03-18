@@ -288,7 +288,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link @yield('leave_assignment')"
-                                        href="{{ route('leave-assignment.create') }}">
+                                        href="{{ route('leave-assignment.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>

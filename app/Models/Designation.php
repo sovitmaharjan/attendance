@@ -9,5 +9,13 @@ class Designation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title'];
+    protected $fillable = [
+        'title',
+        'status',
+        'extra'
+    ];
+
+    protected $casts = [
+        'extra' => 'array'
+    ];
 }

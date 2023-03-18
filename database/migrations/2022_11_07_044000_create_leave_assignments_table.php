@@ -14,6 +14,7 @@ return new class extends Migration
             $table->foreignId('leave_id')->constrained();
             $table->integer('year');
             $table->float('allowed_days');
+            $table->json('extra')->nullable();
             $table->timestamps();
         });
     }

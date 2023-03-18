@@ -13,7 +13,12 @@ class LeaveAssignment extends Model
         'leave_id',
         'employee_id',
         'year',
-        'allowed_days'
+        'allowed_days',
+        'extra'
+    ];
+
+    protected $casts = [
+        'extra' => 'array'
     ];
 
     public function remaining_days()

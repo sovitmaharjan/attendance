@@ -16,6 +16,7 @@ return new class extends Migration
             $table->time('out_time');
             $table->time('out_time_last')->nullable();
             $table->integer('break_time')->nullable();
+            $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
             $table->timestamps();
         });

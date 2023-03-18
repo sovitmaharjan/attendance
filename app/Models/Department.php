@@ -21,6 +21,10 @@ class Department extends Model
         'extra',
     ];
 
+    protected $casts = [
+        'extra' => 'array'
+    ];
+
     public function branch_detail()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');

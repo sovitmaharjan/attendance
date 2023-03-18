@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\DB;
 
 class LeaveAssignmentController extends Controller
 {
-    public function create()
+    public function index()
     {
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         $data['leave'] = Leave::orderBy('name', 'asc')->get();
-        return view('leave-assignment.create', $data);
+        return view('leave-assignment.index', $data);
     }
 
     public function store(LeaveAssignmentRequest $request)

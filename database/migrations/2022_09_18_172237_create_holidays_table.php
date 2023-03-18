@@ -14,6 +14,7 @@ return new class extends Migration
             $table->date('from_date');
             $table->date('to_date');
             $table->integer('quantity');
+            $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
             $table->timestamps();
         });

@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
     Route::resource('/force-attendance', ForceAttendanceController::class);
     Route::resource('/leave', LeaveController::class);
-    Route::resource('/leave-assignment', LeaveAssignmentController::class);
+    Route::resource('/leave-assignment', LeaveAssignmentController::class)->only('index', 'store');
     Route::resource('/leave-application', LeaveApplicationController::class);
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function () {
