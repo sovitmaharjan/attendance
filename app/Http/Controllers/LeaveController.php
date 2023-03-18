@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Leave\StoreLeaveRequest;
 use App\Http\Requests\Leave\UpdateLeaveRequest;
-use App\Http\Requests\LeaveRequest;
 use App\Models\Leave;
 use Exception;
 
@@ -19,6 +18,11 @@ class LeaveController extends Controller
     public function create()
     {
         return view('leave.create');
+    }
+
+    public function show(Leave $leave)
+    {
+        return $leave;
     }
 
     public function store(StoreLeaveRequest $request)

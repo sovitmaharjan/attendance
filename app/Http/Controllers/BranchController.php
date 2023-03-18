@@ -30,9 +30,9 @@ class BranchController extends Controller
         return view('branch.create', compact('page'));
     }
 
-    public function show($id)
+    public function show(Branch $branch)
     {
-        //
+        return $branch->load('departments', 'employees');
     }
 
     public function store(StoreBranchRequest $request, Branch $branch)

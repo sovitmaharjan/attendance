@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LeaveAssignmentRequest;
+use App\Http\Requests\Leave\LeaveAssignmentRequest;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Leave;
 use App\Models\LeaveAssignment;
-use App\Models\RemainingLeave;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LeaveAssignmentController extends Controller

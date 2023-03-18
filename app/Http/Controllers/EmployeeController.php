@@ -30,6 +30,11 @@ class EmployeeController extends Controller
         return view('employee.create', $data);
     }
 
+    public function show(User $employee)
+    {
+        return $employee;
+    }
+
     public function store(EmployeeRequest $request)
     {
         try {

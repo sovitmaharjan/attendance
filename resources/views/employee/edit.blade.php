@@ -695,7 +695,7 @@
                     $('#uploaded_image').css('background-image', 'url(' + base64data + ')');
                     $('#base64').val(base64data);
                     $modal.modal('hide');
-                    $('#removeImage').val('');
+                    $('#removeImage').val(null);
                 }
             });
         });

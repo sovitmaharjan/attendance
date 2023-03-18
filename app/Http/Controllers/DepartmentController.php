@@ -36,6 +36,11 @@ class DepartmentController extends Controller
         return view('department.create', compact('page', 'branch'));
     }
 
+    public function show(Department $department)
+    {
+        return $department->load('employees');
+    }
+
     public function store(StoreDepartmentRequest $request, Department $department)
     {
         try {

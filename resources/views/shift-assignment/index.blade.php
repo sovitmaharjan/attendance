@@ -73,7 +73,7 @@
                                             <div class="d-flex">
                                                 <select class="form-select branch-select" id="branch" name="branch"
                                                     data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Branch">
+                                                    data-placeholder="Select Branch" required>
                                                     <option></option>
                                                     @foreach ($branch as $item)
                                                         <option value="{{ $item->id }}" @selected(old('branch') == $item->id)>
@@ -421,15 +421,15 @@
 @section('script')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
-        $(document).on('change', '.branch-select', function(e) {
+        $(document).on('select2:select', '.branch-select', function(e) {
             e.preventDefault();
-            var studentSelect = $('.employee-select');
+            var studentSelect = $('#employee');
             var newOption = new Option('asdasd', 2222);
-            studentSelect.append(newOption).trigger('change');
-            studentSelect.append('<option>asd</option>').trigger('change');
+            studentSelect.append(newOption);
+            // studentSelect.append('<option>asd</option>');
 
             // var id = $(this).val();
-            // var url = "{{ route('api.branch.show', ':id') }}";
+            // var url = "{{ route('ajax.branch.show', ':id') }}";
             // url = url.replace(':id', id);
             // $.ajax({
             //     method: 'GET',
@@ -453,7 +453,7 @@
         $(document).on('change', '#department', function(e) {
             e.preventDefault();
             var id = $(this).val();
-            var url = "{{ route('api.department.show', ':id') }}";
+            var url = "{{ route('ajax.department.show', ':id') }}";
             url = url.replace(':id', id);
             $.ajax({
                 method: 'GET',
@@ -467,7 +467,7 @@
         $('#employee').on('change', function(e) {
             e.preventDefault();
             var id = $(this).val();
-            var url = "{{ route('api.employee.show', ':id') }}";
+            var url = "{{ route('ajax.employee.show', ':id') }}";
             url = url.replace(':id', id);
             $.ajax({
                 method: 'GET',

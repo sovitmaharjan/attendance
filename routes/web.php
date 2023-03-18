@@ -45,19 +45,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/role', RoleController::class);
 
     Route::resource('company', SiteSettingController::class)->only('index', 'create', 'store');
-    Route::resource('branch', BranchController::class);
-    Route::resource('department', DepartmentController::class);
-    Route::resource('designation', DesignationController::class);
+    Route::resource('branch', BranchController::class)->except('show');
+    Route::resource('department', DepartmentController::class)->except('show');
+    Route::resource('designation', DesignationController::class)->except('show');
 
-    Route::resource('/employee', EmployeeController::class); //->middleware(['checkPermission:delete-dashboard'])
+    Route::resource('/employee', EmployeeController::class)->except('show'); //->middleware(['checkPermission:delete-dashboard'])
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
     Route::resource('/force-attendance', ForceAttendanceController::class);
-    Route::resource('/leave', LeaveController::class);
+    Route::resource('/leave', LeaveController::class)->except('show');
     Route::resource('/leave-assignment', LeaveAssignmentController::class)->only('index', 'store');
-    Route::resource('/leave-application', LeaveApplicationController::class);
+    Route::resource('/leave-application', LeaveApplicationController::class)->only('index', 'store');
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function () {
         Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');
