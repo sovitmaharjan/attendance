@@ -34,6 +34,9 @@ class User extends Authenticatable implements HasMedia
         'phone',
         'address',
 
+        'citizenship_number',
+        'pan_number',
+
         'email',
 
         'branch_id',

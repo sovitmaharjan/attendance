@@ -231,7 +231,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" id="firstname"
                                                     name="firstname" value="{{ old('firstname') }}"
-                                                    placeholder="Firstname" autocomplete="off" />
+                                                    placeholder="Firstname" autocomplete="off" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -245,7 +245,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control mb-2" id="lastname"
                                                     name="lastname" value="{{ old('lastname') }}" placeholder="Lastname"
-                                                    autocomplete="off" />
+                                                    autocomplete="off" required />
                                             </div>
                                         </div>
                                     </div>
@@ -313,7 +313,7 @@
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control join_date"
                                                     value="{{ old('join_date') }}" date-id="to"
-                                                    placeholder="yyyy-dd-mm" id="join_date" name="join_date" />
+                                                    placeholder="yyyy-dd-mm" id="join_date" name="join_date" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -322,7 +322,7 @@
                                                 <input type="text" autocomplete="off"
                                                     class="form-control nepali_join_date" id="nepali_join_date"
                                                     name="nepali_join_date" value="{{ old('nepali_join_date') }}"
-                                                    placeholder="yyyy-dd-mm" />
+                                                    placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
                                     </div>
@@ -347,7 +347,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -388,6 +387,9 @@
                                 </div>
                             </div>
                             <div class="card-body pt-0">
+                                @php
+                                    $dropdown = '';
+                                @endphp
                                 @include('partials.dropdown-hierarchy-bd.html')
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
@@ -396,7 +398,7 @@
                                             <div class="d-flex">
                                                 <select class="form-select mb-2" id="designation_id"
                                                     name="designation_id" data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Designation">
+                                                    data-placeholder="Select Designation" required>
                                                     <option></option>
                                                     @foreach ($designation as $item)
                                                         <option value="{{ $item->id }}"
@@ -411,7 +413,7 @@
                                             <div class="d-flex">
                                                 <select class="form-select mb-2" id="role_id" name="role_id"
                                                     data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Role">
+                                                    data-placeholder="Select Role" required>
                                                     <option></option>
                                                     @foreach ($GLOBALS['roles'] as $role)
                                                         <option value="{{ $role->id }}" @selected(old('role_id') == $role->id)>
@@ -452,7 +454,7 @@
                                             <div class="d-flex">
                                                 <select class="form-select mb-2" id="status" name="status"
                                                     data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Employee Status">
+                                                    data-placeholder="Select Employee Status" required>
                                                     <option></option>
                                                     @foreach (getDynamicValues('employee_status') as $k => $employee_status)
                                                         <option value="{{ $employee_status->name }}"
@@ -471,7 +473,7 @@
                                             <div class="d-flex">
                                                 <select class="form-select mb-2" id="type" name="type"
                                                     data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Employee Type">
+                                                    data-placeholder="Select Employee Type" required>
                                                     <option></option>
                                                     @foreach (getDynamicValues('employee_type') as $k => $employee_type)
                                                         <option value="{{ $employee_type->name }}"
@@ -564,7 +566,7 @@
 @endSection
 
 @section('script')
-    <script src="{{ asset('assets/custom/dopzone.js.css') }}"></script>
+    <script src="{{ asset('assets/custom/dropzone.js') }}"></script>
     <script src="{{ asset('assets/custom/cropper.js') }}"></script>
     <script>
         englishToNepaliDatePicker($('.dob'), $('.nepali_dob'));

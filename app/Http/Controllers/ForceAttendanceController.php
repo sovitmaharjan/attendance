@@ -51,10 +51,10 @@ class ForceAttendanceController extends Controller
                 'shift' => $m->shift,
                 'in_time' => $m->in_time ? date('H:i', strtotime($m->in_time)) : '',
                 'out_time' => $m->out_time ? date('H:i', strtotime($m->out_time)) : '',
-                'date' => $m->date->format('Y-m-d'),
+                'date' => $m->date ? $m->date->format('Y-m-d') : '',
                 'extra' => $m->extra,
-                'created_at' => $m->created_at->format('Y-m-d'),
-                'updated_at' => $m->updated_at->format('Y-m-d'),
+                'created_at' => $m->created_at ? $m->created_at->format('Y-m-d') : '',
+                'updated_at' => $m->updated_at ? $m->updated_at->format('Y-m-d') : '',
             ];
         });
         return response()->json($shift);

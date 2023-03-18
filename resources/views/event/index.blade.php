@@ -100,10 +100,10 @@
                                             </td>
                                             <td>
                                                 @if($event->quantity > 1)
-                                                    {{ $event->from_date->format('Y-m-d') }}
-                                                    - {{ $event->to_date->format('Y-m-d') }}
+                                                    {{ $event ? $event->from_date->format('Y-m-d') : '' }}
+                                                    - {{ $event ? $event->to_date->format('Y-m-d') : '' }}
                                                 @else
-                                                    {{ $event->from_date->format('Y-m-d') }}
+                                                    {{ $event ? $event->from_date->format('Y-m-d') : '' }}
                                                 @endif
                                             </td>
                                             <td>

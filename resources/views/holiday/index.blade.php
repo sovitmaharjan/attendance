@@ -99,10 +99,10 @@
                                             </td>
                                             <td>
                                                 @if($value->quantity > 1)
-                                                    {{ $value->from_date->format('Y-m-d') }}
-                                                    - {{ $value->to_date->format('Y-m-d') }}
+                                                    {{ $value ? $value->from_date->format('Y-m-d') : '' }}
+                                                    - {{ $value ? $value->to_date->format('Y-m-d') : '' }}
                                                 @else
-                                                    {{ $value->from_date->format('Y-m-d') }}
+                                                    {{ $value ? $value->from_date->format('Y-m-d') : '' }}
                                                 @endif
                                             </td>
                                             <td>

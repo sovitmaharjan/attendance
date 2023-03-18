@@ -43,21 +43,19 @@ class EmployeeController extends Controller
 
     public function store(StoreEmployeeRequest $request)
     {
-        dd($request->all());
         try {
             DB::beginTransaction();
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
-                'nepali_join_date' => $request->nepali_join_date,
-                'citizenship_no' => $request->citizenship_no,
-                'pan_no' => $request->pan_no,
+                'nepali_join_date' => $request->nepali_join_date
             ];
-            $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
-                'password' => Str::random(7)
+                'password' => Str::random(7),
+                'branch_id' => $request->branch,
+                'department_id' => $request->department
             ]);
-            $employee = User::create($request->all());
+            $employee = User::create($request->only((new User())->getFillable()));
             if (isset($request->base64) && $request->base64 != null) {
                 $employee->addMediaFromBase64($request->base64)->usingFilename(md5(Str::random(8) . time()) . '.' . explode('/', mime_content_type($request->base64))[1])->toMediaCollection('image');
             }
@@ -65,7 +63,6 @@ class EmployeeController extends Controller
             return back()->with('success', 'Employee has been created');
         } catch (Exception $e) {
             DB::rollBack();
-            dd($e);
             return back()->with('error', $e->getMessage());
         }
     }
@@ -87,15 +84,14 @@ class EmployeeController extends Controller
             DB::beginTransaction();
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
-                'nepali_join_date' => $request->nepali_join_date,
-                'citizenship_no' => $request->citizenship_no,
-                'pan_no' => $request->pan_no,
+                'nepali_join_date' => $request->nepali_join_date
             ];
-            $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
+                'branch_id' => $request->branch,
+                'department_id' => $request->department
             ]);
-            $employee->update($request->all());
+            $employee->update($request->only((new User())->getFillable()));
             if (isset($request->base64) && $request->base64 != null) {
                 if ($request->base64 == 1) {
                     $employee->clearMediaCollection('image');

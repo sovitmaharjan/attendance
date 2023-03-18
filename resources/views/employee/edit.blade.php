@@ -144,10 +144,10 @@
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
                                 </div>
-                                <div class="text-muted fs-7">Set the employee image. Only *.png, *.jpg and *.jpeg image
+                                {{-- <div class="text-muted fs-7">Set the employee image. Only *.png, *.jpg and *.jpeg image
                                     files
                                     are accepted
-                                </div>
+                                </div> --}}
                                 @error('image')
                                     <div class="fv-plugins-message-container invalid-feedback">
                                         {{ $message }}
@@ -156,15 +156,10 @@
                             </div>
                             <div class="card-body pt-0">
                                 <label class="form-label required">Login Id</label>
-                                <input type="text" name="login_id" class="form-control mb-2"
-                                    value="{{ old('login_id', generateLoginId(auth()->id())) }}" required readonly />
-                                <div class="text-muted fs-7 mb-7">Select atleast company to generate login id.
+                                <div class="d-flex">
+                                    <input type="text" id="login_id" name="login_id" class="form-control mb-2"
+                                        value="{{ old('login_id', generateLoginId(auth()->id())) }}" required readonly />
                                 </div>
-                                @error('login_id')
-                                    <div class="fv-plugins-message-container invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -186,44 +181,45 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Name</label>
-                                            <div class="d-flex gap-5">
-                                                <select class="form-select mb-2" name="prefix" data-control="select2"
-                                                    data-hide-search="false" data-placeholder="Select Prefix" required>
+                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                data-bs-placement="right"
+                                                data-bs-original-title="To add more prefix goto Dynamic Values section"></i>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="d-flex">
+                                                <select class="form-select mb-2" id="prefix" name="prefix"
+                                                    data-control="select2" data-hide-search="true"
+                                                    data-placeholder="Select Prefix">
                                                     <option></option>
                                                     @foreach (getDynamicValues('prefix') as $prefix)
                                                         <option value="{{ $prefix->name }}" @selected(old('prefix', $employee->prefix) == $prefix->name)>
                                                             {{ $prefix->name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('prefix')
-                                                    <div class="fv-plugins-message-container invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <input type="text" class="form-control mb-2" name="firstname"
-                                                    value="{{ old('firstname', $employee->firstname) }}"
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" id="firstname"
+                                                    name="firstname" value="{{ old('firstname', $employee->firstname) }}"
                                                     placeholder="Firstname" autocomplete="off" required />
-                                                @error('firstname')
-                                                    <div class="fv-plugins-message-container invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <input type="text" class="form-control mb-2" name="middlename"
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" id="middlename"
+                                                    name="middlename"
                                                     value="{{ old('middlename', $employee->middlename) }}"
                                                     placeholder="Middlename" autocomplete="off" />
-                                                @error('middlename')
-                                                    <div class="fv-plugins-message-container invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <input type="text" class="form-control mb-2" name="lastname"
-                                                    value="{{ old('lastname', $employee->lastname) }}"
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" id="lastname"
+                                                    name="lastname" value="{{ old('lastname', $employee->lastname) }}"
                                                     placeholder="Lastname" autocomplete="off" required />
-                                                @error('lastname')
-                                                    <div class="fv-plugins-message-container invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -232,39 +228,39 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Gender</label>
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                @foreach (getGenders() as $k => $gender)
-                                                    <input class="form-check-input" type="radio" name="gender"
-                                                        value="{{ $gender->value }}"
-                                                        id="{{ strtolower($gender->value) }}" @checked(old('gender', $employee->gender) == $gender->value)
-                                                        required />
-                                                    <label class="form-check-label mx-3"
-                                                        for="male">{{ $gender->name }} </label>
-                                                @endforeach
+                                            <div class="d-flex">
+                                                <div class="form-check form-check-custom form-check-solid" id="gender">
+                                                    @foreach (getGenders() as $k => $gender)
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            value="{{ $gender->value }}"
+                                                            id="{{ strtolower($gender->value) }}"
+                                                            @checked(old('gender', $employee->gender) == $gender->value) />
+                                                        <label class="form-check-label mx-3"
+                                                            for="{{ strtolower($gender->value) }}">{{ $gender->name }}
+                                                        </label>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
-                                        @error('gender')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Marital Status</label>
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                @foreach (getDynamicValues('marital_status') as $k => $marital_status)
-                                                    <input class="form-check-input" type="radio" name="marital_status"
-                                                        value="{{ $marital_status->name }}"
-                                                        id="{{ strtolower(str_replace('_', '', $marital_status->name)) }}"
-                                                        @checked(old('marital_status', $employee->marital_status) == $marital_status->name) required />
-                                                    <label class="form-check-label mx-3"
-                                                        for="single">{{ $marital_status->name }} </label>
-                                                @endforeach
-                                            </div>
-                                            @error('marital_status')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
+                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                data-bs-placement="right"
+                                                data-bs-original-title="To add more marital status goto Dynamic Values section"></i>
+                                            <div class="d-flex">
+                                                <div class="form-check form-check-custom form-check-solid"
+                                                    id="marital_status">
+                                                    @foreach (getDynamicValues('marital_status') as $k => $marital_status)
+                                                        <input class="form-check-input" type="radio"
+                                                            name="marital_status" value="{{ $marital_status->name }}"
+                                                            id="{{ strtolower(str_replace('_', '', $marital_status->name)) }}"
+                                                            @checked(old('marital_status', $employee->marital_status) == $marital_status->name) />
+                                                        <label class="form-check-label mx-3"
+                                                            for="{{ strtolower(str_replace('_', '', $marital_status->name)) }}">{{ $marital_status->name }}
+                                                        </label>
+                                                    @endforeach
                                                 </div>
-                                            @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -272,39 +268,40 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">DOB</label>
-                                            <div class="d-flex gap-5">
-                                                <input type="text" class="form-control mb-2 eng_date" name="dob"
-                                                    onchange="engtonep($(this), 'nepali_date')"
-                                                    value="{{ old('dob', getFormattedDate($employee->dob)) }}"
-                                                    placeholder="yyyy-dd-mm" id="eng_date" autocomplete="off" />
-                                                <input type="text" class="form-control mb-2 nepali_date"
-                                                    name="nepali_dob" onclick="neptoeng('nepali_date', 'eng_date')"
-                                                    value="{{ old('nepali_dob', $employee->extra != null && $employee->extra['nepali_dob'] ? $employee->extra['nepali_dob'] : '') }}"
-                                                    placeholder="yyyy-dd-mm" id="nepali_date" />
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control dob" date-id="from"
+                                                    placeholder="yyyy-dd-mm" id="dob" name="dob"
+                                                    autocomplete="off"
+                                                    value="{{ old('dob', ($employee->dob ? $employee->dob->format('Y-m-d') : '')) }}" />
                                             </div>
-                                            @error('dob')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">&nbsp;</label>
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control nepali_dob" id="nepali_dob"
+                                                    name="nepali_dob" autocomplete="off"
+                                                    value="{{ old('nepali_dob', ($employee->extra['nepali_dob'] ?? '')) }}"
+                                                    placeholder="yyyy-dd-mm" />
+                                            </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Join Date</label>
-                                            <div class="d-flex gap-5">
-                                                <input type="text" onchange="engtonep($(this), 'nepali_join_date')"
-                                                    class="form-control mb-2 join_date" name="join_date"
-                                                    value="{{ old('join_date', getFormattedDate($employee->join_date)) }}"
-                                                    placeholder="yyyy-dd-mm" id="join_date" autocomplete="off" />
-                                                <input type="text" onclick="neptoeng('nepali_join_date', 'eng_join_date')"
-                                                    class="form-control mb-2 nepali_join_date" name="nepali_join_date"
-                                                    value="{{ old('nepali_join_date', $employee->extra != null && $employee->extra['nepali_join_date'] ? $employee->extra['nepali_join_date'] : '') }}"
-                                                    placeholder="yyyy-dd-mm" id="nepali_join_date" />
+                                            <div class="d-flex">
+                                                <input type="text" autocomplete="off" class="form-control join_date"
+                                                    value="{{ old('join_date', ($employee->join_date ? $employee->join_date->format('Y-m-d') : '')) }}"
+                                                    date-id="to" placeholder="yyyy-dd-mm" id="join_date"
+                                                    name="join_date" required />
                                             </div>
-                                            @error('join_date')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">&nbsp;</label>
+                                            <div class="d-flex">
+                                                <input type="text" autocomplete="off"
+                                                    class="form-control nepali_join_date" id="nepali_join_date"
+                                                    name="nepali_join_date"
+                                                    value="{{ old('nepali_join_date', ($employee->extra['nepali_join_date'] ?? '')) }}"
+                                                    placeholder="yyyy-dd-mm" required />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -313,28 +310,18 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Phone</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="phone"
-                                                    value="{{ old('phone', $employee->phone) }}" placeholder="9800000000"
-                                                    autocomplete="off" />
+                                                <input type="text" class="form-control mb-2" id="phone"
+                                                    name="phone" value="{{ old('phone', $employee->phone) }}"
+                                                    placeholder="9800000000" autocomplete="off" />
                                             </div>
-                                            @error('phone')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Address</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="address"
-                                                    value="{{ old('address', $employee->address) }}"
-                                                    placeholder="Putalisadak, Kathmandu" autocomplete="off" />
+                                                <input type="text" class="form-control mb-2" id="address"
+                                                    name="address" value="{{ old('address', $employee->address) }}"
+                                                    autocomplete="off" placeholder="Putalisadak, Kathmandu" />
                                             </div>
-                                            @error('address')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -343,28 +330,20 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Citizenship Number</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="citizenship_no"
-                                                    value="{{ old('citizenship_no', $employee->extra && array_key_exists('citizenship_no', $employee->extra) ? $employee->extra['citizenship_no'] : '') }}"
+                                                <input type="text" class="form-control mb-2" id="citizenship_number"
+                                                    name="citizenship_number"
+                                                    value="{{ old('citizenship_number', $employee->citizenship_number) }}"
                                                     placeholder="05-01-27-87654" autocomplete="off" />
                                             </div>
-                                            @error('citizenship_no')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Pan Number</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control mb-2" name="pan_no"
-                                                    value="{{ old('pan_no', $employee->extra && array_key_exists('pan_no', $employee->extra) ? $employee->extra['pan_no'] : '') }}"
-                                                    placeholder="1072345" autocomplete="off" />
+                                                <input type="text" class="form-control mb-2" id="pan_number"
+                                                    name="pan_number"
+                                                    value="{{ old('pan_number', $employee->pan_number) }}"
+                                                    placeholder="1072345" />
                                             </div>
-                                            @error('pan_no')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -372,15 +351,12 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Email</label>
-                                            <input type="text" class="form-control mb-2" name="email"
-                                                value="{{ old('email', $employee->email) }}"
-                                                placeholder="example@mail.com" autocomplete="off" required />
-                                        </div>
-                                        @error('email')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                {{ $message }}
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" id="email"
+                                                    name="email" value="{{ old('email', $employee->email) }}"
+                                                    placeholder="example@mail.com" autocomplete="off" />
                                             </div>
-                                        @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -392,78 +368,40 @@
                                 </div>
                             </div>
                             <div class="card-body pt-0">
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Branch</label>
-                                            <select class="form-select mb-2" name="branch_id" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Branch" required>
-                                                <option></option>
-                                                @foreach ($branch as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ old('branch_id', $employee->branch_id) == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('branch_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Department</label>
-                                            <select class="form-select mb-2" name="department_id" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Department" required>
-                                                <option></option>
-                                                @foreach ($department as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ old('department_id', $employee->department_id) == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('department_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
+                                @php
+                                    $dropdown = $employee;
+                                @endphp
+                                @include('partials.dropdown-hierarchy-bd.html')
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Designation</label>
-                                            <select class="form-select mb-2" name="designation_id" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Designation" required>
-                                                <option></option>
-                                                @foreach ($designation as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ old('designation_id', $employee->designation_id) == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->title }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('designation_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <div class="d-flex">
+                                                <select class="form-select mb-2" id="designation_id"
+                                                    name="designation_id" data-control="select2" data-hide-search="false"
+                                                    data-placeholder="Select Designation" required>
+                                                    <option></option>
+                                                    @foreach ($designation as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            {{ old('designation_id', $employee->designation_id) == $item->id ? 'selected' : '' }}>
+                                                            {{ $item->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Role</label>
-                                            <select class="form-select mb-2" name="role_id" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Role" required>
-                                                <option></option>
-                                                @foreach ($GLOBALS['roles'] as $role)
-                                                    <option value="{{ $role->id }}" @selected(old('role_id', $employee->role_id) == $role->id)>
-                                                        {{ $role->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('role_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <div class="d-flex">
+                                                <select class="form-select mb-2" id="role_id" name="role_id"
+                                                    data-control="select2" data-hide-search="false"
+                                                    data-placeholder="Select Role" required>
+                                                    <option></option>
+                                                    @foreach ($GLOBALS['roles'] as $role)
+                                                        <option value="{{ $role->id }}" @selected(old('role_id', $employee->role_id) == $role->id)>
+                                                            {{ $role->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -471,20 +409,19 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Supervisor</label>
-                                            <select class="form-select mb-2" name="supervisor_id" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Supervisor" required>
-                                                <option></option>
-                                                @foreach ($supervisors as $supervisor)
-                                                    <option value="{{ $supervisor->id }}" @selected(old('supervisor_id', $employee->supervisor_id) == $supervisor->id)>
-                                                        {{ $supervisor->full_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('supervisor_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <div class="d-flex">
+                                                <select class="form-select mb-2" id="supervisor_id" name="supervisor_id"
+                                                    data-control="select2" data-hide-search="false"
+                                                    data-placeholder="Select Supervisor">
+                                                    <option></option>
+                                                    @foreach ($supervisors as $supervisor)
+                                                        <option value="{{ $supervisor->id }}"
+                                                            @selected(old('supervisor_id', $employee->supervisor_id) == $supervisor->id)>
+                                                            {{ $supervisor->full_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -492,40 +429,41 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Status</label>
-                                            <select class="form-select mb-2" name="status" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Employee Status"
-                                                required>
-                                                <option></option>
-                                                @foreach (getDynamicValues('employee_status') as $k => $employee_status)
-                                                    <option value="{{ $employee_status->name }}"
-                                                        @selected(old('status', $employee->status) == $employee_status->name)>
-                                                        {{ $employee_status->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('status')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                data-bs-placement="right"
+                                                data-bs-original-title="To add more status goto Dynamic Values section"></i>
+                                            <div class="d-flex">
+                                                <select class="form-select mb-2" id="status" name="status"
+                                                    data-control="select2" data-hide-search="false"
+                                                    data-placeholder="Select Employee Status" required>
+                                                    <option></option>
+                                                    @foreach (getDynamicValues('employee_status') as $k => $employee_status)
+                                                        <option value="{{ $employee_status->name }}"
+                                                            @selected(old('status', $employee->status) == $employee_status->name)>
+                                                            {{ $employee_status->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Type</label>
-                                            <select class="form-select mb-2" name="type" data-control="select2"
-                                                data-hide-search="false" data-placeholder="Select Employee Type" required>
-                                                <option></option>
-                                                @foreach (getDynamicValues('employee_type') as $k => $employee_type)
-                                                    <option value="{{ $employee_type->name }}"
-                                                        @selected(old('type', $employee->type) == $employee_type->name)>
-                                                        {{ $employee_type->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('type')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                data-bs-placement="right"
+                                                data-bs-original-title="To add more type goto Dynamic Values section"></i>
+                                            <div class="d-flex">
+                                                <select class="form-select mb-2" id="type" name="type"
+                                                    data-control="select2" data-hide-search="false"
+                                                    data-placeholder="Select Employee Type" required>
+                                                    <option></option>
+                                                    @foreach (getDynamicValues('employee_type') as $k => $employee_type)
+                                                        <option value="{{ $employee_type->name }}"
+                                                            @selected(old('type', $employee->type) == $employee_type->name)>
+                                                            {{ $employee_type->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -533,15 +471,13 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Official Email</label>
-                                            <input type="text" class="form-control mb-2" name="official_email"
-                                                value="{{ old('official_email', $employee->official_email) }}" autocomplete="off"
-                                                placeholder="example@mail.com" />
-                                        </div>
-                                        @error('official_email')
-                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                {{ $message }}
+                                            <div class="d-flex">
+                                                <input type="text" class="form-control mb-2" id="official_email"
+                                                    name="official_email"
+                                                    value="{{ old('official_email', $employee->official_email) }}"
+                                                    autocomplete="off" placeholder="example@mail.com" />
                                             </div>
-                                        @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -611,9 +547,10 @@
 @endSection
 
 @section('script')
-    <script src="{{ asset('assets/custom/dopzone.js.css') }}"></script>
+    <script src="{{ asset('assets/custom/dropzone.js') }}"></script>
     <script src="{{ asset('assets/custom/cropper.js') }}"></script>
     <script>
+
         var imageUrl = '';
         $(document).ready(function() {
             $('#removeImageSpan').show();
@@ -633,22 +570,10 @@
             $('#removeImageSpan').hide();
         })
 
-        $(function() {
-            $('.eng_date').datepicker({
-                format: 'yyyy-mm-dd',
-                todayHighlight: true,
-                todayBtn: 'linked',
-                clearBtn: true,
-                autoclose: true,
-            });
-            $('.join_date').datepicker({
-                format: 'yyyy-mm-dd',
-                todayHighlight: true,
-                todayBtn: 'linked',
-                clearBtn: true,
-                autoclose: true,
-            });
-        });
+        englishToNepaliDatePicker($('.dob'), $('.nepali_dob'));
+        nepaliToEnglishDatepicker($('.nepali_dob'), $('.dob'));
+        englishToNepaliDatePicker($('.join_date'), $('.nepali_join_date'));
+        nepaliToEnglishDatepicker($('.nepali_join_date'), $('.join_date'));
 
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
@@ -700,4 +625,5 @@
             });
         });
     </script>
+    @include('partials.dropdown-hierarchy-bd.script')
 @endsection

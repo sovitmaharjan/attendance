@@ -6,7 +6,7 @@
                 <select class="form-select" id="branch" name="branch" data-control="select2" data-hide-search="false" data-placeholder="Select Branch" required>
                     <option></option>
                     @foreach ($branch as $item)
-                    <option value="{{ $item->id }}" @selected(old('branch')==$item->id)>
+                    <option value="{{ $item->id }}" @selected(old('branch', ($dropdown ? $dropdown->branch_id : ''))==$item->id)>
                         {{ $item->name }}
                     </option>
                     @endforeach
@@ -19,7 +19,7 @@
                 <select class="form-select" id="department" name="department" data-control="select2" data-hide-search="false" data-placeholder="Select Department" required>
                     <option></option>
                     @foreach ($department as $item)
-                    <option value="{{ $item->id }}" @selected(old('department')==$item->id)>
+                    <option value="{{ $item->id }}" @selected(old('department', ($dropdown ? $dropdown->department_id : ''))==$item->id)>
                         {{ $item->name }}
                     </option>
                     @endforeach

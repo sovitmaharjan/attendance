@@ -76,7 +76,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control from_date"
                                                     placeholder="yyyy-dd-mm" id="from_date" name="from_date"
-                                                    autocomplete="off" value="{{ old('from_date', $event->from_date->format('Y-m-d')) }}"
+                                                    autocomplete="off" value="{{ old('from_date', ($event ? $event->from_date->format('Y-m-d') : '')) }}"
                                                     required />
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                             <label class="required form-label">To</label>
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control to_date"
-                                                    value="{{ old('to_date', $event->to_date->format('Y-m-d')) }}" placeholder="yyyy-dd-mm"
+                                                    value="{{ old('to_date', ($event ? $event->to_date->format('Y-m-d') : '')) }}" placeholder="yyyy-dd-mm"
                                                     id="to_date" name="to_date" required />
                                             </div>
                                         </div>

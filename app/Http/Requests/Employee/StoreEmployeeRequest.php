@@ -34,8 +34,8 @@ class StoreEmployeeRequest extends FormRequest
 
             'email' => ['nullable'],
 
-            'branch_id' => ['required'],
-            'department_id' => ['required'],
+            'branch' => ['required'],
+            'department' => ['required'],
             
             'designation_id' => ['required'],
             'role_id' => ['required'],
