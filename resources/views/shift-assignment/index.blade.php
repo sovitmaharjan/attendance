@@ -66,7 +66,15 @@
                                         data-bs-target="#assign_off_day">Assign off days
                                     </button>
                                 </div>
-                                @include('partials.dropdown-hierarchy.html')
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        @include('partials.dropdown-hierarchy.branch')
+                                        @include('partials.dropdown-hierarchy.department')
+                                        @include('partials.dropdown-hierarchy.employee')
+                                        @include('partials.dropdown-hierarchy.employee-id')
+                                        @include('partials.dropdown-hierarchy.reset')
+                                    </div>
+                                </div>
                                 <div class="mb-10 fv-row">
                                     <div class="py-5">
                                         <div class="rounded border p-5">

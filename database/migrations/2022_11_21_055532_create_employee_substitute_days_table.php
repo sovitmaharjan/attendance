@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('employee_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->date('work_date');
             $table->date('substituted_to_date');
-            $table->json('extras')->nullable();
+            $table->json('extra')->nullable();
             $table->timestamps();
         });
     }

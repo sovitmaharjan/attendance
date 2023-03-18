@@ -71,45 +71,10 @@
                                             placeholder="Holiday name" value="{{ old('name', $holiday->name) }}" required />
                                     </div>
                                 </div>
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">From</label>
-                                            <div class="d-flex">
-                                                <input type="text" class="form-control from_date"
-                                                    placeholder="yyyy-dd-mm" id="from_date" name="from_date"
-                                                    autocomplete="off"
-                                                    value="{{ old('from_date', ($holiday ? $holiday->from_date->format('Y-m-d') : '')) }}" required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">&nbsp;</label>
-                                            <div class="d-flex">
-                                                <input type="text" class="form-control nepali_from_date" id="nepali_from_date"
-                                                    name="nepali_from_date" autocomplete="off"
-                                                    value="{{ old('nepali_from_date', ($holiday->extra['nepali_from_date'] ?? '')) }}"
-                                                    placeholder="yyyy-dd-mm" required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">To</label>
-                                            <div class="d-flex">
-                                                <input type="text" autocomplete="off" class="form-control to_date"
-                                                    value="{{ old('to_date', ($holiday ? $holiday->to_date->format('Y-m-d') : '')) }}"
-                                                    placeholder="yyyy-dd-mm" id="to_date" name="to_date" required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">&nbsp;</label>
-                                            <div class="d-flex">
-                                                <input type="text" autocomplete="off" class="form-control nepali_to_date"
-                                                    id="nepali_to_date" name="nepali_to_date"
-                                                    value="{{ old('nepali_to_date', ($holiday->extra['nepali_to_date'] ?? '')) }}"
-                                                    placeholder="yyyy-dd-mm" required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @php
+                                    $date = $holiday;
+                                @endphp
+                                @include('partials.date-range.html')
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Quantity</label>
                                     <div class="d-flex">

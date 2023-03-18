@@ -1,35 +1,56 @@
 <script>
-    var branches = @json($branch); 
-    var departments = @json($department); 
-    var employees = @json($employee);
-
+    var branches, departments, employees;
+</script>
+@isset($branch)
+    <script>
+        var branches = @json($branch);
+    </script>
+@endisset
+@isset($department)
+    <script>
+        var departments = @json($department);
+    </script>
+@endisset
+@isset($employee)
+    <script>
+        var employees = @json($employee);
+    </script>
+@endisset
+<script>
     function resetSection() {
-        $('#employee').empty().trigger('change');
-        $.each(employees, function(i, e) {
-            var option = new Option(e.full_name, e.id);
-            $('#employee').append(option).trigger('change');
-        });
-        $('#employee').val(null).trigger('change');
+        if ($('#employee') != 0) {
+            $('#employee').empty().trigger('change');
+            $.each(employees, function(i, e) {
+                var option = new Option(e.full_name, e.id);
+                $('#employee').append(option).trigger('change');
+            });
+            $('#employee').val(null).trigger('change');
+        }
 
-        $('#department').empty().trigger('change');
-        $.each(departments, function(i, e) {
-            var option = new Option(e.name, e.id);
-            $('#department').append(option).trigger('change');
-        });
-        $('#department').val(null).trigger('change');
+        if ($('#department') != 0) {
+            $('#department').empty().trigger('change');
+            $.each(departments, function(i, e) {
+                var option = new Option(e.name, e.id);
+                $('#department').append(option).trigger('change');
+            });
+            $('#department').val(null).trigger('change');
+        }
 
-        $('#branch').empty().trigger('change');
-        $.each(branches, function(i, e) {
-            var option = new Option(e.name, e.id);
-            $('#branch').append(option).trigger('change');
-        });
-        $('#branch').val(null).trigger('change');
+        if ($('#branch') != 0) {
+            $('#branch').empty().trigger('change');
+            $.each(branches, function(i, e) {
+                var option = new Option(e.name, e.id);
+                $('#branch').append(option).trigger('change');
+            });
+            $('#branch').val(null).trigger('change');
+        }
     }
 
     $(document).on('click', '#reset-selection', function() {
         resetSection();
-        
-        $('#employee_id').val(null);
+        if ($('#employee_id') != 0) {
+            $('#employee_id').val(null);
+        }
     });
 
     $(document).on('select2:select', '#branch', function() {
@@ -40,20 +61,26 @@
             method: 'GET',
             url: url,
             success: function(data) {
-                $('#department').empty().trigger('change');
-                $.each(data.departments, function(i, e) {
-                    var option = new Option(e.name, e.id);
-                    $('#department').append(option).trigger('change');
-                });
-                $('#department').val(null).trigger('change');
+                if ($('#department') != 0) {
+                    $('#department').empty().trigger('change');
+                    $.each(data.departments, function(i, e) {
+                        var option = new Option(e.name, e.id);
+                        $('#department').append(option).trigger('change');
+                    });
+                    $('#department').val(null).trigger('change');
+                }
 
-                $('#employee').empty().trigger('change');
-                $.each(data.employees, function(i, e) {
-                    var option = new Option(e.full_name, e.id);
-                    $('#employee').append(option).trigger('change');
-                });
-                $('#employee').val(null).trigger('change');
-                $('#employee_id').val(null);
+                if ($('#employee') != 0) {
+                    $('#employee').empty().trigger('change');
+                    $.each(data.employees, function(i, e) {
+                        var option = new Option(e.full_name, e.id);
+                        $('#employee').append(option).trigger('change');
+                    });
+                    $('#employee').val(null).trigger('change');
+                }
+                if ($('#employee_id') != 0) {
+                    $('#employee_id').val(null);
+                }
             }
         });
     });
@@ -66,14 +93,20 @@
             method: 'GET',
             url: url,
             success: function(data) {
-                $('#branch').val(data.branch_id).trigger('change');
-                $('#employee').empty().trigger('change');
-                $.each(data.employees, function(i, e) {
-                    var option = new Option(e.full_name, e.id);
-                    $('#employee').append(option).trigger('change');
-                });
-                $('#employee').val(null).trigger('change');
-                $('#employee_id').val(null);
+                if ($('#branch') != 0) {
+                    $('#branch').val(data.branch_id).trigger('change');
+                }
+                if ($('#employee') != 0) {
+                    $('#employee').empty().trigger('change');
+                    $.each(data.employees, function(i, e) {
+                        var option = new Option(e.full_name, e.id);
+                        $('#employee').append(option).trigger('change');
+                    });
+                    $('#employee').val(null).trigger('change');
+                }
+                if ($('#employee_id') != 0) {
+                    $('#employee_id').val(null);
+                }
             }
         });
     });
@@ -86,9 +119,15 @@
             method: 'GET',
             url: url,
             success: function(data) {
-                $('#branch').val(data.branch_id).trigger('change');
-                $('#department').val(data.department_id).trigger('change');
-                $('#employee_id').val(data.id);
+                if ($('#branch') != 0) {
+                    $('#branch').val(data.branch_id).trigger('change');
+                }
+                if ($('#department') != 0) {
+                    $('#department').val(data.department_id).trigger('change');
+                }
+                if ($('#employee_id') != 0) {
+                    $('#employee_id').val(data.id);
+                }
             }
         });
     });
@@ -101,9 +140,15 @@
             method: 'GET',
             url: url,
             success: function(data) {
-                $('#employee').val(data.id).trigger('change');
-                $('#department').val(data.department_id).trigger('change');
-                $('#branch').val(data.branch_id).trigger('change');
+                if ($('#employee') != 0) {
+                    $('#employee').val(data.id).trigger('change');
+                }
+                if ($('#department') != 0) {
+                    $('#department').val(data.department_id).trigger('change');
+                }
+                if ($('#branch') != 0) {
+                    $('#branch').val(data.branch_id).trigger('change');
+                }
             },
             error: function() {
                 toastr.error('', 'Employee not data');

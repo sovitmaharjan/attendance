@@ -23,12 +23,12 @@ class EmployeeSubstituteDayController extends Controller
     {
         try{
             DB::beginTransaction();
-            $extras = [
+            $extra = [
               'work_nepali_date' => $request->nepali_work_date,
               'substituted_to_nepali_date' => $request->nepali_substituted_to_date,
             ];
             $request->request->add([
-               'extras' => $extras,
+               'extra' => $extra,
             ]);
             EmployeeSubstituteDay::create($request->all());
             DB::commit();

@@ -11,12 +11,12 @@ class Event extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['title', 'slug', 'from_date', 'to_date', 'quantity', 'extras', 'status'];
+    protected $fillable = ['title', 'slug', 'from_date', 'to_date', 'quantity', 'extra', 'status'];
 
     protected $casts = [
         'from_date' => 'date',
         'to_date' => 'date',
-        'extras' => 'array',
+        'extra' => 'array',
     ];
 
     public function getSlugOptions(): SlugOptions

@@ -10,9 +10,9 @@ class EmployeeSubstituteDay extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['employee_id', 'work_date', 'substituted_to_date', 'extras'];
+    protected $fillable = ['employee_id', 'work_date', 'substituted_to_date', 'extra'];
 
     protected $casts = [
-      'extras' => 'array'
+      'extra' => 'array'
     ];
 }

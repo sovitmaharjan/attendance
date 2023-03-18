@@ -371,7 +371,13 @@
                                 @php
                                     $dropdown = $employee;
                                 @endphp
-                                @include('partials.dropdown-hierarchy-bd.html')
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        @include('partials.dropdown-hierarchy.branch')
+                                        @include('partials.dropdown-hierarchy.department')
+                                        @include('partials.dropdown-hierarchy.reset')
+                                    </div>
+                                </div>
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -625,5 +631,5 @@
             });
         });
     </script>
-    @include('partials.dropdown-hierarchy-bd.script')
+    @include('partials.dropdown-hierarchy.script')
 @endsection

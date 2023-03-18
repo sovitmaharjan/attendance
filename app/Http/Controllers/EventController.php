@@ -28,13 +28,13 @@ class EventController extends Controller
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
             $request->request->add(['quantity' => $difference + 1]);
-            $extras = [
+            $extra = [
                 'nepali_from_date' => $request->nepali_from_date,
                 'nepali_to_date' => $request->nepali_to_date,
             ];
             $request->only((new Event)->getFillable());
             $request->request->add([
-                'extras' => $extras
+                'extra' => $extra
             ]);
             $event = Event::create($request->all());
             for($i = 0; $i <= $difference; $i++) {
@@ -62,13 +62,13 @@ class EventController extends Controller
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
             $request->request->add(['quantity' => $difference + 1]);
-            $extras = [
+            $extra = [
                 'nepali_from_date' => $request->nepali_from_date,
                 'nepali_to_date' => $request->nepali_to_date,
             ];
             $request->only((new Event)->getFillable());
             $request->request->add([
-                'extras' => $extras,
+                'extra' => $extra,
             ]);
             $event->update($request->all());
             $event->eventDates()->delete();
