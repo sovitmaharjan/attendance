@@ -13,6 +13,6 @@ class DynamicValue extends Model
     protected $fillable = ['key', 'value', 'status', 'name'];
 
     protected $casts = [
-      'value' => 'array',
+        'value' => 'array',
     ];
 }
