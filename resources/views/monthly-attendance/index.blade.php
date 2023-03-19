@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('holiday_type', 'active')
+@section('monthly_attendance', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Monthly Attendance</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Monthly Attendance Report</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Monthly Attendance</li>
+                        <li class="breadcrumb-item text-muted">Monthly Attendance Report</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -41,356 +41,101 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('monthly-attendance') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <div class="card">
-                    <div class="card-header border-0 pt-6">
-                        <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Monthly Attendance List</span>
-                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you monthly-attendance group </span> --}}
-                        </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
-                            title="">
-                            <a href="{{ route('monthly-attendance') }}" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_1">
-                                <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
-                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
-                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
-                                            fill="currentColor"></rect>
-                                    </svg>
-                                </span>
-                                Add New
-                            </a>
-                        </div>
-
-                        <div class="modal fade" tabindex="-1" id="kt_modal_1">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <form id="shift_form" class="form d-flex flex-column " method="POST"
-                                        action="{{ route('monthly-attendance') }}">
-                                        <div class="modal-header">
-                                            <div class="card-title">
-                                                <span class="mt-1 fs-7 text-danger">Fields with asterisk<span
-                                                        class="required"></span>
-                                                    are required </span>
-                                            </div>
-                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
-                                                data-bs-dismiss="modal" aria-label="Close">
-                                                <span class="svg-icon svg-icon-1"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-body">
-                                            @csrf
-                                            <div class="mb-10 fv-row">
-                                                <div class="d-flex flex-wrap gap-5">
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="required form-label">Branch</label>
-                                                        <select class="form-select mb-2" id="branch" name="branch"
-                                                            data-control="select2" data-hide-search="false"
-                                                            data-placeholder="Select Branch" required>
-                                                            <option></option>
-                                                            @foreach ($branch as $item)
-                                                                <option value="{{ $item->id }}"
-                                                                    @selected(old('branch') == $item->id)>
-                                                                    {{ $item->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('branch')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="branch" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="required form-label">Department</label>
-                                                        <select class="form-select mb-2" id="department"
-                                                            name="department" data-control="select2"
-                                                            data-hide-search="false" data-placeholder="Select Department"
-                                                            required>
-                                                            <option></option>
-                                                            @foreach ($department as $item)
-                                                                <option value="{{ $item->id }}"
-                                                                    @selected(old('department') == $item->id)>
-                                                                    {{ $item->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('department')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="department" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="required form-label">Employee</label>
-                                                        <select class="form-select mb-2" id="employee" name="employee"
-                                                            data-control="select2" data-hide-search="false"
-                                                            data-placeholder="Select Employee" required>
-                                                            <option></option>
-                                                            @foreach ($employee as $item)
-                                                                <option value="{{ $item->id }}"
-                                                                    @selected(old('employee') == $item->id)>
-                                                                    {{ $item->full_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('employee')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="employee" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="required form-label">Employee Id</label>
-                                                        <input type="text" class="form-control mb-2" id="employee_id"
-                                                            name="employee_id" value="{{ old('employee_id') }}" />
-                                                        @error('employee_id')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="employee_id" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-10 fv-row">
-                                                <div class="d-flex flex-wrap gap-5">
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="required form-label">From</label>
-                                                        <input type="text" class="form-control mb-2 from_date"
-                                                            date-id="from" placeholder="yyyy-dd-mm" name="from_date"
-                                                            autocomplete="off" value="{{ old('from_date') }}" />
-                                                        @error('from_date')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="from_date" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="form-label">&nbsp;</label>
-                                                        <input type="text" class="form-control mb-2 nepali_from_date"
-                                                            name="nepali_from_date" autocomplete="off"
-                                                            value="{{ old('nepali_from_date') }}" placeholder="yyyy-dd-mm">
-                                                        @error('nepali_from_date')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="nepali_from_date" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="required form-label">To</label>
-                                                        <input type="text" autocomplete="off"
-                                                            class="form-control mb-2 to_date"
-                                                            value="{{ old('to_date') }}" date-id="to"
-                                                            placeholder="yyyy-dd-mm" name="to_date"
-                                                            value="{{ old('to_date') }}" />
-                                                        @error('to_date')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="to_date" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="fv-row w-100 flex-md-root">
-                                                        <label class="form-label">&nbsp;</label>
-                                                        <input type="text" autocomplete="off"
-                                                            class="form-control mb-2 nepali_to_date" name="nepali_to_date"
-                                                            value="{{ old('nepali_to_date') }}" placeholder="yyyy-dd-mm">
-                                                        @error('nepali_to_date')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="nepali_to_date" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                <form id="monthly_attendance_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('monthly-attendance') }}">
+                    @csrf
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span>
+                                        are required </span>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        @include('partials.dropdown-hierarchy.branch')
+                                        @include('partials.dropdown-hierarchy.department')
+                                        @include('partials.dropdown-hierarchy.employee')
+                                        @include('partials.dropdown-hierarchy.employee-id')
+                                        @include('partials.dropdown-hierarchy.reset')
+                                    </div>
+                                </div>
+                                @include('partials.date-range.html')
+                                <div class="mb-10 fv-row" style="float: right;">
+                                    <a href="{{ route('monthly-attendance') }}" id="monthly_attendance_cancel" class="btn btn-light me-5">Cancel</a>
+                                    <button type="submit" id="monthly_attendance_submit" class="btn btn-primary">
+                                        <span class="indicator-label">Generate</span></span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label fw-bolder fs-3 mb-1">Monthly Attendance Report</span>
+                                    </h3>
+                                    <div class="pt-6">
+                                        <div id="kt_customers_table_wrapper"
+                                            class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="table-responsive">
+                                                <table id="kt_datatable_example_5"
+                                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                                    <thead>
+                                                        <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
+                                                            <th>Employee (Id)</th>
+                                                            <th>Total Day</th>
+                                                            <th>Off Day</th>
+                                                            <th>Holiday</th>
+                                                            <th>To Work Day</th>
+                                                            
+                                                            <th>Worked Day</th>
+                                                            <th>Leave Taken</th>
+                                                            <th>Absent Day</th>
+                                                            <th>Work On Holiday</th>
+                
+                                                            <th>Worked Hour</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @isset($report)
+                                                        <tr>
+                                                            <td>employee data </td>
+                                                            <td>{{ $report->total_day }}</td>
+                                                            <td>{{ $report->off_day }}</td>
+                                                            <td>{{ $report->holiday }}</td>
+                                                            <td>{{ $report->working_day }}</td>
+                                                            
+                                                            <td>{{ $report->worked_day }}</td>
+                                                            <td>{{ $report->leave_taken }}</td>
+                                                            <td>{{ $report->absent_day }}</td>
+                                                            <td>{{ $report->worked_on_holiday }}</td>
+                                                            
+                                                            <td>{{ $report->work_hour }}</td>
+                                                        </tr>
+                                                    @endisset
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Generate</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="card-body pt-0">
-                        <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                            <div class="table-responsive">
-                                <table id="kt_datatable_example_5"
-                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
-                                    <thead>
-                                        <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
-                                            <th>Employee (Id)</th>
-                                            <th>Total Day</th>
-                                            <th>Off Day</th>
-                                            <th>Holiday</th>
-                                            <th>To Work Day</th>
-                                            
-                                            <th>Worked Day</th>
-                                            <th>Leave Taken</th>
-                                            <th>Absent Day</th>
-                                            <th>Work On Holiday</th>
-
-                                            <th>Worked Hour</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @isset($report)
-                                        <tr>
-                                            <td>employee data </td>
-                                            <td>{{ $report->total_day }}</td>
-                                            <td>{{ $report->off_day }}</td>
-                                            <td>{{ $report->holiday }}</td>
-                                            <td>{{ $report->working_day }}</td>
-                                            
-                                            <td>{{ $report->worked_day }}</td>
-                                            <td>{{ $report->leave_taken }}</td>
-                                            <td>{{ $report->absent_day }}</td>
-                                            <td>{{ $report->worked_on_holiday }}</td>
-                                            
-                                            <td>{{ $report->work_hour }}</td>
-                                        </tr>
-                                    @endisset
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 @endSection
 @section('script')
-<script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).on('change', '#branch', function(e) {
-        e.preventDefault();
-        var id = $(this).val();
-        var url = "{{ route('api.branch.show', ':id') }}";
-        url = url.replace(':id', id);
-        $.ajax({
-            method: 'GET',
-            url: url,
-            success: function(data) {
-                // myLog(data);
-                // data.departments.foreach()
-
-            }
-        });
-    });
-
-    $(document).on('change', '#department', function(e) {
-        e.preventDefault();
-        var id = $(this).val();
-        var url = "{{ route('api.department.show', ':id') }}";
-        url = url.replace(':id', id);
-        $.ajax({
-            method: 'GET',
-            url: url,
-            success: function(data) {
-                // console.log(data);
-            }
-        });
-    });
-
-    $('#employee').on('change', function(e) {
-        e.preventDefault();
-        var id = $(this).val();
-        var url = "{{ route('api.employee.show', ':id') }}";
-        url = url.replace(':id', id);
-        $.ajax({
-            method: 'GET',
-            url: url,
-            success: function(data) {
-                console.log(data);
-                $('#branch').val(data.branch_id).trigger('change');
-                $('#department').val(data.department_id).trigger('change');
-                $('#employee_id').val(data.id);
-            }
-        });
-    });
-
-    $('.from_date').on('change', function() {
-        var from = $(this).parent().next('div').find('.nepali_from_date');
-        let dateObj = new Date($(this).val());
-        let year = dateObj.getUTCFullYear();
-        let month = dateObj.getUTCMonth() + 1;
-        let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
-        let nepaliDate = NepaliFunctions.AD2BS({
-            year: year,
-            month: month,
-            day: day
-        });
-        let nepaliYear = nepaliDate.year;
-        let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
-        let nepaliDay = ("0" + nepaliDate.day).slice(-2);
-        let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
-        from.val(nepaliValue);
-    });
-
-    $('.to_date').on('change', function() {
-        var to = $(this).parent().next('div').find('.nepali_to_date');
-        let dateObj = new Date($(this).val());
-        let year = dateObj.getUTCFullYear();
-        let month = dateObj.getUTCMonth() + 1;
-        let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
-        let nepaliDate = NepaliFunctions.AD2BS({
-            year: year,
-            month: month,
-            day: day
-        });
-        let nepaliYear = nepaliDate.year;
-        let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
-        let nepaliDay = ("0" + nepaliDate.day).slice(-2);
-        let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
-        to.val(nepaliValue);
-    });
-
-    $('.from_date').datepicker({
-        format: 'yyyy-mm-dd',
-        todayHighlight: true,
-        todayBtn: 'linked',
-        clearBtn: true,
-        autoclose: true,
-    });
-
-    $('.to_date').datepicker({
-        format: 'yyyy-mm-dd',
-        todayHighlight: true,
-        todayBtn: 'linked',
-        clearBtn: true,
-        autoclose: true,
-    });
-    </script>
+    @include('partials.dropdown-hierarchy.script')
+    @include('partials.date-range.script')
 @endSection

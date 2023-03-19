@@ -158,7 +158,7 @@
                                 <label class="form-label required">Login Id</label>
                                 <div class="d-flex">
                                     <input type="text" id="login_id" name="login_id" class="form-control mb-2"
-                                        value="{{ old('login_id', generateLoginId(auth()->id())) }}" required readonly />
+                                        value="{{ old('login_id', $employee->login_id) }}" required readonly />
                                 </div>
                             </div>
                         </div>
