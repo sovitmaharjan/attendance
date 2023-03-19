@@ -5,7 +5,7 @@
             data-placeholder="Select Branch" required>
             <option></option>
             @foreach ($branch as $item)
-                <option value="{{ $item->id }}" @selected(old('branch', isset($dropdown->branch_id) ? $dropdown->branch_id : '') == $item->id)>
+                <option value="{{ $item->id }}" @selected(old('branch', isset($dropdown['branch_id']) ? $dropdown['branch_id'] : '') == $item->id)>
                     {{ $item->name }}
                 </option>
             @endforeach

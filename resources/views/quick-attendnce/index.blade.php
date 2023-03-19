@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('holiday_type', 'active')
+@section('quick_attendance', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -41,125 +41,124 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('quick-attendance') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <div class="card">
-                    <div class="card-header border-0 pt-6">
-                        <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Quick Attendance List</span>
-                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you quick-attendance group </span> --}}
-                        </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
-                            title="">
-                            <a href="{{ route('quick-attendance') }}" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_1">
-                                <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
-                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
-                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
-                                            fill="currentColor"></rect>
-                                    </svg>
-                                </span>
-                                Generate New
-                            </a>
-                        </div>
-                        <div class="modal fade" tabindex="-1" id="kt_modal_1">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <form id="shift_form" class="form d-flex flex-column " method="POST"
-                                        action="{{ route('quick-attendance') }}">
-                                        <div class="modal-header">
-                                            <div class="card-title">
-                                                <span class="mt-1 fs-7 text-danger">Fields with asterisk<span
-                                                        class="required"></span>
-                                                    are required </span>
-                                            </div>
-                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
-                                                data-bs-dismiss="modal" aria-label="Close">
-                                                <span class="svg-icon svg-icon-1"></span>
+                <form id="quick_attendance_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('quick-attendance') }}">
+                    @csrf
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span>
+                                        are required </span>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        @include('partials.dropdown-hierarchy.branch')
+                                        @include('partials.dropdown-hierarchy.department')
+                                        @include('partials.dropdown-hierarchy.employee')
+                                        @include('partials.dropdown-hierarchy.employee-id')
+                                        @include('partials.dropdown-hierarchy.reset')
+                                    </div>
+                                </div>
+                                @include('partials.date-range.html')
+                                <div class="mb-10 fv-row" style="float: right;">
+                                    <a href="{{ route('quick-attendance') }}" id="quick_attendance_cancel" class="btn btn-light me-5">Cancel</a>
+                                    <button type="submit" id="quick_attendance_submit" class="btn btn-primary">
+                                        <span class="indicator-label">Generate</span></span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label fw-bolder fs-3 mb-1">Quick Attendance List</span>
+                                    </h3>
+                                    <div class="pt-6">
+                                        <div id="kt_customers_table_wrapper"
+                                            class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="table-responsive">
+                                                <table id="kt_datatable_example"
+                                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                                    <thead>
+                                                        <tr
+                                                            class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
+                                                            <th>Date</th>
+                                                            <th>Day</th>
+                                                            <th>Shift</th>
+                                                            <th>In Time</th>
+                                                            <th>In Diff.</th>
+                                                            <th>In Remark</th>
+                                                            <th>Out Time</th>
+                                                            <th>Out Diff.</th>
+                                                            <th>Out Remark</th>
+                                                            <th>Worked Hour</th>
+                                                            <th>Mode</th>
+                                                            <th>Remark</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @isset($report)
+                                                            @foreach ($report as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->date }} <br /> </td>
+                                                                    <td>{{ $item->day }}</td>
+                                                                    <td>{{ $item->shift_name }} <br />
+                                                                    <td>{{ $item->shift_in_time }} <br />
+                                                                        {{ $item->shift_out_time }}</td>
+                                                                    <td>{{ $item->in_time }}</td>
+                                                                    <td>{{ $item->in_diff }}</td>
+                                                                    <td>{{ $item->in_remark }}</td>
+                                                                    <td>{{ $item->out_time }}</td>
+                                                                    <td>{{ $item->out_diff }}</td>
+                                                                    <td>{{ $item->out_remark }}</td>
+                                                                    <td>{{ $item->work_hour }}</td>
+                                                                    <td>n/a</td>
+                                                                    <td>
+                                                                        @if (!$item->shift_name)
+                                                                            Shift Unassigned
+                                                                        @endif
+                                                                        @if ($item->remarks != App\Models\ForceAttendance::ABSENT_MESSAGE)
+                                                                            {{ $item->remarks }}
+                                                                            @if ($item->off_day == 1)
+                                                                                <br />(Work on off day)
+                                                                            @endif
+                                                                            @if ($item->holiday_name)
+                                                                                <br />{{ $item->holiday_name }}<br />(Work
+                                                                                on
+                                                                                holiday)
+                                                                            @endif
+                                                                        @else
+                                                                            @if ($item->off_day == 1)
+                                                                                Off day
+                                                                            @elseif ($item->holiday_name)
+                                                                                {{ $item->holiday_name }}
+                                                                            @else
+                                                                                {{ $item->remarks }}
+                                                                            @endif
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endisset
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-
-                                        <div class="modal-body">
-                                            @csrf
-                                            <div class="mb-10 fv-row">
-                                                <div class="d-flex flex-wrap gap-5">
-                                                    @include('partials.dropdown-hierarchy.branch')
-                                                    @include('partials.dropdown-hierarchy.department')
-                                                    @include('partials.dropdown-hierarchy.employee')
-                                                    @include('partials.dropdown-hierarchy.employee-id')
-                                                    @include('partials.dropdown-hierarchy.reset')
-                                                </div>
-                                            </div>
-                                            @include('partials.date-range.html')
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Generate</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body pt-6">
-                        <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                            <div class="table-responsive">
-                                <table id="kt_datatable_example"
-                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
-                                    <thead>
-                                        <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
-                                            <th>Date</th>
-                                            <th>Day</th>
-                                            <th>Shift</th>
-                                            <th>In Time</th>
-                                            <th>In Diff.</th>
-                                            <th>In Remark</th>
-                                            <th>Out Time</th>
-                                            <th>Out Diff.</th>
-                                            <th>Out Remark</th>
-                                            <th>Worked Hour</th>
-                                            <th>Mode</th>
-                                            <th>Remark</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @isset($report)
-                                        @foreach ($report as $item)
-                                            <tr>
-                                                <td>{{ $item->date }} <br /> </td>
-                                                <td>{{ $item->day }}</td>
-                                                <td>{{ $item->shift_in_time }} <br/> {{ $item->shift_out_time }}</td>
-                                                <td>{{ $item->in_time }}</td>
-                                                <td>{{ $item->in_diff }}</td>
-                                                <td>{{ $item->in_remark }}</td>
-                                                <td>{{ $item->out_time }}</td>
-                                                <td>{{ $item->out_diff }}</td>
-                                                <td>{{ $item->out_remark }}</td>
-                                                <td>{{ $item->work_hour }}</td>
-                                                <td>n/a</td>
-                                                <td>
-                                                    {{ $item->holiday_name }}
-                                                    <br />{{ $item->leave_name }}
-                                                    <br />{{ $item->off_day }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endisset
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

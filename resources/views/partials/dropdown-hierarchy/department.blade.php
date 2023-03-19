@@ -5,7 +5,7 @@
             data-placeholder="Select Department" required>
             <option></option>
             @foreach ($department as $item)
-                <option value="{{ $item->id }}" @selected(old('department', isset($dropdown->department_id) ? $dropdown->department_id : '') == $item->id)>
+                <option value="{{ $item->id }}" @selected(old('department', isset($dropdown['department_id']) ? $dropdown['department_id'] : '') == $item->id)>
                     {{ $item->name }}
                 </option>
             @endforeach

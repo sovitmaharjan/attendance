@@ -5,7 +5,7 @@
             data-placeholder="Select Employee" autocomplete="off" required>
             <option></option>
             @foreach ($employee as $item)
-                <option value="{{ $item->id }}" @selected(old('employee', isset($dropdown->branch_id) ? $dropdown->branch_id : '') == $item->id)>
+                <option value="{{ $item->id }}" @selected(old('employee', isset($dropdown['employee_id']) ? $dropdown['employee_id'] : '') == $item->id)>
                     {{ $item->full_name }}
                 </option>
             @endforeach

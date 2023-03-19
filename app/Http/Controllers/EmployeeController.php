@@ -69,6 +69,10 @@ class EmployeeController extends Controller
 
     public function edit(User $employee)
     {
+        $companyName = SiteSetting::where('key', 'company_code')->first();
+        if (!$companyName) {
+            return redirect()->route('company.index')->with('info', 'Set Company\'s Name before creating employee');
+        }
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
         $data['supervisors'] = User::all();
