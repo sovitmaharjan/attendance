@@ -325,7 +325,7 @@
                                                     <td>
                                                         <div class="d-flex">
                                                             <div class="symbol symbol-45px me-5">
-                                                                <img src="{{ env('APP_URL') . '/public/' . substr($item->employee->getFirstMediaUrl('image'), 30) }}"
+                                                                <img src="{{ env('APP_URL') . '/public/' . substr($item->employee->getFirstMediaUrl('image'), 32) }}"
                                                                     alt="" />
                                                             </div>
                                                             <div class="d-flex justify-content-start flex-column">
@@ -441,7 +441,7 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         <div class="symbol symbol-45px me-5">
-                                                            <img src="{{ env('APP_URL') . '/public/' . substr($item->employee->getFirstMediaUrl('image'), 30) }}"
+                                                            <img src="{{ env('APP_URL') . '/public/' . substr($item->employee->getFirstMediaUrl('image'), 32) }}"
                                                                 alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
