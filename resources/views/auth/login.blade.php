@@ -33,9 +33,9 @@
                 <span class="indicator-progress">Please wait...
                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
             </button>
-            <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
+            {{-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
             <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-            <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Continue with Google</a>
+            <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Continue with Google</a> --}}
             {{-- <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
             <img alt="Logo" src="assets/media/svg/brand-logos/facebook-4.svg" class="h-20px me-3" />Continue with Facebook</a> --}}
         </div>
@@ -46,12 +46,12 @@
 	<script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
     @error('login_id')
     <script>
-        toastr.error('{{ $message }}');
+        toastr.error('', '{{ $message }}');
     </script>
     @enderror
     @error('password')
     <script>
-        toastr.error('{{ $message }}');
+        toastr.error('', '{{ $message }}');
     </script>
     @enderror
 @endsection
