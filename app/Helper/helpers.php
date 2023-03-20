@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Branch;
-use App\Models\Company;
 use App\Models\Department;
 use App\Models\DynamicValue;
+use App\Models\SiteSetting;
 use App\Models\User;
 
 if (!function_exists('getDynamicValues')) {
@@ -37,8 +37,8 @@ if (!function_exists('getGenders')) {
 if (!function_exists('generateLoginId')) {
     function generateLoginId($company_id)
     {
-        $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-        $login_id = Company::find($company_id)->code . '-' . $next_id;
+        $next_id = User::orderBy('id', 'desc')->first() != false ? User::orderBy('id', 'desc')->first()->id + 1 : 1;
+        $login_id = SiteSetting::where('key', 'company_code')->first()->value . '-' . $next_id;
         return $login_id;
     }
 }
@@ -48,35 +48,6 @@ if (!function_exists('getFormattedDate')) {
     {
         return date('Y-m-d', strtotime($date));
     }
-
-
-}
-
-function getBranchDetails($branch_id)
-{
-    $data = Branch::find($branch_id)->load('departments', 'employees');
-    if ($data->company_id != auth()->user()->company_id) {
-        return 'This branch doesnot exist or belongs to other company';
-    }
-    return response()->json($data);
-}
-
-function getDepartmentDetails($department_id)
-{
-    $data = Department::find($department_id)->load('branch', 'employees');
-    if ($data->company_id != auth()->user()->company_id) {
-        return 'This department doesnot exist or belongs to other company';
-    }
-    return response()->json($data);
-}
-
-function getEmployeeDetails($employee_id)
-{
-    $data = User::find($employee_id)->load('branch', 'department');
-    if ($data->company_id != auth()->user()->company_id) {
-        return 'This employee doesnot exist or belongs to other company';
-    }
-    return response()->json($data);
 }
 
 if (!function_exists('getDays')) {
@@ -94,4 +65,17 @@ if (!function_exists('statusTitle')) {
     {
         return $status == 1 ? 'Active' : 'Inactive';
     }
+}
+
+if (!function_exists('getUser')){
+    function getUser(){
+        return \Illuminate\Support\Facades\Auth::user();
+    }
+}
+
+function saveModel($model, $request)
+{
+    $data = $request->only($model->getFillable());
+    $model->fill($data);
+    return $model;
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ShiftAssignmentRequest;
+use App\Http\Requests\Shift\ShiftAssignmentRequest;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Shift;
@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class ShiftAssignmentController extends Controller
 {
-    public function create()
+    public function index()
     {
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         $data['shift'] = Shift::orderBy('name', 'asc')->get();
-        return view('shift-assignment.create', $data);
+        return view('shift-assignment.index', $data);
     }
 
     public function store(ShiftAssignmentRequest $request)
@@ -39,8 +39,8 @@ class ShiftAssignmentController extends Controller
                         [
                             'shift_id' => $item['shift'],
                             'extra' => [
-                                'nep_from_date' => $item['nep_from_date'],
-                                'nep_to_date' => $item['nep_to_date']
+                                'nepali_from_date' => $item['nepali_from_date'],
+                                'nepali_to_date' => $item['nepali_to_date']
                             ]
                         ]
                     );

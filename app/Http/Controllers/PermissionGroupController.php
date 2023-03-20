@@ -23,7 +23,7 @@ class PermissionGroupController extends Controller
     {
         try {
             PermissionGroup::create($request->validated());
-            return redirect()->route('permission-group.index')->with('success', 'Permission group has been created');
+            return back()->with('success', 'Permission group has been created');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }

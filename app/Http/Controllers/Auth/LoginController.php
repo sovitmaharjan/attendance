@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\SiteSetting;
 
 class LoginController extends Controller
 {
@@ -17,7 +18,7 @@ class LoginController extends Controller
         if (!auth()->attempt($request->validated())) {
             return back()->with('error', 'Invalid credentials');
         }
-        return redirect()->route('dashboard')->with('success', 'Login successful');
+        return redirect()->intended(route('dashboard'))->with('success', 'Login successful');
     }
 
     public function logout()

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Shift\StoreShiftRequest;
+use App\Http\Requests\Shift\UpdateShiftRequest;
 use App\Http\Requests\ShiftRequest;
 use App\Models\Shift;
 use Carbon\Carbon;
@@ -20,15 +22,9 @@ class ShiftController extends Controller
         return view('shift.create');
     }
 
-    public function store(ShiftRequest $request)
+    public function store(StoreShiftRequest $request)
     {
-        // dd($request->all());
         try {
-            // $data = [
-            //     'name' => $request->name,
-            //     'in_time' => Carbon::parse($request->in_time)
-            // ];
-            // dd($data);
             Shift::create($request->validated());
             return back()->with('success', 'Shift has been created');
         } catch (Exception $e) {
@@ -42,11 +38,11 @@ class ShiftController extends Controller
         return view('shift.edit', $data);
     }
 
-    public function update(ShiftRequest $request, Shift $shift)
+    public function update(UpdateShiftRequest $request, Shift $shift)
     {
         try {
             $shift->update($request->validated());
-            return redirect()->route('shift.index')->with('success', 'Shift has been updated');
+            return back()->with('success', 'Shift has been updated');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }

@@ -1,34 +1,33 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('department', 'active')
-@section("content")
+@section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{$page}}</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ $page }}</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">{{$page}}</li>
+                        <li class="breadcrumb-item text-muted">{{ $page }}</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-dark">List</li>
                     </ul>
                 </div>
-
-
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route("department.index") }}"
-                           class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                    @can('view-department')
+                        <div class="m-0">
+                            <a href="{{ route('department.index') }}"
+                               class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -40,10 +39,13 @@
                                           fill="black"></path>
                                 </svg>
                             </span>
-                            List
-                        </a>
-                    </div>
-                    <a href="{{ route("department.create") }}" class="btn btn-sm btn-primary">Create</a>
+                                List
+                            </a>
+                        </div>
+                    @endcan
+                    @can('add-department')
+                        <a href="{{ route('department.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -52,30 +54,32 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">{{$page}} List</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">{{ $page }} List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you permission group </span> --}}
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                             data-bs-trigger="hover"
-                             title="">
-                            <a href="{{ route("department.create") }}" class="btn btn-primary">
+                        @can('add-department')
+                            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 data-bs-trigger="hover"
+                                 title="">
+                                <a href="{{ route('department.create') }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none">
-                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
-                                              transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                              rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
                                         <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
                                               fill="currentColor"></rect>
                                     </svg>
                                 </span>
-                                Add New
-                            </a>
-                        </div>
+                                    Add New
+                                </a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
-                                <table id="kt_datatable_example_5"
+                                <table id="department-table"
                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
@@ -86,7 +90,7 @@
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Mobile</th>
-                                        <th>Company</th>
+                                        <th>Branch</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -113,12 +117,13 @@
                                                 {{ $data->mobile ?? 'Not Assigned' }}
                                             </td>
                                             <td>
-                                                {{ $data->company_detail->name ?? 'Not Assigned' }}
+                                                {{ $data->branch->name ?? 'Not Assigned' }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    <a href="{{ route("department.edit", $data->id) }}"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    @can('edit-department')
+                                                        <a href="{{ route('department.edit', $data->id) }}"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -130,15 +135,16 @@
                                                                         fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
-                                                    <a href="javascript:void(0);" data-target-id="{{$data->id}}"
-                                                       data-id="{{$data->id}}" data-name="{{$data->name}}"
+                                                        </a>
+                                                    @endcan
+                                                    <a href="javascript:void(0);" data-target-id="{{ $data->id }}"
+                                                       data-id="{{ $data->id }}" data-name="{{ $data->name }}"
                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                        title="Assign Off Days" data-bs-toggle="modal"
                                                        data-bs-target="#kt_modal_new_target">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                             fill="currentColor" class="bi bi-list-task"
-                                                             viewBox="0 0 16 16">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                             height="16" fill="currentColor"
+                                                             class="bi bi-list-task" viewBox="0 0 16 16">
                                                             <path fill-rule="evenodd"
                                                                   d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
                                                             <path
@@ -147,15 +153,17 @@
                                                                   d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
                                                         </svg>
                                                     </a>
-                                                    <form id="form{{ $data->id }}"
-                                                          action="{{ route("department.destroy", $data->id) }}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method("delete")
-                                                    </form>
-                                                    <a href="javascript:viod(0);"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
-                                                       data-id="{{ $data->id }}" data-name="{{ $data->name }}">
+                                                    @can('delete-department')
+                                                        <form id="form{{ $data->id }}"
+                                                              action="{{ route('department.destroy', $data->id) }}"
+                                                              method="POST">
+                                                            @csrf
+                                                            @method('delete')
+                                                        </form>
+                                                        <a href="javascript:viod(0);"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
+                                                           data-id="{{ $data->id }}"
+                                                           data-name="{{ $data->name }}">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -170,7 +178,8 @@
                                                                           fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
+                                                        </a>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>
@@ -197,14 +206,14 @@
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                         <span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none">
-									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                          transform="rotate(-45 6 17.3137)" fill="currentColor"/>
-									<rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                          transform="rotate(45 7.41422 6)" fill="currentColor"/>
-								</svg>
-							</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                      rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                      transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                            </svg>
+                        </span>
                         <!--end::Svg Icon-->
                     </div>
                     <!--end::Close-->
@@ -213,7 +222,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                     <!--begin:Form-->
-                    <form id="kt_modal_new_target_form" class="form" action="{{route('assignOffDays')}}">
+                    <form id="kt_modal_new_target_form" class="form" action="{{ route('assignOffDays') }}">
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
                             <h1 class="mb-3">Assign Off Days To <span id="departmentName"></span></h1>
@@ -228,13 +237,12 @@
                                 <label class="required form-label">Days</label>
                                 <div class="d-flex gap-5" id="daysSection">
                                     <select class="form-select mb-2" id="assignedDays" name="days[]"
-                                            data-control="select2"
-                                            data-hide-search="false" data-placeholder="Select Days"
+                                            data-control="select2" data-hide-search="false"
+                                            data-placeholder="Select Days"
                                             required multiple>
                                         <option></option>
-                                        @foreach(getDays() as $day)
-                                            <option
-                                                value="{{$day}}">{{$day}}</option>
+                                        @foreach (getDays() as $day)
+                                            <option value="{{ $day }}">{{ $day }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -249,7 +257,7 @@
                             <button type="button" id="kt_modal_new_target_submit" class="btn btn-primary">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
-									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
                         <!--end::Actions-->
@@ -264,10 +272,10 @@
     </div>
     <!--end::Modal - New Target-->
 @endSection
-@section("script")
+@section('script')
     <script>
         $(document).ready(function () {
-            $("#kt_datatable_example_5").DataTable({
+            $("#department-table").DataTable({
                 "language": {
                     "lengthMenu": "Show _MENU_",
                 },
@@ -346,12 +354,12 @@
             $("#kt_modal_new_target").on('show.bs.modal', function (e) {
                 var id = $(e.relatedTarget).data('target-id');
                 var department_name = $(e.relatedTarget).data('name');
-                var offDaysList = JSON.parse('<?= json_encode((array)getDays()); ?>');
+                var offDaysList = JSON.parse('<?= json_encode((array)getDays()) ?>');
                 $("#departmentName").html(department_name);
                 $("#keyname").val('department_' + id);
                 $("#departmentId").val(id);
                 if (id != "undefined" && id != undefined && id != 'null' && id != null) {
-                    var url = "{{route('departmentOffDays', ':id')}}",
+                    var url = "{{ route('departmentOffDays', ':id') }}",
                         url = url.replace(":id", id);
                     // $.ajax({
                     //    url: url,
@@ -368,10 +376,14 @@
                             let off_days = res.off_days;
                             $("#assignedDays").html("<option value=''></option>");
                             $.each(offDaysList, function (key, off_day) {
-                                let $option = $('<option></option>').val(off_day).html(off_day);
+                                let $option = $('<option></option>').val(off_day).html(
+                                    off_day);
                                 off_days.filter(value => {
-                                    if ($option[0] !== 'undefined' && $option[0] !== undefined  && $option[0].childNodes[0].nodeValue === value) {
-                                        $option = $option.attr('selected', 'selected');
+                                    if ($option[0] !== 'undefined' && $option[0] !==
+                                        undefined && $option[0].childNodes[0]
+                                            .nodeValue === value) {
+                                        $option = $option.attr('selected',
+                                            'selected');
                                     }
                                 });
                                 $("#assignedDays").append($option);
@@ -385,7 +397,9 @@
         })
 
         const areCommonElements = (offDaysList, off_days) => {
-            const [shortArr, longArr] = (offDaysList.length < off_days.length) ? [offDaysList, off_days] : [off_days, offDaysList];
+            const [shortArr, longArr] = (offDaysList.length < off_days.length) ? [offDaysList, off_days] : [off_days,
+                offDaysList
+            ];
             const longArrSet = new Set(longArr);
             shortArr.map(function (k) {
                 return k;

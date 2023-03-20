@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\Employee\StoreEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Branch;
-use App\Models\Company;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Role;
+use App\Models\SiteSetting;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -17,13 +18,16 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $data['employees'] = User::all();
+        $data['employees'] = User::orderBy('id', 'desc')->get();
         return view('employee.index', $data);
     }
 
     public function create()
     {
-        $data['company'] = Company::all();
+        $companyName = SiteSetting::where('key', 'company_code')->first();
+        if (!$companyName) {
+            return redirect()->route('company.index')->with('info', 'Set Company\'s Name before creating employee');
+        }
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
         $data['supervisors'] = User::all();
@@ -32,27 +36,28 @@ class EmployeeController extends Controller
         return view('employee.create', $data);
     }
 
-    public function store(EmployeeRequest $request)
+    public function show(User $employee)
+    {
+        return response()->json($employee);
+    }
+
+    public function store(StoreEmployeeRequest $request)
     {
         try {
             DB::beginTransaction();
-            // $next_id = User::latest()->first() != false ? User::latest()->first()->id + 1 : 1;
-            // $login_id = Company::find($request->company_id)->code . '-' . $next_id;
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
-                'nepali_join_date' => $request->nepali_join_date,
-                'citizenship_no' => $request->citizenship_no,
-                'pan_no' => $request->pan_no,
+                'nepali_join_date' => $request->nepali_join_date
             ];
-            $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
-                // 'login_id' => $login_id,
-                'password' => Str::random(7)
+                'password' => Str::random(7),
+                'branch_id' => $request->branch,
+                'department_id' => $request->department
             ]);
-            $employee = User::create($request->all());
-            if (isset($request->image) && $request->image != null) {
-                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            $employee = User::create($request->only((new User())->getFillable()));
+            if (isset($request->base64) && $request->base64 != null) {
+                $employee->addMediaFromBase64($request->base64)->usingFilename(md5(Str::random(8) . time()) . '.' . explode('/', mime_content_type($request->base64))[1])->toMediaCollection('image');
             }
             DB::commit();
             return back()->with('success', 'Employee has been created');
@@ -64,7 +69,10 @@ class EmployeeController extends Controller
 
     public function edit(User $employee)
     {
-        $data['company'] = Company::all();
+        $companyName = SiteSetting::where('key', 'company_code')->first();
+        if (!$companyName) {
+            return redirect()->route('company.index')->with('info', 'Set Company\'s Name before creating employee');
+        }
         $data['branch'] = Branch::all();
         $data['department'] = Department::all();
         $data['supervisors'] = User::all();
@@ -74,27 +82,30 @@ class EmployeeController extends Controller
         return view('employee.edit', $data);
     }
 
-    public function update(EmployeeRequest $request, User $employee)
+    public function update(UpdateEmployeeRequest $request, User $employee)
     {
         try {
             DB::beginTransaction();
             $extra = [
                 'nepali_dob' => $request->nepali_dob,
-                'nepali_join_date' => $request->nepali_join_date,
-                'citizenship_no' => $request->citizenship_no,
-                'pan_no' => $request->pan_no,
+                'nepali_join_date' => $request->nepali_join_date
             ];
-            $request->only((new User())->getFillable());
             $request->request->add([
                 'extra' => $extra,
+                'branch_id' => $request->branch,
+                'department_id' => $request->department
             ]);
-            $employee->update($request->all());
-            if (isset($request->image) && $request->image != null) {
-                $employee->clearMediaCollection('image');
-                $employee->addMedia($request->image)->usingFilename(md5($request->image->getClientOriginalName() . Str::random(8) . time()))->toMediaCollection('image');
+            $employee->update($request->only((new User())->getFillable()));
+            if (isset($request->base64) && $request->base64 != null) {
+                if ($request->base64 == 1) {
+                    $employee->clearMediaCollection('image');
+                } else {
+                    $employee->clearMediaCollection('image');
+                    $employee->addMediaFromBase64($request->base64)->usingFilename(md5(Str::random(8) . time()) . '.' . explode('/', mime_content_type($request->base64))[1])->toMediaCollection('image');
+                }
             }
             DB::commit();
-            return redirect()->route('employee.index')->with('success', 'Employee has been updated');
+            return back()->with('success', 'Employee has been updated');
         } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());

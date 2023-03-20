@@ -11,10 +11,12 @@ class DesignationTableSeeder extends Seeder
     public function run()
     {
         Designation::create([
-            'title' => 'Super Admin'
+            'title' => 'Super Admin',
+            'status' => 1
         ]);
         Designation::create([
-            'title' => 'Admin'
+            'title' => 'Admin',
+            'status' => 1
         ]);
     }
 }

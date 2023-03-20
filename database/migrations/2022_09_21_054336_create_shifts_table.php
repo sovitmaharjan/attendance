@@ -15,9 +15,9 @@ return new class extends Migration
             $table->time('in_time_last')->nullable();
             $table->time('out_time');
             $table->time('out_time_last')->nullable();
-            $table->integer('break_time');
+            $table->integer('break_time')->nullable();
+            $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('role', 'active')
-@section("content")
+@section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -11,7 +11,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route("dashboard") }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -24,9 +24,10 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route("role.index") }}"
-                           class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                    @can('view-role')
+                        <div class="m-0">
+                            <a href="{{ route('role.index') }}"
+                               class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -38,10 +39,13 @@
                                           fill="black"></path>
                                 </svg>
                             </span>
-                            List
-                        </a>
-                    </div>
-                    <a href="{{ route("role.create") }}" class="btn btn-sm btn-primary">Create</a>
+                                List
+                            </a>
+                        </div>
+                    @endcan
+                    @can('add-role')
+                        <a href="{{ route('role.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -53,27 +57,29 @@
                             <span class="card-label fw-bolder fs-3 mb-1">Roles List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you permission group </span> --}}
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
-                             data-bs-trigger="hover"
-                             title="">
-                            <a href="{{ route("role.create") }}" class="btn btn-primary">
+                        @can('add-role')
+                            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
+                                 data-bs-trigger="hover"
+                                 title="">
+                                <a href="{{ route('role.create') }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none">
-                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
-                                              transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                              rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
                                         <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
                                               fill="currentColor"></rect>
                                     </svg>
                                 </span>
-                                Add New
-                            </a>
-                        </div>
+                                    Add New
+                                </a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
-                                <table id="kt_datatable_example_5"
+                                <table id="role_datatable"
                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
@@ -95,8 +101,9 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    <a href="{{ route("role.edit", $role->id) }}"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                    @can('edit-role')
+                                                        <a href="{{ route('role.edit', $role->id) }}"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -108,16 +115,19 @@
                                                                         fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
-                                                    <form id="form{{ $role->id }}"
-                                                          action="{{ route("role.destroy", $role->id) }}"
-                                                          method="POST">
-                                                        @csrf
-                                                        @method("delete")
-                                                    </form>
-                                                    <a href="javascript:viod(0);"
-                                                       class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
-                                                       data-id="{{ $role->id }}" data-name="{{ $role->name }}">
+                                                        </a>
+                                                    @endcan
+                                                    @can('delete-role')
+                                                        <form id="form{{ $role->id }}"
+                                                              action="{{ route('role.destroy', $role->id) }}"
+                                                              method="POST">
+                                                            @csrf
+                                                            @method('delete')
+                                                        </form>
+                                                        <a href="javascript:viod(0);"
+                                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
+                                                           data-id="{{ $role->id }}"
+                                                           data-name="{{ $role->name }}">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -132,7 +142,8 @@
                                                                           fill="currentColor"></path>
                                                                 </svg>
                                                             </span>
-                                                    </a>
+                                                        </a>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>
@@ -147,10 +158,10 @@
         </div>
     </div>
 @endSection
-@section("script")
+@section('script')
     <script>
         $(document).ready(function () {
-            $("#kt_datatable_example_5").DataTable({
+            $("#role_datatable").DataTable({
                 "language": {
                     "lengthMenu": "Show _MENU_",
                 },

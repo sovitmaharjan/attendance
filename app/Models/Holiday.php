@@ -4,19 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Holiday extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'name',
-        'date',
-        'quantity'
+        'from_date',
+        'to_date',
+        'quantity',
+        'extra'
     ];
 
     public $casts = [
-        'date' => 'datetime'
+        'from_date' => 'date',
+        'to_date' => 'date',
+        'extra' => 'array'
     ];
+
+    public function holidayDates()
+    {
+        return $this->hasMany(HolidayDate::class);
+    }
 }

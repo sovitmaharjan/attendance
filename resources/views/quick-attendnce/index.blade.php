@@ -17,6 +17,10 @@
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">Quick Attendance</li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-dark">List</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
@@ -37,13 +41,12 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('force-attendance.create') }}" class="btn btn-sm btn-primary">Force Attendance</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="shift_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                <form id="quick_attendance_form" class="form d-flex flex-column flex-lg-row" method="POST"
                     action="{{ route('quick-attendance') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -54,141 +57,105 @@
                                         are required </span>
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Branch</label>
-                                            <select class="form-select mb-2" id="branch" name="branch"
-                                                data-control="select2" data-hide-search="false"
-                                                data-placeholder="Select Branch" required>
-                                                <option></option>
-                                                @foreach ($branch as $item)
-                                                    <option value="{{ $item->id }}" @selected(old('branch') == $item->id)>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('branch')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="branch" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Department</label>
-                                            <select class="form-select mb-2" id="department" name="department"
-                                                data-control="select2" data-hide-search="false"
-                                                data-placeholder="Select Department" required>
-                                                <option></option>
-                                                @foreach ($department as $item)
-                                                    <option value="{{ $item->id }}" @selected(old('department') == $item->id)>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('department')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="department" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Employee</label>
-                                            <select class="form-select mb-2" id="employee" name="employee"
-                                                data-control="select2" data-hide-search="false"
-                                                data-placeholder="Select Employee" required>
-                                                <option></option>
-                                                @foreach ($employee as $item)
-                                                    <option value="{{ $item->id }}" @selected(old('employee') == $item->id)>
-                                                        {{ $item->fullname }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('employee')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="employee" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Employee Id</label>
-                                            <input type="text" class="form-control mb-2" id="employee_id"
-                                                name="employee_id" value="{{ old('employee_id') }}" />
-                                            @error('employee_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="employee_id" data-validator="notEmpty">
-                                                        {{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
+                                        @include('partials.dropdown-hierarchy.branch')
+                                        @include('partials.dropdown-hierarchy.department')
+                                        @include('partials.dropdown-hierarchy.employee')
+                                        @include('partials.dropdown-hierarchy.employee-id')
+                                        @include('partials.dropdown-hierarchy.reset')
                                     </div>
                                 </div>
+                                @include('partials.date-range.html')
+                                <div class="mb-10 fv-row" style="float: right;">
+                                    <a href="{{ route('quick-attendance') }}" id="quick_attendance_cancel" class="btn btn-light me-5">Cancel</a>
+                                    <button type="submit" id="quick_attendance_submit" class="btn btn-primary">
+                                        <span class="indicator-label">Generate</span></span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">From</label>
-                                            <input type="text" class="form-control mb-2 from_date" date-id="from"
-                                                placeholder="yyyy-dd-mm" name="from_date" autocomplete="off"
-                                                value="{{ old('from_date') }}" />
-                                            @error('from_date')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="from_date" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">&nbsp;</label>
-                                            <input type="text" class="form-control mb-2 nep_from_date"
-                                                name="nep_from_date" autocomplete="off"
-                                                value="{{ old('nep_from_date') }}" placeholder="yyyy-dd-mm">
-                                            @error('nep_from_date')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nep_from_date" data-validator="notEmpty">
-                                                        {{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">To</label>
-                                            <input type="text" autocomplete="off" class="form-control mb-2 to_date"
-                                                value="{{ old('to_date') }}" date-id="to" placeholder="yyyy-dd-mm"
-                                                name="to_date" value="{{ old('to_date') }}" />
-                                            @error('to_date')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="to_date" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">&nbsp;</label>
-                                            <input type="text" autocomplete="off"
-                                                class="form-control mb-2 nep_to_date" name="nep_to_date"
-                                                value="{{ old('nep_to_date') }}" placeholder="yyyy-dd-mm">
-                                            @error('nep_to_date')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="nep_to_date" data-validator="notEmpty">
-                                                        {{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label fw-bolder fs-3 mb-1">Quick Attendance List</span>
+                                    </h3>
+                                    <div class="pt-6">
+                                        <div id="kt_customers_table_wrapper"
+                                            class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                            <div class="table-responsive">
+                                                <table id="kt_datatable_example"
+                                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                                    <thead>
+                                                        <tr
+                                                            class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
+                                                            <th>Date</th>
+                                                            <th>Day</th>
+                                                            <th>Shift</th>
+                                                            <th>In Time</th>
+                                                            <th>In Diff.</th>
+                                                            <th>In Remark</th>
+                                                            <th>Out Time</th>
+                                                            <th>Out Diff.</th>
+                                                            <th>Out Remark</th>
+                                                            <th>Worked Hour</th>
+                                                            <th>Mode</th>
+                                                            <th>Remark</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @isset($report)
+                                                            @foreach ($report as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->date }} <br /> </td>
+                                                                    <td>{{ $item->day }}</td>
+                                                                    <td>{{ $item->shift_name }} <br />
+                                                                    <td>{{ $item->shift_in_time }} <br />
+                                                                        {{ $item->shift_out_time }}</td>
+                                                                    <td>{{ $item->in_time }}</td>
+                                                                    <td>{{ $item->in_diff }}</td>
+                                                                    <td>{{ $item->in_remark }}</td>
+                                                                    <td>{{ $item->out_time }}</td>
+                                                                    <td>{{ $item->out_diff }}</td>
+                                                                    <td>{{ $item->out_remark }}</td>
+                                                                    <td>{{ $item->work_hour }}</td>
+                                                                    <td>n/a</td>
+                                                                    <td>
+                                                                        @if (!$item->shift_name)
+                                                                            Shift Unassigned
+                                                                        @endif
+                                                                        @if ($item->remarks != App\Models\ForceAttendance::ABSENT_MESSAGE)
+                                                                            {{ $item->remarks }}
+                                                                            @if ($item->off_day == 1)
+                                                                                <br />(Work on off day)
+                                                                            @endif
+                                                                            @if ($item->holiday_name)
+                                                                                <br />{{ $item->holiday_name }}<br />(Work
+                                                                                on
+                                                                                holiday)
+                                                                            @endif
+                                                                        @else
+                                                                            @if ($item->off_day == 1)
+                                                                                Off day
+                                                                            @elseif ($item->holiday_name)
+                                                                                {{ $item->holiday_name }}
+                                                                            @else
+                                                                                {{ $item->remarks }}
+                                                                            @endif
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endisset
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('quick-attendance') }}" id="kt_ecommerce_add_product_cancel"
-                                class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_shift_submit" class="btn btn-primary">
-                                <span class="indicator-label">Save Changes</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
                         </div>
                     </div>
                 </form>
@@ -197,111 +164,6 @@
     </div>
 @endSection
 @section('script')
-    <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).on('change', '#branch', function(e) {
-            e.preventDefault();
-            var id = $(this).val();
-            var url = "{{ route('api.branch.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                method: 'GET',
-                url: url,
-                success: function(data) {
-                    // myLog(data);
-                    // data.departments.foreach()
-
-                }
-            });
-        });
-
-        $(document).on('change', '#department', function(e) {
-            e.preventDefault();
-            var id = $(this).val();
-            var url = "{{ route('api.department.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                method: 'GET',
-                url: url,
-                success: function(data) {
-                    // console.log(data);
-                }
-            });
-        });
-
-        $('#employee').on('change', function(e) {
-            e.preventDefault();
-            var id = $(this).val();
-            var url = "{{ route('api.employee.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.ajax({
-                method: 'GET',
-                url: url,
-                success: function(data) {
-                    console.log(data);
-                    $('#branch').val(data.branch_id).trigger('change');
-                    $('#department').val(data.department_id).trigger('change');
-                    $('#employee_id').val(data.id);
-                }
-            });
-        });
-
-        $('.from_date').on('change', function() {
-            var from = $(this).parent().next('div').find('.nep_from_date');
-            let dateObj = new Date($(this).val());
-            let year = dateObj.getUTCFullYear();
-            let month = dateObj.getUTCMonth() + 1;
-            let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
-            let nepaliDate = NepaliFunctions.AD2BS({
-                year: year,
-                month: month,
-                day: day
-            });
-            let nepaliYear = nepaliDate.year;
-            let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
-            let nepaliDay = ("0" + nepaliDate.day).slice(-2);
-            let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
-            from.val(nepaliValue);
-        });
-
-        $('.to_date').on('change', function() {
-            var to = $(this).parent().next('div').find('.nep_to_date');
-            let dateObj = new Date($(this).val());
-            let year = dateObj.getUTCFullYear();
-            let month = dateObj.getUTCMonth() + 1;
-            let day = dateObj.getUTCDate(); // + 1 for 'dd-mm-yyyy'
-            let nepaliDate = NepaliFunctions.AD2BS({
-                year: year,
-                month: month,
-                day: day
-            });
-            let nepaliYear = nepaliDate.year;
-            let nepaliMonth = ("0" + nepaliDate.month).slice(-2);
-            let nepaliDay = ("0" + nepaliDate.day).slice(-2);
-            let nepaliValue = nepaliYear + '-' + nepaliMonth + '-' + nepaliDay;
-            to.val(nepaliValue);
-        });
-
-        $('.from_date').datepicker({
-            format: 'yyyy-mm-dd',
-            todayHighlight: true,
-            todayBtn: 'linked',
-            clearBtn: true,
-            autoclose: true,
-        });
-
-        $('.to_date').datepicker({
-            format: 'yyyy-mm-dd',
-            todayHighlight: true,
-            todayBtn: 'linked',
-            clearBtn: true,
-            autoclose: true,
-        });
-    </script>
-@endsection
+    @include('partials.dropdown-hierarchy.script')
+    @include('partials.date-range.script')
+@endSection

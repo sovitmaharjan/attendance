@@ -6,7 +6,6 @@ namespace App\Models;
 use App\Permissions\HasPermissionsTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -15,40 +14,43 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia, HasPermissionsTrait;
-
-    protected static function booted()
-    {
-        if(auth()->user()) {
-            static::addGlobalScope('company', function ($q) {
-                $q->where('company_id', auth()->user()->company_id);
-            });
-        }
-    }
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasPermissionsTrait;
 
     protected $fillable = [
+        'login_id',
+        'password',
+
         'prefix',
         'firstname',
         'middlename',
         'lastname',
-        'email',
-        'phone',
-        'address',
+        
         'gender',
         'marital_status',
+        
         'dob',
         'join_date',
-        'company_id',
+
+        'phone',
+        'address',
+
+        'citizenship_number',
+        'pan_number',
+
+        'email',
+
         'branch_id',
         'department_id',
+
         'designation_id',
-        'login_id',
+        'role_id',
+
         'supervisor_id',
-        'password',
         'login_count',
+        
         'status',
         'type',
-        'role_id',
+        
         'official_email',
         'extra',
     ];
@@ -61,9 +63,9 @@ class User extends Authenticatable implements HasMedia
     protected $appends = ['full_name'];
 
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'dob' => 'datetime',
-        'join_date' => 'datetime',
+        'email_verified_at' => 'date',
+        'dob' => 'date',
+        'join_date' => 'date',
         'extra' => 'array',
     ];
 
@@ -73,12 +75,7 @@ class User extends Authenticatable implements HasMedia
             get: fn () => $this->firstname . ' ' . ($this->middlename ? $this->middlename . ' ' : '') . $this->lastname
         );
     }
-
-    public function company()
-    {
-        return $this->belongsTo(Company::class, 'company_id', 'id');
-    }
-
+    
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');

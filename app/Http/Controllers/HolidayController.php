@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HolidayRequest;
+use App\Http\Requests\Holiday\StoreHolidayRequest;
+use App\Http\Requests\Holiday\UpdateHolidayRequest;
 use App\Models\Holiday;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HolidayController extends Controller
 {
@@ -20,10 +22,24 @@ class HolidayController extends Controller
         return view('holiday.create');
     }
 
-    public function store(HolidayRequest $request)
+    public function store(StoreHolidayRequest $request)
     {
         try {
-            Holiday::create($request->validated());
+            DB::beginTransaction();
+            $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
+            $data = $request->validated();
+            $data['quantity'] = $difference + 1;
+            $data['extra'] = [
+                'nepali_from_date' => $request->nepali_from_date,
+                'nepali_to_date' => $request->nepali_to_date
+            ];
+            $holiday = Holiday::create($data);
+            for($i = 0; $i <= $difference; $i++) {
+                $holiday->holidayDates()->create([
+                    'date' => Carbon::parse($request->from_date)->addDays($i)
+                ]);
+            }
+            DB::commit();
             return back()->with('success', 'Holiday has been created');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
@@ -36,11 +52,26 @@ class HolidayController extends Controller
         return view('holiday.edit', $data);
     }
 
-    public function update(HolidayRequest $request, Holiday $holiday)
+    public function update(UpdateHolidayRequest $request, Holiday $holiday)
     {
         try {
-            $holiday->update($request->validated());
-            return redirect()->route('holiday.index')->with('success', 'Holiday has been updated');
+            DB::beginTransaction();
+            $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
+            $data = $request->validated();
+            $data['quantity'] = $difference + 1;
+            $data['extra'] = [
+                'nepali_from_date' => $request->nepali_from_date,
+                'nepali_to_date' => $request->nepali_to_date
+            ];
+            $holiday->update($data);
+            $holiday->holidayDates()->delete();
+            for($i = 0; $i <= $difference; $i++) {
+                $holiday->holidayDates()->create([
+                    'date' => Carbon::parse($request->from_date)->addDays($i)
+                ]);
+            }
+            DB::commit();
+            return back()->with('success', 'Holiday has been updated');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }
