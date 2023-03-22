@@ -16,7 +16,11 @@ class LeaveApplicationController extends Controller
 {
     public function index()
     {
-        //
+        $data['branch'] = Branch::orderBy('name', 'asc')->get();
+        $data['department'] = Department::orderBy('name', 'asc')->get();
+        $data['employee'] = User::orderBy('firstname', 'asc')->get();
+        $data['leave'] = Leave::all();
+        return view('leave-application.index', $data);
     }
 
     public function create()

@@ -140,6 +140,7 @@
             method: 'GET',
             url: url,
             success: function(data) {
+                resetSection();
                 if ($('#employee') != 0) {
                     $('#employee').val(data.id).trigger('change');
                 }

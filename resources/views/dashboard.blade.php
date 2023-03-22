@@ -493,18 +493,16 @@
                                                     <td>
                                                         <div class="d-flex">
                                                             <div class="symbol symbol-45px me-5">
-                                                                <img src="assets/media/avatars/300-14.jpg"
+                                                                <img src="{{ $item->employee->getFirstMediaUrl('image') }}"
                                                                     alt="" />
                                                             </div>
                                                             <div class="d-flex justify-content-start flex-column">
                                                                 <a href="#"
                                                                     class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                    {{ $item->employee->firstname }}
-                                                                    {{ $item->employee->middlename }}
-                                                                    {{ $item->employee->lastname }}
+                                                                    {{ $item->employee->full_name }}
                                                                 </a>
                                                                 <span
-                                                                    class="text-muted fw-bold text-muted d-block fs-7">{{ $item->employee->designation->title }}</span>
+                                                                    class="text-muted fw-bold text-muted d-block fs-7">{{ isset($item->employee->designation->title) ? $item->employee->designation->title : '' }}</span>
                                                             </div>
                                                         </div>
                                                     </td>
