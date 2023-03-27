@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('slug');
             $table->date('from_date');
             $table->date('to_date');
-            $table->integer('quantity');
+            $table->integer('duration');
             $table->tinyInteger('status')->default(1);
             $table->json('extra')->nullable();
             $table->timestamps();

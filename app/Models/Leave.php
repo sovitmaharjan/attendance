@@ -11,7 +11,7 @@ class Leave extends Model
 
     protected $fillable = [
         'name',
-        'allowed_days',
+        'allotted_days',
         'status',
         'extra'
     ];

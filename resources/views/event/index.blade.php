@@ -99,7 +99,7 @@
                                                 {{ $event->title }}
                                             </td>
                                             <td>
-                                                @if($event->quantity > 1)
+                                                @if($event->duration > 1)
                                                     {{ $event ? $event->from_date->format('Y-m-d') : '' }}
                                                     - {{ $event ? $event->to_date->format('Y-m-d') : '' }}
                                                 @else
@@ -107,7 +107,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ $event->quantity }}
+                                                {{ $event->duration }}
                                             </td>
                                             <td>
                                                 {{ statusTitle($event->status) }}

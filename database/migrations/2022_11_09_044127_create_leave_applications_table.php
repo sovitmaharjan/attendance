@@ -14,10 +14,10 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
             $table->date('from_date');
             $table->date('to_date');
+            $table->integer('year')->default(date('Y'));
             $table->float('leave_days_count');
             $table->text('description')->nullable();
-            $table->tinyInteger('is_approved')->default(1);
-            $table->foreignId('approver')->nullable()->constrained('users');
+            $table->boolean('is_approved')->default(0);
             $table->json('extra')->nullable();
             $table->timestamps();
         });

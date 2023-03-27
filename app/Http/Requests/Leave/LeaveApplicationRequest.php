@@ -20,10 +20,8 @@ class LeaveApplicationRequest extends FormRequest
             'employee_id' => 'required',
             'from_date' => 'required|date|date_format:Y-m-d',
             'to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date',
-            'leave_id' => 'required',
-            'leave_days_count',
-            'description',
-            'approver',
+            'leave' => 'required',
+            'description' => 'required'
         ];
     }
 }

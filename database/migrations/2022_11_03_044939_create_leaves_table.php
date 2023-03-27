@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('allowed_days');
+            $table->float('allotted_days');
             $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
             $table->timestamps();

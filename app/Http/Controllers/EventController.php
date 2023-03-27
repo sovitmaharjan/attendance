@@ -27,7 +27,7 @@ class EventController extends Controller
         try {
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
-            $request->request->add(['quantity' => $difference + 1]);
+            $request->request->add(['duration' => $difference + 1]);
             $extra = [
                 'nepali_from_date' => $request->nepali_from_date,
                 'nepali_to_date' => $request->nepali_to_date,
@@ -61,7 +61,7 @@ class EventController extends Controller
         try {
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
-            $request->request->add(['quantity' => $difference + 1]);
+            $request->request->add(['duration' => $difference + 1]);
             $extra = [
                 'nepali_from_date' => $request->nepali_from_date,
                 'nepali_to_date' => $request->nepali_to_date,

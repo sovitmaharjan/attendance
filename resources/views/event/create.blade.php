@@ -72,10 +72,10 @@
                                 </div>
                                 @include('partials.date-range.html')
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Quantity</label>
+                                    <label class="required form-label">Duration</label>
                                     <div class="d-flex">
-                                        <input type="text" id="quantity" id="quantity" name="quantity"
-                                            class="form-control" value="{{ old('quantity') }}" readonly />
+                                        <input type="text" id="duration" id="duration" name="duration"
+                                            class="form-control" value="{{ old('duration') }}" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
             const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());
             const diffTime = Math.abs(date2 - date1);
             const days = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) + 1;
-            $('#quantity').val(days);
+            $('#duration').val(days);
         }
     </script>
 @endsection

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LeaveApplicationRequest;
+use Exception;
+use App\Models\User;
+use App\Models\Leave;
 use App\Models\Branch;
 use App\Models\Department;
-use App\Models\Leave;
-use App\Models\LeaveApplication;
-use App\Models\User;
-use Exception;
 use Illuminate\Support\Carbon;
+use App\Models\LeaveApplication;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Leave\LeaveApplicationRequest;
+use App\Models\LeaveAssignment;
 
 class LeaveApplicationController extends Controller
 {
@@ -23,8 +25,24 @@ class LeaveApplicationController extends Controller
         return view('leave-application.index', $data);
     }
 
-    public function create()
+    public function getLeaveData()
     {
+        $data = [];
+        dump(request()->all());
+        if (request()->employee_id && request()->leave_id) {
+            $data['applied'] = LeaveAssignment::where([
+                'employee_id' => request()->employee_id,
+                'leave_id' => request()->leave_id,
+                'year' => date('Y')
+            ])->get()->count();
+            $data['approved'] = LeaveApplication::where([
+                'employee_id' => request()->employee_id,
+                'leave_id' => request()->leave_id,
+                'year' => date('Y'),
+                'is_approved' => 1
+            ])->get()->count();
+        }
+        dd($data);
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
@@ -34,6 +52,7 @@ class LeaveApplicationController extends Controller
 
     public function store(LeaveApplicationRequest $request)
     {
+        dd($request->all());
         try {
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));

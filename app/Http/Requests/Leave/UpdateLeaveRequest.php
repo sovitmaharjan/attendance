@@ -15,7 +15,7 @@ class UpdateLeaveRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:leaves,name,' . $this->route('leave')->id,
-            'allowed_days' => 'required'
+            'allotted_days' => 'required'
         ];
     }
 }

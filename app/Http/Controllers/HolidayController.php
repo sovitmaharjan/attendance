@@ -28,7 +28,7 @@ class HolidayController extends Controller
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
             $data = $request->validated();
-            $data['quantity'] = $difference + 1;
+            $data['duration'] = $difference + 1;
             $data['extra'] = [
                 'nepali_from_date' => $request->nepali_from_date,
                 'nepali_to_date' => $request->nepali_to_date
@@ -58,7 +58,7 @@ class HolidayController extends Controller
             DB::beginTransaction();
             $difference = Carbon::parse($request->to_date)->diffInDays(Carbon::parse($request->from_date));
             $data = $request->validated();
-            $data['quantity'] = $difference + 1;
+            $data['duration'] = $difference + 1;
             $data['extra'] = [
                 'nepali_from_date' => $request->nepali_from_date,
                 'nepali_to_date' => $request->nepali_to_date

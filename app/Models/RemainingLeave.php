@@ -11,8 +11,6 @@ class RemainingLeave extends Model
 
     protected $fillable = [
         'leave_assignment_id',
-        'employee_id',
-        'year',
         'remaining_days'
     ];
 

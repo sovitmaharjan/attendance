@@ -13,7 +13,8 @@ class LeaveAssignment extends Model
         'leave_id',
         'employee_id',
         'year',
-        'allowed_days',
+        'allotted_days',
+        'carried_over_days',
         'extra'
     ];
 

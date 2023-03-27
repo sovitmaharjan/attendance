@@ -73,11 +73,12 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Leave</label>
                                             <div class="d-flex">
-                                                <select class="form-select" id="branch" name="branch" data-control="select2" data-hide-search="false"
+                                                <select class="form-select" id="leave" name="leave"
+                                                    data-control="select2" data-hide-search="false"
                                                     data-placeholder="Select Branch" required>
                                                     <option></option>
-                                                    @foreach ($branch as $item)
-                                                        <option value="{{ $item->id }}" @selected(old('branch', isset($dropdown['branch_id']) ? $dropdown['branch_id'] : '') == $item->id)>
+                                                    @foreach ($leave as $item)
+                                                        <option value="{{ $item->id }}" @selected(old('leave'))>
                                                             {{ $item->name }}
                                                         </option>
                                                     @endforeach
@@ -89,30 +90,36 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control from_date" date-id="from"
                                                     placeholder="yyyy-dd-mm" id="from_date" name="from_date"
-                                                    autocomplete="off" value="{{ old('from_date', (isset($date['from_date']) ? date('Y-m-d', strtotime($date['from_date'])) : '')) }}" required />
+                                                    autocomplete="off"
+                                                    value="{{ old('from_date') }}"
+                                                    required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex">
-                                                <input type="text" class="form-control nepali_from_date" id="nepali_from_date"
-                                                    name="nepali_from_date" autocomplete="off"
-                                                    value="{{ old('nepali_from_date', ($date['extra']['nepali_from_date'] ?? '')) }}" placeholder="yyyy-dd-mm" required />
+                                                <input type="text" class="form-control nepali_from_date"
+                                                    id="nepali_from_date" name="nepali_from_date" autocomplete="off"
+                                                    value="{{ old('nepali_from_date') }}"
+                                                    placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">To</label>
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control to_date"
-                                                    value="{{ old('to_date', (isset($date['to_date']) ? date('Y-m-d', strtotime($date['to_date'])) : '')) }}" date-id="to" placeholder="yyyy-dd-mm"
-                                                    id="to_date" name="to_date" required />
+                                                    value="{{ old('to_date') }}"
+                                                    date-id="to" placeholder="yyyy-dd-mm" id="to_date" name="to_date"
+                                                    required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex">
-                                                <input type="text" autocomplete="off" class="form-control nepali_to_date"
-                                                    id="nepali_to_date" name="nepali_to_date" value="{{ old('nepali_to_date', ($date['extra']['nepali_to_date'] ?? '')) }}"
+                                                <input type="text" autocomplete="off"
+                                                    class="form-control nepali_to_date" id="nepali_to_date"
+                                                    name="nepali_to_date"
+                                                    value="{{ old('nepali_to_date') }}"
                                                     placeholder="yyyy-dd-mm" required />
                                             </div>
                                         </div>
@@ -120,52 +127,16 @@
                                 </div>
                                 <div class="mb-10 fv-row">
                                     <div class="d-flex flex-wrap gap-5">
-                                        <div class="col-md-6">
-                                            <label class="required form-label">Description</label>
-                                            <textarea name="description" class="form-control mb-2" id="description" rows="5">{{ old('description') }}</textarea>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Leave Reason</label>
+                                            <textarea name="description" class="form-control mb-2" id="description" rows="3" required>{{ old('description') }}</textarea>
                                             <div class="text-muted fs-7">Leave reason</div>
-                                            @error('description')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="description" data-validator="notEmpty">
-                                                        {{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Approver</label>
-                                            <select class="form-select mb-2" id="approver" name="approver"
-                                                data-control="select2" data-hide-search="false"
-                                                data-placeholder="Select Approver" required>
-                                                <option></option>
-                                                @foreach ($employee as $item)
-                                                    <option value="{{ $item->id }}" @selected(old('employee') == $item->id)>
-                                                        {{ $item->full_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('approver')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="approver" data-validator="notEmpty">{{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Approver Id</label>
-                                            <input type="text" class="form-control mb-2" id="approver_id"
-                                                name="approver_id" value="{{ old('approver_id') }}" />
-                                            @error('approver_id')
-                                                <div class="fv-plugins-message-container invalid-feedback">
-                                                    <div data-field="approver_id" data-validator="notEmpty">
-                                                        {{ $message }}
-                                                    </div>
-                                                </div>
-                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-10 fv-row">
-                                    <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div id="kt_customers_table_wrapper"
+                                        class="dataTables_wrapper dt-bootstrap4 no-footer">
                                         <style>
                                             .border-color {
                                                 border-color: #d7d7d7 !important;
@@ -186,12 +157,12 @@
                                                 <thead>
                                                     <tr
                                                         class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0 border-color">
-                                                        <th class="border-right">Leave Assigned</th>
-                                                        <th class="border-right">Available</th>
-                                                        <th class="border-right">Used</th>
-                                                        <th class="border-right">Pending</th>
-                                                        <th class="border-right">Approved</th>
-                                                        <th>Applied</th>
+                                                        <th class="border-right" width="15%">Total Leave Assigned</th>
+                                                        <th class="border-right" width="15%">Available</th>
+                                                        <th class="border-right" width="15%">Used</th>
+                                                        <th class="border-right" width="15%">Pending</th>
+                                                        <th class="border-right" width="15%">Approved</th>
+                                                        <th width="15%">Applied</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -203,14 +174,6 @@
                                                         <td class="border-right">1</td>
                                                         <td></td>
                                                     </tr>
-                                                    {{-- <tr>
-                                                        <td class="border-right">&nbsp;</td>
-                                                        <td class="border-right">&nbsp;</td>
-                                                        <td class="border-right">&nbsp;</td>
-                                                        <td class="border-right">&nbsp;</td>
-                                                        <td class="border-right">&nbsp;</td>
-                                                        <td></td>
-                                                    </tr> --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -235,5 +198,30 @@
 @endSection
 @section('script')
     @include('partials.dropdown-hierarchy.script')
+    <script>
+        $('.employee_id').on('keyup', delay(function() {
+            getLeaveData();
+        }, 700));
+        $('#leave').on('select2:select', function() {
+            getLeaveData();
+        });
+        function getLeaveData() {
+            var employee_id = $('#employee').val();
+            var leave_id = $('#leave').val();
+            var url = "{{ route('ajax.get-leave-data') }}";
+            console.log('asdasd');
+            $.ajax({
+                method: 'POST',
+                url: url,
+                data: {
+                    employee_id: employee_id,
+                    leave_id: leave_id
+                },
+                success: function(response) {
+                    // $('.allotted_days')
+                }
+            });
+        }
+    </script>
     @include('partials.date-range.script')
 @endSection

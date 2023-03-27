@@ -189,15 +189,14 @@
                 method: 'GET',
                 url: url,
                 data: data,
-                success: function(data) {
-                    console.log(data);
-                    if (data.length == 0) {
+                success: function(response) {
+                    if (response.length == 0) {
                         toastr.error(
                             'For shift assignment: <a href="{{ route('shift-assignment.index') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a>',
                             'No Shift assigned to the employee on the selected date(s).');
                     } else {
                         var html = '';
-                        data.forEach((e, i) => {
+                        response.forEach((e, i) => {
                             html += '<tr class="border-color">' +
                                 '<td class="border-right">' +
                                 e.date + '<br />' + NepaliFunctions.AD2BS(e.date) +

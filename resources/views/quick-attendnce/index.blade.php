@@ -111,9 +111,11 @@
                                                                 <tr>
                                                                     <td>{{ $item->date }} <br /> </td>
                                                                     <td>{{ $item->day }}</td>
-                                                                    <td>{{ $item->shift_name }} <br />
-                                                                    <td>{{ $item->shift_in_time }} <br />
-                                                                        {{ $item->shift_out_time }}</td>
+                                                                    <td>
+                                                                        {{ $item->shift_name }} <br />
+                                                                        {{ $item->shift_in_time }} <br />
+                                                                        {{ $item->shift_out_time }}
+                                                                    </td>
                                                                     <td>{{ $item->in_time }}</td>
                                                                     <td>{{ $item->in_diff }}</td>
                                                                     <td>{{ $item->in_remark }}</td>

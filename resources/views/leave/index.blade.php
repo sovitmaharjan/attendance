@@ -96,7 +96,7 @@
                                                 {{ $value->name }}
                                             </td>
                                             <td>
-                                                {{ $value->allowed_days }}
+                                                {{ $value->allotted_days }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">

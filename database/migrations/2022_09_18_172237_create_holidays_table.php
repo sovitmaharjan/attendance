@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('from_date');
             $table->date('to_date');
-            $table->integer('quantity');
+            $table->integer('duration');
             $table->boolean('status')->default(1);
             $table->json('extra')->nullable();
             $table->timestamps();

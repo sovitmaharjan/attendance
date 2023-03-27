@@ -11,7 +11,7 @@ class Event extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['title', 'slug', 'from_date', 'to_date', 'quantity', 'extra', 'status'];
+    protected $fillable = ['title', 'slug', 'from_date', 'to_date', 'duration', 'extra', 'status'];
 
     protected $casts = [
         'from_date' => 'date',

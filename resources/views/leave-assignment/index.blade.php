@@ -83,17 +83,16 @@
                                                                 <div data-repeater-item="">
                                                                     <div class="form-group row mb-5">
                                                                         <div class="col-md-4">
-                                                                            <label
-                                                                                class="required form-label">Leave</label>
+                                                                            <label class="required form-label">Leave</label>
                                                                             <div class="d-flex">
                                                                                 <select class="form-select leave"
                                                                                     name="leave" data-control="select2"
                                                                                     data-hide-search="false"
-                                                                                    data-placeholder="Select Leave" required>
+                                                                                    data-placeholder="Select Leave"
+                                                                                    required>
                                                                                     <option></option>
                                                                                     @foreach ($leave as $item)
-                                                                                        <option
-                                                                                            value="{{ $item->id }}"
+                                                                                        <option value="{{ $item->id }}"
                                                                                             @selected($leave_repeater_value['leave'] == $item->id)>
                                                                                             {{ $item->name }}</option>
                                                                                     @endforeach
@@ -115,7 +114,8 @@
                                                                                 <input type="number"
                                                                                     class="form-control year"
                                                                                     placeholder="yyyy" name="year"
-                                                                                    value="{{ $leave_repeater_value['year'] }}" required />
+                                                                                    value="{{ $leave_repeater_value['year'] }}"
+                                                                                    required />
                                                                             </div>
                                                                             @error('leave_repeater.' . $key . '.year')
                                                                                 <div
@@ -128,16 +128,17 @@
                                                                             @enderror
                                                                         </div>
                                                                         <div class="col-md-3">
-                                                                            <label class="required form-label">Allowed
+                                                                            <label class="required form-label">Allot
                                                                                 day(s)</label>
                                                                             <div class="d-flex">
                                                                                 <input type="number"
-                                                                                    class="form-control allowed_days"
-                                                                                    name="allowed_days" placeholder="00"
-                                                                                    value="{{ $leave_repeater_value['allowed_days'] }}" required />
+                                                                                    class="form-control allotted_days"
+                                                                                    name="allotted_days" placeholder="00"
+                                                                                    value="{{ $leave_repeater_value['allotted_days'] }}"
+                                                                                    required />
                                                                             </div>
                                                                             @error('leave_repeater.' . $key .
-                                                                                '.allowed_days')
+                                                                                '.allotted_days')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
                                                                                     <div data-field="name"
@@ -158,7 +159,7 @@
                                                         @else
                                                             <div data-repeater-item="" id="init">
                                                                 <div class="form-group row mb-5">
-                                                                    <div class="col-md-4">
+                                                                    <div class="fv-row w-100 flex-md-root">
                                                                         <label class="required form-label">Leave</label>
                                                                         <div class="d-flex">
                                                                             <select class="form-select leave"
@@ -173,20 +174,28 @@
                                                                             </select>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <label class="required form-label">Year</label>
+                                                                    <div class="fv-row w-100 flex-md-root">
+                                                                        <label class="required form-label">Allot
+                                                                            day(s)</label>
                                                                         <div class="d-flex">
                                                                             <input type="number"
-                                                                                class="form-control year"
-                                                                                placeholder="yyyy" name="year" required />
+                                                                                class="form-control allotted_days"
+                                                                                name="allotted_days" placeholder="00"
+                                                                                required />
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <label class="required form-label">Allowed day(s)</label>
+                                                                    <div class="fv-row w-100 flex-md-root">
+                                                                        <label class="form-label" for="carried_over_days">
+                                                                            Carry Over Day(s)
+                                                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" aria-label="Click here to add last year remaining allotted leave day(s) to current year" data-bs-original-title="Click here to add last year remaining allotted leave day(s) to current year" data-kt-initialized="1"></i>
+                                                                        </label>
                                                                         <div class="d-flex">
-                                                                            <input type="number"
-                                                                                class="form-control allowed_days"
-                                                                                name="allowed_days" placeholder="00" required />
+                                                                            <div
+                                                                                class="form-check form-check-custom form-check-solid">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" name="carried_over_days" id="carried_over_days">
+                                                                                <label class="form-check-label" id="carried_over_days_label"></label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-1">
@@ -249,9 +258,9 @@
                     $.ajax({
                         method: 'GET',
                         url: url,
-                        success: function(data) {
-                            var dayDiv = div.find($('.allowed_days'));
-                            dayDiv.val(data.allowed_days);
+                        success: function(response) {
+                            var dayInput = div.find($('.allotted_days'));
+                            dayInput.val(response.allotted_days);
                         }
                     });
                 });
@@ -276,9 +285,9 @@
                             $.ajax({
                                 method: 'GET',
                                 url: url,
-                                success: function(data) {
-                                    var dayDiv = div.find($('.allowed_days'));
-                                    dayDiv.val(data.allowed_days);
+                                success: function(response) {
+                                    var dayInput = div.find($('.allotted_days'));
+                                    dayInput.val(response.allotted_days);
                                 }
                             });
                         });
@@ -289,15 +298,29 @@
                     $('.leave').select2();
 
                     div.find(".leave").on('select2:select', function() {
-                        var id = $(this).val();
+                        var leave_id = $(this).val();
                         var url = "{{ route('ajax.leave.show', ':id') }}";
-                        url = url.replace(':id', id);
+                        url = url.replace(':id', leave_id);
                         $.ajax({
                             method: 'GET',
                             url: url,
-                            success: function(data) {
-                                var dayDiv = div.find($('.allowed_days'));
-                                dayDiv.val(data.allowed_days);
+                            success: function(response) {
+                                var dayInput = div.find($('.allotted_days'));
+                                dayInput.val(response.allotted_days);
+                            }
+                        });
+                        var employee_id = $('#employee').val();
+                        console.log('asdasd');
+                        $.ajax({
+                            method: 'POST',
+                            url: "{{ route('ajax.get-leave-data') }}",
+                            data: {
+                                employee_id: employee_id,
+                                leave_id: leave_id
+                            },
+                            success: function(response) {
+                                console,log(response);
+                                // $('.allotted_days')
                             }
                         });
                     });

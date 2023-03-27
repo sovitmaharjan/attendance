@@ -60,10 +60,10 @@
         $.ajax({
             method: 'GET',
             url: url,
-            success: function(data) {
+            success: function(response) {
                 if ($('#department') != 0) {
                     $('#department').empty().trigger('change');
-                    $.each(data.departments, function(i, e) {
+                    $.each(response.departments, function(i, e) {
                         var option = new Option(e.name, e.id);
                         $('#department').append(option).trigger('change');
                     });
@@ -72,7 +72,7 @@
 
                 if ($('#employee') != 0) {
                     $('#employee').empty().trigger('change');
-                    $.each(data.employees, function(i, e) {
+                    $.each(response.employees, function(i, e) {
                         var option = new Option(e.full_name, e.id);
                         $('#employee').append(option).trigger('change');
                     });
@@ -92,13 +92,13 @@
         $.ajax({
             method: 'GET',
             url: url,
-            success: function(data) {
+            success: function(response) {
                 if ($('#branch') != 0) {
-                    $('#branch').val(data.branch_id).trigger('change');
+                    $('#branch').val(response.branch_id).trigger('change');
                 }
                 if ($('#employee') != 0) {
                     $('#employee').empty().trigger('change');
-                    $.each(data.employees, function(i, e) {
+                    $.each(response.employees, function(i, e) {
                         var option = new Option(e.full_name, e.id);
                         $('#employee').append(option).trigger('change');
                     });
@@ -118,15 +118,15 @@
         $.ajax({
             method: 'GET',
             url: url,
-            success: function(data) {
+            success: function(response) {
                 if ($('#branch') != 0) {
-                    $('#branch').val(data.branch_id).trigger('change');
+                    $('#branch').val(response.branch_id).trigger('change');
                 }
                 if ($('#department') != 0) {
-                    $('#department').val(data.department_id).trigger('change');
+                    $('#department').val(response.department_id).trigger('change');
                 }
                 if ($('#employee_id') != 0) {
-                    $('#employee_id').val(data.id);
+                    $('#employee_id').val(response.id);
                 }
             }
         });
@@ -139,20 +139,20 @@
         $.ajax({
             method: 'GET',
             url: url,
-            success: function(data) {
+            success: function(response) {
                 resetSection();
                 if ($('#employee') != 0) {
-                    $('#employee').val(data.id).trigger('change');
+                    $('#employee').val(response.id).trigger('change');
                 }
                 if ($('#department') != 0) {
-                    $('#department').val(data.department_id).trigger('change');
+                    $('#department').val(response.department_id).trigger('change');
                 }
                 if ($('#branch') != 0) {
-                    $('#branch').val(data.branch_id).trigger('change');
+                    $('#branch').val(response.branch_id).trigger('change');
                 }
             },
             error: function() {
-                toastr.error('', 'Employee not data');
+                toastr.error('', 'Employee not found');
                 resetSection();
             }
         });

@@ -98,7 +98,7 @@
                                                 {{ $value->name }}
                                             </td>
                                             <td>
-                                                @if($value->quantity > 1)
+                                                @if($value->duration > 1)
                                                     {{ $value ? $value->from_date->format('Y-m-d') : '' }}
                                                     - {{ $value ? $value->to_date->format('Y-m-d') : '' }}
                                                 @else
@@ -106,7 +106,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ $value->quantity }}
+                                                {{ $value->duration }}
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">

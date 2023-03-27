@@ -20,7 +20,7 @@ class LeaveAssignmentRequest extends FormRequest
             'employee_id' => 'required',
             'leave_repeater.*.leave' => 'required|distinct',
             'leave_repeater.*.year' => 'required|integer|date_format:Y',
-            'leave_repeater.*.allowed_days' => 'required|integer'
+            'leave_repeater.*.allotted_days' => 'required|integer'
         ];
     }
 
@@ -30,8 +30,8 @@ class LeaveAssignmentRequest extends FormRequest
             'leave_repeater.*.leave.required' => 'The leave field is required.',
             'leave_repeater.*.leave.distinct' => 'The leave field has a duplicate value.',
             'leave_repeater.*.year.required' => 'The year field is required.',
-            'leave_repeater.*.year.date_format' => 'The year format is invalid - format (YYYY | ' . now()->format('Y') . ').',
-            'leave_repeater.*.allowed_days.required' => 'The allowed days field is required.',
+            'leave_repeater.*.year.date_format' => 'The year format is invalid - format (YYYY | ' . date('Y') . ').',
+            'leave_repeater.*.allotted_days.required' => 'The allowed days field is required.',
         ];
     }
 }

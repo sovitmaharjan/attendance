@@ -13,7 +13,7 @@ class Holiday extends Model
         'name',
         'from_date',
         'to_date',
-        'quantity',
+        'duration',
         'extra'
     ];
 

@@ -73,8 +73,8 @@
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Days Allowed</label>
                                     <div class="d-flex">
-                                        <input type="text" id="allowed_days" name="allowed_days" class="form-control"
-                                            placeholder="Number of days allowed" value="{{ old('allowed_days') }}" required />
+                                        <input type="text" id="allotted_days" name="allotted_days" class="form-control"
+                                            placeholder="Number of days allowed" value="{{ old('allotted_days') }}" required />
                                     </div>
                                 </div>
                             </div>

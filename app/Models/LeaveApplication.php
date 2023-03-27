@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LeaveApplication extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'leave_id',
@@ -18,7 +17,6 @@ class LeaveApplication extends Model
         'leave_days_count',
         'description',
         'is_approved',
-        'approver',
         'extra'
     ];
 

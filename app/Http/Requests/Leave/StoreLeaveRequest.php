@@ -15,7 +15,7 @@ class StoreLeaveRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:leaves',
-            'allowed_days' => 'required'
+            'allotted_days' => 'required'
         ];
     }
 }
