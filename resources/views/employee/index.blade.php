@@ -369,7 +369,6 @@
                     }
                 },
                 error: function (err) {
-                    console.log(err.responseJSON.errors);
                     $.each(err.responseJSON.errors, function (key, value) {
                         $('.' + key).css('display', 'block').html(value[0]);
                     })

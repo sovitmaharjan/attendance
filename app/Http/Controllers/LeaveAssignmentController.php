@@ -10,23 +10,12 @@ use App\Models\Department;
 use App\Models\LeaveAssignment;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Leave\LeaveAssignmentRequest;
 use Illuminate\Http\Request;
 
 class LeaveAssignmentController extends Controller
 {
     public function index()
     {
-        $a = LeaveAssignment::where([
-            'employee_id' => 1,
-            'leave_id' => 1,
-        ])
-        ->where('year', '<', date('Y'))
-        // ->wherehas('remainingDay', function($q) {
-        //     $q->where('year', '<', date('Y'));
-        // })
-        ->get()->toArray();
-        dd($a);
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
@@ -36,31 +25,25 @@ class LeaveAssignmentController extends Controller
 
     public function store(Request $request)
     {
-        $a = LeaveAssignment::where([
-            'employee_id' => request()->employee_id,
-            'leave_id' => request()->leave_id,
-        ])->where('year', '<', date('Y'))->get();
-        dd($a);
-        dd($request->all());
         try {
             DB::beginTransaction();
             foreach ($request->leave_repeater as $item) {
-                $leave_assignment = LeaveAssignment::firstOrCreate(
+                $carryover_days = isset($item['carryover_days']) && $item['carryover_days'][0] == "on"
+                    ? LeaveAssignment::where([
+                        'employee_id' => request()->employee_id,
+                        'leave_id' => $item['leave'],
+                    ])->where('year', date('Y') - 1)->first()->total_remaining_days ?? 0
+                    : 0;
+                LeaveAssignment::updateOrCreate(
                     [
                         'leave_id' => $item['leave'],
                         'employee_id' => $request->employee,
+                        'year' => date('Y')
                     ],
                     [
-                        'allotted_days' => $item['allotted_days']
-                    ]
-                );
-                $leave_assignment->remaining_days()->updateOrCreate(
-                    [
-                        'leave_assignment_id' => $leave_assignment->id
-                    ],
-                    [
-                        'current_year_remaining_days' => $item['allotted_days'],
-                        'final_remaining_days' => $item['allotted_days']
+                        'allotted_days' => $item['allotted_days'],
+                        'carryover_days' => $carryover_days,
+                        'total_remaining_days' => $item['allotted_days'] + $carryover_days
                     ]
                 );
             }
@@ -72,20 +55,17 @@ class LeaveAssignmentController extends Controller
         }
     }
 
-
-
-    public function getPreviousYearRemainingDays()
+    public function getLeaveData()
     {
-        dump(request()->all());
-        $data = LeaveAssignment::where([
+        $data['leave'] = Leave::find(request()->leave_id);
+        $data['previous_remaining_days'] = LeaveAssignment::where([
             'employee_id' => request()->employee_id,
             'leave_id' => request()->leave_id,
-        ])->where('year', '<', date('Y'))->get();
-        dd($data);
-        $data['branch'] = Branch::orderBy('name', 'asc')->get();
-        $data['department'] = Department::orderBy('name', 'asc')->get();
-        $data['employee'] = User::orderBy('firstname', 'asc')->get();
-        $data['leave'] = Leave::all();
-        return view('leave-application.create', $data);
+        ])->where('year', date('Y') - 1)->first()->total_remaining_days ?? 0;
+        return response()->json([
+            'success' => true,
+            'message' => 'Leave Data',
+            'data' => $data
+        ], 200);
     }
 }

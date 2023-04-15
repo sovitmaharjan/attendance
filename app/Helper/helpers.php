@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Branch;
-use App\Models\Department;
 use App\Models\DynamicValue;
 use App\Models\SiteSetting;
 use App\Models\User;

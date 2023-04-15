@@ -14,16 +14,12 @@ class LeaveAssignment extends Model
         'employee_id',
         'year',
         'allotted_days',
-        'carried_over_days',
+        'carryover_days',
+        'total_remaining_days',
         'extra'
     ];
 
     protected $casts = [
         'extra' => 'array'
     ];
-
-    public function remaining_days()
-    {
-        return $this->hasOne(RemainingLeave::class);
-    }
 }

@@ -14,7 +14,8 @@ return new class extends Migration
             $table->foreignId('leave_id')->constrained();
             $table->integer('year')->default(date('Y'));
             $table->float('allotted_days');
-            $table->float('carried_over_days')->default(0);
+            $table->float('carryover_days')->default(0);
+            $table->float('total_remaining_days');
             $table->json('extra')->nullable();
             $table->timestamps();
         });

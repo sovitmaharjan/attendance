@@ -185,20 +185,28 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="fv-row w-100 flex-md-root">
-                                                                        <label class="form-label" for="carried_over_days">
+                                                                        <label class="form-label" for="carryover_days">
                                                                             Carry Over Day(s)
-                                                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" aria-label="Click here to add last year remaining allotted leave day(s) to current year" data-bs-original-title="Click here to add last year remaining allotted leave day(s) to current year" data-kt-initialized="1"></i>
+                                                                            <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                                                data-bs-toggle="tooltip"
+                                                                                aria-label="This represents the remaining leave day(s) from the previous years for the selected employee. Click here to add these days to the current year."
+                                                                                data-bs-original-title="This represents the remaining leave day(s) from the previous years for the selected employee. Click here to add these days to the current year."
+                                                                                data-kt-initialized="1"></i>
                                                                         </label>
                                                                         <div class="d-flex">
                                                                             <div
                                                                                 class="form-check form-check-custom form-check-solid">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" name="carried_over_days" id="carried_over_days">
-                                                                                <label class="form-check-label" id="carried_over_days_label"></label>
+                                                                                    type="checkbox"
+                                                                                    name="carryover_days">
                                                                             </div>
+                                                                            <input type="text"
+                                                                                class="form-control previous_remaining_days mx-4"
+                                                                                name="previous_remaining_days"
+                                                                                placeholder="00" readonly />
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-1">
+                                                                    <div class="fv-row w-100 flex-md-root">
                                                                         <a href="javascript:;" data-repeater-delete=""
                                                                             class="btn btn-sm btn-light-danger mt-3 mt-md-9">
                                                                             <i class="la la-trash-o fs-3"></i></a>
@@ -238,6 +246,10 @@
 @section('script')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
+        // $('.employee').on('select2:select', function() {
+        //     console.log('asdf');
+        // });
+
         $('#leave_repeater').repeater({
             initEmpty: false,
 
@@ -252,15 +264,21 @@
                 div.find('.leave').select2();
 
                 div.find(".leave").on('select2:select', function() {
-                    var id = $(this).val();
-                    var url = "{{ route('ajax.leave.show', ':id') }}";
-                    url = url.replace(':id', id);
+                    var leave_id = $(this).val();
+                    var employee_id = $('#employee').val();
                     $.ajax({
-                        method: 'GET',
-                        url: url,
+                        method: 'POST',
+                        url: "{{ route('ajax.get-leave-data') }}",
+                        data: {
+                            employee_id: employee_id,
+                            leave_id: leave_id
+                        },
                         success: function(response) {
-                            var dayInput = div.find($('.allotted_days'));
-                            dayInput.val(response.allotted_days);
+                            response = response.data;
+                            div.find($('.allotted_days')).val(response.leave
+                                .allotted_days);
+                            div.find($('.previous_remaining_days')).val(
+                                response.previous_remaining_days);
                         }
                     });
                 });
@@ -279,15 +297,21 @@
                         $('.leave').select2();
 
                         div.find(".leave").on('select2:select', function() {
-                            var id = $(this).val();
-                            var url = "{{ route('ajax.leave.show', ':id') }}";
-                            url = url.replace(':id', id);
+                            var leave_id = $(this).val();
+                            var employee_id = $('#employee').val();
                             $.ajax({
-                                method: 'GET',
-                                url: url,
+                                method: 'POST',
+                                url: "{{ route('ajax.get-leave-data') }}",
+                                data: {
+                                    employee_id: employee_id,
+                                    leave_id: leave_id
+                                },
                                 success: function(response) {
-                                    var dayInput = div.find($('.allotted_days'));
-                                    dayInput.val(response.allotted_days);
+                                    response = response.data;
+                                    div.find($('.allotted_days')).val(response.leave
+                                        .allotted_days);
+                                    div.find($('.previous_remaining_days')).val(
+                                        response.previous_remaining_days);
                                 }
                             });
                         });
@@ -299,18 +323,7 @@
 
                     div.find(".leave").on('select2:select', function() {
                         var leave_id = $(this).val();
-                        var url = "{{ route('ajax.leave.show', ':id') }}";
-                        url = url.replace(':id', leave_id);
-                        $.ajax({
-                            method: 'GET',
-                            url: url,
-                            success: function(response) {
-                                var dayInput = div.find($('.allotted_days'));
-                                dayInput.val(response.allotted_days);
-                            }
-                        });
                         var employee_id = $('#employee').val();
-                        console.log('asdasd');
                         $.ajax({
                             method: 'POST',
                             url: "{{ route('ajax.get-leave-data') }}",
@@ -319,8 +332,11 @@
                                 leave_id: leave_id
                             },
                             success: function(response) {
-                                console,log(response);
-                                // $('.allotted_days')
+                                response = response.data;
+                                div.find($('.allotted_days')).val(response.leave
+                                    .allotted_days);
+                                div.find($('.previous_remaining_days')).val(response
+                                    .previous_remaining_days);
                             }
                         });
                     });

@@ -14,7 +14,6 @@
     // }
 
     // function neptoeng(nepali_class, id_name) {
-    //     console.log('hi');
     //     var mainInput = document.getElementsByClassName(nepali_class);
     //     mainInput.nepaliDatePicker({
     //         language: "english",

@@ -134,27 +134,29 @@
 
     $(document).on('keyup', '#employee_id', delay(function() {
         var id = $(this).val();
-        var url = "{{ route('ajax.employee.show', ':id') }}";
-        url = url.replace(':id', id);
-        $.ajax({
-            method: 'GET',
-            url: url,
-            success: function(response) {
-                resetSection();
-                if ($('#employee') != 0) {
-                    $('#employee').val(response.id).trigger('change');
+        if(id > 0) {
+            var url = "{{ route('ajax.employee.show', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                method: 'GET',
+                url: url,
+                success: function(response) {
+                    resetSection();
+                    if ($('#employee') != 0) {
+                        $('#employee').val(response.id).trigger('change');
+                    }
+                    if ($('#department') != 0) {
+                        $('#department').val(response.department_id).trigger('change');
+                    }
+                    if ($('#branch') != 0) {
+                        $('#branch').val(response.branch_id).trigger('change');
+                    }
+                },
+                error: function() {
+                    toastr.error('', 'Employee not found');
+                    resetSection();
                 }
-                if ($('#department') != 0) {
-                    $('#department').val(response.department_id).trigger('change');
-                }
-                if ($('#branch') != 0) {
-                    $('#branch').val(response.branch_id).trigger('change');
-                }
-            },
-            error: function() {
-                toastr.error('', 'Employee not found');
-                resetSection();
-            }
-        });
+            });
+        }
     }, 500));
 </script>
