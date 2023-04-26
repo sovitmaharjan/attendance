@@ -14,14 +14,15 @@ class LeaveApplication extends Model
         'employee_id',
         'from_date',
         'to_date',
-        'leave_days_count',
+        'leave_duration',
         'description',
-        'is_approved',
+        'status',
         'extra'
     ];
 
     public $casts = [
-        'date' => 'date'
+        'date' => 'date',
+        'extra' => 'array'
     ];
 
     public function leave_application_dates()

@@ -5,9 +5,7 @@ namespace Database\Seeders;
 use App\Models\Permission;
 use App\Models\PermissionGroup;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PermissionGroupTableSeeder extends Seeder
 {

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->date('from_date');
             $table->date('to_date');
             $table->integer('year')->default(date('Y'));
-            $table->float('leave_days_count');
+            $table->float('leave_duration');
             $table->text('description')->nullable();
-            $table->boolean('is_approved')->default(0);
+            $table->string('status')->default('pending');
             $table->json('extra')->nullable();
             $table->timestamps();
         });

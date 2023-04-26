@@ -4,6 +4,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ForceAttendanceController;
+use App\Http\Controllers\LeaveApplicationController;
 use App\Http\Controllers\LeaveAssignmentController;
 use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Route;
@@ -16,4 +17,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'ajax', 'as' => 'ajax.'], func
     
     Route::get('/get-employee-shift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('get-employee-shift');
     Route::post('/get-leave-data', [LeaveAssignmentController::class, 'getLeaveData'])->name('get-leave-data');
+    Route::post('/get-leave-application-data', [LeaveApplicationController::class, 'getLeaveApplicationData'])->name('get-leave-application-data');
 });

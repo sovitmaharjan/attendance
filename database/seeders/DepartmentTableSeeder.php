@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Branch;
-use App\Models\Company;
 use App\Models\Department;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DepartmentTableSeeder extends Seeder

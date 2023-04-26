@@ -90,9 +90,7 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control from_date" date-id="from"
                                                     placeholder="yyyy-dd-mm" id="from_date" name="from_date"
-                                                    autocomplete="off"
-                                                    value="{{ old('from_date') }}"
-                                                    required />
+                                                    autocomplete="off" value="{{ old('from_date') }}" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -100,17 +98,16 @@
                                             <div class="d-flex">
                                                 <input type="text" class="form-control nepali_from_date"
                                                     id="nepali_from_date" name="nepali_from_date" autocomplete="off"
-                                                    value="{{ old('nepali_from_date') }}"
-                                                    placeholder="yyyy-dd-mm" required />
+                                                    value="{{ old('nepali_from_date') }}" placeholder="yyyy-dd-mm"
+                                                    required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">To</label>
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off" class="form-control to_date"
-                                                    value="{{ old('to_date') }}"
-                                                    date-id="to" placeholder="yyyy-dd-mm" id="to_date" name="to_date"
-                                                    required />
+                                                    value="{{ old('to_date') }}" date-id="to" placeholder="yyyy-dd-mm"
+                                                    id="to_date" name="to_date" required />
                                             </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -118,9 +115,15 @@
                                             <div class="d-flex">
                                                 <input type="text" autocomplete="off"
                                                     class="form-control nepali_to_date" id="nepali_to_date"
-                                                    name="nepali_to_date"
-                                                    value="{{ old('nepali_to_date') }}"
+                                                    name="nepali_to_date" value="{{ old('nepali_to_date') }}"
                                                     placeholder="yyyy-dd-mm" required />
+                                            </div>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Duration</label>
+                                            <div class="d-flex">
+                                                <input type="text" id="duration" name="duration"
+                                                    class="form-control" value="{{ old('duration') }}" readonly />
                                             </div>
                                         </div>
                                     </div>
@@ -129,12 +132,16 @@
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Leave Reason</label>
-                                            <textarea name="description" class="form-control mb-2" id="description" rows="3" required>{{ old('description') }}</textarea>
-                                            <div class="text-muted fs-7">Leave reason</div>
+                                            <textarea name="description" class="form-control" id="description" rows="2" required>{{ old('description') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-10 fv-row">
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">Leave Balance</label>
+                                        </div>
+                                    </div>
                                     <div id="kt_customers_table_wrapper"
                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
                                         <style>
@@ -157,22 +164,31 @@
                                                 <thead>
                                                     <tr
                                                         class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0 border-color">
-                                                        <th class="border-right" width="15%">Total Leave Assigned</th>
-                                                        <th class="border-right" width="15%">Available</th>
-                                                        <th class="border-right" width="15%">Used</th>
-                                                        <th class="border-right" width="15%">Pending</th>
-                                                        <th class="border-right" width="15%">Approved</th>
-                                                        <th width="15%">Applied</th>
+                                                        <th class="border-right" width="14%">Total Leave Assigned</th>
+                                                        <th class="border-right" width="14%">Used</th>
+                                                        <th class="border-right" width="14%">Available</th>
+                                                        <th class="border-right" width="14%">Applied</th>
+                                                        <th class="border-right" width="14%">Pending</th>
+                                                        <th class="border-right" width="14%">Approved</th>
+                                                        <th width="14%">Cancelled</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <input type="hidden" id="input_total_leave_assigned" name="total_leave_assigned" value="{{ old('total_leave_assigned') }}" />
+                                                    <input type="hidden" id="input_used" name="used" value="{{ old('used') }}" />
+                                                    <input type="hidden" id="input_available" name="available" value="{{ old('available') }}" />
+                                                    <input type="hidden" id="input_applied" name="applied" value="{{ old('applied') }}" />
+                                                    <input type="hidden" id="input_pending" name="pending" value="{{ old('pending') }}" />
+                                                    <input type="hidden" id="input_approved" name="approved" value="{{ old('approved') }}" />
+                                                    <input type="hidden" id="input_cancelled" name="cancelled" value="{{ old('cancelled') }}" />
                                                     <tr>
-                                                        <td class="border-right">12</td>
-                                                        <td class="border-right">10</td>
-                                                        <td class="border-right">1</td>
-                                                        <td class="border-right">0</td>
-                                                        <td class="border-right">1</td>
-                                                        <td></td>
+                                                        <td id="total_leave_assigned" class="border-right">{{ old('total_leave_assigned') ?? '-'}}</td>
+                                                        <td id="used" class="border-right">{{ old('used') ?? '-'}}</td>
+                                                        <td id="available" class="border-right">{{ old('available') ?? '-'}}</td>
+                                                        <td id="applied" class="border-right">{{ old('applied') ?? '-'}}</td>
+                                                        <td id="pending" class="border-right">{{ old('pending') ?? '-'}}</td>
+                                                        <td id="approved" class="border-right">{{ old('approved') ?? '-'}}</td>
+                                                        <td id="cancelled" class="border-right">{{ old('cancelled') ?? '-'}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -199,17 +215,20 @@
 @section('script')
     @include('partials.dropdown-hierarchy.script')
     <script>
+        var total_leave_assigned, used, available, applied, pending, approved, cancelled;
+
         $('.employee_id').on('keyup', delay(function() {
-            getLeaveData();
+            getLeaveApplicationData();
         }, 700));
+
         $('#leave').on('select2:select', function() {
-            getLeaveData();
+            getLeaveApplicationData();
         });
-        function getLeaveData() {
+
+        function getLeaveApplicationData() {
             var employee_id = $('#employee').val();
             var leave_id = $('#leave').val();
-            var url = "{{ route('ajax.get-leave-data') }}";
-            console.log('asdasd');
+            var url = "{{ route('ajax.get-leave-application-data') }}";
             $.ajax({
                 method: 'POST',
                 url: url,
@@ -218,10 +237,102 @@
                     leave_id: leave_id
                 },
                 success: function(response) {
-                    // $('.allotted_days')
+                    var data = response.data;
+                    total_leave_assigned = data.total_leave_assigned;
+                    used = data.used;
+                    available = data.available;
+                    applied = data.applied;
+                    pending = data.pending;
+                    approved = data.approved;
+                    cancelled = data.cancelled;
+                    $('#total_leave_assigned').html(data.total_leave_assigned);
+                    $('#used').html(data.used);
+                    $('#available').html(data.available);
+                    $('#applied').html(data.applied);
+                    $('#pending').html(data.pending);
+                    $('#approved').html(data.approved);
+                    $('#cancelled').html(data.cancelled);
+
+                    $('#input_total_leave_assigned').val(data.total_leave_assigned);
+                    $('#input_used').val(data.used);
+                    $('#input_available').val(data.available);
+                    $('#input_applied').val(data.applied);
+                    $('#input_pending').val(data.pending);
+                    $('#input_approved').val(data.approved);
+                    $('#input_cancelled').val(data.cancelled);
                 }
             });
         }
+
+        englishToNepaliDatePicker($('.from_date'), $('.nepali_from_date'), function() {
+            beforePickingDate();
+            dateDiff();
+        });
+        nepaliToEnglishDatepicker($('.nepali_from_date'), $('.from_date'), function() {
+            beforePickingDate();
+            dateDiff();
+        });
+        englishToNepaliDatePicker($('.to_date'), $('.nepali_to_date'), function() {
+            beforePickingDate();
+            dateDiff();
+        });
+        nepaliToEnglishDatepicker($('.nepali_to_date'), $('.to_date'), function() {
+            beforePickingDate();
+            dateDiff();
+        });
+
+        function dateDiff() {
+            const date1 = new Date($('.from_date').val() ? $('.from_date').val() : $('.to_date').val());
+            const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());
+            const diffTime = Math.abs(date2 - date1);
+            const days = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) + 1;
+            $('#duration').val(days);
+            if (days > available) {
+                toastr.error('', 'Leave duration exceed available days');
+                toDateElem.val('');
+                nepaliToDateElem.val('');
+            }
+        }
+
+        function beforePickingDate() {
+            var branchElem = $('#branch');
+            var departmentElem = $('#department');
+            var employeeElem = $('#employee');
+            var employeeIdElem = $('#employee_id');
+            var leaveElem = $('#leave');
+            var fromDateElem = $('#from_date');
+            var nepaliFromDateElem = $('#nepali_from_date');
+            var toDateElem = $('#to_date');
+            var nepaliToDateElem = $('#nepali_to_date');
+
+            function message(field) {
+                return $(
+                    '<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The ' +
+                    field + ' feild is required</div></div>');
+            }
+
+            $('.invalid-feedback').remove();
+            !branchElem.val() ? message('branch').insertAfter(branchElem.parent()) : '';
+            !departmentElem.val() ? message('department').insertAfter(departmentElem.parent()) : '';
+            !employeeElem.val() ? message('employee').insertAfter(employeeElem.parent()) : '';
+            !employeeIdElem.val() ? message('employee id').insertAfter(employeeIdElem.parent()) : '';
+            !leaveElem.val() ? message('employee id').insertAfter(leaveElem.parent()) : '';
+
+            if (!branchElem.val() || !departmentElem.val() || !employeeElem.val() || !employeeIdElem.val() || !leaveElem.val()) {
+                fromDateElem.val('');
+                nepaliFromDateElem.val('');
+                toDateElem.val('');
+                nepaliToDateElem.val('');
+                return;
+            }
+
+            console.log(fromDateElem.val(), toDateElem.val());
+            if (new Date(fromDateElem.val()) > new Date(toDateElem.val())) {
+                $('<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The to date must be a date after or equal to from date.</div></div>')
+                    .insertAfter(toDateElem.parent());
+                toDateElem.val('');
+                nepaliToDateElem.val('');
+            }
+        }
     </script>
-    @include('partials.date-range.script')
 @endSection
