@@ -246,10 +246,6 @@
 @section('script')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
-        // $('.employee').on('select2:select', function() {
-        //     console.log('asdf');
-        // });
-
         $('#leave_repeater').repeater({
             initEmpty: false,
 

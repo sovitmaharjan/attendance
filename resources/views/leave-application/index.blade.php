@@ -196,7 +196,6 @@
         $(document).on("click", ".approve", function() {
             event.preventDefault();
             var id = $(this).data("id");
-            console.log('here');
             Swal.fire({
                 title: 'Are yopu sure?',
                 text: "You are about to approve this record. This process cannot be undone",
@@ -211,7 +210,6 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log('here');
                     $("#approve-form-" + id).submit();
                 }
             })
