@@ -23,7 +23,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
-use App\Http\Controllers\EmployeeProfileController;
+// use App\Http\Controllers\EmployeeProfileController;
 use App\Http\Controllers\EmployeeSubstituteDayController;
 use App\Http\Controllers\SiteSettingController;
 
@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('designation', DesignationController::class)->except('show');
 
     Route::resource('/employee', EmployeeController::class)->except('show'); //->middleware(['checkPermission:delete-dashboard'])
-    Route::resource('/employee-profile', EmployeeProfileController::class)->only('index', 'store');
+    // Route::resource('/employee-profile', EmployeeProfileController::class)->only('index', 'store');
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
@@ -59,7 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/force-attendance', ForceAttendanceController::class)->only('index', 'store');
     Route::resource('/leave', LeaveController::class)->except('show');
     Route::resource('/leave-assignment', LeaveAssignmentController::class)->only('index', 'store');
-    Route::resource('/leave-application', LeaveApplicationController::class)->only('index', 'store');
+    Route::resource('/leave-application', LeaveApplicationController::class)->only('index', 'create', 'store', 'destroy');
+    Route::patch('/leave-application/{id}/approve', [LeaveApplicationController::class, 'approve'])->name('leave-application.approve');
+    Route::patch('/leave-application/{id}/cancel', [LeaveApplicationController::class, 'cancel'])->name('leave-application.cancel');
 
     Route::group(['prefix' => 'dynamic-values', 'as' => "dynamic_values."], function () {
         Route::get('/{setup}', [DynamicValuesController::class, 'getValues'])->name('index');

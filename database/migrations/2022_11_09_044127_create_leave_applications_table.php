@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LeaveApplication;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->integer('year')->default(date('Y'));
             $table->float('leave_duration');
             $table->text('description')->nullable();
-            $table->string('status')->default('pending');
+            $table->string('status')->default(LeaveApplication::PENDING);
             $table->json('extra')->nullable();
             $table->timestamps();
         });

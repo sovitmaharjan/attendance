@@ -114,7 +114,7 @@
                                                         </a>
                                                     @endcan
                                                     @can('delete-designation')
-                                                        <form id="form{{ $data->id }}"
+                                                        <form id="delete-form-{{ $data->id }}"
                                                               action="{{ route("designation.destroy", $data->id) }}"
                                                               method="POST">
                                                             @csrf
@@ -122,7 +122,7 @@
                                                         </form>
                                                         <a href="javascript:viod(0);"
                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
-                                                           data-id="{{ $data->id }}" data-name="{{ $data->name }}">
+                                                           data-id="{{ $data->id }}">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" viewBox="0 0 24 24" fill="none">
@@ -171,28 +171,6 @@
                     "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
                     "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
                     ">"
-            });
-            $(".delete").on("click", function () {
-                event.preventDefault();
-                var t = $(this);
-                var name = t.data("name");
-                var id = t.data("id");
-                Swal.fire({
-                    text: "You are about to delete " + name + " data. Are you sure?",
-                    icon: "warning",
-                    buttonsStyling: false,
-                    showCancelButton: true,
-                    confirmButtonText: "Delete",
-                    cancelButtonText: "Cancel",
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: "btn btn-danger"
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $("#form" + id).submit();
-                    }
-                })
             });
         })
     </script>

@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class LeaveApplication extends Model
 {
+    const CANCELLED = 'cancelled';
+    const APPROVED = 'approved';
+    const PENDING = 'pending';
+    
     use HasFactory;
 
     protected $fillable = [
@@ -28,5 +32,15 @@ class LeaveApplication extends Model
     public function leave_application_dates()
     {
         return $this->hasMany(LeaveApplicationDate::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(User::class, 'employee_id');
+    }
+
+    public function leave()
+    {
+        return $this->belongsTo(Leave::class);
     }
 }

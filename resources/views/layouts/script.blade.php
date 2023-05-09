@@ -11,15 +11,15 @@
     toastr.options = {
         "closeButton": true,
         "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toastr-bottom-right",
-        "preventDuplicates": true,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toastr-top-right",
+        "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "10000",
-        "extendedTimeOut": "1000",
+        "showDuration": "0",
+        "hideDuration": "0",
+        "timeOut": "0",
+        "extendedTimeOut": "0",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
@@ -50,7 +50,7 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    
+
     $(document).ready(function() {
         $("#basic-datatable").DataTable({
             "language": {
@@ -72,11 +72,10 @@
 
     $(document).on("click", ".delete", function() {
         event.preventDefault();
-        var t = $(this);
-        var name = t.data("name");
-        var id = t.data("id");
+        var id = $(this).data("id");
         Swal.fire({
-            text: "You are about to delete " + name + " data. Are you sure?",
+            title: 'Are you sure?',
+            text: "You are about to delete this record. This process cannot be undone.",
             icon: "warning",
             buttonsStyling: false,
             showCancelButton: true,
@@ -88,7 +87,7 @@
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                $("#form" + id).submit();
+                $("#delete-form-" + id).submit();
             }
         })
     });

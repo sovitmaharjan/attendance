@@ -20,319 +20,298 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">Create</li>
+                        <li class="breadcrumb-item text-dark">List</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <div class="m-0">
-                        <a href="{{ route('leave-application.index') }}"
-                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path
-                                        d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
-                                        fill="black"></path>
-                                    <path opacity="0.3"
-                                        d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
-                                        fill="black"></path>
-                                </svg>
-                            </span>
-                            List
-                        </a>
-                    </div>
-                    <a href="{{ route('leave-application.index') }}" class="btn btn-sm btn-primary">Create</a>
+                    @can('view-employee')
+                        <div class="m-0">
+                            <a href="{{ route('leave-application.index') }}"
+                                class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path
+                                            d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                            fill="black"></path>
+                                        <path opacity="0.3"
+                                            d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                            fill="black"></path>
+                                    </svg>
+                                </span>
+                                List
+                            </a>
+                        </div>
+                    @endcan
+                    {{-- @can('add-leave-application') --}}
+                        <a href="{{ route('leave-application.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="leave_application_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('leave-application.store') }}">
-                    @csrf
-                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                        <div class="card card-flush py-4">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <span class="mt-1 fs-7 text-danger">Fields with asterisk<span class="required"></span>
-                                        are required </span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        @include('partials.dropdown-hierarchy.branch')
-                                        @include('partials.dropdown-hierarchy.department')
-                                        @include('partials.dropdown-hierarchy.employee')
-                                        @include('partials.dropdown-hierarchy.employee-id')
-                                        @include('partials.dropdown-hierarchy.reset')
-                                    </div>
-                                </div>
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Leave</label>
-                                            <div class="d-flex">
-                                                <select class="form-select" id="leave" name="leave"
-                                                    data-control="select2" data-hide-search="false"
-                                                    data-placeholder="Select Branch" required>
-                                                    <option></option>
-                                                    @foreach ($leave as $item)
-                                                        <option value="{{ $item->id }}" @selected(old('leave'))>
-                                                            {{ $item->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">From</label>
-                                            <div class="d-flex">
-                                                <input type="text" class="form-control from_date" date-id="from"
-                                                    placeholder="yyyy-dd-mm" id="from_date" name="from_date"
-                                                    autocomplete="off" value="{{ old('from_date') }}" required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">&nbsp;</label>
-                                            <div class="d-flex">
-                                                <input type="text" class="form-control nepali_from_date"
-                                                    id="nepali_from_date" name="nepali_from_date" autocomplete="off"
-                                                    value="{{ old('nepali_from_date') }}" placeholder="yyyy-dd-mm"
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">To</label>
-                                            <div class="d-flex">
-                                                <input type="text" autocomplete="off" class="form-control to_date"
-                                                    value="{{ old('to_date') }}" date-id="to" placeholder="yyyy-dd-mm"
-                                                    id="to_date" name="to_date" required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">&nbsp;</label>
-                                            <div class="d-flex">
-                                                <input type="text" autocomplete="off"
-                                                    class="form-control nepali_to_date" id="nepali_to_date"
-                                                    name="nepali_to_date" value="{{ old('nepali_to_date') }}"
-                                                    placeholder="yyyy-dd-mm" required />
-                                            </div>
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Duration</label>
-                                            <div class="d-flex">
-                                                <input type="text" id="duration" name="duration"
-                                                    class="form-control" value="{{ old('duration') }}" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Leave Reason</label>
-                                            <textarea name="description" class="form-control" id="description" rows="2" required>{{ old('description') }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-10 fv-row">
-                                    <div class="d-flex flex-wrap gap-5">
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">Leave Balance</label>
-                                        </div>
-                                    </div>
-                                    <div id="kt_customers_table_wrapper"
-                                        class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                        <style>
-                                            .border-color {
-                                                border-color: #d7d7d7 !important;
-                                            }
-
-                                            .border-right {
-                                                border-right: solid #d7d7d7 1px !important;
-                                            }
-
-                                            .mxtb {
-                                                margin-top: -10px;
-                                                margin-bottom: -10px;
-                                            }
-                                        </style>
-                                        <div class="table-responsive">
-                                            <table id="kt_datatable_example_5"
-                                                class="table table-row-bordered table-rounded gy-5 gs-7 border align-middle border-color">
-                                                <thead>
-                                                    <tr
-                                                        class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0 border-color">
-                                                        <th class="border-right" width="14%">Total Leave Assigned</th>
-                                                        <th class="border-right" width="14%">Used</th>
-                                                        <th class="border-right" width="14%">Available</th>
-                                                        <th class="border-right" width="14%">Applied</th>
-                                                        <th class="border-right" width="14%">Pending</th>
-                                                        <th class="border-right" width="14%">Approved</th>
-                                                        <th width="14%">Cancelled</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <input type="hidden" id="input_total_leave_assigned" name="total_leave_assigned" value="{{ old('total_leave_assigned') }}" />
-                                                    <input type="hidden" id="input_used" name="used" value="{{ old('used') }}" />
-                                                    <input type="hidden" id="input_available" name="available" value="{{ old('available') }}" />
-                                                    <input type="hidden" id="input_applied" name="applied" value="{{ old('applied') }}" />
-                                                    <input type="hidden" id="input_pending" name="pending" value="{{ old('pending') }}" />
-                                                    <input type="hidden" id="input_approved" name="approved" value="{{ old('approved') }}" />
-                                                    <input type="hidden" id="input_cancelled" name="cancelled" value="{{ old('cancelled') }}" />
-                                                    <tr>
-                                                        <td id="total_leave_assigned" class="border-right">{{ old('total_leave_assigned') ?? '-'}}</td>
-                                                        <td id="used" class="border-right">{{ old('used') ?? '-'}}</td>
-                                                        <td id="available" class="border-right">{{ old('available') ?? '-'}}</td>
-                                                        <td id="applied" class="border-right">{{ old('applied') ?? '-'}}</td>
-                                                        <td id="pending" class="border-right">{{ old('pending') ?? '-'}}</td>
-                                                        <td id="approved" class="border-right">{{ old('approved') ?? '-'}}</td>
-                                                        <td id="cancelled" class="border-right">{{ old('cancelled') ?? '-'}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="card">
+                    <div class="card-header border-0 pt-6">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bolder fs-3 mb-1">Leave Application List</span>
+                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you employee group </span> --}}
+                        </h3>
+                        {{-- @can('add-leave-application') --}}
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+                            title="">
+                            <a href="{{ route('leave-application.create') }}" class="btn btn-primary">
+                                <span class="svg-icon svg-icon-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
+                                            fill="currentColor"></rect>
+                                    </svg>
+                                </span>
+                                Add New
+                            </a>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('leave-application.index') }}" id="leave_application_cancel"
-                                class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="leave_application_submit" class="btn btn-primary">
-                                <span class="indicator-label">Save Changes</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
+                        {{-- @endcan --}}
+                    </div>
+                    <div class="card-body pt-0">
+                        <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            <div class="table-responsive">
+                                <table id="kt_datatable_example_5"
+                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                    <thead>
+                                        <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Leave</th>
+                                            <th>Date</th>
+                                            <th>Duration</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($leave_applications as $key => $leave_application)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $leave_application->employee->full_name }}</td>
+                                                <td>{{ $leave_application->leave->name }}</td>
+                                                <td>{{ $leave_application->from_date }} - {{ $leave_application->to_date }}
+                                                </td>
+                                                <td>{{ $leave_application->leave_duration }}</td>
+                                                <td>{{ $leave_application->status }}</td>
+                                                <td>
+                                                    <div class="d-flex flex-shrink-0">
+                                                        @if ($leave_application->status == 'pending')
+                                                            <form id="approve-form-{{ $leave_application->id }}"
+                                                                action="{{ route('leave-application.approve', $leave_application->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('patch')
+                                                            </form>
+                                                            <a href="javascript:viod(0);"
+                                                                data-id="{{ $leave_application->id }}"
+                                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 approve">
+                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg
+                                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M9.89557 13.4982L7.79487 11.2651C7.26967 10.7068 6.38251 10.7068 5.85731 11.2651C5.37559 11.7772 5.37559 12.5757 5.85731 13.0878L9.74989 17.2257C10.1448 17.6455 10.8118 17.6455 11.2066 17.2257L18.1427 9.85252C18.6244 9.34044 18.6244 8.54191 18.1427 8.02984C17.6175 7.47154 16.7303 7.47154 16.2051 8.02984L11.061 13.4982C10.7451 13.834 10.2115 13.834 9.89557 13.4982Z"
+                                                                            fill="currentColor" />
+                                                                    </svg>
+                                                                </span>
+                                                            </a>
+                                                            <form id="cancel-form-{{ $leave_application->id }}"
+                                                                action="{{ route('leave-application.cancel', $leave_application->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('patch')
+                                                            </form>
+                                                            <a href="javascript:viod(0);"
+                                                                data-id="{{ $leave_application->id }}"
+                                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 cancel">
+                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg
+                                                                        width="32" height="32" viewBox="0 0 32 32"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <rect x="9.39844" y="20.7144"
+                                                                            width="16" height="2.66667"
+                                                                            rx="1.33333"
+                                                                            transform="rotate(-45 9.39844 20.7144)"
+                                                                            fill="currentColor" />
+                                                                        <rect x="11.2852" y="9.40039"
+                                                                            width="16" height="2.66667"
+                                                                            rx="1.33333"
+                                                                            transform="rotate(45 11.2852 9.40039)"
+                                                                            fill="currentColor" />
+                                                                    </svg>
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                        {{-- @can('delete-leave_application') --}}
+                                                        @if ($leave_application->status != 'approved')
+                                                            <form id="delete-form-{{ $leave_application->id }}"
+                                                                action="{{ route('leave-application.destroy', $leave_application->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                            </form>
+                                                            <a href="javascript:viod(0);"
+                                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete"
+                                                                data-id="{{ $leave_application->id }}">
+                                                                <span class="svg-icon svg-icon-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                        height="24" viewBox="0 0 24 24"
+                                                                        fill="none">
+                                                                        <path
+                                                                            d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
+                                                                            fill="currentColor"></path>
+                                                                        <path opacity="0.5"
+                                                                            d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
+                                                                            fill="currentColor"></path>
+                                                                        <path opacity="0.5"
+                                                                            d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
+                                                                            fill="currentColor"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                        {{-- @endcan --}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 @endSection
 @section('script')
-    @include('partials.dropdown-hierarchy.script')
     <script>
-        var total_leave_assigned, used, available, applied, pending, approved, cancelled;
-
-        $('.employee_id').on('keyup', delay(function() {
-            getLeaveApplicationData();
-        }, 700));
-
-        $('#leave').on('select2:select', function() {
-            getLeaveApplicationData();
+        $(document).on("click", ".approve", function() {
+            event.preventDefault();
+            var id = $(this).data("id");
+            console.log('here');
+            Swal.fire({
+                title: 'Are yopu sure?',
+                text: "You are about to approve this record. This process cannot be undone",
+                icon: "warning",
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+                cancelButtonText: "Cancel",
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: "btn btn-danger"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log('here');
+                    $("#approve-form-" + id).submit();
+                }
+            })
         });
 
-        function getLeaveApplicationData() {
-            var employee_id = $('#employee').val();
-            var leave_id = $('#leave').val();
-            var url = "{{ route('ajax.get-leave-application-data') }}";
-            $.ajax({
-                method: 'POST',
-                url: url,
-                data: {
-                    employee_id: employee_id,
-                    leave_id: leave_id
-                },
-                success: function(response) {
-                    var data = response.data;
-                    total_leave_assigned = data.total_leave_assigned;
-                    used = data.used;
-                    available = data.available;
-                    applied = data.applied;
-                    pending = data.pending;
-                    approved = data.approved;
-                    cancelled = data.cancelled;
-                    $('#total_leave_assigned').html(data.total_leave_assigned);
-                    $('#used').html(data.used);
-                    $('#available').html(data.available);
-                    $('#applied').html(data.applied);
-                    $('#pending').html(data.pending);
-                    $('#approved').html(data.approved);
-                    $('#cancelled').html(data.cancelled);
+        $(document).on("click", ".cancel", function() {
+            event.preventDefault();
+            var id = $(this).data("id");
+            Swal.fire({
+                title: 'Are yopu sure?',
+                text: "You are about to cancel this record. This process cannot be undone",
+                icon: "warning",
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+                cancelButtonText: "Cancel",
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: "btn btn-danger"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#cancel-form-" + id).submit();
+                }
+            })
+        });
 
-                    $('#input_total_leave_assigned').val(data.total_leave_assigned);
-                    $('#input_used').val(data.used);
-                    $('#input_available').val(data.available);
-                    $('#input_applied').val(data.applied);
-                    $('#input_pending').val(data.pending);
-                    $('#input_approved').val(data.approved);
-                    $('#input_cancelled').val(data.cancelled);
+        $(document).ready(function() {
+            $("#kt_datatable_example_5").DataTable({
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom": "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+            });
+
+            $('.eng_date').datepicker({
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                todayBtn: 'linked',
+                clearBtn: true,
+                autoclose: true,
+            });
+            $('.eng_dat').datepicker({
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                todayBtn: 'linked',
+                clearBtn: true,
+                autoclose: true,
+            });
+        });
+
+        $(function() {
+
+
+            $("#kt_modal_new_target").on("hidden.bs.modal", function() {
+                $(".require").css("display", "none");
+                $(this).find('form')[0].reset();
+            });
+
+            $("#kt_modal_new_target").on('shown.bs.modal', function(e) {
+                var id = $(e.relatedTarget).data('target-id');
+                var employee_name = $(e.relatedTarget).data('name');
+                $("#employeeName").html(employee_name);
+                $("#employeeId").val(id);
+            });
+        });
+
+        $("#kt_modal_new_target_submit").on('click', function(e) {
+            $('.require').css('display', 'none');
+            e.preventDefault();
+            var formData = ($("#kt_modal_new_target_form").serialize());
+            var action = $("#kt_modal_new_target_form").attr('action');
+            $.ajax({
+                url: action,
+                type: 'post',
+                data: formData,
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success === true) {
+                        toastr.success(data.message);
+                        $("#kt_modal_new_target").modal('hide');
+                        location.reload();
+                    }
+                },
+                error: function(err) {
+                    $.each(err.responseJSON.errors, function(key, value) {
+                        $('.' + key).css('display', 'block').html(value[0]);
+                    })
                 }
             });
-        }
-
-        englishToNepaliDatePicker($('.from_date'), $('.nepali_from_date'), function() {
-            beforePickingDate();
-            dateDiff();
         });
-        nepaliToEnglishDatepicker($('.nepali_from_date'), $('.from_date'), function() {
-            beforePickingDate();
-            dateDiff();
-        });
-        englishToNepaliDatePicker($('.to_date'), $('.nepali_to_date'), function() {
-            beforePickingDate();
-            dateDiff();
-        });
-        nepaliToEnglishDatepicker($('.nepali_to_date'), $('.to_date'), function() {
-            beforePickingDate();
-            dateDiff();
-        });
-
-        function dateDiff() {
-            const date1 = new Date($('.from_date').val() ? $('.from_date').val() : $('.to_date').val());
-            const date2 = new Date($('.to_date').val() ? $('.to_date').val() : $('.from_date').val());
-            const diffTime = Math.abs(date2 - date1);
-            const days = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) + 1;
-            $('#duration').val(days);
-            if (days > available) {
-                toastr.error('', 'Leave duration exceed available days');
-                toDateElem.val('');
-                nepaliToDateElem.val('');
-            }
-        }
-
-        function beforePickingDate() {
-            var branchElem = $('#branch');
-            var departmentElem = $('#department');
-            var employeeElem = $('#employee');
-            var employeeIdElem = $('#employee_id');
-            var leaveElem = $('#leave');
-            var fromDateElem = $('#from_date');
-            var nepaliFromDateElem = $('#nepali_from_date');
-            var toDateElem = $('#to_date');
-            var nepaliToDateElem = $('#nepali_to_date');
-
-            function message(field) {
-                return $(
-                    '<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The ' +
-                    field + ' feild is required</div></div>');
-            }
-
-            $('.invalid-feedback').remove();
-            !branchElem.val() ? message('branch').insertAfter(branchElem.parent()) : '';
-            !departmentElem.val() ? message('department').insertAfter(departmentElem.parent()) : '';
-            !employeeElem.val() ? message('employee').insertAfter(employeeElem.parent()) : '';
-            !employeeIdElem.val() ? message('employee id').insertAfter(employeeIdElem.parent()) : '';
-            !leaveElem.val() ? message('employee id').insertAfter(leaveElem.parent()) : '';
-
-            if (!branchElem.val() || !departmentElem.val() || !employeeElem.val() || !employeeIdElem.val() || !leaveElem.val()) {
-                fromDateElem.val('');
-                nepaliFromDateElem.val('');
-                toDateElem.val('');
-                nepaliToDateElem.val('');
-                return;
-            }
-
-            console.log(fromDateElem.val(), toDateElem.val());
-            if (new Date(fromDateElem.val()) > new Date(toDateElem.val())) {
-                $('<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The to date must be a date after or equal to from date.</div></div>')
-                    .insertAfter(toDateElem.parent());
-                toDateElem.val('');
-                nepaliToDateElem.val('');
-            }
-        }
     </script>
 @endSection

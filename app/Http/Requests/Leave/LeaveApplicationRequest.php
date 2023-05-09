@@ -27,6 +27,8 @@ class LeaveApplicationRequest extends FormRequest
             'leave' => 'required',
             'from_date' => 'required|date|date_format:Y-m-d',
             'to_date' => 'required|date|date_format:Y-m-d|after_or_equal:from_date',
+            'nepali_from_date' => 'required',
+            'nepali_to_date' => 'required',
             'leave' => 'required',
             'description' => 'required',
             'duration' => 'numeric|max:11'
