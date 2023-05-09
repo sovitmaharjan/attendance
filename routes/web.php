@@ -23,8 +23,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ShiftAssignmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
-// use App\Http\Controllers\EmployeeProfileController;
 use App\Http\Controllers\EmployeeSubstituteDayController;
+use App\Http\Controllers\LeaveBalanceController;
 use App\Http\Controllers\SiteSettingController;
 
 use Illuminate\Support\Facades\Route;
@@ -33,7 +33,6 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetPasswordMail'])->name('reset-password-mail');
 Route::get('/reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');
-// Route::post('/reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
@@ -51,7 +50,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('designation', DesignationController::class)->except('show');
 
     Route::resource('/employee', EmployeeController::class)->except('show'); //->middleware(['checkPermission:delete-dashboard'])
-    // Route::resource('/employee-profile', EmployeeProfileController::class)->only('index', 'store');
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
@@ -80,6 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('employee-substitute-day', [EmployeeSubstituteDayController::class, 'store'])->name('subsituteDay');
 
+    // report
     Route::match(['get', 'post'], '/quick-attendance', [AttendanceReportController::class, 'quickAttendanceReport'])->name('quick-attendance');
     Route::match(['get', 'post'], '/monthly-attendance', [AttendanceReportController::class, 'monthlyAttendanceReport'])->name('monthly-attendance');
+    Route::match(['get', 'post'], '/leave-balance', [LeaveBalanceController::class, 'index'])->name('leave-balance.index');
 });
