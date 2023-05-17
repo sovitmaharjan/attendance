@@ -7,8 +7,8 @@
     $departmentNav = Request::is('department*');
     $designationNav = Request::is('designation*');
     $employeeNav = Request::is('employee*');
-    $shiftNav = Request::is('shift*');
-    $shiftAssignmentNav = Request::is('shift-assignment*');
+    $workScheduleNav = Request::is('work-schedule*');
+    $workScheduleAssignmentNav = Request::is('work-schedule-assignment*');
     $holidayNav = Request::is('holiday*');
     $leaveAloneNav = Request::is('leave');
     $leaveNav = strpos(Request::route()->getName(), 'leave.') !== false;
@@ -144,7 +144,7 @@
 {{--                @hasRole('company-admin')--}}
 {{--                @hasAnyRole(['admin', 'company-admin'])--}}
                 <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $shiftNav || $shiftAssignmentNav || $holidayNav || $leaveNav || $leaveAssignmentNav || $leaveAloneNav || $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
+                    class="menu-item menu-accordion {{ $companyNav || $branchNav || $departmentNav || $designationNav || $employeeNav || $workScheduleNav || $workScheduleAssignmentNav || $holidayNav || $leaveNav || $leaveAssignmentNav || $leaveAloneNav || $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -206,30 +206,30 @@
                             </a>
                         </div>
                         <div data-kt-menu-trigger="click"
-                            class="menu-item menu-accordion {{ $shiftNav ? 'here show' : '' }}">
+                            class="menu-item menu-accordion {{ $workScheduleNav ? 'here show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Shift</span>
+                                <span class="menu-title">Work Schedule</span>
                                 <span class="menu-arrow"></span>
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link @yield('shift')" href="{{ route('shift.index') }}">
+                                    <a class="menu-link @yield('work_schedule')" href="{{ route('work-schedule.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Shift</span>
+                                        <span class="menu-title">Work Schedule</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link @yield('shift_assignment')"
-                                        href="{{ route('shift-assignment.index') }}">
+                                    <a class="menu-link @yield('work_schedule_assignment')"
+                                        href="{{ route('work-schedule-assignment.create') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">Shift Assignment</span>
+                                        <span class="menu-title">Work Schedule Assignment</span>
                                     </a>
                                 </div>
                             </div>

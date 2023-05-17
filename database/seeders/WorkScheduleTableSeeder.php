@@ -11,7 +11,7 @@ class WorkScheduleTableSeeder extends Seeder
     public function run()
     {
         WorkSchedule::create([
-            'name' => 'Test Shift',
+            'name' => 'Test Work Schedule',
             'in_time' => '09:00',
             'in_time_last' => '09:15',
             'out_time' => '17:00',

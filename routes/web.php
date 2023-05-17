@@ -26,6 +26,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeSubstituteDayController;
 use App\Http\Controllers\LeaveBalanceController;
 use App\Http\Controllers\SiteSettingController;
+use App\Http\Controllers\WorkScheduleAssignmentController;
 use App\Http\Controllers\WorkScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/shift', ShiftController::class);
     Route::resource('/work-schedule', WorkScheduleController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
+    Route::resource('/work-schedule-assignment', WorkScheduleAssignmentController::class)->only('create', 'store');
     Route::resource('/force-attendance', ForceAttendanceController::class)->only('index', 'store');
     Route::resource('/leave', LeaveController::class)->except('show');
     Route::resource('/leave-assignment', LeaveAssignmentController::class)->only('index', 'store');
