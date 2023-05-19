@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ShiftTableSeeder::class);
         $this->call(WorkScheduleTableSeeder::class);
         $this->call(ShiftAssignmentTableSeeder::class);
+        $this->call(WorkScheduleAssignmentTableSeeder::class);
         $this->call(HolidayTableSeeder::class);
         $this->call(LeaveTableSeeder::class);
         $this->call(LeaveAssignmentTableSeeder::class);

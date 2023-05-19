@@ -31,6 +31,7 @@ class WorkScheduleAssignmentController extends Controller
             foreach ($request->work_schedule_repeater as $item) {
                 $dates = CarbonPeriod::create($item['from_date'], $item['to_date']);
                 foreach ($dates as $date) {
+                    $day = Carbon::parse($date)->format('l');
                     WorkScheduleAssignment::updateOrCreate(
                         [
                             'employee_id' => $request->employee,
@@ -38,11 +39,12 @@ class WorkScheduleAssignmentController extends Controller
                         ],
                         [
                             'work_schedule_id' => $item['work_schedule'],
+                            'day' => $day,
+                            'off_day' => in_array($day, $request->off_day),
                             'extra' => [
                                 'nepali_from_date' => $item['nepali_from_date'],
                                 'nepali_to_date' => $item['nepali_to_date']
-                            ],
-                            'off_day' => in_array(Carbon::parse($date)->format('l'), $request->off_day)
+                            ]
                         ]
                     );
                 }

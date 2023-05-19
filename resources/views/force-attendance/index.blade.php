@@ -99,6 +99,7 @@
                                                         class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0 border-color">
                                                         <th class="border-right w-100px">Date</th>
                                                         <th class="border-right w-100px">Shift</th>
+                                                        <th class="border-right w-100px">Work Schedule</th>
                                                         <th class="border-right w-100px">In Time</th>
                                                         <th class="w-100px">Out Time</th>
                                                     </tr>

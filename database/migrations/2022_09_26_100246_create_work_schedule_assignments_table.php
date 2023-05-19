@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('work_schedule_id')->constrained();
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
-            $table->date('date')->unique();
+            $table->date('date');
+            $table->enum('day', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
             $table->boolean('off_day')->default(0);
             $table->json('extra')->nullable();
             $table->timestamps();

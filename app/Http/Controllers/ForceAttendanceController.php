@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Models\Department;
 use App\Models\ShiftAssignment;
 use App\Models\User;
+use App\Models\WorkSchedule;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,7 @@ class ForceAttendanceController extends Controller
 
     public function store(ForceAttendanceRequest $request)
     {
+        dd($request->all());
         try {
             DB::beginTransaction();
             foreach ($request->force_attendance as $item) {
@@ -45,7 +47,7 @@ class ForceAttendanceController extends Controller
 
     public function getEmployeeShift()
     {
-        $shift = ShiftAssignment::where('employee_id', request()->employee_id)->whereBetween('date', [request()->from_date, request()->to_date])->get()->map(function ($m) {
+        $shift = WorkSchedule::where('employee_id', request()->employee_id)->whereBetween('date', [request()->from_date, request()->to_date])->get()->map(function ($m) {
             return [
                 'id' => $m->id,
                 'shift' => $m->shift,
