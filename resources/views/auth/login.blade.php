@@ -4,7 +4,7 @@
     <form class="form w-100" novalidate="novalidate" id="" method="post" action="{{ route('login') }}">
         @csrf
         <div class="text-center mb-10">
-            <h1 class="text-dark mb-3">Sign In to Metronic</h1>
+            <h1 class="text-dark mb-3">Sign In</h1>
         </div>
         <div class="fv-row mb-10">
             <label class="form-label fs-6 fw-bolder text-dark">User Id</label>

@@ -92,13 +92,18 @@ class AttendanceReportController extends Controller
 
     public function monthlyAttendanceReport(Request $request)
     {
-        // dd($request->all());
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
         if ($request->employee) {
+            $data['dropdown']['branch_id'] = $request->branch;
+            $data['dropdown']['department_id'] = $request->department;
+            $data['dropdown']['employee_id'] = $request->employee_id;
+            $data['date']['from_date'] = $request->from_date;
+            $data['date']['extra']['nepali_from_date'] = $request->nepali_from_date;
+            $data['date']['to_date'] = $request->to_date;
+            $data['date']['extra']['nepali_to_date'] = $request->nepali_to_date;
             $data['report'] = DB::select('call countable_report(?,?,?)', array($request->employee, $request->from_date, $request->to_date))[0];
-            // dd($data['report']);
         }
         return view('monthly-attendance.index', $data);
     }

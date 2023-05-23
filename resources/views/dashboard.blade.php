@@ -269,90 +269,38 @@
                                         <div class="menu-item px-3" data-kt-menu-trigger="hover"
                                             data-kt-menu-placement="right-end">
                                             <a href="#" class="menu-link px-3">
-                                                <span class="menu-title">Company 1</span>
+                                                <span class="menu-title">Branch 1</span>
                                                 <span class="menu-arrow"></span>
                                             </a>
                                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
+                                                <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 1</span>
-                                                        <span class="menu-arrow"></span>
+                                                        <span class="menu-title">Department 1</span>
                                                     </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
+                                                <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 2</span>
-                                                        <span class="menu-arrow"></span>
+                                                        <span class="menu-title">Department 2</span>
                                                     </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="menu-item px-3" data-kt-menu-trigger="hover"
                                             data-kt-menu-placement="right-end">
                                             <a href="#" class="menu-link px-3">
-                                                <span class="menu-title">Company 2</span>
+                                                <span class="menu-title">Branch 2</span>
                                                 <span class="menu-arrow"></span>
                                             </a>
                                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
+                                                <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3">
-                                                        <span class="menu-title">Branch 1</span>
-                                                        <span class="menu-arrow"></span>
+                                                        <span class="menu-title">Department 1</span>
                                                     </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
-                                                    data-kt-menu-placement="right-end">
+                                                <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3">
                                                         <span class="menu-title">Branch 2</span>
-                                                        <span class="menu-arrow"></span>
                                                     </a>
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 1</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3">Department 2</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -377,17 +325,16 @@
                                                     <td>
                                                         <div class="d-flex">
                                                             <div class="symbol symbol-45px me-5">
-                                                                <img src="assets/media/avatars/300-14.jpg"
+                                                                <img src="{{ $item->employee->getFirstMediaUrl('image') }}"
                                                                     alt="" />
                                                             </div>
                                                             <div class="d-flex justify-content-start flex-column">
                                                                 <a href="#"
                                                                     class="text-dark fw-bolder text-hover-primary fs-6">
-                                                                    Ana Simmons
+                                                                    {{ $item->employee->full_name }}
                                                                 </a>
                                                                 <span
-                                                                    class="text-muted fw-bold text-muted d-block fs-7">HTML,
-                                                                    JS, ReactJS</span>
+                                                                    class="text-muted fw-bold text-muted d-block fs-7">{{ isset($item->employee->designation->title) ? $item->employee->designation->title : '' }}</span>
                                                             </div>
                                                         </div>
                                                     </td>

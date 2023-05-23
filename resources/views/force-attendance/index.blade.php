@@ -24,8 +24,8 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    {{-- <div class="m-0">
-                        <a href="{{ route('force-attendance.index') }}"
+                    <div class="m-0">
+                        <a href="{{ route('shift.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -38,9 +38,10 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            List
+                            Shift List
                         </a>
-                    </div> --}}
+                    </div>
+                    <a href="{{ route('shift-assignment.index') }}" class="btn btn-sm btn-primary">Shift Assignment</a>
                     <a href="{{ route('force-attendance.index') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>

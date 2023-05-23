@@ -40,6 +40,7 @@
                             Shift List
                         </a>
                     </div>
+                    <a href="{{ route('force-attendance.index') }}" class="btn btn-sm btn-primary">Force Attendance</a>
                     @can('add-shift-assignment')
                         <a href="{{ route('shift-assignment.index') }}" class="btn btn-sm btn-primary">Create</a>
                     @endcan
