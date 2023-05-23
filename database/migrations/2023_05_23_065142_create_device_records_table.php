@@ -8,11 +8,8 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('work_schedule_assignment_id')->nullable()->constrained();
-            
-            $table->integer('shift')->default(1);
+        Schema::create('device_records', function (Blueprint $table) {
+            $table->id();$table->integer('shift')->default(1);
 
             $table->enum('in_day', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])->nullable();
             $table->date('in_date')->nullable();
@@ -26,17 +23,13 @@ return new class extends Migration
             $table->string('out_mode')->nullable(); // thumb, facial, force
             $table->string('out_remarks')->nullable();
 
-            $table->dateTime('in_date_time')->nullable();
-            $table->dateTime('out_date_time')->nullable();
-            $table->time('time_difference')->nullable();
-            
-            $table->json('extra')->nullable();
+            $table->json('extra');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('device_records');
     }
 };

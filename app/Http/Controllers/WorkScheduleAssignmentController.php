@@ -35,11 +35,11 @@ class WorkScheduleAssignmentController extends Controller
                     WorkScheduleAssignment::updateOrCreate(
                         [
                             'employee_id' => $request->employee,
-                            'date' => $date
+                            'assigned_date' => $date
                         ],
                         [
                             'work_schedule_id' => $item['work_schedule'],
-                            'day' => $day,
+                            'assigned_day' => $day,
                             'off_day' => in_array($day, $request->off_day),
                             'extra' => [
                                 'nepali_from_date' => $item['nepali_from_date'],

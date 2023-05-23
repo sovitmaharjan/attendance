@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('shift.index') }}"
+                        <a href="{{ route('work-schedule.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -38,10 +38,11 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            Shift List
+                            Work Schedule List
                         </a>
                     </div>
-                    <a href="{{ route('shift-assignment.index') }}" class="btn btn-sm btn-primary">Shift Assignment</a>
+                    <a href="{{ route('work-schedule-assignment.create') }}" class="btn btn-sm btn-primary">Work Schedule
+                        Assignment</a>
                     <a href="{{ route('force-attendance.index') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
@@ -72,7 +73,7 @@
                                 @include('partials.date-range.html')
                                 <div class="mb-10 fv-row">
                                     <button type="button" class="btn btn-sm btn-primary" id="button">
-                                        <span class="indicator-label">Load Shift(s)</span>
+                                        <span class="indicator-label">Load Work Schedule(s)</span>
                                     </button>
                                 </div>
                                 <div class="mb-10 fv-row">
@@ -92,15 +93,18 @@
                                             }
                                         </style>
                                         <div class="table-responsive">
-                                            <table id="kt_datatable_example_5"
+                                            <table id="attendance_table"
                                                 class="table table-row-bordered table-rounded gy-5 gs-7 border align-middle border-color">
                                                 <thead>
                                                     <tr
                                                         class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0 border-color">
-                                                        <th class="border-right w-100px">Date</th>
-                                                        <th class="border-right w-100px">Shift</th>
+                                                        <th class="border-right w-100px">Assigned Date</th>
                                                         <th class="border-right w-100px">Work Schedule</th>
+                                                        <th class="border-right w-100px">Shift</th>
+                                                        <th class="border-right w-50px"></th>
+                                                        <th class="border-right w-100px">In Date</th>
                                                         <th class="border-right w-100px">In Time</th>
+                                                        <th class="border-right w-100px">Out Date</th>
                                                         <th class="w-100px">Out Time</th>
                                                     </tr>
                                                 </thead>
@@ -174,13 +178,14 @@
             }
 
             if (fromDateElem.val() > toDateElem.val()) {
-                $('<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The to date must be a date after or equal to from date.</div></div>').insertAfter(toDateElem.parent());
+                $('<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The to date must be a date after or equal to from date.</div></div>')
+                    .insertAfter(toDateElem.parent());
                 return;
             }
 
             const date1 = $("#from_date").val();
             const date2 = $("#to_date").val();
-            var url = "{{ route('ajax.get-employee-shift') }}";
+            var url = "{{ route('ajax.get-employee-work-schedule') }}";
             data = {
                 'employee_id': $('#employee_id').val(),
                 'from_date': date1,
@@ -193,32 +198,86 @@
                 success: function(response) {
                     if (response.length == 0) {
                         toastr.error(
-                            'For shift assignment: <a href="{{ route('shift-assignment.index') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a>',
-                            'No Shift assigned to the employee on the selected date(s).');
+                            'For work schedule assignment: <a href="{{ route('work-schedule-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a>',
+                            'No Work Schedule assigned to the employee on the selected date(s).');
                     } else {
                         var html = '';
                         response.forEach((e, i) => {
-                            html += '<tr class="border-color">' +
-                                '<td class="border-right">' +
-                                e.date + '<br />' + NepaliFunctions.AD2BS(e.date) +
-                                '<input type="hidden" class="form-control border-0 mxtb" name="force_attendance[' +
-                                i + '][date]" value="' + e.date + '" />' +
-                                '</td>' +
-                                '<td class="border-right">' +
-                                e.shift.name + '<br />(' + e.shift.in_time + '-' + e.shift
-                                .out_time + ')' +
-                                '<input type="hidden" class="form-control border-0 mxtb" name="force_attendance[' +
-                                i + '][shift]" value="' + e.shift.id + '" />' +
-                                '</td>' +
-                                '<td class="border-right">' +
-                                '<input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[' +
-                                i + '][in_time]" value="' + e.in_time + '" />' +
-                                '</td>' +
-                                '<td>' +
-                                '<input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[' +
-                                i + '][out_time]" value="' + e.out_time + '" />' +
-                                '</td>' +
-                                '</tr>';
+                            if (e.attendances.length > 0) {
+                                e.attendances.forEach((f, j) => {
+                                    html +=
+                                        `<tr class="border-color row${i}" id="row${i}-shift${f.shift}" data-shift="${f.shift}">`
+                                    if (f.shift == 1) {
+                                        html += `<td class="border-right">
+                                            ${e.assigned_date} <br /> ${NepaliFunctions.AD2BS(e.assigned_date)}
+                                            <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][date]" value="${e.assigned_date}" />
+                                        </td>
+                                        <td class="border-right">
+                                            ${e.work_schedule.name}<br />(${e.work_schedule.in_time} - ${e.work_schedule.out_time})
+                                            <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][work_schedule]" value="${e.work_schedule.id}" />
+                                        </td>`;
+                                    } else {
+                                        html +=
+                                            `<td></td><td class="border-right"></td>`;
+                                    }
+                                    html += `<td class="border-right">
+                                        Shift ${f.shift}
+                                        <input type="hidden" class="form-control border-0 mxtb shift" name="force_attendance[${i}][shift][0][shift]" value="${f.shift}" />
+                                    </td>`;
+                                    if (f.shift == 1) {
+                                        html += `<td class="border-right text-center">
+                                            <button type="button" class="btn btn-success btn-sm add-shift" data-index="${i}" data-assigned_date="${e.assigned_date}">+</button>
+                                        </td>`;
+                                    } else {
+                                        html += `<td class="border-right text-center">
+                                            <button type="button" class="btn btn-danger btn-sm remove-shift" data-index="${i}">-</button>
+                                        </td>`;
+                                    }
+                                    html += `<td class="border-right">
+                                        <input type="text" class="form-control border-0 mxtb datepicker" name="force_attendance[${i}][shift][0][in_date]" value="${f.in_date ? f.in_date : e.assigned_date}" />
+                                    </td>
+                                    <td class="border-right">
+                                        <input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[${i}][shift][0][in_time]" value="${f.in_time}" />
+                                    </td>
+                                    <td class="border-right">
+                                        <input type="text" class="form-control border-0 mxtb datepicker" name="force_attendance[${i}][shift][0][out_date]" value="${f.out_date ? f.out_date : e.assigned_date}" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[${i}][shift][0][out_time]" value="${f.out_time}" />
+                                    </td>`;
+                                    html += `</tr>`;
+                                })
+                            } else {
+                                html += `<tr class="border-color row${i}" id="row${i}-shift1" data-shift="1">
+                                    <td class="border-right">
+                                        ${e.assigned_date} <br /> ${NepaliFunctions.AD2BS(e.assigned_date)}
+                                        <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][date]" value="${e.assigned_date}" />
+                                    </td>
+                                    <td class="border-right">
+                                        ${e.work_schedule.name}<br />(${e.work_schedule.in_time} - ${e.work_schedule.out_time})
+                                        <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][work_schedule]" value="${e.work_schedule.id}" />
+                                    </td>
+                                    <td class="border-right">
+                                        Shift 1
+                                        <input type="hidden" class="form-control border-0 mxtb shift" name="force_attendance[${i}][shift][0][shift]" value="1" />
+                                    </td>
+                                    <td class="border-right text-center">
+                                        <button type="button" class="btn btn-success btn-sm add-shift" data-index="${i}" data-assigned_date="${e.assigned_date}">+</button>
+                                    </td>
+                                    <td class="border-right">
+                                        <input type="text" class="form-control border-0 mxtb datepicker" name="force_attendance[${i}][shift][0][in_date]" value="${e.assigned_date}" />
+                                    </td>
+                                    <td class="border-right">
+                                        <input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[${i}][shift][0][in_time]" value="" />
+                                    </td>
+                                    <td class="border-right">
+                                        <input type="text" class="form-control border-0 mxtb datepicker" name="force_attendance[${i}][shift][0][out_date]" value="${e.assigned_date}" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[${i}][shift][0][out_time]" value="" />
+                                    </td>
+                                </tr>`;
+                            }
                         });
                         $('#tbody').html('');
                         $('#tbody').html(html);
@@ -232,12 +291,49 @@
                 }
             });
         });
+        tbody = $('#attendance_table tbody');
+        $(document).on('click', '.add-shift', function() {
+            index = $(this).data('index');
+            assigned_date = $(this).data('assigned_date');
+            shift = tbody.find('tr').filter('.row' + index).last().data('shift');
+            tbody.find('tr#row' + index + '-shift' + shift).after(`<tr class="border-color row${index}" id="row${index}-shift${shift + 1}" data-shift="${shift + 1}">
+                <td></td>
+                <td class="border-right"></td>
+                <td class="border-right">
+                    Shift ${shift + 1}
+                    <input type="hidden" class="form-control border-0 mxtb shift" name="force_attendance[${index}][shift][${shift}][shift]" value="${shift + 1}" />
+                </td>
+                <td class="border-right text-center">
+                    <button type="button" class="btn btn-danger btn-sm remove-shift" data-index="${index}">-</button>
+                </td>
+                <td class="border-right">
+                    <input type="text" class="form-control border-0 mxtb datepicker" name="force_attendance[${index}][shift][${shift}][in_date]" value="${assigned_date}" />
+                </td>
+                <td class="border-right">
+                    <input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[${index}][shift][${shift}][in_time]" value="" />
+                </td>
+                <td class="border-right">
+                    <input type="text" class="form-control border-0 mxtb datepicker" name="force_attendance[${index}][shift][${shift}][out_date]" value="${assigned_date}" />
+                </td>
+                <td>
+                    <input type="text" class="form-control border-0 mxtb timepicker" name="force_attendance[${index}][shift][${shift}][out_time]" value="" />
+                </td>
+            <tr>`);
+            $(".timepicker").flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });
+        });
+        $(document).on('click', '.remove-shift', function() {
+            $(this).parent().parent().remove();
+        });
     </script>
     @include('partials.dropdown-hierarchy.script')
     @if ($errors->has('force_attendance') && $errors->count() == 1)
         <script>
             toastr.error(
-                'Possible reasons:<br/><ul><li>Load button was not clicked(maybe).</li><li>Missing input data</li><li>No Shift assigned to the employee on the selected date(s). For shift assignment: <a href="{{ route('shift-assignment.index') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a></li><li>Employee does not exist</li></ul>',
+                'Possible reasons:<br/><ul><li>Load button was not clicked(maybe).</li><li>Missing input data</li><li>No Work Schedule assigned to the employee on the selected date(s). For Work Schedule assignment: <a href="{{ route('work-schedule-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a></li><li>Employee does not exist</li></ul>',
                 'Force Attendance data(list) is missing.');
         </script>
     @endif

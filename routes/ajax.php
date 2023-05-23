@@ -15,7 +15,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'ajax', 'as' => 'ajax.'], func
     Route::get('/employee/{employee}', [EmployeeController::class, 'show'])->name('employee.show');
     Route::get('/leave/{leave}', [LeaveController::class, 'show'])->name('leave.show');
     
-    Route::get('/get-employee-shift', [ForceAttendanceController::class, 'getEmployeeShift'])->name('get-employee-shift');
+    Route::get('/get-employee-work-schedule', [ForceAttendanceController::class, 'getEmployeeWorkSchedule'])->name('get-employee-work-schedule');
+
     Route::post('/get-leave-data', [LeaveAssignmentController::class, 'getLeaveData'])->name('get-leave-data');
     Route::post('/get-leave-application-data', [LeaveApplicationController::class, 'getLeaveApplicationData'])->name('get-leave-application-data');
     Route::post('/check-leave-application-date', [LeaveApplicationController::class, 'checkLeaveApplicationDate'])->name('check-leave-application-date');

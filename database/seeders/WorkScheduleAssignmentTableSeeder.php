@@ -18,11 +18,11 @@ class WorkScheduleAssignmentTableSeeder extends Seeder
             WorkScheduleAssignment::updateOrCreate(
                 [
                     'employee_id' => 1,
-                    'date' => $date
+                    'assigned_date' => $date
                 ],
                 [
                     'work_schedule_id' => 1,
-                    'day' => $day,
+                    'assigned_day' => $day,
                     'off_day' => in_array($day, ['Saturday'])
                 ]
             );

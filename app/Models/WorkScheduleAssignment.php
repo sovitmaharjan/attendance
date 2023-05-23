@@ -12,13 +12,14 @@ class WorkScheduleAssignment extends Model
     protected $fillable = [
         'work_schedule_id',
         'employee_id',
-        'date',
+        'assigned_date',
+        'assigned_day',
         'off_day',
         'extra'
     ];
 
     protected $casts = [
-        'date' => 'date',
+        'assigned_date' => 'date',
         'extra' => 'array',
     ];
 
@@ -30,5 +31,10 @@ class WorkScheduleAssignment extends Model
     public function employee()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

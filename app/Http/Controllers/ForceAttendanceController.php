@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ForceAttendance\ForceAttendanceRequest;
+use App\Http\Resources\EmployeeWorkScheduleResource;
+use App\Models\Attendance;
 use App\Models\Branch;
 use App\Models\Department;
-use App\Models\ShiftAssignment;
+use App\Models\WorkScheduleAssignment;
 use App\Models\User;
-use App\Models\WorkSchedule;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -24,41 +25,52 @@ class ForceAttendanceController extends Controller
 
     public function store(ForceAttendanceRequest $request)
     {
-        dd($request->all());
         try {
             DB::beginTransaction();
-            foreach ($request->force_attendance as $item) {
-                ShiftAssignment::where([
-                    'employee_id' => $request->employee_id,
-                    'date' => $item['date'],
-                    'shift_id' => $item['shift']
-                ])->update([
-                    'in_time' => $item['in_time'] ? Carbon::parse($item['in_time']) : NULL,
-                    'out_time' => $item['out_time'] ? Carbon::parse($item['out_time']) : NULL
-                ]);
+            foreach ($request->force_attendance as $attendance) {
+                $work_schedule_assignment = WorkScheduleAssignment::where([
+                    'employee_id' => $request->employee,
+                    'assigned_date' => $attendance['date'],
+                    'work_schedule_id' => $attendance['work_schedule']
+                ])->first();
+                foreach ($attendance['shift'] as $shift) {
+                    $in = (Carbon::createFromFormat('Y-m-d H:i:s', Carbon::parse($shift['in_date'])->format('Y-m-d') . Carbon::parse($shift['in_time'])->format('H:i:s')));
+                    $out = (Carbon::createFromFormat('Y-m-d H:i:s', Carbon::parse($shift['out_date'])->format('Y-m-d') . Carbon::parse($shift['out_time'])->format('H:i:s')));
+                    $time_difference = Carbon::parse($out)->diff(Carbon::parse($in));
+                    $attendance = Attendance::updateOrCreate(
+                        [
+                            'work_schedule_assignment_id' => $work_schedule_assignment->id,
+                            'shift' => $shift['shift']
+                        ],
+                        [
+                            'in_day' => $shift['in_date'] ? Carbon::parse($shift['in_date'])->format('l') : null,
+                            'in_date' => $shift['in_date'] ? Carbon::parse($shift['in_date']) : null,
+                            'in_time' => $shift['in_time'] ? Carbon::parse($shift['in_time']) : null,
+                            'in_mode' => 'force',
+                            'out_day' => $shift['out_date'] ? Carbon::parse($shift['out_date'])->format('l') : null,
+                            'out_date' => $shift['out_date'] ? Carbon::parse($shift['out_date']) : null,
+                            'out_time' => $shift['out_time'] ? Carbon::parse($shift['out_time']) : null,
+                            'out_mode' => 'force',
+                            'in_date_time' => Carbon::parse($in),
+                            'out_date_time' => Carbon::parse($out),
+                            'time_difference' => $time_difference->format('%H:%I:%S')
+                        ]
+                    );
+                    // dd($attendance->toArray());
+                }
             }
             DB::commit();
             return back()->with('success', 'Attendance has been updated');
         } catch (Exception $e) {
+            dd($e);
             DB::rollBack();
             return back()->with('error', $e->getMessage());
         }
     }
 
-    public function getEmployeeShift()
+    public function getEmployeeWorkSchedule()
     {
-        $shift = WorkSchedule::where('employee_id', request()->employee_id)->whereBetween('date', [request()->from_date, request()->to_date])->get()->map(function ($m) {
-            return [
-                'id' => $m->id,
-                'shift' => $m->shift,
-                'in_time' => $m->in_time ? date('H:i', strtotime($m->in_time)) : '',
-                'out_time' => $m->out_time ? date('H:i', strtotime($m->out_time)) : '',
-                'date' => $m->date ? $m->date->format('Y-m-d') : '',
-                'extra' => $m->extra,
-                'created_at' => $m->created_at ? $m->created_at->format('Y-m-d') : '',
-                'updated_at' => $m->updated_at ? $m->updated_at->format('Y-m-d') : '',
-            ];
-        });
-        return response()->json($shift);
+        $work_schedule = WorkScheduleAssignment::where('employee_id', request()->employee_id)->whereBetween('assigned_date', [request()->from_date, request()->to_date])->get();
+        return response()->json(EmployeeWorkScheduleResource::collection($work_schedule));
     }
 }
