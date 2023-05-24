@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\WorkSchedule;
+namespace App\Http\Requests\WorkHour;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreWorkScheduleRequest extends FormRequest
+class UpdateWorkHourRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,7 +14,7 @@ class StoreWorkScheduleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:work_schedules',
+            'name' => 'required|unique:work_hours,name,' . $this->route('work_hour')->id,
             'in_time' => 'required|date_format:H:i',
             'in_time_last' => 'nullable|date_format:H:i',
             'out_time' => 'required|date_format:H:i',

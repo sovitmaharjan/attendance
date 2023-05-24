@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\WorkSchedule;
+use App\Models\WorkHour;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class WorkScheduleTableSeeder extends Seeder
+class WorkHourTableSeeder extends Seeder
 {
     public function run()
     {
-        WorkSchedule::create([
-            'name' => 'Test Work Schedule',
+        WorkHour::create([
+            'name' => 'Test Work Hour',
             'in_time' => '09:00',
             'in_time_last' => '09:15',
             'out_time' => '17:00',

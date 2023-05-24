@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('work_schedule', 'active')
+@section('work_hour', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Work Schedule</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Work Hour</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Work Schedule</li>
+                        <li class="breadcrumb-item text-muted">Work Hour</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -24,9 +24,9 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    {{-- @can('view-work-schedule') --}}
+                    {{-- @can('view-work-hour') --}}
                     <div class="m-0">
-                        <a href="{{ route('work-schedule.index') }}"
+                        <a href="{{ route('work-hour.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -43,16 +43,16 @@
                         </a>
                     </div>
                     {{-- @endcan --}}
-                    {{-- @can('add-work-schedule') --}}
-                    <a href="{{ route('work-schedule.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    {{-- @can('add-work-hour') --}}
+                    <a href="{{ route('work-hour.create') }}" class="btn btn-sm btn-primary">Create</a>
                     {{-- @endcan --}}
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="work_schedule_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('work-schedule.store') }}" enctype="multipart/form-data">
+                <form id="work_hour_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('work-hour.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
@@ -67,7 +67,7 @@
                                     <label class="required form-label">Name</label>
                                     <div class="d-flex">
                                         <input type="text" id="name" name="name" class="form-control mb-2"
-                                            placeholder="Work Schedule name" value="{{ old('name') }}" required />
+                                            placeholder="Work Hour name" value="{{ old('name') }}" required />
                                     </div>
                                 </div>
                                 <div class="mb-10 fv-row">
@@ -127,7 +127,7 @@
                                                     <input class="form-check-input" name="is_default" type="checkbox"
                                                         value="1" id="is_default" {{ old('is_default') ? 'checked' : '' }} />
                                                     <label class="form-check-label" for="is_default">
-                                                        Check to make work schedule default.
+                                                        Check to make work hour default.
                                                     </label>
                                                 </div>
                                             </div>
@@ -139,7 +139,7 @@
                                                     <input class="form-check-input" name="shift" type="checkbox"
                                                         value="night" id="shift" {{ old('shift') ? 'checked' : '' }} />
                                                     <label class="form-check-label" for="shift">
-                                                        Check if work schedule is night shift.
+                                                        Check if work hour is night shift.
                                                     </label>
                                                 </div>
                                             </div>
@@ -168,9 +168,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('work-schedule.index') }}" id="work_schedule_cancel"
+                            <a href="{{ route('work-hour.index') }}" id="work_hour_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="work_schedule_submit" class="btn btn-primary">
+                            <button type="submit" id="work_hour_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

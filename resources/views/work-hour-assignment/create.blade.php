@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('work_schedule_assignment', 'active')
+@section('work_hour_assignment', 'active')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Work Schedule Assignment</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Work Hour Assignment</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Work Schedule Assignment</li>
+                        <li class="breadcrumb-item text-muted">Work Hour Assignment</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('work-schedule.index') }}"
+                        <a href="{{ route('work-hour.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -38,20 +38,20 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            Work Schedule Check
+                            Work Hour Check
                         </a>
                     </div>
                     <a href="{{ route('force-attendance.index') }}" class="btn btn-sm btn-primary">Force Attendance</a>
-                    {{-- @can('add-work-schedule-assignment') --}}
-                    <a href="{{ route('work-schedule-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    {{-- @can('add-work-hour-assignment') --}}
+                    <a href="{{ route('work-hour-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
                     {{-- @endcan --}}
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="work_schedule_assignment_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('work-schedule-assignment.store') }}">
+                <form id="work_hour_assignment_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('work-hour-assignment.store') }}">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
@@ -90,33 +90,33 @@
                                 <div class="mb-10 fv-row">
                                     <div class="py-5">
                                         <div class="rounded border p-5">
-                                            <div id="work_schedule_repeater">
+                                            <div id="work_hour_repeater">
                                                 <div class="form-group">
-                                                    <div data-repeater-list="work_schedule_repeater">
-                                                        @if (old('work_schedule_repeater'))
-                                                            @foreach (old('work_schedule_repeater') as $key => $work_schedule_repeater_value)
+                                                    <div data-repeater-list="work_hour_repeater">
+                                                        @if (old('work_hour_repeater'))
+                                                            @foreach (old('work_hour_repeater') as $key => $work_hour_repeater_value)
                                                                 <div data-repeater-item="" id="init{{ $key }}">
                                                                     <div class="form-group row mb-5">
                                                                         <div class="col-md-3">
                                                                             <label class="required form-label">Work
-                                                                                Schedule</label>
+                                                                                Hour</label>
                                                                             <div class="d-flex">
-                                                                                <select class="form-select work_schedule"
-                                                                                    name="work_schedule"
+                                                                                <select class="form-select work_hour"
+                                                                                    name="work_hour"
                                                                                     data-control="select2"
                                                                                     data-hide-search="false"
-                                                                                    data-placeholder="Select Work Schedule"
+                                                                                    data-placeholder="Select Work Hour"
                                                                                     required>
                                                                                     <option></option>
-                                                                                    @foreach ($work_schedule as $item)
+                                                                                    @foreach ($work_hour as $item)
                                                                                         <option value="{{ $item->id }}"
-                                                                                            @selected($work_schedule_repeater_value['work_schedule'] == $item->id)>
+                                                                                            @selected($work_hour_repeater_value['work_hour'] == $item->id)>
                                                                                             {{ $item->name }}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
-                                                                            @error('work_schedule_repeater.' . $key .
-                                                                                '.work_schedule')
+                                                                            @error('work_hour_repeater.' . $key .
+                                                                                '.work_hour')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
                                                                                     <div data-field="name"
@@ -133,10 +133,10 @@
                                                                                     class="form-control from_date"
                                                                                     placeholder="yyyy-dd-mm"
                                                                                     name="from_date" autocomplete="off"
-                                                                                    value="{{ $work_schedule_repeater_value['from_date'] }}"
+                                                                                    value="{{ $work_hour_repeater_value['from_date'] }}"
                                                                                     required />
                                                                             </div>
-                                                                            @error('work_schedule_repeater.' . $key .
+                                                                            @error('work_hour_repeater.' . $key .
                                                                                 '.from_date')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
@@ -154,10 +154,10 @@
                                                                                     class="form-control nepali_from_date"
                                                                                     name="nepali_from_date"
                                                                                     autocomplete="off"
-                                                                                    value="{{ $work_schedule_repeater_value['nepali_from_date'] }}"
+                                                                                    value="{{ $work_hour_repeater_value['nepali_from_date'] }}"
                                                                                     placeholder="yyyy-dd-mm" required>
                                                                             </div>
-                                                                            @error('work_schedule_repeater.' . $key .
+                                                                            @error('work_hour_repeater.' . $key .
                                                                                 '.nepali_from_date')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
@@ -175,10 +175,10 @@
                                                                                     class="form-control to_date"
                                                                                     placeholder="yyyy-dd-mm"
                                                                                     name="to_date"
-                                                                                    value="{{ $work_schedule_repeater_value['to_date'] }}"
+                                                                                    value="{{ $work_hour_repeater_value['to_date'] }}"
                                                                                     required />
                                                                             </div>
-                                                                            @error('work_schedule_repeater.' . $key .
+                                                                            @error('work_hour_repeater.' . $key .
                                                                                 '.to_date')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
@@ -195,10 +195,10 @@
                                                                                 <input type="text" autocomplete="off"
                                                                                     class="form-control nepali_to_date"
                                                                                     name="nepali_to_date"
-                                                                                    value="{{ $work_schedule_repeater_value['nepali_to_date'] }}"
+                                                                                    value="{{ $work_hour_repeater_value['nepali_to_date'] }}"
                                                                                     placeholder="yyyy-dd-mm" required />
                                                                             </div>
-                                                                            @error('work_schedule_repeater.' . $key .
+                                                                            @error('work_hour_repeater.' . $key .
                                                                                 '.nepali_to_date')
                                                                                 <div
                                                                                     class="fv-plugins-message-container invalid-feedback">
@@ -222,16 +222,16 @@
                                                                 <div class="form-group row mb-5">
                                                                     <div class="col-md-3">
                                                                         <label class="required form-label">Work
-                                                                            Schedule</label>
+                                                                            Hour</label>
                                                                         <div class="d-flex">
-                                                                            <select class="form-select work_schedule"
-                                                                                name="work_schedule"
+                                                                            <select class="form-select work_hour"
+                                                                                name="work_hour"
                                                                                 data-control="select2"
                                                                                 data-hide-search="false"
-                                                                                data-placeholder="Select Work Schedule"
+                                                                                data-placeholder="Select Work Hour"
                                                                                 required>
                                                                                 <option></option>
-                                                                                @foreach ($work_schedule as $item)
+                                                                                @foreach ($work_hour as $item)
                                                                                     <option value="{{ $item->id }}">
                                                                                         {{ $item->name }}</option>
                                                                                 @endforeach
@@ -301,9 +301,9 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('work-schedule-assignment.create') }}" id="work_schedule_assignment_cancel"
+                            <a href="{{ route('work-hour-assignment.create') }}" id="work_hour_assignment_cancel"
                                 class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="work_schedule_assignment_submit" class="btn btn-primary">
+                            <button type="submit" id="work_hour_assignment_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -318,7 +318,7 @@
 @section('script')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
-        $('#work_schedule_repeater').repeater({
+        $('#work_hour_repeater').repeater({
             initEmpty: false,
 
             defaultValues: {
@@ -329,7 +329,7 @@
                 var div = $(this);
 
                 div.slideDown();
-                div.find('.work_schedule').select2();
+                div.find('.work_hour').select2();
 
                 div.find(".from_date").flatpickr({
                     onChange: function() {
@@ -366,12 +366,12 @@
             },
 
             ready: function() {
-                @if (old('work_schedule_repeater'))
-                    var work_schedule_repeater = (@json(old('work_schedule_repeater')));
-                    $.each(work_schedule_repeater, function(i, e) {
+                @if (old('work_hour_repeater'))
+                    var work_hour_repeater = (@json(old('work_hour_repeater')));
+                    $.each(work_hour_repeater, function(i, e) {
                         var div = $('#init' + i);
 
-                        $('.work_schedule').select2();
+                        $('.work_hour').select2();
 
                         div.find(".from_date").flatpickr({
                             onChange: function() {
@@ -410,7 +410,7 @@
                 @else
                     var div = $('#init');
 
-                    $('.work_schedule').select2();
+                    $('.work_hour').select2();
 
                     div.find(".from_date").flatpickr({
                         onChange: function() {

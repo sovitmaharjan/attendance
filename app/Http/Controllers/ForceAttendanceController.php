@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ForceAttendance\ForceAttendanceRequest;
-use App\Http\Resources\EmployeeWorkScheduleResource;
+use App\Http\Resources\EmployeeWorkHourResource;
 use App\Models\Attendance;
 use App\Models\Branch;
 use App\Models\Department;
-use App\Models\WorkScheduleAssignment;
+use App\Models\WorkHourAssignment;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
@@ -28,10 +28,10 @@ class ForceAttendanceController extends Controller
         try {
             DB::beginTransaction();
             foreach ($request->force_attendance as $attendance) {
-                $work_schedule_assignment = WorkScheduleAssignment::where([
+                $work_hour_assignment = WorkHourAssignment::where([
                     'employee_id' => $request->employee,
                     'assigned_date' => $attendance['date'],
-                    'work_schedule_id' => $attendance['work_schedule']
+                    'work_hour_id' => $attendance['work_hour']
                 ])->first();
                 foreach ($attendance['shift'] as $shift) {
                     $in = (Carbon::createFromFormat('Y-m-d H:i:s', Carbon::parse($shift['in_date'])->format('Y-m-d') . Carbon::parse($shift['in_time'])->format('H:i:s')));
@@ -39,7 +39,7 @@ class ForceAttendanceController extends Controller
                     $time_difference = Carbon::parse($out)->diff(Carbon::parse($in));
                     $attendance = Attendance::updateOrCreate(
                         [
-                            'work_schedule_assignment_id' => $work_schedule_assignment->id,
+                            'work_hour_assignment_id' => $work_hour_assignment->id,
                             'shift' => $shift['shift']
                         ],
                         [
@@ -68,9 +68,9 @@ class ForceAttendanceController extends Controller
         }
     }
 
-    public function getEmployeeWorkSchedule()
+    public function getEmployeeWorkHour()
     {
-        $work_schedule = WorkScheduleAssignment::where('employee_id', request()->employee_id)->whereBetween('assigned_date', [request()->from_date, request()->to_date])->get();
-        return response()->json(EmployeeWorkScheduleResource::collection($work_schedule));
+        $work_hour = WorkHourAssignment::where('employee_id', request()->employee_id)->whereBetween('assigned_date', [request()->from_date, request()->to_date])->get();
+        return response()->json(EmployeeWorkHourResource::collection($work_hour));
     }
 }

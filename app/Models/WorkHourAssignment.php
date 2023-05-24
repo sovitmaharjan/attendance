@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WorkScheduleAssignment extends Model
+class WorkHourAssignment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'work_schedule_id',
+        'work_hour_id',
         'employee_id',
         'assigned_date',
         'assigned_day',
@@ -23,9 +23,9 @@ class WorkScheduleAssignment extends Model
         'extra' => 'array',
     ];
 
-    public function workSchedule()
+    public function workHour()
     {
-        return $this->belongsTo(WorkSchedule::class);
+        return $this->belongsTo(WorkHour::class);
     }
 
     public function employee()

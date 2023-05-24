@@ -4,13 +4,13 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EmployeeWorkScheduleResource extends JsonResource
+class EmployeeWorkHourResource extends JsonResource
 {
     public function toArray($request)
     {
         return [
             'id' => $this->id,
-            'work_schedule' => $this->workSchedule,
+            'work_hour' => $this->workHour,
             'assigned_date' => $this->assigned_date ? $this->assigned_date->format('Y-m-d') : '',
             'assigned_day' => $this->assigned_date ? $this->assigned_date->format('l') : '',
             'extra' => $this->extra,

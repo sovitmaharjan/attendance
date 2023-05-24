@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\WorkScheduleAssignment;
+use App\Models\WorkHourAssignment;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +15,9 @@ class AttendanceTableSeeder extends Seeder
         // $dates = CarbonPeriod::create(Carbon::now()->startOfMonth()->format('Y-m-d'), Carbon::now()->endOfMonth()->format('Y-m-d'));
         // foreach ($dates as $key => $value) {
         //     $day = Carbon::parse($value)->format('l');
-        //     WorkScheduleAssignment::create(
+        //     WorkHourAssignment::create(
         //         [
-        //             'work_schedule_assignment_id' => $key + 1,
+        //             'work_hour_assignment_id' => $key + 1,
         //             'date' => $value,
         //             'day' => $day,
         //             'shift' => 1,

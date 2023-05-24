@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section('work_schedule', 'active')
+@section('work_hour', 'active')
 @section("content")
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -7,7 +7,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Work Schedule</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Work Hour</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">Work Schedule</li>
+                        <li class="breadcrumb-item text-muted">Work Hour</li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
@@ -24,9 +24,9 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    {{-- @can('view-work-schedule') --}}
+                    {{-- @can('view-work-hour') --}}
                         <div class="m-0">
-                            <a href="{{ route("work-schedule.index") }}"
+                            <a href="{{ route("work-hour.index") }}"
                                class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -43,8 +43,8 @@
                             </a>
                         </div>
                     {{-- @endcan --}}
-                    {{-- @can('add-work-schedule') --}}
-                        <a href="{{ route("work-schedule.create") }}" class="btn btn-sm btn-primary">Create</a>
+                    {{-- @can('add-work-hour') --}}
+                        <a href="{{ route("work-hour.create") }}" class="btn btn-sm btn-primary">Create</a>
                     {{-- @endcan --}}
                 </div>
             </div>
@@ -54,14 +54,14 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Work Schedule List</span>
-                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you work schedule group </span> --}}
+                            <span class="card-label fw-bolder fs-3 mb-1">Work Hour List</span>
+                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you work hour group </span> --}}
                         </h3>
-                        {{-- @can('add-work-schedule') --}}
+                        {{-- @can('add-work-hour') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
                                  data-bs-trigger="hover"
                                  title="">
-                                <a href="{{ route("work-schedule.create") }}" class="btn btn-primary">
+                                <a href="{{ route("work-hour.create") }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none">
@@ -79,7 +79,7 @@
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
-                                <table id="work_schedule_datatable"
+                                <table id="work_hour_datatable"
                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
@@ -92,7 +92,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($work_schedule as $key => $value)
+                                    @foreach ($work_hour as $key => $value)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>
@@ -109,8 +109,8 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    {{-- @can('edit-work-schedule') --}}
-                                                        <a href="{{ route("work-schedule.edit", $value->id) }}"
+                                                    {{-- @can('edit-work-hour') --}}
+                                                        <a href="{{ route("work-hour.edit", $value->id) }}"
                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -125,9 +125,9 @@
                                                             </span>
                                                         </a>
                                                     {{-- @endcan --}}
-                                                    {{-- @can('delete-work-schedule') --}}
+                                                    {{-- @can('delete-work-hour') --}}
                                                         <form id="delete-form-{{ $value->id }}"
-                                                              action="{{ route("work-schedule.destroy", $value->id) }}"
+                                                              action="{{ route("work-hour.destroy", $value->id) }}"
                                                               method="POST">
                                                             @csrf
                                                             @method("delete")
@@ -168,7 +168,7 @@
 @section("script")
     <script>
         $(document).ready(function () {
-            $("#work_schedule_datatable").DataTable({
+            $("#work_hour_datatable").DataTable({
                 "language": {
                     "lengthMenu": "Show _MENU_",
                 },

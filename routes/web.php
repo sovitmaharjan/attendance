@@ -26,8 +26,8 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeSubstituteDayController;
 use App\Http\Controllers\LeaveBalanceController;
 use App\Http\Controllers\SiteSettingController;
-use App\Http\Controllers\WorkScheduleAssignmentController;
-use App\Http\Controllers\WorkScheduleController;
+use App\Http\Controllers\WorkHourAssignmentController;
+use App\Http\Controllers\WorkHourController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index']);
@@ -54,9 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
     Route::resource('/shift', ShiftController::class);
-    Route::resource('/work-schedule', WorkScheduleController::class);
+    Route::resource('/work-hour', WorkHourController::class);
     Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
-    Route::resource('/work-schedule-assignment', WorkScheduleAssignmentController::class)->only('create', 'store');
+    Route::resource('/work-hour-assignment', WorkHourAssignmentController::class)->only('create', 'store');
     Route::resource('/force-attendance', ForceAttendanceController::class)->only('index', 'store');
     Route::resource('/leave', LeaveController::class)->except('show');
     Route::resource('/leave-assignment', LeaveAssignmentController::class)->only('index', 'store');

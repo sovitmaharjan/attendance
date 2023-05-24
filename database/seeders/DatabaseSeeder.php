@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionGroupTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(ShiftTableSeeder::class);
-        $this->call(WorkScheduleTableSeeder::class);
+        $this->call(WorkHourTableSeeder::class);
         $this->call(ShiftAssignmentTableSeeder::class);
-        $this->call(WorkScheduleAssignmentTableSeeder::class);
+        $this->call(WorkHourAssignmentTableSeeder::class);
         $this->call(HolidayTableSeeder::class);
         $this->call(LeaveTableSeeder::class);
         $this->call(LeaveAssignmentTableSeeder::class);

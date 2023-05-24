@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('work_schedule_assignment_id')->nullable()->constrained();
+            $table->foreignId('work_hour_assignment_id')->nullable()->constrained();
             
             $table->integer('shift')->default(1);
 

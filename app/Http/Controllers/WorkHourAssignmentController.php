@@ -2,43 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\WorkSchedule\WorkScheduleAssignmentRequest;
+use App\Http\Requests\WorkHour\WorkHourAssignmentRequest;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\User;
-use App\Models\WorkSchedule;
-use App\Models\WorkScheduleAssignment;
+use App\Models\WorkHour;
+use App\Models\WorkHourAssignment;
 use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class WorkScheduleAssignmentController extends Controller
+class WorkHourAssignmentController extends Controller
 {
     public function create()
     {
         $data['branch'] = Branch::orderBy('name', 'asc')->get();
         $data['department'] = Department::orderBy('name', 'asc')->get();
         $data['employee'] = User::orderBy('firstname', 'asc')->get();
-        $data['work_schedule'] = WorkSchedule::orderBy('name', 'asc')->get();
-        return view('work-schedule-assignment.create', $data);
+        $data['work_hour'] = WorkHour::orderBy('name', 'asc')->get();
+        return view('work-hour-assignment.create', $data);
     }
 
-    public function store(WorkScheduleAssignmentRequest $request)
+    public function store(WorkHourAssignmentRequest $request)
     {
         try {
             DB::beginTransaction();
-            foreach ($request->work_schedule_repeater as $item) {
+            foreach ($request->work_hour_repeater as $item) {
                 $dates = CarbonPeriod::create($item['from_date'], $item['to_date']);
                 foreach ($dates as $date) {
                     $day = Carbon::parse($date)->format('l');
-                    WorkScheduleAssignment::updateOrCreate(
+                    WorkHourAssignment::updateOrCreate(
                         [
                             'employee_id' => $request->employee,
                             'assigned_date' => $date
                         ],
                         [
-                            'work_schedule_id' => $item['work_schedule'],
+                            'work_hour_id' => $item['work_hour'],
                             'assigned_day' => $day,
                             'off_day' => in_array($day, $request->off_day),
                             'extra' => [
@@ -50,7 +50,7 @@ class WorkScheduleAssignmentController extends Controller
                 }
             }
             DB::commit();
-            return back()->with('success', 'Work Schedule has been assigned');
+            return back()->with('success', 'Work Hour has been assigned');
         } catch (Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());

@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('work_schedules', function (Blueprint $table) {
+        Schema::create('work_hours', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->time('in_time');
@@ -26,6 +26,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('work_schedules');
+        Schema::dropIfExists('work_hours');
     }
 };

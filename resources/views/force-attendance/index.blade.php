@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('work-schedule.index') }}"
+                        <a href="{{ route('work-hour.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -38,10 +38,10 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            Work Schedule List
+                            Work Hour List
                         </a>
                     </div>
-                    <a href="{{ route('work-schedule-assignment.create') }}" class="btn btn-sm btn-primary">Work Schedule
+                    <a href="{{ route('work-hour-assignment.create') }}" class="btn btn-sm btn-primary">Work Hour
                         Assignment</a>
                     <a href="{{ route('force-attendance.index') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
@@ -73,7 +73,7 @@
                                 @include('partials.date-range.html')
                                 <div class="mb-10 fv-row">
                                     <button type="button" class="btn btn-sm btn-primary" id="button">
-                                        <span class="indicator-label">Load Work Schedule(s)</span>
+                                        <span class="indicator-label">Load Work Hour(s)</span>
                                     </button>
                                 </div>
                                 <div class="mb-10 fv-row">
@@ -99,7 +99,7 @@
                                                     <tr
                                                         class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0 border-color">
                                                         <th class="border-right w-100px">Assigned Date</th>
-                                                        <th class="border-right w-100px">Work Schedule</th>
+                                                        <th class="border-right w-100px">Work Hour</th>
                                                         <th class="border-right w-100px">Shift</th>
                                                         <th class="border-right w-50px"></th>
                                                         <th class="border-right w-100px">In Date</th>
@@ -185,7 +185,7 @@
 
             const date1 = $("#from_date").val();
             const date2 = $("#to_date").val();
-            var url = "{{ route('ajax.get-employee-work-schedule') }}";
+            var url = "{{ route('ajax.get-employee-work-hour') }}";
             data = {
                 'employee_id': $('#employee_id').val(),
                 'from_date': date1,
@@ -198,8 +198,8 @@
                 success: function(response) {
                     if (response.length == 0) {
                         toastr.error(
-                            'For work schedule assignment: <a href="{{ route('work-schedule-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a>',
-                            'No Work Schedule assigned to the employee on the selected date(s).');
+                            'For work hour assignment: <a href="{{ route('work-hour-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a>',
+                            'No Work Hour assigned to the employee on the selected date(s).');
                     } else {
                         var html = '';
                         response.forEach((e, i) => {
@@ -213,8 +213,8 @@
                                             <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][date]" value="${e.assigned_date}" />
                                         </td>
                                         <td class="border-right">
-                                            ${e.work_schedule.name}<br />(${e.work_schedule.in_time} - ${e.work_schedule.out_time})
-                                            <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][work_schedule]" value="${e.work_schedule.id}" />
+                                            ${e.work_hour.name}<br />(${e.work_hour.in_time} - ${e.work_hour.out_time})
+                                            <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][work_hour]" value="${e.work_hour.id}" />
                                         </td>`;
                                     } else {
                                         html +=
@@ -254,8 +254,8 @@
                                         <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][date]" value="${e.assigned_date}" />
                                     </td>
                                     <td class="border-right">
-                                        ${e.work_schedule.name}<br />(${e.work_schedule.in_time} - ${e.work_schedule.out_time})
-                                        <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][work_schedule]" value="${e.work_schedule.id}" />
+                                        ${e.work_hour.name}<br />(${e.work_hour.in_time} - ${e.work_hour.out_time})
+                                        <input type="hidden" class="form-control border-0 mxtb" name="force_attendance[${i}][work_hour]" value="${e.work_hour.id}" />
                                     </td>
                                     <td class="border-right">
                                         Shift 1
@@ -333,7 +333,7 @@
     @if ($errors->has('force_attendance') && $errors->count() == 1)
         <script>
             toastr.error(
-                'Possible reasons:<br/><ul><li>Load button was not clicked(maybe).</li><li>Missing input data</li><li>No Work Schedule assigned to the employee on the selected date(s). For Work Schedule assignment: <a href="{{ route('work-schedule-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a></li><li>Employee does not exist</li></ul>',
+                'Possible reasons:<br/><ul><li>Load button was not clicked(maybe).</li><li>Missing input data</li><li>No Work Hour assigned to the employee on the selected date(s). For Work Hour assignment: <a href="{{ route('work-hour-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a></li><li>Employee does not exist</li></ul>',
                 'Force Attendance data(list) is missing.');
         </script>
     @endif

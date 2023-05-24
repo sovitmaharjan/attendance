@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('work_schedule_assignments', function (Blueprint $table) {
+        Schema::create('work_hour_assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('work_schedule_id')->constrained();
+            $table->foreignId('work_hour_id')->constrained();
             $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
             $table->date('assigned_date');
             $table->enum('assigned_day', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])->nullable();
@@ -22,6 +22,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('work_schedule_assignments');
+        Schema::dropIfExists('work_hour_assignments');
     }
 };
