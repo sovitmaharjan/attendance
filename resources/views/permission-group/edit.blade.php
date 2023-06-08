@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-permission-group')
+                    {{-- @can('view-permission-group') --}}
                         <div class="m-0">
                             <a href="{{ route('permission-group.index') }}"
                                class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-permission-group')
+                    {{-- @endcan --}}
+                    {{-- @can('add-permission-group') --}}
                         <a href="{{ route('permission-group.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

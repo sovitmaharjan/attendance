@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-designation')
+                    {{-- @can('view-designation') --}}
                         <div class="m-0">
                             <a href="{{ route('designation.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-designation')
+                    {{-- @endcan --}}
+                    {{-- @can('add-designation') --}}
                         <a href="{{ route('designation.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

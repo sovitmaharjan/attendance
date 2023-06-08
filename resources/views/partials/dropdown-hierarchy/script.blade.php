@@ -55,12 +55,15 @@
 
     $(document).on('select2:select', '#branch', function() {
         var id = $(this).val();
-        var url = "{{ route('ajax.branch.show', ':id') }}";
+        var url = "{{ route('api.branch.show', ':id') }}";
         url = url.replace(':id', id);
         $.ajax({
             method: 'GET',
             url: url,
             success: function(response) {
+                response = response.data;
+                hierarchyBranchDepartment = response.departments;
+                hierarchyBranchEmployee = response.employees;
                 if ($('#department') != 0) {
                     $('#department').empty().trigger('change');
                     $.each(response.departments, function(i, e) {
@@ -87,12 +90,14 @@
 
     $(document).on('select2:select', '#department', function() {
         var id = $(this).val();
-        var url = "{{ route('ajax.department.show', ':id') }}";
+        var url = "{{ route('api.department.show', ':id') }}";
         url = url.replace(':id', id);
         $.ajax({
             method: 'GET',
             url: url,
             success: function(response) {
+                response = response.data;
+                hierarchyDepartmentEmployee = response.employees;
                 if ($('#branch') != 0) {
                     $('#branch').val(response.branch_id).trigger('change');
                 }
@@ -113,12 +118,13 @@
 
     $(document).on('select2:select', '#employee', function() {
         var id = $(this).val();
-        var url = "{{ route('ajax.employee.show', ':id') }}";
+        var url = "{{ route('api.employee.show', ':id') }}";
         url = url.replace(':id', id);
         $.ajax({
             method: 'GET',
             url: url,
             success: function(response) {
+                response = response.data;
                 if ($('#branch') != 0) {
                     $('#branch').val(response.branch_id).trigger('change');
                 }
@@ -134,13 +140,14 @@
 
     $(document).on('keyup', '#employee_id', delay(function() {
         var id = $(this).val();
-        if(id > 0) {
-            var url = "{{ route('ajax.employee.show', ':id') }}";
+        if (id > 0) {
+            var url = "{{ route('api.employee.show', ':id') }}";
             url = url.replace(':id', id);
             $.ajax({
                 method: 'GET',
                 url: url,
                 success: function(response) {
+                    response = response.data;
                     resetSection();
                     if ($('#employee') != 0) {
                         $('#employee').val(response.id).trigger('change');

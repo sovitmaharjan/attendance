@@ -44,7 +44,7 @@
                     <a href="{{ route('force-attendance.index') }}" class="btn btn-sm btn-primary">Force Attendance</a>
                     {{-- @can('add-work-hour-assignment') --}}
                     <a href="{{ route('work-hour-assignment.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    {{-- @endcan --}}
+                    {{-- {{-- @endcan --}}
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-holiday')
+                    {{-- @can('view-holiday') --}}
                         <div class="m-0">
                             <a href="{{ route('holiday.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-holiday')
+                    {{-- @endcan --}}
+                    {{-- @can('add-holiday') --}}
                         <a href="{{ route('holiday.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

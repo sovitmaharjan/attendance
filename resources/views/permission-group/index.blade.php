@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-permission-group')
+                    {{-- @can('view-permission-group') --}}
                         <div class="m-0">
                             <a href="{{ route('permission-group.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-permission-group')
+                    {{-- @endcan --}}
+                    {{-- @can('add-permission-group') --}}
                         <a href="{{ route('permission-group.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-permission-group')
+                                                        {{-- @can('edit-permission-group') --}}
                                                             <a href="{{ route('permission-group.edit', $value->id) }}"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <span class="svg-icon svg-icon-3">
@@ -109,8 +109,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
-                                                        @can('delete-permission-group')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('delete-permission-group') --}}
                                                             <form id="delete-form-{{ $value->id }}"
                                                                 action="{{ route('permission-group.destroy', $value->id) }}"
                                                                 method="POST">
@@ -135,7 +135,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

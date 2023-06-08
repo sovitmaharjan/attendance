@@ -62,10 +62,6 @@ class LeaveAssignmentController extends Controller
             'employee_id' => request()->employee_id,
             'leave_id' => request()->leave_id,
         ])->where('year', date('Y') - 1)->first()->total_remaining_days ?? 0;
-        return response()->json([
-            'success' => true,
-            'message' => 'Leave Data',
-            'data' => $data
-        ], 200);
+        return responseSuccess($data, 'Leave data', 200);
     }
 }

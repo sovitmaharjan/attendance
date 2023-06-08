@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    {{-- @endcan --}}
+                    {{-- {{-- @endcan --}}
                     {{-- @can('add-work-hour') --}}
                         <a href="{{ route("work-hour.create") }}" class="btn btn-sm btn-primary">Create</a>
-                    {{-- @endcan --}}
+                    {{-- {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                                     Add New
                                 </a>
                             </div>
-                        {{-- @endcan --}}
+                        {{-- {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -124,7 +124,7 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                    {{-- @endcan --}}
+                                                    {{-- {{-- @endcan --}}
                                                     {{-- @can('delete-work-hour') --}}
                                                         <form id="delete-form-{{ $value->id }}"
                                                               action="{{ route("work-hour.destroy", $value->id) }}"
@@ -150,7 +150,7 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                    {{-- @endcan --}}
+                                                    {{-- {{-- @endcan --}}
                                                 </div>
                                             </td>
                                         </tr>

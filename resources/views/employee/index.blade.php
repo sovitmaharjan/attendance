@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-employee')
+                    {{-- @can('view-employee') --}}
                         <div class="m-0">
                             <a href="{{ route('employee.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-employee')
+                    {{-- @endcan --}}
+                    {{-- @can('add-employee') --}}
                         <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                             <span class="card-label fw-bolder fs-3 mb-1">Employee List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you employee group </span> --}}
                         </h3>
-                        @can('add-employee')
+                        {{-- @can('add-employee') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                                 title="">
                                 <a href="{{ route('employee.create') }}" class="btn btn-primary">
@@ -73,7 +73,7 @@
                                     Add New
                                 </a>
                             </div>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -106,7 +106,7 @@
                                                 <td>{{ $employee->status }}</td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-employee')
+                                                        {{-- @can('edit-employee') --}}
                                                             <a href="{{ route('employee.edit', $employee->id) }}"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <span class="svg-icon svg-icon-3">
@@ -121,8 +121,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
-                                                        @can('delete-employee')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('delete-employee') --}}
                                                             <form id="delete-form-{{ $employee->id }}"
                                                                 action="{{ route('employee.destroy', $employee->id) }}"
                                                                 method="POST">
@@ -146,8 +146,8 @@
                                                                 </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
-                                                        @can('substitute-work-day')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('substitute-work-day') --}}
                                                             <a href="javascript:viod(0);"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ms-1"
                                                                 data-target-id="{{ $employee->id }}"
@@ -163,7 +163,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

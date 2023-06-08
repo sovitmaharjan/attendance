@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-role')
+                    {{-- @can('view-role') --}}
                         <div class="m-0">
                             <a href="{{ route('role.index') }}"
                                class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-role')
+                    {{-- @endcan --}}
+                    {{-- @can('add-role') --}}
                         <a href="{{ route('role.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

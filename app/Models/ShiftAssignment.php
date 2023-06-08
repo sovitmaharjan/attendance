@@ -20,7 +20,7 @@ class ShiftAssignment extends Model
 
     protected $casts = [
         'date' => 'date',
-        'extra' => 'array',
+        'extra' => 'array'
     ];
 
     public function shift()

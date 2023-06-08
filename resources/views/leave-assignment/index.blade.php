@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-leave')
+                    {{-- @can('view-leave') --}}
                         <div class="m-0">
                             <a href="{{ route('leave.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 Leave List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-leave-assignment')
+                    {{-- @endcan --}}
+                    {{-- @can('add-leave-assignment') --}}
                         <a href="{{ route('leave-assignment.index') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -264,7 +264,7 @@
                     var employee_id = $('#employee').val();
                     $.ajax({
                         method: 'POST',
-                        url: "{{ route('ajax.get-leave-data') }}",
+                        url: "{{ route('api.get-leave-data') }}",
                         data: {
                             employee_id: employee_id,
                             leave_id: leave_id
@@ -297,7 +297,7 @@
                             var employee_id = $('#employee').val();
                             $.ajax({
                                 method: 'POST',
-                                url: "{{ route('ajax.get-leave-data') }}",
+                                url: "{{ route('api.get-leave-data') }}",
                                 data: {
                                     employee_id: employee_id,
                                     leave_id: leave_id
@@ -322,7 +322,7 @@
                         var employee_id = $('#employee').val();
                         $.ajax({
                             method: 'POST',
-                            url: "{{ route('ajax.get-leave-data') }}",
+                            url: "{{ route('api.get-leave-data') }}",
                             data: {
                                 employee_id: employee_id,
                                 leave_id: leave_id

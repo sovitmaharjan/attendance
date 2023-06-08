@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-leave')
+                    {{-- @can('view-leave') --}}
                         <div class="m-0">
                             <a href="{{ route('leave.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-leave')
+                    {{-- @endcan --}}
+                    {{-- @can('add-leave') --}}
                         <a href="{{ route('leave.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ class Department extends Model
         'phone',
         'mobile',
         'status',
-        'extra',
+        'extra'
     ];
 
     protected $casts = [

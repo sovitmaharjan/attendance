@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-employee')
+                    {{-- @can('view-employee') --}}
                         <div class="m-0">
                             <a href="{{ route('leave-application.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
+                    {{-- @endcan --}}
                     {{-- @can('add-leave-application') --}}
                         <a href="{{ route('leave-application.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    {{-- @endcan --}}
+                    {{-- {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                                 Add New
                             </a>
                         </div>
-                        {{-- @endcan --}}
+                        {{-- {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -176,7 +176,7 @@
                                                                 </span>
                                                             </a>
                                                         @endif
-                                                        {{-- @endcan --}}
+                                                        {{-- {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

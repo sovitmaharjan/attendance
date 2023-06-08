@@ -10,6 +10,7 @@
     $workHourNav = Request::is('work-hour*');
     $workHourAssignmentNav = Request::is('work-hour-assignment*');
     $holidayNav = Request::is('holiday*');
+    $holidayAssignmentNav = Request::is('holiday-assignment*');
     $leaveAloneNav = Request::is('leave');
     $leaveNav = strpos(Request::route()->getName(), 'leave.') !== false;
     $leaveAssignmentNav = Request::is('leave-assignment*');
@@ -234,13 +235,34 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link @yield('holiday')" href="{{ route('holiday.index') }}">
+                        <div data-kt-menu-trigger="click"
+                            class="menu-item menu-accordion {{ $holidayNav  || $holidayAssignmentNav ? 'here show' : '' }}">
+                            <span class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Holiday</span>
-                            </a>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                <div class="menu-item">
+                                    <a class="menu-link @yield('holiday')" href="{{ route('holiday.index')  }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Holiday</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link @yield('holiday_assignment')"
+                                        href="{{ route('holiday-assignment.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Holiday Assignment</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div data-kt-menu-trigger="click"
                             class="menu-item menu-accordion {{ $eventNav || $eventAssignmentNav ? 'here show' : '' }}">
@@ -302,7 +324,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- @endcan --}}
+                {{-- {{-- @endcan --}}
 {{--                @endhasRole--}}
 {{--                @endhasAnyRole--}}
                 <div data-kt-menu-trigger="click"

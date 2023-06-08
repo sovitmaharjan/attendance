@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\Helper;
 use App\Http\Requests\Branch\StoreBranchRequest;
 use App\Http\Requests\Branch\UpdateBranchRequest;
 use App\Models\Branch;
@@ -10,13 +9,6 @@ use Exception;
 
 class BranchController extends Controller
 {
-    protected $helper;
-
-    function __construct()
-    {
-        $this->helper = new Helper;
-    }
-
     public function index()
     {
         $page = "Branch";
@@ -30,15 +22,10 @@ class BranchController extends Controller
         return view('branch.create', compact('page'));
     }
 
-    public function show(Branch $branch)
-    {
-        return response()->json($branch->load('departments', 'employees'));
-    }
-
     public function store(StoreBranchRequest $request, Branch $branch)
     {
         try {
-            $data = $this->helper->getObject($branch, $request);
+            $data = getObject($branch, $request);
             $data->save();
             return back()->with('success', 'New Branch has been added');
         } catch (Exception $e) {
@@ -56,7 +43,7 @@ class BranchController extends Controller
     public function update(UpdateBranchRequest $request, Branch $branch)
     {
         try {
-            $data = $this->helper->getObject($branch, $request);
+            $data = getObject($branch, $request);
             $data->update();
             return back()->with('success', 'Branch has been updated');
         } catch (Exception $e) {

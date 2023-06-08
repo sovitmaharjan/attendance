@@ -20,7 +20,7 @@ class WorkHourAssignment extends Model
 
     protected $casts = [
         'assigned_date' => 'date',
-        'extra' => 'array',
+        'extra' => 'array'
     ];
 
     public function workHour()

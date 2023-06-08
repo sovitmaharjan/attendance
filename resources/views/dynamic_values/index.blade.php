@@ -33,7 +33,7 @@
                             <span class="card-label fw-bolder fs-3 mb-1">Dynamic Values
                                 {{ ucwords(str_replace('_', ' ', request('setup'))) }}</span>
                         </h3>
-                        @can('add-dynamic-value')
+                        {{-- @can('add-dynamic-value') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
                                  data-bs-trigger="hover"
                                  title="">
@@ -50,7 +50,7 @@
                                 </span>
                                 </a>
                             </div>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -72,7 +72,7 @@
                                                 <td>{{ $dynamic_value->status ? 'Active' : 'Inactive' }}</td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-dynamic-value')
+                                                        {{-- @can('edit-dynamic-value') --}}
                                                             <a href="javascript:void(0)"
                                                                data-target-id="{{ $dynamic_value->id }}"
                                                                data-bs-toggle="modal"
@@ -90,7 +90,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

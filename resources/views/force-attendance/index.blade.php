@@ -72,7 +72,7 @@
                                 </div>
                                 @include('partials.date-range.html')
                                 <div class="mb-10 fv-row">
-                                    <button type="button" class="btn btn-sm btn-primary" id="button">
+                                    <button type="button" class="btn btn-sm btn-primary" id="load_attendance_button">
                                         <span class="indicator-label">Load Work Hour(s)</span>
                                     </button>
                                 </div>
@@ -146,7 +146,9 @@
             $('#tbody').html('');
         }, 500));
 
-        $('#button').on('click', function() {
+        var table;
+
+        $('#load_attendance_button').on('click', function() {
             var branchElem = $('#branch');
             var departmentElem = $('#department');
             var employeeElem = $('#employee');
@@ -155,12 +157,6 @@
             var nepaliFromDateElem = $('#nepali_from_date');
             var toDateElem = $('#to_date');
             var nepalitoDateElem = $('#nepali_to_date');
-
-            function message(field) {
-                return $(
-                    '<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The ' +
-                    field + ' feild is required</div></div>');
-            }
 
             $('.invalid-feedback').remove();
             !branchElem.val() ? message('branch').insertAfter(branchElem.parent()) : '';
@@ -185,7 +181,7 @@
 
             const date1 = $("#from_date").val();
             const date2 = $("#to_date").val();
-            var url = "{{ route('ajax.get-employee-work-hour') }}";
+            var url = "{{ route('api.get-employee-work-hour') }}";
             data = {
                 'employee_id': $('#employee_id').val(),
                 'from_date': date1,
@@ -196,6 +192,7 @@
                 url: url,
                 data: data,
                 success: function(response) {
+                    response = response.data;
                     if (response.length == 0) {
                         toastr.error(
                             'For work hour assignment: <a href="{{ route('work-hour-assignment.create') }}"><button type="button" class="btn btn-light btn-sm">click here</button></a>',

@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-shift')
+                    {{-- @can('view-shift') --}}
                         <div class="m-0">
                             <a href="{{ route('shift.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-shift')
+                    {{-- @endcan --}}
+                    {{-- @can('add-shift') --}}
                         <a href="{{ route('shift.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

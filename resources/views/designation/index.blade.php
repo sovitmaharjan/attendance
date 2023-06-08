@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-designation')
+                    {{-- @can('view-designation') --}}
                         <div class="m-0">
                             <a href="{{ route("designation.index") }}"
                                class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-designation')
+                    {{-- @endcan --}}
+                    {{-- @can('add-designation') --}}
                         <a href="{{ route("designation.create") }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                             <span class="card-label fw-bolder fs-3 mb-1">{{$page}} List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you permission group </span> --}}
                         </h3>
-                        @can('add-designation')
+                        {{-- @can('add-designation') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top"
                                  data-bs-trigger="hover"
                                  title="">
@@ -74,7 +74,7 @@
                                     Add New
                                 </a>
                             </div>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -97,7 +97,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex flex-shrink-0">
-                                                    @can('edit-designation')
+                                                    {{-- @can('edit-designation') --}}
                                                         <a href="{{ route("designation.edit", $data->id) }}"
                                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                             <span class="svg-icon svg-icon-3">
@@ -112,8 +112,8 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                    @endcan
-                                                    @can('delete-designation')
+                                                    {{-- @endcan --}}
+                                                    {{-- @can('delete-designation') --}}
                                                         <form id="delete-form-{{ $data->id }}"
                                                               action="{{ route("designation.destroy", $data->id) }}"
                                                               method="POST">
@@ -138,7 +138,7 @@
                                                                 </svg>
                                                             </span>
                                                         </a>
-                                                    @endcan
+                                                    {{-- @endcan --}}
                                                 </div>
                                             </td>
                                         </tr>

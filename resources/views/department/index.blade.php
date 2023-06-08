@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-department')
+                    {{-- @can('view-department') --}}
                         <div class="m-0">
                             <a href="{{ route('department.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-department')
+                    {{-- @endcan --}}
+                    {{-- @can('add-department') --}}
                         <a href="{{ route('department.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                             <span class="card-label fw-bolder fs-3 mb-1">{{ $page }} List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you permission group </span> --}}
                         </h3>
-                        @can('add-department')
+                        {{-- @can('add-department') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                                 title="">
                                 <a href="{{ route('department.create') }}" class="btn btn-primary">
@@ -73,7 +73,7 @@
                                     Add New
                                 </a>
                             </div>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -120,7 +120,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-department')
+                                                        {{-- @can('edit-department') --}}
                                                             <a href="{{ route('department.edit', $data->id) }}"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <span class="svg-icon svg-icon-3">
@@ -135,7 +135,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                         <a href="javascript:void(0);" data-target-id="{{ $data->id }}"
                                                             data-id="{{ $data->id }}"
                                                             class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
@@ -152,7 +152,7 @@
                                                                     d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
                                                             </svg>
                                                         </a>
-                                                        @can('delete-department')
+                                                        {{-- @can('delete-department') --}}
                                                             <form id="delete-form-{{ $data->id }}"
                                                                 action="{{ route('department.destroy', $data->id) }}"
                                                                 method="POST">
@@ -177,7 +177,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

@@ -243,7 +243,7 @@
         function getLeaveApplicationData() {
             var employee_id = $('#employee').val();
             var leave_id = $('#leave_id').val();
-            var url = "{{ route('ajax.get-leave-application-data') }}";
+            var url = "{{ route('api.get-leave-application-data') }}";
             $.ajax({
                 method: 'POST',
                 url: url,
@@ -320,12 +320,6 @@
             var toDateElem = $('#to_date');
             var nepaliToDateElem = $('#nepali_to_date');
 
-            function message(field) {
-                return $(
-                    '<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The ' +
-                    field + ' feild is required</div></div>');
-            }
-
             $('.invalid-feedback').remove();
             !branchElem.val() ? message('branch').insertAfter(branchElem.parent()) : '';
             !departmentElem.val() ? message('department').insertAfter(departmentElem.parent()) : '';
@@ -357,7 +351,7 @@
                 var from_date = $('#from_date').val();
                 var leave_id = $('#leave_id').val();
                 var employee_id = $('#employee_id').val();
-                var url = "{{ route('ajax.check-leave-application-date') }}";
+                var url = "{{ route('api.check-leave-application-date') }}";
                 $.ajax({
                     method: 'POST',
                     url: url,
@@ -368,6 +362,7 @@
                         employee_id: employee_id
                     },
                     success: function(response) {
+                        console.log(response);
                         if (response) {
                             toastr.info(response.message, response.status);
                             if (response.status != 'cancelled') {

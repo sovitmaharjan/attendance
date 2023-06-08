@@ -109,7 +109,7 @@
                                 class="menu-link px-3">Employee Type</a>
                         </div>
                     </div>
-                    @can('view-employee')
+                    {{-- @can('view-employee') --}}
                         <div class="m-0">
                             <a href="{{ route('employee.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -127,10 +127,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-employee')
+                    {{-- @endcan --}}
+                    {{-- @can('add-employee') --}}
                         <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

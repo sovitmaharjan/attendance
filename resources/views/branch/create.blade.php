@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-branch')
+                    {{-- @can('view-branch') --}}
                         <div class="m-0">
                             <a href="{{ route('branch.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-branch')
+                    {{-- @endcan --}}
+                    {{-- @can('add-branch') --}}
                         <a href="{{ route('branch.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

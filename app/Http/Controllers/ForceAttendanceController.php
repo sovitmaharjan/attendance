@@ -71,6 +71,6 @@ class ForceAttendanceController extends Controller
     public function getEmployeeWorkHour()
     {
         $work_hour = WorkHourAssignment::where('employee_id', request()->employee_id)->whereBetween('assigned_date', [request()->from_date, request()->to_date])->get();
-        return response()->json(EmployeeWorkHourResource::collection($work_hour));
+        return responseSuccess(EmployeeWorkHourResource::collection($work_hour), 'Work Hours', 200);
     }
 }

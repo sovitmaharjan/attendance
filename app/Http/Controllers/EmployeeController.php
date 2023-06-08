@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
+use App\Http\Resources\EmployeeResource;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Designation;
@@ -34,11 +35,6 @@ class EmployeeController extends Controller
         $data['designation'] = Designation::all();
         $data['role'] = Role::all();
         return view('employee.create', $data);
-    }
-
-    public function show(User $employee)
-    {
-        return response()->json($employee);
     }
 
     public function store(StoreEmployeeRequest $request)

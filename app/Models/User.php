@@ -52,12 +52,12 @@ class User extends Authenticatable implements HasMedia
         'type',
         
         'official_email',
-        'extra',
+        'extra'
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     protected $appends = ['full_name'];
@@ -66,7 +66,7 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'date',
         'dob' => 'date',
         'join_date' => 'date',
-        'extra' => 'array',
+        'extra' => 'array'
     ];
 
     public function fullName(): Attribute

@@ -42,10 +42,10 @@
                             List
                         </a>
                     </div>
-                    {{-- @endcan --}}
+                    {{-- {{-- @endcan --}}
                     {{-- @can('add-work-hour') --}}
                     <a href="{{ route('work-hour.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    {{-- @endcan --}}
+                    {{-- {{-- @endcan --}}
                 </div>
             </div>
         </div>

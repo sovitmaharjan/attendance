@@ -24,6 +24,7 @@ use App\Http\Controllers\ShiftAssignmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeSubstituteDayController;
+use App\Http\Controllers\HolidayAssignmentController;
 use App\Http\Controllers\LeaveBalanceController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\WorkHourAssignmentController;
@@ -53,9 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/employee', EmployeeController::class)->except('show'); //->middleware(['checkPermission:delete-dashboard'])
     Route::resource('/event', EventController::class);
     Route::resource('/holiday', HolidayController::class);
-    Route::resource('/shift', ShiftController::class);
+    Route::resource('/holiday-assignment', HolidayAssignmentController::class)->only('index', 'store');
     Route::resource('/work-hour', WorkHourController::class);
-    Route::resource('/shift-assignment', ShiftAssignmentController::class)->only('index', 'store');
     Route::resource('/work-hour-assignment', WorkHourAssignmentController::class)->only('create', 'store');
     Route::resource('/force-attendance', ForceAttendanceController::class)->only('index', 'store');
     Route::resource('/leave', LeaveController::class)->except('show');

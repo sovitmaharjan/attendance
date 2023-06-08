@@ -102,16 +102,9 @@ class LeaveApplicationController extends Controller
                 'employee_id' => request()->employee_id,
                 'status' => LeaveApplication::CANCELLED,
             ])->count();
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Leave Data',
-                'data' => $data
-            ], 200);
+            return responseSuccess($data, 'Leave Data', 200);
         } catch (Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-            ], 400);
+            return responseError($e->getMessage(), 400);
         }
     }
 
@@ -140,11 +133,7 @@ class LeaveApplicationController extends Controller
                     $status = 'Cancelled';
                     $message = 'Leave application for the date ' . $leave_application->from_date . ' has been cancelled';
                 }
-                return response()->json([
-                    'status' => $status,
-                    'message' => $message,
-                    'data' => $leave_application
-                ], 200);
+                return responseSuccess($leave_application, $message, 200, $status);
             }
         }
     }

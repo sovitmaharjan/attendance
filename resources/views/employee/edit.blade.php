@@ -79,7 +79,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-employee')
+                    {{-- @can('view-employee') --}}
                         <div class="m-0">
                             <a href="{{ route('employee.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -97,10 +97,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-employee')
+                    {{-- @endcan --}}
+                    {{-- @can('add-employee') --}}
                         <a href="{{ route('employee.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>

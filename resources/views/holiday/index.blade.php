@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-holiday')
+                    {{-- @can('view-holiday') --}}
                         <div class="m-0">
                             <a href="{{ route('holiday.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-holiday')
+                    {{-- @endcan --}}
+                    {{-- @can('add-holiday') --}}
                         <a href="{{ route('holiday.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                             <span class="card-label fw-bolder fs-3 mb-1">Holiday List</span>
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Manage you holiday group </span> --}}
                         </h3>
-                        @can('add-holiday')
+                        {{-- @can('add-holiday') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                                 title="">
                                 <a href="{{ route('holiday.create') }}" class="btn btn-primary">
@@ -73,7 +73,7 @@
                                     Add New
                                 </a>
                             </div>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -109,7 +109,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-holiday')
+                                                        {{-- @can('edit-holiday') --}}
                                                             <a href="{{ route('holiday.edit', $value->id) }}"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <span class="svg-icon svg-icon-3">
@@ -124,8 +124,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
-                                                        @can('delete-holiday')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('delete-holiday') --}}
                                                             <form id="delete-form-{{ $value->id }}"
                                                                 action="{{ route('holiday.destroy', $value->id) }}"
                                                                 method="POST">
@@ -150,7 +150,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

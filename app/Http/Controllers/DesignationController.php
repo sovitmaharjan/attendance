@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\Helper;
 use App\Http\Requests\Designation\StoreDesignationRequest;
 use App\Http\Requests\Designation\UpdateDesignationRequest;
 use App\Models\Designation;
 
 class DesignationController extends Controller
 {
-    protected $helper;
-    
-    function __construct(){
-        $this->helper = new Helper;
-     }
-
     public function index()
     {
         $page = "Designation";
@@ -30,13 +23,13 @@ class DesignationController extends Controller
 
     public function store(StoreDesignationRequest $request, Designation $designation)
     {
-        try{
-            $data = $this->helper->getObject($designation, $request);
+        try {
+            $data = getObject($designation, $request);
             $data->save();
             return back()->with('success', 'New Designation has been added');
-         }catch(\Exception$e){
+        } catch (\Exception $e) {
             return $this->$e->getMessage();
-         }
+        }
     }
 
     public function edit(Designation $designation)
@@ -48,7 +41,7 @@ class DesignationController extends Controller
 
     public function update(UpdateDesignationRequest $request, Designation $designation)
     {
-        $data = $this->helper->getObject($designation, $request);
+        $data = getObject($designation, $request);
         $data->update();
         return back()->with('success', 'Designation has been updated');
     }

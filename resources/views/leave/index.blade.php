@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-leave')
+                    {{-- @can('view-leave') --}}
                         <div class="m-0">
                             <a href="{{ route('leave.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-leave')
+                    {{-- @endcan --}}
+                    {{-- @can('add-leave') --}}
                         <a href="{{ route('leave.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label fw-bolder fs-3 mb-1">Leave List</span>
                         </h3>
-                        @can('add-leave')
+                        {{-- @can('add-leave') --}}
                             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                                 title="">
                                 <a href="{{ route('leave.create') }}" class="btn btn-primary">
@@ -72,7 +72,7 @@
                                     Add New
                                 </a>
                             </div>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -99,7 +99,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-leave')
+                                                        {{-- @can('edit-leave') --}}
                                                             <a href="{{ route('leave.edit', $value->id) }}"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <span class="svg-icon svg-icon-3">
@@ -114,8 +114,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
-                                                        @can('delete-leave')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('delete-leave') --}}
                                                             <form id="delete-form-{{ $value->id }}"
                                                                 action="{{ route('leave.destroy', $value->id) }}"
                                                                 method="POST">
@@ -140,7 +140,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>

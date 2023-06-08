@@ -8,6 +8,16 @@
 <script src="{{ asset('assets/js/nepali.datepicker.v4.0.1.min.js') }}"></script>
 
 <script>
+    var hierarchyBranchDepartment = [];
+    var hierarchyBranchEmployee = [];
+    var hierarchyDepartmentEmployee = [];
+
+    function message(field) {
+        return $(
+            '<div class="fv-plugins-message-container invalid-feedback"><div data-fiedivld="name"-validator="notEmpty">The ' +
+            field + ' feild is required</div></div>');
+    }
+    
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -86,6 +96,7 @@
                 cancelButton: "btn btn-danger"
             }
         }).then((result) => {
+            console.log(result);
             if (result.isConfirmed) {
                 $("#delete-form-" + id).submit();
             }

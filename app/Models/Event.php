@@ -16,7 +16,7 @@ class Event extends Model
     protected $casts = [
         'from_date' => 'date',
         'to_date' => 'date',
-        'extra' => 'array',
+        'extra' => 'array'
     ];
 
     public function getSlugOptions(): SlugOptions

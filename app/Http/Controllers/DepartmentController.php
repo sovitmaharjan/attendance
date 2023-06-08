@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\DepartmentOffDaysTrack;
 use App\Models\DynamicValue;
 use Illuminate\Http\Request;
-use App\Helper\Helper;
 use App\Http\Requests\Department\StoreDepartmentRequest;
 use App\Http\Requests\Department\UpdateDepartmentRequest;
 use App\Models\Branch;
@@ -15,13 +14,6 @@ use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
-    protected $helper;
-
-    function __construct()
-    {
-        $this->helper = new Helper;
-    }
-
     public function index()
     {
         $page = "Department";
@@ -36,15 +28,10 @@ class DepartmentController extends Controller
         return view('department.create', compact('page', 'branch'));
     }
 
-    public function show(Department $department)
-    {
-        return response()->json($department->load('employees'));
-    }
-
     public function store(StoreDepartmentRequest $request, Department $department)
     {
         try {
-            $data = $this->helper->getObject($department, $request);
+            $data = getObject($department, $request);
             $data['branch_id'] = $request->branch_id;
             $data->save();
             return back()->with('success', 'New Department has been added');
@@ -63,7 +50,7 @@ class DepartmentController extends Controller
 
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        $data = $this->helper->getObject($department, $request);
+        $data = getObject($department, $request);
         $data['branch_id'] = $request->branch_id;
         $data->update();
         return back()->with('success', 'Department has been updated');

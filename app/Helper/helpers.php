@@ -4,6 +4,14 @@ use App\Models\DynamicValue;
 use App\Models\SiteSetting;
 use App\Models\User;
 
+
+function getObject($model, $request)
+{
+    $data = $request->only($model->getFillable());
+    $model->fill($data);
+    return $model;
+}
+
 if (!function_exists('getDynamicValues')) {
     function getDynamicValues($key)
     {

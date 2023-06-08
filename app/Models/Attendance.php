@@ -31,6 +31,6 @@ class Attendance extends Model
     protected $casts = [
         'in_date' => 'date',
         'out_date' => 'date',
-        'extra' => 'array',
+        'extra' => 'array'
     ];
 }

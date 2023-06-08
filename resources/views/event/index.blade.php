@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('view-event')
+                    {{-- @can('view-event') --}}
                         <div class="m-0">
                             <a href="{{ route('event.index') }}"
                                 class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
@@ -42,10 +42,10 @@
                                 List
                             </a>
                         </div>
-                    @endcan
-                    @can('add-event')
+                    {{-- @endcan --}}
+                    {{-- @can('add-event') --}}
                         <a href="{{ route('event.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    {{-- @endcan --}}
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                         </h3>
                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                             title="">
-                            @can('add-event')
+                            {{-- @can('add-event') --}}
                                 <a href="{{ route('event.create') }}" class="btn btn-primary">
                                     <span class="svg-icon svg-icon-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -72,7 +72,7 @@
                                     </span>
                                     Add New
                                 </a>
-                            @endcan
+                            {{-- @endcan --}}
                         </div>
                     </div>
                     <div class="card-body pt-0">
@@ -113,7 +113,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex flex-shrink-0">
-                                                        @can('edit-event')
+                                                        {{-- @can('edit-event') --}}
                                                             <a href="{{ route('event.edit', $event->id) }}"
                                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                                 <span class="svg-icon svg-icon-3">
@@ -128,8 +128,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
-                                                        @can('add-event-assignment')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('add-event-assignment') --}}
                                                             @if ($event->status == 1)
                                                                 <a href="{{ route('event-assignment.index', $event->id) }}"
                                                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
@@ -144,8 +144,8 @@
                                                                     <i class="bi bi-eye-fill fs-1x" title="View Employee"></i>
                                                                 </a>
                                                             @endif
-                                                        @endcan
-                                                        @can('delete-event')
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('delete-event') --}}
                                                             <form id="delete-form-{{ $event->id }}"
                                                                 action="{{ route('event.destroy', $event->id) }}"
                                                                 method="POST">
@@ -170,7 +170,7 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                        @endcan
+                                                        {{-- @endcan --}}
                                                     </div>
                                                 </td>
                                             </tr>
