@@ -62,8 +62,8 @@
             url: url,
             success: function(response) {
                 response = response.data;
-                hierarchyBranchDepartment = response.departments;
-                hierarchyBranchEmployee = response.employees;
+                hierarchyDepartment = response.departments;
+                hierarchyEmployee = response.employees;
                 if ($('#department') != 0) {
                     $('#department').empty().trigger('change');
                     $.each(response.departments, function(i, e) {
@@ -97,7 +97,7 @@
             url: url,
             success: function(response) {
                 response = response.data;
-                hierarchyDepartmentEmployee = response.employees;
+                hierarchyEmployee = response.employees;
                 if ($('#branch') != 0) {
                     $('#branch').val(response.branch_id).trigger('change');
                 }

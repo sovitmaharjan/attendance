@@ -8,9 +8,8 @@
 <script src="{{ asset('assets/js/nepali.datepicker.v4.0.1.min.js') }}"></script>
 
 <script>
-    var hierarchyBranchDepartment = [];
-    var hierarchyBranchEmployee = [];
-    var hierarchyDepartmentEmployee = [];
+    var hierarchyDepartment = [];
+    var hierarchyEmployee = [];
 
     function message(field) {
         return $(
@@ -96,7 +95,6 @@
                 cancelButton: "btn btn-danger"
             }
         }).then((result) => {
-            console.log(result);
             if (result.isConfirmed) {
                 $("#delete-form-" + id).submit();
             }

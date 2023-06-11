@@ -120,7 +120,7 @@
                                                                         value="{{ $item->id }}" />
                                                                 </div>
                                                             </td>
-                                                            <td>{{ $item->fullName }}</td>
+                                                            <td>{{ $item->full_name }}</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
@@ -155,6 +155,8 @@
         $(document).on('click', '#check-all', function() {
             if ($(this).is(':checked')) {
                 $('.employee-checkbox').prop('checked', true);
+            } else {
+                $('.employee-checkbox').prop('checked', false);
             }
         });
 
@@ -164,10 +166,9 @@
             $('.invalid-feedback').remove();
             !branchElem.val() ? message('branch').insertAfter(branchElem.parent()) : '';
 
-            if (hierarchyBranchEmployee.length > 0) {
-
+            if (hierarchyEmployee.length > 0) {
                 var html = '';
-                hierarchyBranchEmployee.forEach((e, i) => {
+                hierarchyEmployee.forEach((e, i) => {
                     html += `<tr>
                         <td>
                             <div
@@ -177,21 +178,15 @@
                                     value="${e.id}" />
                             </div>
                         </td>
-                        <td>${e.fullName}</td>
+                        <td>${e.full_name}</td>
                     </tr>`;
                 });
                 $('#tbody').html('');
                 $('#tbody').html(html);
-
-                $("#holiday_table").DataTable({
-                    pageLength: -1,
-                    ordering: false,
-                    "dom": "<'row'" +
-                        "<'col-sm-6 d-flex align-items-center justify-content-start'f>" +
-                        ">" +
-                        "<'table-responsive'tr>" +
-                        "<'row'>"
-                });
+            } else {
+                $('#check-all').prop('checked', false);
+                $('#tbody').html('');
+                toastr.error('Employee(s) not found');
             }
         });
     </script>

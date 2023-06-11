@@ -362,7 +362,6 @@
                         employee_id: employee_id
                     },
                     success: function(response) {
-                        console.log(response);
                         if (response) {
                             toastr.info(response.message, response.status);
                             if (response.status != 'cancelled') {
